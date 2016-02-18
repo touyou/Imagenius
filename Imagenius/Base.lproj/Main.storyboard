@@ -38,8 +38,8 @@
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem title="タイムライン" badgeValue="timeline" id="Ejz-Jn-2Uo"/>
-                                    <tabBarItem title="リプライ" badgeValue="reply" id="qLp-HY-4m4"/>
+                                    <tabBarItem title="タイムライン" id="Ejz-Jn-2Uo"/>
+                                    <tabBarItem title="リプライ" id="qLp-HY-4m4"/>
                                 </items>
                             </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-1i-fqs">
@@ -84,7 +84,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ext-5a-hem">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ext-5a-hem">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CNf-qe-5MY">
@@ -112,6 +112,9 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Nyu-L3-XkN" id="O50-9o-egU"/>
+                                        </connections>
                                     </textView>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgb-XM-hzs">
                                         <rect key="frame" x="0.0" y="448" width="320" height="50"/>
@@ -139,6 +142,9 @@
                                                 <rect key="frame" x="8" y="11" width="252" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Nyu-L3-XkN" id="u7H-XP-Q5D"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9Z-Mp-iOM">
                                                 <rect key="frame" x="266" y="11" width="46" height="30"/>
@@ -151,14 +157,35 @@
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="CNf-qe-5MY" secondAttribute="trailing" id="5zI-Kw-jei"/>
+                                    <constraint firstAttribute="trailing" secondItem="pgb-XM-hzs" secondAttribute="trailing" id="Cx7-TX-s0j"/>
+                                    <constraint firstItem="pgb-XM-hzs" firstAttribute="leading" secondItem="ext-5a-hem" secondAttribute="leading" id="EOL-yS-1Bd"/>
+                                    <constraint firstItem="6NW-fT-Jsm" firstAttribute="top" secondItem="pgb-XM-hzs" secondAttribute="bottom" id="IYr-rp-QFo"/>
+                                    <constraint firstItem="CNf-qe-5MY" firstAttribute="leading" secondItem="ext-5a-hem" secondAttribute="leading" id="P17-ea-l8N"/>
+                                    <constraint firstAttribute="trailing" secondItem="6NW-fT-Jsm" secondAttribute="trailing" id="QEV-y7-d5J"/>
+                                    <constraint firstAttribute="trailing" secondItem="MQP-S9-zls" secondAttribute="trailing" id="ZVf-eL-avw"/>
+                                    <constraint firstItem="MQP-S9-zls" firstAttribute="leading" secondItem="ext-5a-hem" secondAttribute="leading" id="c5g-sZ-Bem"/>
+                                    <constraint firstItem="6NW-fT-Jsm" firstAttribute="leading" secondItem="ext-5a-hem" secondAttribute="leading" id="peo-UM-c8V"/>
+                                    <constraint firstAttribute="bottom" secondItem="6NW-fT-Jsm" secondAttribute="bottom" id="wkZ-RT-jrO"/>
+                                    <constraint firstItem="CNf-qe-5MY" firstAttribute="top" secondItem="ext-5a-hem" secondAttribute="top" id="ybn-nf-ETB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sZv-1O-JJT" firstAttribute="top" secondItem="ext-5a-hem" secondAttribute="bottom" id="GBk-Xc-nKt"/>
+                            <constraint firstAttribute="trailing" secondItem="ext-5a-hem" secondAttribute="trailing" id="Nfx-Oy-Ip4"/>
+                            <constraint firstItem="ext-5a-hem" firstAttribute="top" secondItem="Km1-k3-8x3" secondAttribute="bottom" id="Pq7-ig-qJP"/>
+                            <constraint firstItem="ext-5a-hem" firstAttribute="leading" secondItem="pav-nR-tfY" secondAttribute="leading" id="eFC-hm-b5n"/>
+                            <constraint firstItem="ext-5a-hem" firstAttribute="width" secondItem="pav-nR-tfY" secondAttribute="width" id="qYY-rh-uhe"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="accountImage" destination="gVG-nf-Atd" id="ukI-YQ-0Zu"/>
                         <outlet property="countLabel" destination="JC1-Z4-8uY" id="SOA-Gw-6c3"/>
                         <outlet property="searchField" destination="5ag-fi-7eg" id="UN9-mJ-mqn"/>
+                        <outlet property="stackView" destination="ext-5a-hem" id="rRg-bs-3Ad"/>
                         <outlet property="tweetTextView" destination="MQP-S9-zls" id="ZlK-zh-hUP"/>
                         <segue destination="jLc-Wc-dJX" kind="modal" identifier="toImageView" modalTransitionStyle="flipHorizontal" id="b0I-tV-6FH"/>
                     </connections>

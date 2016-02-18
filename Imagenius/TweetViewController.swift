@@ -9,6 +9,8 @@
 import UIKit
 
 class TweetViewController: UIViewController {
+    @IBOutlet var stackView: UIStackView!
+    
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
@@ -18,6 +20,38 @@ class TweetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stackView.autoresizesSubviews = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    // キーボード関係の処理
+    // returnでキーボードを閉じる
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        // let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+        
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
     }
     
     // ボタン関係
