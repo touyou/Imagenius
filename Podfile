@@ -4,13 +4,10 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Imagenius' do
-    pod 'PageMenu'
-    pod 'MaterialKit'
     pod 'FMAssetStream'
-    pod 'BubbleTransition', '~> 1.0.0'
-    pod 'RKNotificationHub'
     pod 'SCLAlertView'
     pod 'DZNEmptyDataSet'
+    pod 'SWTableViewCell', '~> 0.3.7'
 end
 
 target 'ImageniusTests' do

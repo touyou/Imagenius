@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
 		460B4A3B1C6B5CF60089CC7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A3A1C6B5CF60089CC7E /* ViewController.swift */; };
 		460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3C1C6B5CF60089CC7E /* Main.storyboard */; };
@@ -14,6 +15,11 @@
 		460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */; };
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
+		4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683828D1C757FE2001DC810 /* ImageViewController.swift */; };
+		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
+		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
+		468382961C758414001DC810 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382951C758414001DC810 /* ImageViewCell.swift */; };
+		468382981C758C86001DC810 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382971C758C86001DC810 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		460B4A3A1C6B5CF60089CC7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +54,13 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4683828D1C757FE2001DC810 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		4683828F1C7581A6001DC810 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		468382951C758414001DC810 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
+		468382971C758C86001DC810 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
+		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */,
+				468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */,
+				25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +94,14 @@
 		460B4A2C1C6B5CF60089CC7E = {
 			isa = PBXGroup;
 			children = (
+				4683828F1C7581A6001DC810 /* Alamofire.framework */,
+				468382901C7581A6001DC810 /* SwiftyJSON.framework */,
 				460B4A371C6B5CF60089CC7E /* Imagenius */,
 				460B4A4C1C6B5CF60089CC7E /* ImageniusTests */,
 				460B4A571C6B5CF60089CC7E /* ImageniusUITests */,
 				460B4A361C6B5CF60089CC7E /* Products */,
+				CA5CFC7A612E4DAD618FD845 /* Pods */,
+				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +120,13 @@
 			children = (
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
 				460B4A3A1C6B5CF60089CC7E /* ViewController.swift */,
+				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
 				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
 				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
 				460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */,
 				460B4A441C6B5CF60089CC7E /* Info.plist */,
+				468382951C758414001DC810 /* ImageViewCell.swift */,
+				468382971C758C86001DC810 /* ResultViewController.swift */,
 			);
 			path = Imagenius;
 			sourceTree = "<group>";
@@ -125,6 +149,23 @@
 			path = ImageniusUITests;
 			sourceTree = "<group>";
 		};
+		CA5CFC7A612E4DAD618FD845 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */,
+				60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +173,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A5D1C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "Imagenius" */;
 			buildPhases = (
+				4F0F1E317B970F9DFBD2323D /* Check Pods Manifest.lock */,
 				460B4A311C6B5CF60089CC7E /* Sources */,
 				460B4A321C6B5CF60089CC7E /* Frameworks */,
 				460B4A331C6B5CF60089CC7E /* Resources */,
+				468382931C7581B0001DC810 /* ShellScript */,
+				83A35A83565AB35DBF827A2A /* Embed Pods Frameworks */,
+				8DB6F376014DE0C43C1E6F35 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,12 +299,78 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		468382931C7581B0001DC810 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		4F0F1E317B970F9DFBD2323D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		83A35A83565AB35DBF827A2A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DB6F376014DE0C43C1E6F35 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		460B4A311C6B5CF60089CC7E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
+				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* ViewController.swift in Sources */,
+				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,8 +509,13 @@
 		};
 		460B4A5E1C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.touyou.Imagenius;
@@ -409,8 +525,13 @@
 		};
 		460B4A5F1C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.touyou.Imagenius;
@@ -485,6 +606,7 @@
 				460B4A5F1C6B5CF60089CC7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		460B4A601C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "ImageniusTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +615,7 @@
 				460B4A621C6B5CF60089CC7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		460B4A631C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "ImageniusUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +624,7 @@
 				460B4A651C6B5CF60089CC7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
