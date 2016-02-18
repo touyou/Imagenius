@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
-		460B4A3B1C6B5CF60089CC7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A3A1C6B5CF60089CC7E /* ViewController.swift */; };
+		460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */; };
 		460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3C1C6B5CF60089CC7E /* Main.storyboard */; };
 		460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */; };
 		460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */; };
@@ -20,6 +20,8 @@
 		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
 		468382961C758414001DC810 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382951C758414001DC810 /* ImageViewCell.swift */; };
 		468382981C758C86001DC810 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382971C758C86001DC810 /* ResultViewController.swift */; };
+		4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382991C75D957001DC810 /* TweetViewController.swift */; };
+		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +45,7 @@
 		0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		460B4A3A1C6B5CF60089CC7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		460B4A3D1C6B5CF60089CC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		460B4A421C6B5CF60089CC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,8 @@
 		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		468382951C758414001DC810 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		468382971C758C86001DC810 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		468382991C75D957001DC810 /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		4683829B1C75DF0C001DC810 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
 		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -119,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
-				460B4A3A1C6B5CF60089CC7E /* ViewController.swift */,
+				460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */,
 				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
 				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
 				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
@@ -127,6 +131,8 @@
 				460B4A441C6B5CF60089CC7E /* Info.plist */,
 				468382951C758414001DC810 /* ImageViewCell.swift */,
 				468382971C758C86001DC810 /* ResultViewController.swift */,
+				468382991C75D957001DC810 /* TweetViewController.swift */,
+				4683829B1C75DF0C001DC810 /* Utility.swift */,
 			);
 			path = Imagenius;
 			sourceTree = "<group>";
@@ -367,9 +373,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
 				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
 				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
-				460B4A3B1C6B5CF60089CC7E /* ViewController.swift in Sources */,
+				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
+				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
 			);

@@ -13,6 +13,7 @@ import SwiftyJSON
 class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var imageCollectionView: UICollectionView!
     var searchWord: String = ""
+    var tweetText: String?
     var reqs: [NSURLRequest] = []
     var selectedImage: UIImage?
     
@@ -51,6 +52,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         if segue.identifier == "toResultView" {
             let resultViewCtrl = segue.destinationViewController as! ResultViewController
             resultViewCtrl.image = self.selectedImage
+            resultViewCtrl.tweetText = self.tweetText
         }
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class ResultViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     var image: UIImage?
+    var tweetText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,13 @@ class ResultViewController: UIViewController {
     @IBAction func pushOK() {
         performSegueWithIdentifier("toTweetView", sender: nil)
     }
+    
     // TweetViewに画像情報を渡してあげる
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toTweetView" {
-            
+            let tweetView = segue.destinationViewController as! TweetViewController
+            tweetView.tweetImage = self.image
+            tweetView.tweetText = self.tweetText
         }
     }
     

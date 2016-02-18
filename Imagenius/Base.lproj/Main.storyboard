@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -45,16 +45,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-1i-fqs">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Up1-Im-K56">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Up1-Im-K56" id="eng-XH-JEI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -82,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="162" y="1057"/>
         </scene>
-        <!--View Controller-->
+        <!--Tweet View Controller-->
         <scene sceneID="roj-uz-swW">
             <objects>
-                <viewController id="Nyu-L3-XkN" sceneMemberID="viewController">
+                <viewController id="Nyu-L3-XkN" customClass="TweetViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Km1-k3-8x3"/>
                         <viewControllerLayoutGuide type="bottom" id="sZv-1O-JJT"/>
@@ -103,10 +93,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVG-nf-Atd">
                                                 <rect key="frame" x="8" y="8" width="72" height="30"/>
                                                 <state key="normal" title="アイコン"/>
+                                                <connections>
+                                                    <action selector="accountButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="m1A-Hi-UUm"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8y-ei-Dka">
                                                 <rect key="frame" x="264" y="10" width="46" height="30"/>
                                                 <state key="normal" title="×"/>
+                                                <connections>
+                                                    <action selector="cancelButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="XBO-AO-8tt"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,6 +125,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-cW-oah">
                                                 <rect key="frame" x="247" y="10" width="65" height="30"/>
                                                 <state key="normal" title="ツイート"/>
+                                                <connections>
+                                                    <action selector="tweetButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="CCk-aA-p82"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -144,6 +143,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9Z-Mp-iOM">
                                                 <rect key="frame" x="266" y="11" width="46" height="30"/>
                                                 <state key="normal" title="検索"/>
+                                                <connections>
+                                                    <action selector="searchButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="BTK-gt-VCC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,8 +156,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="accountImage" destination="gVG-nf-Atd" id="ukI-YQ-0Zu"/>
+                        <outlet property="countLabel" destination="JC1-Z4-8uY" id="SOA-Gw-6c3"/>
+                        <outlet property="searchField" destination="5ag-fi-7eg" id="UN9-mJ-mqn"/>
+                        <outlet property="tweetTextView" destination="MQP-S9-zls" id="ZlK-zh-hUP"/>
                         <segue destination="jLc-Wc-dJX" kind="modal" identifier="toImageView" modalTransitionStyle="flipHorizontal" id="b0I-tV-6FH"/>
-                        <segue destination="BYZ-38-t0r" kind="modal" id="lxW-qX-rg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8B-k9-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,7 +277,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GeA-xs-ap1"/>
-        <segue reference="QrI-1h-7is"/>
+        <segue reference="XTL-VD-fDU"/>
+        <segue reference="b0I-tV-6FH"/>
     </inferredMetricsTieBreakers>
 </document>
