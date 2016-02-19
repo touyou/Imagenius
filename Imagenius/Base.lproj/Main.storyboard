@@ -38,8 +38,8 @@
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem title="タイムライン" id="Ejz-Jn-2Uo"/>
-                                    <tabBarItem title="リプライ" id="qLp-HY-4m4"/>
+                                    <tabBarItem title="タイムライン" image="timeline.png" id="Ejz-Jn-2Uo"/>
+                                    <tabBarItem title="リプライ" image="reply.png" id="qLp-HY-4m4"/>
                                 </items>
                             </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-1i-fqs">
@@ -187,7 +187,8 @@
                         <outlet property="searchField" destination="5ag-fi-7eg" id="UN9-mJ-mqn"/>
                         <outlet property="stackView" destination="ext-5a-hem" id="rRg-bs-3Ad"/>
                         <outlet property="tweetTextView" destination="MQP-S9-zls" id="ZlK-zh-hUP"/>
-                        <segue destination="jLc-Wc-dJX" kind="modal" identifier="toImageView" modalTransitionStyle="flipHorizontal" id="b0I-tV-6FH"/>
+                        <segue destination="jLc-Wc-dJX" kind="modal" identifier="toImageView" modalTransitionStyle="coverVertical" id="b0I-tV-6FH"/>
+                        <segue destination="BYZ-38-t0r" kind="modal" identifier="backMainView" id="bMJ-fh-hHb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8B-k9-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -251,7 +252,8 @@
                     </view>
                     <connections>
                         <outlet property="imageCollectionView" destination="4UN-Ux-jRN" id="fI5-Ds-nbO"/>
-                        <segue destination="Azt-ul-AVI" kind="modal" identifier="toResultView" modalTransitionStyle="flipHorizontal" id="ahf-xg-PCP"/>
+                        <segue destination="Azt-ul-AVI" kind="modal" identifier="toResultView" modalTransitionStyle="coverVertical" id="ahf-xg-PCP"/>
+                        <segue destination="Nyu-L3-XkN" kind="modal" identifier="backTweetView" id="xlC-Ar-6TC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hR8-PD-GVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -281,7 +283,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="3np-xR-1rd">
                                             <connections>
-                                                <segue destination="jLc-Wc-dJX" kind="modal" modalTransitionStyle="flipHorizontal" id="GeA-xs-ap1"/>
+                                                <action selector="pushCancel" destination="Azt-ul-AVI" id="CNm-bW-25K"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -296,6 +298,7 @@
                     <connections>
                         <outlet property="imageView" destination="CJ9-NJ-1lV" id="Evg-At-6cO"/>
                         <segue destination="Nyu-L3-XkN" kind="modal" identifier="toTweetView" id="QrI-1h-7is"/>
+                        <segue destination="jLc-Wc-dJX" kind="modal" identifier="backImageView" id="glS-mK-CSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3W-7k-VDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,6 +306,10 @@
             <point key="canvasLocation" x="1574" y="368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="reply.png" width="45" height="45"/>
+        <image name="timeline.png" width="45" height="45"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XTL-VD-fDU"/>
         <segue reference="b0I-tV-6FH"/>

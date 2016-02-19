@@ -53,13 +53,14 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             let resultViewCtrl = segue.destinationViewController as! ResultViewController
             resultViewCtrl.image = self.selectedImage
             resultViewCtrl.tweetText = self.tweetText
+            resultViewCtrl.searchWord = self.searchWord
         }
     }
     
     
     // NavigationBarまわり
     @IBAction func cancelButton() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("backTweetView", sender: nil)
     }
     
     // CollectionViewまわりの設定
@@ -73,7 +74,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     // 入れるもの
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImageViewCell
+        let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageViewCell
         NSURLConnection.sendAsynchronousRequest(reqs[indexPath.row], queue: NSOperationQueue.mainQueue(), completionHandler: {(res, data, err) in
             let image = UIImage(data: data!)
             cell.imageView.image = self.cropThumbnailImage(image!, w: 106, h: 106)

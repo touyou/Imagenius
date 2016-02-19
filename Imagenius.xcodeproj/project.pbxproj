@@ -22,6 +22,8 @@
 		468382981C758C86001DC810 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382971C758C86001DC810 /* ResultViewController.swift */; };
 		4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468382991C75D957001DC810 /* TweetViewController.swift */; };
 		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
+		468382A01C7696FC001DC810 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829E1C7696FC001DC810 /* reply.png */; };
+		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		468382971C758C86001DC810 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		468382991C75D957001DC810 /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
 		4683829B1C75DF0C001DC810 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		4683829E1C7696FC001DC810 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
+		4683829F1C7696FC001DC810 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
 		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +126,7 @@
 		460B4A371C6B5CF60089CC7E /* Imagenius */ = {
 			isa = PBXGroup;
 			children = (
+				4683829D1C7696CD001DC810 /* Resources */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
 				460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */,
 				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
@@ -153,6 +158,15 @@
 				460B4A5A1C6B5CF60089CC7E /* Info.plist */,
 			);
 			path = ImageniusUITests;
+			sourceTree = "<group>";
+		};
+		4683829D1C7696CD001DC810 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4683829E1C7696FC001DC810 /* reply.png */,
+				4683829F1C7696FC001DC810 /* timeline.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		CA5CFC7A612E4DAD618FD845 /* Pods */ = {
@@ -283,6 +297,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468382A11C7696FC001DC810 /* timeline.png in Resources */,
+				468382A01C7696FC001DC810 /* reply.png in Resources */,
 				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
 				460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */,
 				460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */,

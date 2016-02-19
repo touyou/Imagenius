@@ -46,7 +46,7 @@ class TweetViewController: UIViewController {
     }
     func handleKeyboardWillShowNotification(notification: NSNotification) {
         let userInfo = notification.userInfo!
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         // let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
         
     }
@@ -56,7 +56,7 @@ class TweetViewController: UIViewController {
     
     // ボタン関係
     @IBAction func cancelButton() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("backMainView", sender: nil)
     }
     @IBAction func accountButton() {
         // アカウントの切り替えできたらいいな
