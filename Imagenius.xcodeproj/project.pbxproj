@@ -15,35 +15,28 @@
 		460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */; };
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
-		464A7E621C775115006100DB /* Dictionary+Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E431C775115006100DB /* Dictionary+Swifter.swift */; };
-		464A7E631C775115006100DB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E441C775115006100DB /* Info.plist */; };
-		464A7E641C775115006100DB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E451C775115006100DB /* JSON.swift */; };
-		464A7E651C775115006100DB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E461C775115006100DB /* Launch Screen.storyboard */; };
-		464A7E661C775115006100DB /* NSURL+Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E471C775115006100DB /* NSURL+Swifter.swift */; };
-		464A7E671C775115006100DB /* String+Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E481C775115006100DB /* String+Swifter.swift */; };
-		464A7E681C775115006100DB /* Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E4B1C775115006100DB /* Swifter.swift */; };
-		464A7E691C775115006100DB /* SwifterAccountsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E4C1C775115006100DB /* SwifterAccountsClient.swift */; };
-		464A7E6A1C775115006100DB /* SwifterAppOnlyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E4D1C775115006100DB /* SwifterAppOnlyClient.swift */; };
-		464A7E6B1C775115006100DB /* SwifterAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E4E1C775115006100DB /* SwifterAuth.swift */; };
-		464A7E6C1C775115006100DB /* SwifterClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E4F1C775115006100DB /* SwifterClientProtocol.swift */; };
-		464A7E6D1C775115006100DB /* SwifterCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E501C775115006100DB /* SwifterCredential.swift */; };
-		464A7E6E1C775115006100DB /* SwifterFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E511C775115006100DB /* SwifterFavorites.swift */; };
-		464A7E6F1C775115006100DB /* SwifterFollowers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E521C775115006100DB /* SwifterFollowers.swift */; };
-		464A7E701C775115006100DB /* SwifterHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E531C775115006100DB /* SwifterHelp.swift */; };
-		464A7E711C775115006100DB /* SwifterHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E541C775115006100DB /* SwifterHTTPRequest.swift */; };
-		464A7E721C775115006100DB /* SwifterLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E551C775115006100DB /* SwifterLists.swift */; };
-		464A7E731C775115006100DB /* SwifterMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E561C775115006100DB /* SwifterMessages.swift */; };
-		464A7E741C775115006100DB /* SwifterOAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E571C775115006100DB /* SwifterOAuthClient.swift */; };
-		464A7E751C775115006100DB /* SwifterPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E581C775115006100DB /* SwifterPlaces.swift */; };
-		464A7E761C775115006100DB /* SwifterSavedSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E591C775115006100DB /* SwifterSavedSearches.swift */; };
-		464A7E771C775115006100DB /* SwifterSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E5A1C775115006100DB /* SwifterSearch.swift */; };
-		464A7E781C775115006100DB /* SwifterSpam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E5B1C775115006100DB /* SwifterSpam.swift */; };
-		464A7E791C775115006100DB /* SwifterStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E5C1C775115006100DB /* SwifterStreaming.swift */; };
-		464A7E7A1C775115006100DB /* SwifterSuggested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E5D1C775115006100DB /* SwifterSuggested.swift */; };
-		464A7E7B1C775115006100DB /* SwifterTimelines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E5E1C775115006100DB /* SwifterTimelines.swift */; };
-		464A7E7C1C775115006100DB /* SwifterTrends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E5F1C775115006100DB /* SwifterTrends.swift */; };
-		464A7E7D1C775115006100DB /* SwifterTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E601C775115006100DB /* SwifterTweets.swift */; };
-		464A7E7E1C775115006100DB /* SwifterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7E611C775115006100DB /* SwifterUsers.swift */; };
+		464A7E801C78281A006100DB /* imagenius-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E7F1C78281A006100DB /* imagenius-logo.png */; };
+		464A7E8D1C7829AC006100DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E821C7829AC006100DB /* Icon-40.png */; };
+		464A7E8E1C7829AC006100DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E831C7829AC006100DB /* Icon-40@2x.png */; };
+		464A7E8F1C7829AC006100DB /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E841C7829AC006100DB /* Icon-40@3x.png */; };
+		464A7E901C7829AC006100DB /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E851C7829AC006100DB /* Icon-60@2x.png */; };
+		464A7E911C7829AC006100DB /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E861C7829AC006100DB /* Icon-60@3x.png */; };
+		464A7E921C7829AC006100DB /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E871C7829AC006100DB /* Icon-76.png */; };
+		464A7E931C7829AC006100DB /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E881C7829AC006100DB /* Icon-76@2x.png */; };
+		464A7E941C7829AC006100DB /* Icon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E891C7829AC006100DB /* Icon-83.5@2x.png */; };
+		464A7E951C7829AC006100DB /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E8A1C7829AC006100DB /* Icon-Small.png */; };
+		464A7E961C7829AC006100DB /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E8B1C7829AC006100DB /* Icon-Small@2x.png */; };
+		464A7E971C7829AC006100DB /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E8C1C7829AC006100DB /* Icon-Small@3x.png */; };
+		464A7EA11C7829B7006100DB /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E981C7829B7006100DB /* Icon-60.png */; };
+		464A7EA21C7829B7006100DB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E991C7829B7006100DB /* Icon-72.png */; };
+		464A7EA31C7829B7006100DB /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E9A1C7829B7006100DB /* Icon-72@2x.png */; };
+		464A7EA41C7829B7006100DB /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E9B1C7829B7006100DB /* Icon-Small-50.png */; };
+		464A7EA51C7829B7006100DB /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E9C1C7829B7006100DB /* Icon-Small-50@2x.png */; };
+		464A7EA61C7829B7006100DB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E9D1C7829B7006100DB /* Icon.png */; };
+		464A7EA71C7829B7006100DB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E9E1C7829B7006100DB /* Icon@2x.png */; };
+		464A7EA81C7829B7006100DB /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E9F1C7829B7006100DB /* iTunesArtwork.png */; };
+		464A7EA91C7829B7006100DB /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EA01C7829B7006100DB /* iTunesArtwork@2x.png */; };
+		464A7EAB1C782E2B006100DB /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A7EAA1C782E2B006100DB /* TwitterAPI.swift */; };
 		4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683828D1C757FE2001DC810 /* ImageViewController.swift */; };
 		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
 		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
@@ -87,37 +80,28 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		464A7E431C775115006100DB /* Dictionary+Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Swifter.swift"; sourceTree = "<group>"; };
-		464A7E441C775115006100DB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		464A7E451C775115006100DB /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		464A7E461C775115006100DB /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		464A7E471C775115006100DB /* NSURL+Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Swifter.swift"; sourceTree = "<group>"; };
-		464A7E481C775115006100DB /* String+Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Swifter.swift"; sourceTree = "<group>"; };
-		464A7E491C775115006100DB /* Swifter-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swifter-Bridging-Header.h"; sourceTree = "<group>"; };
-		464A7E4A1C775115006100DB /* Swifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swifter.h; sourceTree = "<group>"; };
-		464A7E4B1C775115006100DB /* Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swifter.swift; sourceTree = "<group>"; };
-		464A7E4C1C775115006100DB /* SwifterAccountsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterAccountsClient.swift; sourceTree = "<group>"; };
-		464A7E4D1C775115006100DB /* SwifterAppOnlyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterAppOnlyClient.swift; sourceTree = "<group>"; };
-		464A7E4E1C775115006100DB /* SwifterAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterAuth.swift; sourceTree = "<group>"; };
-		464A7E4F1C775115006100DB /* SwifterClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterClientProtocol.swift; sourceTree = "<group>"; };
-		464A7E501C775115006100DB /* SwifterCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterCredential.swift; sourceTree = "<group>"; };
-		464A7E511C775115006100DB /* SwifterFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterFavorites.swift; sourceTree = "<group>"; };
-		464A7E521C775115006100DB /* SwifterFollowers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterFollowers.swift; sourceTree = "<group>"; };
-		464A7E531C775115006100DB /* SwifterHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterHelp.swift; sourceTree = "<group>"; };
-		464A7E541C775115006100DB /* SwifterHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterHTTPRequest.swift; sourceTree = "<group>"; };
-		464A7E551C775115006100DB /* SwifterLists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterLists.swift; sourceTree = "<group>"; };
-		464A7E561C775115006100DB /* SwifterMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterMessages.swift; sourceTree = "<group>"; };
-		464A7E571C775115006100DB /* SwifterOAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterOAuthClient.swift; sourceTree = "<group>"; };
-		464A7E581C775115006100DB /* SwifterPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterPlaces.swift; sourceTree = "<group>"; };
-		464A7E591C775115006100DB /* SwifterSavedSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterSavedSearches.swift; sourceTree = "<group>"; };
-		464A7E5A1C775115006100DB /* SwifterSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterSearch.swift; sourceTree = "<group>"; };
-		464A7E5B1C775115006100DB /* SwifterSpam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterSpam.swift; sourceTree = "<group>"; };
-		464A7E5C1C775115006100DB /* SwifterStreaming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterStreaming.swift; sourceTree = "<group>"; };
-		464A7E5D1C775115006100DB /* SwifterSuggested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterSuggested.swift; sourceTree = "<group>"; };
-		464A7E5E1C775115006100DB /* SwifterTimelines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterTimelines.swift; sourceTree = "<group>"; };
-		464A7E5F1C775115006100DB /* SwifterTrends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterTrends.swift; sourceTree = "<group>"; };
-		464A7E601C775115006100DB /* SwifterTweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterTweets.swift; sourceTree = "<group>"; };
-		464A7E611C775115006100DB /* SwifterUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterUsers.swift; sourceTree = "<group>"; };
+		464A7E7F1C78281A006100DB /* imagenius-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imagenius-logo.png"; sourceTree = "<group>"; };
+		464A7E821C7829AC006100DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		464A7E831C7829AC006100DB /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		464A7E841C7829AC006100DB /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		464A7E851C7829AC006100DB /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		464A7E861C7829AC006100DB /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		464A7E871C7829AC006100DB /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		464A7E881C7829AC006100DB /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		464A7E891C7829AC006100DB /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-83.5@2x.png"; sourceTree = "<group>"; };
+		464A7E8A1C7829AC006100DB /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		464A7E8B1C7829AC006100DB /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		464A7E8C1C7829AC006100DB /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		464A7E981C7829B7006100DB /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
+		464A7E991C7829B7006100DB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		464A7E9A1C7829B7006100DB /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		464A7E9B1C7829B7006100DB /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		464A7E9C1C7829B7006100DB /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		464A7E9D1C7829B7006100DB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		464A7E9E1C7829B7006100DB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		464A7E9F1C7829B7006100DB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		464A7EA01C7829B7006100DB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		464A7EAA1C782E2B006100DB /* TwitterAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
 		4683828D1C757FE2001DC810 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4683828F1C7581A6001DC810 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -186,7 +170,6 @@
 		460B4A371C6B5CF60089CC7E /* Imagenius */ = {
 			isa = PBXGroup;
 			children = (
-				464A7E421C775115006100DB /* Swifter */,
 				4683829D1C7696CD001DC810 /* Resources */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
 				460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */,
@@ -199,6 +182,7 @@
 				468382971C758C86001DC810 /* ResultViewController.swift */,
 				468382991C75D957001DC810 /* TweetViewController.swift */,
 				4683829B1C75DF0C001DC810 /* Utility.swift */,
+				464A7EAA1C782E2B006100DB /* TwitterAPI.swift */,
 			);
 			path = Imagenius;
 			sourceTree = "<group>";
@@ -221,49 +205,40 @@
 			path = ImageniusUITests;
 			sourceTree = "<group>";
 		};
-		464A7E421C775115006100DB /* Swifter */ = {
+		464A7E811C78299F006100DB /* icon */ = {
 			isa = PBXGroup;
 			children = (
-				464A7E431C775115006100DB /* Dictionary+Swifter.swift */,
-				464A7E441C775115006100DB /* Info.plist */,
-				464A7E451C775115006100DB /* JSON.swift */,
-				464A7E461C775115006100DB /* Launch Screen.storyboard */,
-				464A7E471C775115006100DB /* NSURL+Swifter.swift */,
-				464A7E481C775115006100DB /* String+Swifter.swift */,
-				464A7E491C775115006100DB /* Swifter-Bridging-Header.h */,
-				464A7E4A1C775115006100DB /* Swifter.h */,
-				464A7E4B1C775115006100DB /* Swifter.swift */,
-				464A7E4C1C775115006100DB /* SwifterAccountsClient.swift */,
-				464A7E4D1C775115006100DB /* SwifterAppOnlyClient.swift */,
-				464A7E4E1C775115006100DB /* SwifterAuth.swift */,
-				464A7E4F1C775115006100DB /* SwifterClientProtocol.swift */,
-				464A7E501C775115006100DB /* SwifterCredential.swift */,
-				464A7E511C775115006100DB /* SwifterFavorites.swift */,
-				464A7E521C775115006100DB /* SwifterFollowers.swift */,
-				464A7E531C775115006100DB /* SwifterHelp.swift */,
-				464A7E541C775115006100DB /* SwifterHTTPRequest.swift */,
-				464A7E551C775115006100DB /* SwifterLists.swift */,
-				464A7E561C775115006100DB /* SwifterMessages.swift */,
-				464A7E571C775115006100DB /* SwifterOAuthClient.swift */,
-				464A7E581C775115006100DB /* SwifterPlaces.swift */,
-				464A7E591C775115006100DB /* SwifterSavedSearches.swift */,
-				464A7E5A1C775115006100DB /* SwifterSearch.swift */,
-				464A7E5B1C775115006100DB /* SwifterSpam.swift */,
-				464A7E5C1C775115006100DB /* SwifterStreaming.swift */,
-				464A7E5D1C775115006100DB /* SwifterSuggested.swift */,
-				464A7E5E1C775115006100DB /* SwifterTimelines.swift */,
-				464A7E5F1C775115006100DB /* SwifterTrends.swift */,
-				464A7E601C775115006100DB /* SwifterTweets.swift */,
-				464A7E611C775115006100DB /* SwifterUsers.swift */,
+				464A7E981C7829B7006100DB /* Icon-60.png */,
+				464A7E991C7829B7006100DB /* Icon-72.png */,
+				464A7E9A1C7829B7006100DB /* Icon-72@2x.png */,
+				464A7E9B1C7829B7006100DB /* Icon-Small-50.png */,
+				464A7E9C1C7829B7006100DB /* Icon-Small-50@2x.png */,
+				464A7E9D1C7829B7006100DB /* Icon.png */,
+				464A7E9E1C7829B7006100DB /* Icon@2x.png */,
+				464A7E9F1C7829B7006100DB /* iTunesArtwork.png */,
+				464A7EA01C7829B7006100DB /* iTunesArtwork@2x.png */,
+				464A7E821C7829AC006100DB /* Icon-40.png */,
+				464A7E831C7829AC006100DB /* Icon-40@2x.png */,
+				464A7E841C7829AC006100DB /* Icon-40@3x.png */,
+				464A7E851C7829AC006100DB /* Icon-60@2x.png */,
+				464A7E861C7829AC006100DB /* Icon-60@3x.png */,
+				464A7E871C7829AC006100DB /* Icon-76.png */,
+				464A7E881C7829AC006100DB /* Icon-76@2x.png */,
+				464A7E891C7829AC006100DB /* Icon-83.5@2x.png */,
+				464A7E8A1C7829AC006100DB /* Icon-Small.png */,
+				464A7E8B1C7829AC006100DB /* Icon-Small@2x.png */,
+				464A7E8C1C7829AC006100DB /* Icon-Small@3x.png */,
 			);
-			path = Swifter;
+			name = icon;
 			sourceTree = "<group>";
 		};
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				464A7E811C78299F006100DB /* icon */,
 				4683829E1C7696FC001DC810 /* reply.png */,
 				4683829F1C7696FC001DC810 /* timeline.png */,
+				464A7E7F1C78281A006100DB /* imagenius-logo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -397,12 +372,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				468382A11C7696FC001DC810 /* timeline.png in Resources */,
+				464A7EA71C7829B7006100DB /* Icon@2x.png in Resources */,
+				464A7E941C7829AC006100DB /* Icon-83.5@2x.png in Resources */,
+				464A7EA61C7829B7006100DB /* Icon.png in Resources */,
+				464A7EA41C7829B7006100DB /* Icon-Small-50.png in Resources */,
+				464A7E971C7829AC006100DB /* Icon-Small@3x.png in Resources */,
 				468382A01C7696FC001DC810 /* reply.png in Resources */,
-				464A7E631C775115006100DB /* Info.plist in Resources */,
+				464A7E961C7829AC006100DB /* Icon-Small@2x.png in Resources */,
+				464A7EA21C7829B7006100DB /* Icon-72.png in Resources */,
+				464A7E921C7829AC006100DB /* Icon-76.png in Resources */,
 				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
 				460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */,
+				464A7EA31C7829B7006100DB /* Icon-72@2x.png in Resources */,
+				464A7E801C78281A006100DB /* imagenius-logo.png in Resources */,
+				464A7EA81C7829B7006100DB /* iTunesArtwork.png in Resources */,
+				464A7EA11C7829B7006100DB /* Icon-60.png in Resources */,
 				460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */,
-				464A7E651C775115006100DB /* Launch Screen.storyboard in Resources */,
+				464A7E951C7829AC006100DB /* Icon-Small.png in Resources */,
+				464A7E8D1C7829AC006100DB /* Icon-40.png in Resources */,
+				464A7EA51C7829B7006100DB /* Icon-Small-50@2x.png in Resources */,
+				464A7E911C7829AC006100DB /* Icon-60@3x.png in Resources */,
+				464A7EA91C7829B7006100DB /* iTunesArtwork@2x.png in Resources */,
+				464A7E8E1C7829AC006100DB /* Icon-40@2x.png in Resources */,
+				464A7E8F1C7829AC006100DB /* Icon-40@3x.png in Resources */,
+				464A7E931C7829AC006100DB /* Icon-76@2x.png in Resources */,
+				464A7E901C7829AC006100DB /* Icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,40 +484,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				464A7E6E1C775115006100DB /* SwifterFavorites.swift in Sources */,
-				464A7E711C775115006100DB /* SwifterHTTPRequest.swift in Sources */,
-				464A7E7C1C775115006100DB /* SwifterTrends.swift in Sources */,
-				464A7E7A1C775115006100DB /* SwifterSuggested.swift in Sources */,
-				464A7E691C775115006100DB /* SwifterAccountsClient.swift in Sources */,
-				464A7E681C775115006100DB /* Swifter.swift in Sources */,
-				464A7E621C775115006100DB /* Dictionary+Swifter.swift in Sources */,
-				464A7E781C775115006100DB /* SwifterSpam.swift in Sources */,
-				464A7E6D1C775115006100DB /* SwifterCredential.swift in Sources */,
-				464A7E6A1C775115006100DB /* SwifterAppOnlyClient.swift in Sources */,
-				464A7E791C775115006100DB /* SwifterStreaming.swift in Sources */,
+				464A7EAB1C782E2B006100DB /* TwitterAPI.swift in Sources */,
 				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
-				464A7E7B1C775115006100DB /* SwifterTimelines.swift in Sources */,
-				464A7E671C775115006100DB /* String+Swifter.swift in Sources */,
-				464A7E6F1C775115006100DB /* SwifterFollowers.swift in Sources */,
-				464A7E731C775115006100DB /* SwifterMessages.swift in Sources */,
-				464A7E701C775115006100DB /* SwifterHelp.swift in Sources */,
 				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
-				464A7E641C775115006100DB /* JSON.swift in Sources */,
-				464A7E751C775115006100DB /* SwifterPlaces.swift in Sources */,
 				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
-				464A7E7E1C775115006100DB /* SwifterUsers.swift in Sources */,
-				464A7E721C775115006100DB /* SwifterLists.swift in Sources */,
-				464A7E661C775115006100DB /* NSURL+Swifter.swift in Sources */,
-				464A7E761C775115006100DB /* SwifterSavedSearches.swift in Sources */,
 				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
-				464A7E771C775115006100DB /* SwifterSearch.swift in Sources */,
-				464A7E7D1C775115006100DB /* SwifterTweets.swift in Sources */,
-				464A7E6C1C775115006100DB /* SwifterClientProtocol.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
-				464A7E6B1C775115006100DB /* SwifterAuth.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
-				464A7E741C775115006100DB /* SwifterOAuthClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
