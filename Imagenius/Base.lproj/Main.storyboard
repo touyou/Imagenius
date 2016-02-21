@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="162" y="368"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="CT9-iS-KGp">
             <objects>
-                <viewController id="qqj-4H-F39" sceneMemberID="viewController">
+                <viewController id="qqj-4H-F39" customClass="SettingViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R2e-sw-g12"/>
                         <viewControllerLayoutGuide type="bottom" id="yMR-w3-Ed5"/>
@@ -104,8 +104,20 @@
                     <view key="view" contentMode="scaleToFill" id="6j2-Mr-4CC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9a-k5-Ici">
+                                <rect key="frame" x="143" y="269" width="34" height="30"/>
+                                <state key="normal" title="login"/>
+                                <connections>
+                                    <action selector="didTouchUpInsideLoginButton:" destination="qqj-4H-F39" eventType="touchUpInside" id="riw-aZ-heg"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="modal" identifier="toMainView" id="Ugl-Cc-6Ij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HXo-Te-uhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -326,5 +338,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="glS-mK-CSC"/>
         <segue reference="XTL-VD-fDU"/>
+        <segue reference="Ugl-Cc-6Ij"/>
     </inferredMetricsTieBreakers>
 </document>

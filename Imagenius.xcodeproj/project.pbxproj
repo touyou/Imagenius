@@ -43,6 +43,8 @@
 		464A804B1C799BE6006100DB /* FMAssetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80471C799BE6006100DB /* FMAssetStream.framework */; };
 		464A804C1C799BE6006100DB /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80481C799BE6006100DB /* SCLAlertView.framework */; };
 		464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80491C799BE6006100DB /* SWTableViewCell.framework */; };
+		464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80601C79EFCD006100DB /* SwifteriOS.framework */; };
+		464A80631C79F2AA006100DB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A80621C79F2AA006100DB /* SettingViewController.swift */; };
 		4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683828D1C757FE2001DC810 /* ImageViewController.swift */; };
 		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
 		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
@@ -52,6 +54,8 @@
 		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
 		468382A01C7696FC001DC810 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829E1C7696FC001DC810 /* reply.png */; };
 		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
+		469373531C7A020700BE1506 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469373521C7A020700BE1506 /* SwifteriOS.framework */; };
+		469373541C7A020700BE1506 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 469373521C7A020700BE1506 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		469373501C7A013A00BE1506 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				469373541C7A020700BE1506 /* SwifteriOS.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +161,8 @@
 		464A80471C799BE6006100DB /* FMAssetStream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMAssetStream.framework; path = "Pods/../build/Debug-iphoneos/FMAssetStream.framework"; sourceTree = "<group>"; };
 		464A80481C799BE6006100DB /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		464A80491C799BE6006100DB /* SWTableViewCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWTableViewCell.framework; path = "Pods/../build/Debug-iphoneos/SWTableViewCell.framework"; sourceTree = "<group>"; };
+		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
+		464A80621C79F2AA006100DB /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		4683828D1C757FE2001DC810 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4683828F1C7581A6001DC810 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -153,6 +172,7 @@
 		4683829B1C75DF0C001DC810 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		4683829E1C7696FC001DC810 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		4683829F1C7696FC001DC810 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
+		469373521C7A020700BE1506 /* SwifteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwifteriOS.framework; path = "/Users/touyou/Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<absolute>"; };
 		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
 		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -162,10 +182,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
 				464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */,
 				464A804B1C799BE6006100DB /* FMAssetStream.framework in Frameworks */,
 				464A804C1C799BE6006100DB /* SCLAlertView.framework in Frameworks */,
 				464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */,
+				469373531C7A020700BE1506 /* SwifteriOS.framework in Frameworks */,
 				468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */,
 				468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */,
 				25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */,
@@ -192,6 +214,7 @@
 		460B4A2C1C6B5CF60089CC7E = {
 			isa = PBXGroup;
 			children = (
+				469373521C7A020700BE1506 /* SwifteriOS.framework */,
 				4683828F1C7581A6001DC810 /* Alamofire.framework */,
 				468382901C7581A6001DC810 /* SwiftyJSON.framework */,
 				460B4A371C6B5CF60089CC7E /* Imagenius */,
@@ -229,6 +252,7 @@
 				468382971C758C86001DC810 /* ResultViewController.swift */,
 				468382991C75D957001DC810 /* TweetViewController.swift */,
 				4683829B1C75DF0C001DC810 /* Utility.swift */,
+				464A80621C79F2AA006100DB /* SettingViewController.swift */,
 			);
 			path = Imagenius;
 			sourceTree = "<group>";
@@ -322,6 +346,7 @@
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				464A80601C79EFCD006100DB /* SwifteriOS.framework */,
 				464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */,
 				464A80471C799BE6006100DB /* FMAssetStream.framework */,
 				464A80481C799BE6006100DB /* SCLAlertView.framework */,
@@ -347,6 +372,7 @@
 				468382931C7581B0001DC810 /* ShellScript */,
 				83A35A83565AB35DBF827A2A /* Embed Pods Frameworks */,
 				8DB6F376014DE0C43C1E6F35 /* Copy Pods Resources */,
+				469373501C7A013A00BE1506 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -600,6 +626,7 @@
 				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
 				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
 				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
+				464A80631C79F2AA006100DB /* SettingViewController.swift in Sources */,
 				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,

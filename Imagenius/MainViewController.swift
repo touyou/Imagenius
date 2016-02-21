@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Accounts
+import SwifteriOS
 
 class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    var tweetArray: NSArray!
+    var tweetArray: [JSONValue] = []
     @IBOutlet var timelineTableView: UITableView!
+    
+    var swifter: Swifter!
+    var maxId: String!
     
     // 今どっちを選択しているか？
     var tlmode: String!
@@ -44,8 +49,37 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
     }
     
     // Tweetのロード
+    func load(moreflag: Bool) {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+        }
+        let successHandler: (([JSONValue]?) -> Void) = { statuses in
+            guard let tweets = statuses else { return }
+            for var i = 0; i < tweets.count - 1; i++ {
+                self.tweetArray.append(tweets[i])
+            }
+            self.maxId = tweets[tweets.count - 1]["id_str"].string
+            self.timelineTableView.reloadData()
+        }
+        if !moreflag {
+            if tlmode == "home" {
+                self.swifter.getStatusesHomeTimelineWithCount(41, success: successHandler, failure: failureHandler)
+            } else if tlmode == "reply" {
+                self.swifter.getStatusesMentionTimelineWithCount(41, success: successHandler, failure: failureHandler)
+            }
+        } else {
+            if tlmode == "home" {
+                self.swifter.getStatusesHomeTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: nil, success: successHandler, failure: failureHandler)
+            } else if tlmode == "reply" {
+                self.swifter.getStatusesMentionTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: nil, success: successHandler, failure: failureHandler)
+            }
+        }
+    }
     func loadTweet() {
-        
+        load(false)
+    }
+    func loadMore() {
+        load(true)
     }
     
     // TableView関係
@@ -63,17 +97,21 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         let userIDLabel:UILabel = cell.viewWithTag(2) as! UILabel
         let userImgView:UIImageView = cell.viewWithTag(4) as! UIImageView
         
-        let tweet:NSDictionary = tweetArray[indexPath.row] as! NSDictionary
-        let userInfo:NSDictionary = tweet["user"] as! NSDictionary
+        let tweet = tweetArray[indexPath.row]
+        let userInfo = tweet["user"]
         
-        tweetTextView.text = tweet["text"] as! String
-        userLabel.text = userInfo["name"] as? String
-        let userID = userInfo["screen_name"] as! String
+        tweetTextView.text = tweet["text"].string
+        userLabel.text = userInfo["name"].string
+        let userID = userInfo["screen_name"].string
         userIDLabel.text = "@\(userID)"
-        let userImgPath:String = userInfo["profile_image_url"] as! String
+        let userImgPath:String = userInfo["profile_image_url"].string!
         let userImgURL:NSURL = NSURL(string: userImgPath)!
         let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
         userImgView.image = UIImage(data: userImgPathData)
+        
+        if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
+            self.loadMore()
+        }
         
         return cell
     }
