@@ -9,8 +9,6 @@
 import UIKit
 
 class TweetViewController: UIViewController {
-    @IBOutlet var stackView: UIStackView!
-    
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
@@ -20,7 +18,6 @@ class TweetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stackView.autoresizesSubviews = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -62,10 +59,10 @@ class TweetViewController: UIViewController {
         // アカウントの切り替えできたらいいな
     }
     @IBAction func searchButton() {
-        if searchField.text != nil {
+        if searchField.text != "" {
             performSegueWithIdentifier("toImageView", sender: nil)
         } else {
-            // let alertView = SCLAlertView()
+            Utility.simpleAlert("検索ワードを入力してください。", presentView: self)
         }
     }
     @IBAction func tweetButton() {

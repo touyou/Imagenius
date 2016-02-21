@@ -32,7 +32,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             guard let object = response.result.value else {
                 return
             }
-            let json = JSON(object)
+            let json = SwiftyJSON.JSON(object)
             json.forEach({(_, json) in
                 let url = NSURL(string: "http://img.tiqav.com/" + String(json["id"]) + "." + json["ext"].string!)
                 let req = NSURLRequest(URL: url!)
@@ -85,8 +85,8 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         NSURLConnection.sendAsynchronousRequest(reqs[indexPath.row], queue: NSOperationQueue.mainQueue(), completionHandler: {(res, data, err) in
             self.selectedImage = UIImage(data: data!)
+            self.performSegueWithIdentifier("toResultView", sender: nil)
         })
-        performSegueWithIdentifier("toResultView", sender: nil)
     }
     // 画像をあらかじめリサイズしておく
     func cropThumbnailImage(image :UIImage, w:Int, h:Int) ->UIImage {

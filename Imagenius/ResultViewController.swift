@@ -17,9 +17,9 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if image == nil {
-            imageView.image = UIImage(named: "empty")
+            imageView.image = UIImage(named: "empty.png")
         } else {
-            imageView.image = self.image!
+            imageView.image = self.image
         }
     }
     

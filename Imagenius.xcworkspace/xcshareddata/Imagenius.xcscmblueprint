@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D57BAD61135264DC7E68F3041DA8AFEC247B8BE2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD" : 0,
+    "D57BAD61135264DC7E68F3041DA8AFEC247B8BE2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "39F66B34-7258-44A0-9A0F-3A2EC5D70DBF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD" : "Swifter\/",
+    "D57BAD61135264DC7E68F3041DA8AFEC247B8BE2" : "Imagenius\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Imagenius",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Imagenius.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mattdonnelly\/Swifter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/touyou\/Imagenius.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D57BAD61135264DC7E68F3041DA8AFEC247B8BE2"
+    }
+  ]
+}
