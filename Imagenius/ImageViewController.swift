@@ -20,6 +20,8 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var swifter:Swifter!
     
+    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageCollectionView.dataSource = self

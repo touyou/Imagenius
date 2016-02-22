@@ -56,6 +56,9 @@
 		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
 		469373531C7A020700BE1506 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469373521C7A020700BE1506 /* SwifteriOS.framework */; };
 		469373541C7A020700BE1506 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 469373521C7A020700BE1506 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46D680B01C7AC62700DDB4DE /* TweetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */; };
+		46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */; };
+		46D680F31C7AFF7A00DDB4DE /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F21C7AFF7A00DDB4DE /* ColorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +176,9 @@
 		4683829E1C7696FC001DC810 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		4683829F1C7696FC001DC810 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		469373521C7A020700BE1506 /* SwifteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwifteriOS.framework; path = "/Users/touyou/Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<absolute>"; };
+		46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewCell.swift; sourceTree = "<group>"; };
+		46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUtil.swift; sourceTree = "<group>"; };
+		46D680F21C7AFF7A00DDB4DE /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
 		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -242,6 +248,7 @@
 				464A7EEA1C7973C1006100DB /* Defaults-master */,
 				4683829D1C7696CD001DC810 /* Resources */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
+				46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */,
 				460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */,
 				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
 				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
@@ -253,6 +260,8 @@
 				468382991C75D957001DC810 /* TweetViewController.swift */,
 				4683829B1C75DF0C001DC810 /* Utility.swift */,
 				464A80621C79F2AA006100DB /* SettingViewController.swift */,
+				46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */,
+				46D680F21C7AFF7A00DDB4DE /* ColorManager.swift */,
 			);
 			path = Imagenius;
 			sourceTree = "<group>";
@@ -624,12 +633,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
+				46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */,
 				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
 				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
+				46D680F31C7AFF7A00DDB4DE /* ColorManager.swift in Sources */,
 				464A80631C79F2AA006100DB /* SettingViewController.swift in Sources */,
 				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
+				46D680B01C7AC62700DDB4DE /* TweetViewCell.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

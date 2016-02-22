@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Accounts
 
 class Utility {
     // 単純なアラートをつくる関数
@@ -18,7 +19,7 @@ class Utility {
         presentView.presentViewController(alertController, animated: true, completion: nil)
     }
     // 画像をあらかじめリサイズしておく
-    class func cropThumbnailImage(image :UIImage, w:Int, h:Int) ->UIImage {
+    class func cropThumbnailImage(image :UIImage, w:Int, h:Int) -> UIImage {
         let origRef    = image.CGImage;
         let origWidth  = Int(CGImageGetWidth(origRef))
         let origHeight = Int(CGImageGetHeight(origRef))
@@ -50,5 +51,8 @@ class Utility {
         let cropImage = UIImage(CGImage: cropRef!)
         
         return cropImage
+    }
+    class func cropCircleImage(image: UIImage, w: Int, h: Int) -> UIImage {
+        return image
     }
 }

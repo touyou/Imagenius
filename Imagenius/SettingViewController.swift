@@ -9,54 +9,20 @@
 import UIKit
 import Accounts
 import Social
-import SwifteriOS
 
 class SettingViewController: UIViewController  {
-    var swifter: Swifter
+    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
-    let useACAccount = true
+    var twAccount = ACAccount()
     
     required init?(coder aDecoder: NSCoder) {
-        self.swifter = Swifter(consumerKey: "my_key", consumerSecret: "my_secret")
         super.init(coder: aDecoder)
     }
     
     // Loginボタン
     @IBAction func didTouchUpInsideLoginButton(sender: AnyObject) {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert("Error", presentView: self)
-        }
-        
-        if useACAccount {
-            let accountStore = ACAccountStore()
-            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-            
-            accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-                if granted {
-                    let twitterAccounts = accountStore.accountsWithAccountType(accountType)
-                    if twitterAccounts?.count == 0 {
-                        Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: self)
-                    } else {
-                        let twitterAccount = twitterAccounts[0] as! ACAccount
-                        self.swifter = Swifter(account: twitterAccount)
-                        self.performSegueWithIdentifier("toMainView", sender: nil)
-                    }
-                } else {
-                    Utility.simpleAlert("Error", presentView: self)
-                }
-            }
-        } else {
-            let url = NSURL(string: "swifter://success")!
-            swifter.authorizeWithCallbackURL(url, presentFromViewController: self, success: { _ in
-                self.performSegueWithIdentifier("toMainView", sender: nil)
-                }, failure: failureHandler)
-        }
+        twAccount = TwitterUtil.loginTwitter(self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toMainView" {
-            let mainView = segue.destinationViewController as! MainViewController
-            mainView.swifter = self.swifter
-        }
-    }
+    
 }

@@ -11,16 +11,13 @@ import Accounts
 import SwifteriOS
 
 class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegate, UITableViewDataSource {
-
     var tweetArray: [JSONValue] = []
     @IBOutlet var timelineTableView: UITableView!
-    
     var swifter: Swifter!
     var maxId: String!
-    
+    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     // 今どっちを選択しているか？
     var tlmode: String!
-    
     // tabの処理
     @IBOutlet var mainTabBar: UITabBar!
     @IBOutlet var homeTabBarItem: UITabBarItem!
@@ -33,17 +30,26 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        tlmode = "home"
-        mainTabBar.selectedItem = homeTabBarItem
-        self.loadTweet()
+        if saveData.objectForKey("twitter") != nil {
+            let account = saveData.objectForKey("twitter") as! ACAccount
+            swifter = Swifter(account: account)
+            tlmode = "home"
+            mainTabBar.selectedItem = homeTabBarItem
+            self.loadTweet()
+        } else {
+            // TableViewが空の時の画面を出す
+        }
     }
     
+    // tabBarが選択されたとき
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         if item == homeTabBarItem {
             tlmode = "home"
+            tweetArray = []
             self.loadTweet()
         } else if item == replyTabBarItem {
             tlmode = "reply"
+            tweetArray = []
             self.loadTweet()
         }
     }
@@ -58,24 +64,20 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
             for var i = 0; i < tweets.count - 1; i++ {
                 self.tweetArray.append(tweets[i])
             }
-            // print(tweets[0])
             self.maxId = tweets[tweets.count - 1]["id_str"].string
             self.timelineTableView.reloadData()
         }
-        if swifter == nil {
-            return
-        }
         if !moreflag {
             if tlmode == "home" {
-                self.swifter.getStatusesHomeTimelineWithCount(41, success: successHandler, failure: failureHandler)
+                self.swifter.getStatusesHomeTimelineWithCount(41, includeEntities: true, success: successHandler, failure: failureHandler)
             } else if tlmode == "reply" {
-                self.swifter.getStatusesMentionTimelineWithCount(41, success: successHandler, failure: failureHandler)
+                self.swifter.getStatusesMentionTimelineWithCount(41, includeEntities: true, success: successHandler, failure: failureHandler)
             }
         } else {
             if tlmode == "home" {
-                self.swifter.getStatusesHomeTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: nil, success: successHandler, failure: failureHandler)
+                self.swifter.getStatusesHomeTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
             } else if tlmode == "reply" {
-                self.swifter.getStatusesMentionTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: nil, success: successHandler, failure: failureHandler)
+                self.swifter.getStatusesMentionTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
             }
         }
     }
@@ -94,38 +96,25 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         return tweetArray.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as UITableViewCell
-        
-        let tweetTextView:UITextView = cell.viewWithTag(3) as! UITextView
-        let userLabel:UILabel = cell.viewWithTag(1) as! UILabel
-        let userIDLabel:UILabel = cell.viewWithTag(2) as! UILabel
-        let userImgView:UIImageView = cell.viewWithTag(4) as! UIImageView
+        let cell:TweetViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as! TweetViewCell
         
         let tweet = tweetArray[indexPath.row]
         let userInfo = tweet["user"]
         
-        tweetTextView.text = tweet["text"].string
-        userLabel.text = userInfo["name"].string
+        cell.tweetLabel.text = tweet["text"].string
+        cell.userLabel.text = userInfo["name"].string
         let userID = userInfo["screen_name"].string!
-        userIDLabel.text = "@\(userID)"
+        cell.userIDLabel.text = "@\(userID)"
         let userImgPath:String = userInfo["profile_image_url_https"].string!
         let userImgURL:NSURL = NSURL(string: userImgPath)!
         let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
-        // userImgView.image = Utility.cropThumbnailImage(UIImage(data: userImgPathData)!, w: 50, h: 50)
-        userImgView.image = UIImage(data: userImgPathData)
+        cell.userImgView.image = UIImage(data: userImgPathData)
         
         if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
             self.loadMore()
         }
         
         return cell
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toTweetView" {
-            let tweetView = segue.destinationViewController as! TweetViewController
-            tweetView.swifter = self.swifter
-        }
     }
 }
 

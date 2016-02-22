@@ -17,6 +17,8 @@ class ResultViewController: UIViewController {
     
     var swifter:Swifter!
     
+    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if image == nil {

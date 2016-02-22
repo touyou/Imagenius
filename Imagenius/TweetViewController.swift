@@ -8,6 +8,7 @@
 
 import UIKit
 import SwifteriOS
+import Accounts
 
 class TweetViewController: UIViewController {
     @IBOutlet var countLabel: UILabel!
@@ -16,16 +17,20 @@ class TweetViewController: UIViewController {
     @IBOutlet var accountImage: UIButton!
     var tweetText: String?
     var tweetImage: UIImage?
-    
     var swifter:Swifter!
+    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         
+        if saveData.objectForKey("twitter") != nil {
+            let account = saveData.objectForKey("twitter") as! ACAccount
+            swifter = Swifter(account: account)
+        }
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
@@ -56,10 +61,12 @@ class TweetViewController: UIViewController {
     
     // ボタン関係
     @IBAction func cancelButton() {
-        performSegueWithIdentifier("backMainView", sender: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func accountButton() {
         // アカウントの切り替えできたらいいな
+        
+        let account = TwitterUtil.showAndSelectTwitterAccountWithSelectionSheets(self)
     }
     @IBAction func searchButton() {
         if searchField.text != "" {
