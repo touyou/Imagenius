@@ -42,7 +42,7 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         if item == homeTabBarItem {
             tlmode = "home"
             self.loadTweet()
-        } else {
+        } else if item == replyTabBarItem {
             tlmode = "reply"
             self.loadTweet()
         }
@@ -58,8 +58,12 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
             for var i = 0; i < tweets.count - 1; i++ {
                 self.tweetArray.append(tweets[i])
             }
+            // print(tweets[0])
             self.maxId = tweets[tweets.count - 1]["id_str"].string
             self.timelineTableView.reloadData()
+        }
+        if swifter == nil {
+            return
         }
         if !moreflag {
             if tlmode == "home" {
@@ -104,7 +108,7 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         userLabel.text = userInfo["name"].string
         let userID = userInfo["screen_name"].string
         userIDLabel.text = "@\(userID)"
-        let userImgPath:String = userInfo["profile_image_url"].string!
+        let userImgPath:String = userInfo["profile_image_url_https"].string!
         let userImgURL:NSURL = NSURL(string: userImgPath)!
         let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
         userImgView.image = UIImage(data: userImgPathData)
