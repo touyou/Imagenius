@@ -35,7 +35,7 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         super.viewDidAppear(animated)
         tlmode = "home"
         mainTabBar.selectedItem = homeTabBarItem
-        self.tabBar(mainTabBar, didSelectItem: homeTabBarItem)
+        self.loadTweet()
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
@@ -106,11 +106,12 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         
         tweetTextView.text = tweet["text"].string
         userLabel.text = userInfo["name"].string
-        let userID = userInfo["screen_name"].string
+        let userID = userInfo["screen_name"].string!
         userIDLabel.text = "@\(userID)"
         let userImgPath:String = userInfo["profile_image_url_https"].string!
         let userImgURL:NSURL = NSURL(string: userImgPath)!
         let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
+        // userImgView.image = Utility.cropThumbnailImage(UIImage(data: userImgPathData)!, w: 50, h: 50)
         userImgView.image = UIImage(data: userImgPathData)
         
         if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
@@ -118,6 +119,13 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         }
         
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toTweetView" {
+            let tweetView = segue.destinationViewController as! TweetViewController
+            tweetView.swifter = self.swifter
+        }
     }
 }
 

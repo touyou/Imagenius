@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwifteriOS
 
 class TweetViewController: UIViewController {
     @IBOutlet var countLabel: UILabel!
@@ -15,6 +16,8 @@ class TweetViewController: UIViewController {
     @IBOutlet var accountImage: UIButton!
     var tweetText: String?
     var tweetImage: UIImage?
+    
+    var swifter:Swifter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +70,24 @@ class TweetViewController: UIViewController {
     }
     @IBAction func tweetButton() {
         // ツイート処理
+        // ここに140字以上の処理を書く
         tweetText = tweetTextView.text
+        if (tweetText == nil || tweetText == "") && tweetImage == nil {
+            Utility.simpleAlert("画像かテキストを入力してください。", presentView: self)
+            return
+        }
+        if (tweetText == nil || tweetText == "") && tweetImage != nil {
+            swifter.postStatusUpdate("", media: UIImagePNGRepresentation(tweetImage!)!)
+            performSegueWithIdentifier("backMainView", sender: nil)
+            return
+        }
+        if tweetImage == nil {
+            swifter.postStatusUpdate(tweetText!)
+            performSegueWithIdentifier("backMainView", sender: nil)
+            return
+        }
+        swifter.postStatusUpdate(tweetText!, media: UIImagePNGRepresentation(tweetImage!)!)
+        performSegueWithIdentifier("backMainView", sender: nil)
     }
     
     // segue prepare
@@ -76,6 +96,10 @@ class TweetViewController: UIViewController {
             let imageView = segue.destinationViewController as! ImageViewController
             imageView.searchWord = self.searchField.text!
             imageView.tweetText = self.tweetTextView.text
+            imageView.swifter = self.swifter
+        } else if segue.identifier == "backMainView" {
+            let mainView = segue.destinationViewController as! MainViewController
+            mainView.swifter = self.swifter
         }
     }
 }

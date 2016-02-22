@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SwifteriOS
 
 class ResultViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     var image: UIImage?
     var tweetText: String?
     var searchWord: String = ""
+    
+    var swifter:Swifter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +41,12 @@ class ResultViewController: UIViewController {
             let tweetView = segue.destinationViewController as! TweetViewController
             tweetView.tweetImage = self.image
             tweetView.tweetText = self.tweetText
+            tweetView.swifter = self.swifter
         } else if segue.identifier == "backImageView" {
             let imageView = segue.destinationViewController as! ImageViewController
             imageView.tweetText = self.tweetText
             imageView.searchWord = self.searchWord
+            imageView.swifter = self.swifter
         }
     }
     

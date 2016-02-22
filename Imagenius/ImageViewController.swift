@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SwifteriOS
 
 class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var imageCollectionView: UICollectionView!
@@ -16,6 +17,8 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     var tweetText: String?
     var reqs: [NSURLRequest] = []
     var selectedImage: UIImage?
+    
+    var swifter:Swifter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +53,15 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // selectedImageを渡す
         if segue.identifier == "toResultView" {
-            let resultViewCtrl = segue.destinationViewController as! ResultViewController
-            resultViewCtrl.image = self.selectedImage
-            resultViewCtrl.tweetText = self.tweetText
-            resultViewCtrl.searchWord = self.searchWord
+            let resultView = segue.destinationViewController as! ResultViewController
+            resultView.image = self.selectedImage
+            resultView.tweetText = self.tweetText
+            resultView.searchWord = self.searchWord
+            resultView.swifter = self.swifter
+        } else if segue.identifier == "backTweetView" {
+            let tweetView = segue.destinationViewController as! TweetViewController
+            tweetView.tweetText = self.tweetText
+            tweetView.swifter = self.swifter
         }
     }
     
@@ -77,7 +85,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageViewCell
         NSURLConnection.sendAsynchronousRequest(reqs[indexPath.row], queue: NSOperationQueue.mainQueue(), completionHandler: {(res, data, err) in
             let image = UIImage(data: data!)
-            cell.imageView.image = self.cropThumbnailImage(image!, w: 106, h: 106)
+            cell.imageView.image = Utility.cropThumbnailImage(image!, w: 106, h: 106)
         })
         return cell
     }
@@ -87,40 +95,6 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.selectedImage = UIImage(data: data!)
             self.performSegueWithIdentifier("toResultView", sender: nil)
         })
-    }
-    // 画像をあらかじめリサイズしておく
-    func cropThumbnailImage(image :UIImage, w:Int, h:Int) ->UIImage {
-        let origRef    = image.CGImage;
-        let origWidth  = Int(CGImageGetWidth(origRef))
-        let origHeight = Int(CGImageGetHeight(origRef))
-        var resizeWidth:Int = 0, resizeHeight:Int = 0
-        
-        if (origWidth < origHeight) {
-            resizeWidth = w
-            resizeHeight = origHeight * resizeWidth / origWidth
-        } else {
-            resizeHeight = h
-            resizeWidth = origWidth * resizeHeight / origHeight
-        }
-        
-        let resizeSize = CGSizeMake(CGFloat(resizeWidth), CGFloat(resizeHeight))
-        UIGraphicsBeginImageContext(resizeSize)
-        
-        image.drawInRect(CGRectMake(0, 0, CGFloat(resizeWidth), CGFloat(resizeHeight)))
-        
-        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        // 切り抜き処理
-        
-        let cropRect  = CGRectMake(
-            CGFloat((resizeWidth - w) / 2),
-            CGFloat((resizeHeight - h) / 2),
-            CGFloat(w), CGFloat(h))
-        let cropRef   = CGImageCreateWithImageInRect(resizeImage.CGImage, cropRect)
-        let cropImage = UIImage(CGImage: cropRef!)
-        
-        return cropImage
     }
 
 }
