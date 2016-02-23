@@ -8,5 +8,9 @@
 
 import UIKit
 
-class ColorManager {
+enum Settings {
+    enum Colors {
+        // static letにすると一度だけしか生成されない
+        static let mainColor = UIColor()
+    }
 }

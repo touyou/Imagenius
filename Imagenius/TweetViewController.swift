@@ -15,6 +15,8 @@ class TweetViewController: UIViewController {
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
     @IBOutlet var accountImage: UIButton!
+    
+    var MAX_WORD: Int = 140
     var tweetText: String?
     var tweetImage: UIImage?
     var swifter:Swifter!
@@ -27,9 +29,21 @@ class TweetViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if saveData.objectForKey("twitter") != nil {
-            let account = saveData.objectForKey("twitter") as! ACAccount
-            swifter = Swifter(account: account)
+        if saveData.objectForKey("twitter") == nil {
+            TwitterUtil.loginTwitter(self)
+        }
+        let accountStore = ACAccountStore()
+        var accounts = [ACAccount]()
+        var account: ACAccount?
+        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+            if granted {
+                accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                if accounts.count != 0 {
+                    account = accounts[self.saveData.objectForKey("twitter") as! Int]
+                    self.swifter = Swifter(account: account!)
+                }
+            }
         }
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
@@ -49,25 +63,41 @@ class TweetViewController: UIViewController {
         view.endEditing(true)
         return true
     }
+    // キーボードがあらわれたら上にあげる
     func handleKeyboardWillShowNotification(notification: NSNotification) {
         let userInfo = notification.userInfo!
         _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         // let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
         
     }
-    
+    // キーボードがいなくなったら下に下げる
     func handleKeyboardWillHideNotification(notification: NSNotification) {
     }
     
     // ボタン関係
+    // 投稿せずに終了
     @IBAction func cancelButton() {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    // アカウントを切り替える
     @IBAction func accountButton() {
         // アカウントの切り替えできたらいいな
-        
-        let account = TwitterUtil.showAndSelectTwitterAccountWithSelectionSheets(self)
+        TwitterUtil.loginTwitter(self)
+        let accountStore = ACAccountStore()
+        var accounts = [ACAccount]()
+        var account: ACAccount?
+        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+            if granted {
+                accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                if accounts.count != 0 {
+                    account = accounts[self.saveData.objectForKey("twitter") as! Int]
+                    self.swifter = Swifter(account: account!)
+                }
+            }
+        }
     }
+    // 画像検索へ
     @IBAction func searchButton() {
         if searchField.text != "" {
             performSegueWithIdentifier("toImageView", sender: nil)
@@ -79,34 +109,25 @@ class TweetViewController: UIViewController {
         // ツイート処理
         // ここに140字以上の処理を書く
         tweetText = tweetTextView.text
+        if (tweetText!.characters.count > MAX_WORD) {
+            Utility.simpleAlert("140字を超えています。", presentView: self)
+            return
+        }
         if (tweetText == nil || tweetText == "") && tweetImage == nil {
             Utility.simpleAlert("画像かテキストを入力してください。", presentView: self)
             return
         }
         if (tweetText == nil || tweetText == "") && tweetImage != nil {
             swifter.postStatusUpdate("", media: UIImagePNGRepresentation(tweetImage!)!)
-            performSegueWithIdentifier("backMainView", sender: nil)
+            dismissViewControllerAnimated(true, completion: nil)
             return
         }
         if tweetImage == nil {
             swifter.postStatusUpdate(tweetText!)
-            performSegueWithIdentifier("backMainView", sender: nil)
+            dismissViewControllerAnimated(true, completion: nil)
             return
         }
         swifter.postStatusUpdate(tweetText!, media: UIImagePNGRepresentation(tweetImage!)!)
-        performSegueWithIdentifier("backMainView", sender: nil)
-    }
-    
-    // segue prepare
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toImageView" {
-            let imageView = segue.destinationViewController as! ImageViewController
-            imageView.searchWord = self.searchField.text!
-            imageView.tweetText = self.tweetTextView.text
-            imageView.swifter = self.swifter
-        } else if segue.identifier == "backMainView" {
-            let mainView = segue.destinationViewController as! MainViewController
-            mainView.swifter = self.swifter
-        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

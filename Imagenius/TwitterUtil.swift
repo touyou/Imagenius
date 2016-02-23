@@ -10,39 +10,68 @@ import Foundation
 import UIKit
 import Accounts
 class TwitterUtil {
-    var accountStore = ACAccountStore()
-    var accounts = [ACAccount]()
     
-    init() {
+    class func getAccount() -> ACAccount? {
+        let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        if saveData.objectForKey("twitter") != nil {
+            return getAccountWithKey(saveData.objectForKey("twitter") as! Int)
+        }
+        return nil
     }
     
-    func loginTwitter(present: UIViewController) -> ACAccount? {
+    class func getAccountWithKey(key: Int) -> ACAccount? {
+        let accountStore = ACAccountStore()
+        var accounts = [ACAccount]()
+        var account: ACAccount?
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
             if granted {
-                self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                if self.accounts.count == 0 {
+                accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                if accounts.count != 0 {
+                    account = accounts[key]
+                    print("if \(account)")
+                }
+            }
+        }
+        print("is \(account)")
+        return account
+    }
+    
+    class func loginTwitter(present: UIViewController) {
+        let accountStore = ACAccountStore()
+        var accounts = [ACAccount]()
+        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+            if granted {
+                accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                if accounts.count == 0 {
                     Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: present)
                 } else {
-                    let account =  self.showAndSelectTwitterAccountWithSelectionSheets(present)
-                    return account
+                    self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present)
                 }
             } else {
                 Utility.simpleAlert("Error", presentView: present)
             }
         }
-        return nil
     }
     
     // Twitterアカウントの切り替え
-    func showAndSelectTwitterAccountWithSelectionSheets(present: UIViewController) -> ACAccount? {
+    class func showAndSelectTwitterAccountWithSelectionSheets(accounts: [ACAccount], present: UIViewController) {
         // アクションシートの設定
         let alertController = UIAlertController(title: "Select Account", message: "Please select twitter account", preferredStyle: .ActionSheet)
+        let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
-        for account in accounts {
+        for var i=0; i<accounts.count; i++ {
+            let account = accounts[i]
             alertController.addAction(UIAlertAction(title: account.username, style: .Default, handler: { (action) -> Void in
-                // 選択したアカウントをtwAccountに保存
-                return account
+                // 選択したアカウントを返す
+                for var j=0; j<accounts.count; j++ {
+                    if account == accounts[j] {
+                        print(j)
+                        saveData.setObject(j, forKey: "twitter")
+                        break
+                    }
+                }
             }))
             
         }
@@ -53,6 +82,5 @@ class TwitterUtil {
         
         // アクションシート表示
         present.presentViewController(alertController, animated: true, completion: nil)
-        return nil
     }
 }

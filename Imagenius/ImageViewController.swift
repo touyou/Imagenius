@@ -9,16 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SwifteriOS
 
 class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var imageCollectionView: UICollectionView!
     var searchWord: String = ""
-    var tweetText: String?
     var reqs: [NSURLRequest] = []
     var selectedImage: UIImage?
-    
-    var swifter:Swifter!
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -51,26 +47,10 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     func encodeURL(text: String) -> NSURL! {
         return NSURL(string: text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
     }
-    // 画面を閉じる時
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // selectedImageを渡す
-        if segue.identifier == "toResultView" {
-            let resultView = segue.destinationViewController as! ResultViewController
-            resultView.image = self.selectedImage
-            resultView.tweetText = self.tweetText
-            resultView.searchWord = self.searchWord
-            resultView.swifter = self.swifter
-        } else if segue.identifier == "backTweetView" {
-            let tweetView = segue.destinationViewController as! TweetViewController
-            tweetView.tweetText = self.tweetText
-            tweetView.swifter = self.swifter
-        }
-    }
-    
     
     // NavigationBarまわり
     @IBAction func cancelButton() {
-        performSegueWithIdentifier("backTweetView", sender: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // CollectionViewまわりの設定

@@ -26,18 +26,54 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTabBar.delegate = self
+        self.timelineTableView.estimatedRowHeight = 120
+        self.timelineTableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if saveData.objectForKey("twitter") == nil {
+            TwitterUtil.loginTwitter(self)
+        }
         if saveData.objectForKey("twitter") != nil {
-            let account = saveData.objectForKey("twitter") as! ACAccount
-            swifter = Swifter(account: account)
-            tlmode = "home"
-            mainTabBar.selectedItem = homeTabBarItem
-            self.loadTweet()
-        } else {
-            // TableViewが空の時の画面を出す
+            let accountStore = ACAccountStore()
+            var accounts = [ACAccount]()
+            var account: ACAccount?
+            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+            accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+                if granted {
+                    accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                    if accounts.count != 0 {
+                        account = accounts[self.saveData.objectForKey("twitter") as! Int]
+                        self.swifter = Swifter(account: account!)
+                        self.loadTweet()
+                    }
+                }
+            }
+            self.tlmode = "home"
+            self.mainTabBar.selectedItem  = self.homeTabBarItem
+        }
+    }
+    
+    
+    @IBAction func accountChange(sender: AnyObject) {
+        TwitterUtil.loginTwitter(self)
+        self.tweetArray = []
+        if saveData.objectForKey("twitter") != nil {
+            let accountStore = ACAccountStore()
+            var accounts = [ACAccount]()
+            var account: ACAccount?
+            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+            accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+                if granted {
+                    accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                    if accounts.count != 0 {
+                        account = accounts[self.saveData.objectForKey("twitter") as! Int]
+                        self.swifter = Swifter(account: account!)
+                        self.loadTweet()
+                    }
+                }
+            }
         }
     }
     
@@ -82,10 +118,14 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         }
     }
     func loadTweet() {
-        load(false)
+        if swifter != nil {
+            load(false)
+        }
     }
     func loadMore() {
-        load(true)
+        if swifter != nil {
+            load(true)
+        }
     }
     
     // TableView関係
@@ -113,6 +153,8 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
             self.loadMore()
         }
+        
+        cell.layoutIfNeeded()
         
         return cell
     }
