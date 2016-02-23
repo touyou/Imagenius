@@ -130,4 +130,11 @@ class TweetViewController: UIViewController {
         swifter.postStatusUpdate(tweetText!, media: UIImagePNGRepresentation(tweetImage!)!)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toImageView" {
+            let imageView = segue.destinationViewController as! ImageViewController
+            imageView.searchWord = searchField.text!
+        }
+    }
 }

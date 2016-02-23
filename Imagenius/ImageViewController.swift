@@ -78,5 +78,11 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.performSegueWithIdentifier("toResultView", sender: nil)
         })
     }
-
+    // 検索ワードを渡す
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toResultView" {
+            let resultView = segue.destinationViewController as! ResultViewController
+            resultView.image = self.selectedImage
+        }
+    }
 }
