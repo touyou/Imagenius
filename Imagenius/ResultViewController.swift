@@ -25,11 +25,15 @@ class ResultViewController: UIViewController {
     
     // OKボタンのとき
     @IBAction func pushOK() {
-        saveData.setObject(self.image!, forKey: "tweet_image")
+        let imageData:NSData = UIImagePNGRepresentation(image!)!
+        saveData.setObject(imageData, forKey: Settings.Saveword.image)
+        if saveData.objectForKey(Settings.Saveword.search) != nil {
+            saveData.setObject(nil, forKey: Settings.Saveword.search)
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     // Cancelボタンのとき
     @IBAction func pushCancel() {
-        
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 }

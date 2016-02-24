@@ -8,6 +8,7 @@ target 'Imagenius' do
     pod 'SCLAlertView'
     pod 'DZNEmptyDataSet'
     pod 'SWTableViewCell', '~> 0.3.7'
+    pod 'TTTAttributedLabel'
 end
 
 target 'ImageniusTests' do

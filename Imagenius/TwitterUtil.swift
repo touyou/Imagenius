@@ -11,32 +11,6 @@ import UIKit
 import Accounts
 class TwitterUtil {
     
-    class func getAccount() -> ACAccount? {
-        let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if saveData.objectForKey("twitter") != nil {
-            return getAccountWithKey(saveData.objectForKey("twitter") as! Int)
-        }
-        return nil
-    }
-    
-    class func getAccountWithKey(key: Int) -> ACAccount? {
-        let accountStore = ACAccountStore()
-        var accounts = [ACAccount]()
-        var account: ACAccount?
-        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-            if granted {
-                accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                if accounts.count != 0 {
-                    account = accounts[key]
-                    print("if \(account)")
-                }
-            }
-        }
-        print("is \(account)")
-        return account
-    }
-    
     class func loginTwitter(present: UIViewController) {
         let accountStore = ACAccountStore()
         var accounts = [ACAccount]()
@@ -68,7 +42,7 @@ class TwitterUtil {
                 for var j=0; j<accounts.count; j++ {
                     if account == accounts[j] {
                         print(j)
-                        saveData.setObject(j, forKey: "twitter")
+                        saveData.setObject(j, forKey: Settings.Saveword.twitter)
                         break
                     }
                 }

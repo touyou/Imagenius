@@ -3,17 +3,20 @@ PODS:
   - FMAssetStream (0.1.1)
   - SCLAlertView (0.5.1)
   - SWTableViewCell (0.3.7)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
   - FMAssetStream
   - SCLAlertView
   - SWTableViewCell (~> 0.3.7)
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   FMAssetStream: e7a84f9c71ba27ace6bf6acc7b28c5e76b73a38d
   SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.39.0

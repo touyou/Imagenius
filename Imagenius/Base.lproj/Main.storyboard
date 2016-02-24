@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Delegate-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,8 +21,8 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTQ-eh-yDc">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="Wt7-xT-pwX">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="PjX-rP-Kbs">
+                                    <navigationItem title="Imagenius" id="Wt7-xT-pwX">
+                                        <barButtonItem key="leftBarButtonItem" title="Account" id="PjX-rP-Kbs">
                                             <connections>
                                                 <action selector="accountChange:" destination="BYZ-38-t0r" id="Yhk-iY-EC9"/>
                                             </connections>
@@ -50,11 +50,11 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" id="bo5-LP-EWQ" customClass="TweetViewCell" customModule="Imagenius" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="200" id="bo5-LP-EWQ" customClass="TweetViewCell" customModule="Imagenius" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bo5-LP-EWQ" id="xUf-oj-9pm">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pm5-X9-hZc">
@@ -76,11 +76,21 @@
                                                         <constraint firstAttribute="height" constant="50" id="tku-ON-Irb"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tweet label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upc-KK-UVZ">
-                                                    <rect key="frame" x="68" y="16" width="244" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upc-KK-UVZ" customClass="TTTAttributedLabel">
+                                                    <rect key="frame" x="68" y="18" width="244" height="16"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="tweet label">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="HiraginoSans-W2"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="BYZ-38-t0r" id="XQC-Za-P6V"/>
+                                                    </connections>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -89,7 +99,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="upc-KK-UVZ" secondAttribute="trailing" id="hhI-8V-d4C"/>
                                                 <constraint firstItem="0ND-oI-83g" firstAttribute="top" secondItem="xUf-oj-9pm" secondAttribute="topMargin" constant="2" id="lYE-La-abY"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="upc-KK-UVZ" secondAttribute="bottom" constant="10" id="mow-ds-Eex"/>
-                                                <constraint firstItem="upc-KK-UVZ" firstAttribute="top" secondItem="xUf-oj-9pm" secondAttribute="topMargin" constant="8" id="nds-5X-2Ye"/>
+                                                <constraint firstItem="upc-KK-UVZ" firstAttribute="top" secondItem="xUf-oj-9pm" secondAttribute="topMargin" constant="10" id="nds-5X-2Ye"/>
                                                 <constraint firstItem="upc-KK-UVZ" firstAttribute="leading" secondItem="0ND-oI-83g" secondAttribute="trailing" constant="8" id="v9e-mZ-IAw"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -100,11 +110,11 @@
                                             <outlet property="userLabel" destination="Pm5-X9-hZc" id="hFd-hM-WGE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCellWithImage" id="SRq-Ig-x4T" customClass="TweetViewCell" customModule="Imagenius" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="148" width="320" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCellWithImage" rowHeight="200" id="SRq-Ig-x4T" customClass="TweetViewWithImageCell" customModule="Imagenius" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="228" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SRq-Ig-x4T" id="ipc-8w-EbK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q38-2M-rFd">
@@ -119,11 +129,21 @@
                                                     <color key="textColor" red="0.3294117647" green="0.3294117647" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tweet label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZx-nf-rF7">
-                                                    <rect key="frame" x="68" y="16" width="244" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZx-nf-rF7" customClass="TTTAttributedLabel">
+                                                    <rect key="frame" x="68" y="18" width="244" height="16"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="tweet label">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="HiraginoSans-W2"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="BYZ-38-t0r" id="gNe-EA-S27"/>
+                                                    </connections>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QF6-qD-fNp">
                                                     <rect key="frame" x="10" y="10" width="50" height="50"/>
@@ -133,7 +153,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOy-8Q-YAe">
-                                                    <rect key="frame" x="68" y="42" width="244" height="80"/>
+                                                    <rect key="frame" x="68" y="42" width="244" height="150"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -143,13 +163,14 @@
                                                 <constraint firstItem="IZx-nf-rF7" firstAttribute="leading" secondItem="QF6-qD-fNp" secondAttribute="trailing" constant="8" id="FdY-h8-Sx8"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="IZx-nf-rF7" secondAttribute="trailing" id="Q90-mh-kiG"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="QF6-qD-fNp" secondAttribute="bottom" constant="10" id="dft-jb-H61"/>
-                                                <constraint firstItem="IZx-nf-rF7" firstAttribute="top" secondItem="ipc-8w-EbK" secondAttribute="topMargin" constant="8" id="k08-91-sUf"/>
+                                                <constraint firstItem="AOy-8Q-YAe" firstAttribute="bottom" secondItem="ipc-8w-EbK" secondAttribute="bottomMargin" id="hUk-wM-Or7"/>
+                                                <constraint firstItem="IZx-nf-rF7" firstAttribute="top" secondItem="ipc-8w-EbK" secondAttribute="topMargin" constant="10" id="k08-91-sUf"/>
                                                 <constraint firstItem="QF6-qD-fNp" firstAttribute="leading" secondItem="ipc-8w-EbK" secondAttribute="leadingMargin" constant="2" id="rpd-rv-Kgp"/>
                                                 <constraint firstItem="AOy-8Q-YAe" firstAttribute="width" secondItem="IZx-nf-rF7" secondAttribute="width" id="s7G-S7-FXE"/>
-                                                <constraint firstItem="AOy-8Q-YAe" firstAttribute="bottom" secondItem="ipc-8w-EbK" secondAttribute="bottomMargin" constant="10" id="xPZ-uL-JpI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="tweetImgView" destination="AOy-8Q-YAe" id="C7M-vs-gIV"/>
                                             <outlet property="tweetLabel" destination="IZx-nf-rF7" id="pTx-hr-Uua"/>
                                             <outlet property="userIDLabel" destination="ygv-b5-ZQ0" id="2ZG-G3-6je"/>
                                             <outlet property="userImgView" destination="QF6-qD-fNp" id="exs-jh-sPF"/>
@@ -189,7 +210,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MQP-S9-zls">
-                                <rect key="frame" x="0.0" y="64" width="320" height="398"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="280"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -257,6 +278,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-D2-afY">
+                                <rect key="frame" x="0.0" y="352" width="320" height="110"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -264,62 +288,67 @@
                         <outlet property="accountImage" destination="gVG-nf-Atd" id="ukI-YQ-0Zu"/>
                         <outlet property="countLabel" destination="JC1-Z4-8uY" id="SOA-Gw-6c3"/>
                         <outlet property="searchField" destination="5ag-fi-7eg" id="UN9-mJ-mqn"/>
+                        <outlet property="tweetImageView" destination="RWM-D2-afY" id="K6z-fa-4Rp"/>
                         <outlet property="tweetTextView" destination="MQP-S9-zls" id="ZlK-zh-hUP"/>
-                        <segue destination="jLc-Wc-dJX" kind="modal" identifier="toImageView" id="ZTT-I9-e7S"/>
+                        <segue destination="Cch-KD-zof" kind="modal" identifier="toImageView" id="iEW-Hs-U9C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8B-k9-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="368"/>
         </scene>
-        <!--Image View Controller-->
-        <scene sceneID="0wS-vU-it4">
+        <!--Navigation Controller-->
+        <scene sceneID="cx8-aM-3Hq">
             <objects>
-                <viewController id="jLc-Wc-dJX" customClass="ImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="Cch-KD-zof" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lxh-bb-9OG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="c2W-tc-XfD" kind="relationship" relationship="rootViewController" id="D06-8d-u7L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QJx-2I-kKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="1021"/>
+        </scene>
+        <!--画像検索結果-->
+        <scene sceneID="a8w-l9-bB4">
+            <objects>
+                <viewController id="c2W-tc-XfD" customClass="ImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vsJ-Ha-2K1"/>
-                        <viewControllerLayoutGuide type="bottom" id="cdv-Cs-Me4"/>
+                        <viewControllerLayoutGuide type="top" id="DKL-SC-LIg"/>
+                        <viewControllerLayoutGuide type="bottom" id="ur7-3z-uGR"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jSK-ZP-3wq">
+                    <view key="view" contentMode="scaleToFill" id="kiu-IM-aJG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vzp-8T-b9w">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="画像検索結果" id="wqo-4X-s1M">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="wmt-Bw-tPp">
-                                            <connections>
-                                                <action selector="cancelButton" destination="jLc-Wc-dJX" id="M8Q-ko-lfJ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4UN-Ux-jRN">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EJg-OS-P6V">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="mh8-nu-1nC">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="z5N-uH-iWo">
                                     <size key="itemSize" width="106" height="106"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="Nxs-Si-kHw" customClass="ImageViewCell" customModule="Imagenius" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="wkG-hv-O5j" customClass="ImageViewCell" customModule="Imagenius" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="106" height="106"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f82-ga-hof">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="shy-Rk-k8z">
                                                     <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="imageView" destination="f82-ga-hof" id="TTK-I7-RRM"/>
+                                            <outlet property="imageView" destination="shy-Rk-k8z" id="jSb-qX-2tI"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -327,58 +356,59 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="画像検索結果" id="QXy-jl-Wlk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="FE5-hI-HeI">
+                            <connections>
+                                <action selector="cancelButton" destination="c2W-tc-XfD" id="fRw-Pp-Yir"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="imageCollectionView" destination="4UN-Ux-jRN" id="fI5-Ds-nbO"/>
-                        <segue destination="Azt-ul-AVI" kind="push" identifier="toResultView" id="6W6-Ax-P3J"/>
+                        <outlet property="imageCollectionView" destination="EJg-OS-P6V" id="eav-pP-3Q9"/>
+                        <segue destination="Bld-g7-KL5" kind="push" identifier="toResultView" id="T3r-hd-ibb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hR8-PD-GVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4f4-Uh-5HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1130" y="368"/>
+            <point key="canvasLocation" x="1308" y="1021"/>
         </scene>
-        <!--Result View Controller-->
-        <scene sceneID="Fb5-KC-fRz">
+        <!--選択画像-->
+        <scene sceneID="0Io-2V-WT8">
             <objects>
-                <viewController id="Azt-ul-AVI" customClass="ResultViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Bld-g7-KL5" customClass="ResultViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="X12-xz-4jq"/>
-                        <viewControllerLayoutGuide type="bottom" id="hta-6m-egb"/>
+                        <viewControllerLayoutGuide type="top" id="8hx-cr-ZLZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fmk-Bq-JjH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XsH-Of-Tin">
+                    <view key="view" contentMode="scaleToFill" id="ZBq-Sn-cmb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMg-Jj-nVp">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="選択画像" id="Ff5-h7-aFC">
-                                        <barButtonItem key="leftBarButtonItem" title="OK" id="N9W-6q-e94">
-                                            <connections>
-                                                <action selector="pushOK" destination="Azt-ul-AVI" id="7WS-tO-mnA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="3np-xR-1rd">
-                                            <connections>
-                                                <action selector="pushCancel" destination="Azt-ul-AVI" id="CNm-bW-25K"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJ9-NJ-1lV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWn-f9-MIw">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qMz-lD-Yth"/>
+                    <navigationItem key="navigationItem" title="選択画像" id="tSG-D7-xRz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ilg-gK-ev3">
+                            <connections>
+                                <action selector="pushCancel" destination="Bld-g7-KL5" id="iDx-x7-9wC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="eAx-eT-IGS">
+                            <connections>
+                                <action selector="pushOK" destination="Bld-g7-KL5" id="hGk-zG-9ya"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="CJ9-NJ-1lV" id="Evg-At-6cO"/>
+                        <outlet property="imageView" destination="NWn-f9-MIw" id="Ft3-e5-Zie"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N3W-7k-VDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-Jc-LbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="368"/>
+            <point key="canvasLocation" x="1829" y="1015"/>
         </scene>
     </scenes>
     <resources>

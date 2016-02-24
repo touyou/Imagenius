@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3F8D6AB0531CF0623FA0E874'
+               BlueprintIdentifier = '32BBF89195D1787EAB8C5562'
                BlueprintName = 'FMAssetStream'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'FMAssetStream.framework'>

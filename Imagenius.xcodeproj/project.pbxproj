@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */; };
+		4603CC051C7D2BE3005DF397 /* TweetViewWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603CC041C7D2BE3005DF397 /* TweetViewWithImageCell.swift */; };
+		4603CC091C7D3DA1005DF397 /* StockWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603CC081C7D3DA1005DF397 /* StockWebViewController.swift */; };
+		4603CC0E1C7D3DED005DF397 /* toolbar_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC0A1C7D3DED005DF397 /* toolbar_back.png */; };
+		4603CC0F1C7D3DED005DF397 /* toolbar_external.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC0B1C7D3DED005DF397 /* toolbar_external.png */; };
+		4603CC101C7D3DED005DF397 /* toolbar_forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC0C1C7D3DED005DF397 /* toolbar_forward.png */; };
+		4603CC111C7D3DED005DF397 /* toolbar_reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC0D1C7D3DED005DF397 /* toolbar_reload.png */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
 		460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */; };
 		460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3C1C6B5CF60089CC7E /* Main.storyboard */; };
@@ -58,7 +64,6 @@
 		46D680B01C7AC62700DDB4DE /* TweetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */; };
 		46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */; };
 		46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F21C7AFF7A00DDB4DE /* Settings.swift */; };
-		46D681361C7B2D9700DDB4DE /* TweetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46D681351C7B2D9700DDB4DE /* TweetViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +126,12 @@
 
 /* Begin PBXFileReference section */
 		0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
+		4603CC041C7D2BE3005DF397 /* TweetViewWithImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewWithImageCell.swift; sourceTree = "<group>"; };
+		4603CC081C7D3DA1005DF397 /* StockWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockWebViewController.swift; sourceTree = "<group>"; };
+		4603CC0A1C7D3DED005DF397 /* toolbar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_back.png; sourceTree = "<group>"; };
+		4603CC0B1C7D3DED005DF397 /* toolbar_external.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_external.png; sourceTree = "<group>"; };
+		4603CC0C1C7D3DED005DF397 /* toolbar_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_forward.png; sourceTree = "<group>"; };
+		4603CC0D1C7D3DED005DF397 /* toolbar_reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_reload.png; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +189,6 @@
 		46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewCell.swift; sourceTree = "<group>"; };
 		46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUtil.swift; sourceTree = "<group>"; };
 		46D680F21C7AFF7A00DDB4DE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		46D681351C7B2D9700DDB4DE /* TweetViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewCell.xib; sourceTree = "<group>"; };
 		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
 		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -328,6 +338,10 @@
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4603CC0A1C7D3DED005DF397 /* toolbar_back.png */,
+				4603CC0B1C7D3DED005DF397 /* toolbar_external.png */,
+				4603CC0C1C7D3DED005DF397 /* toolbar_forward.png */,
+				4603CC0D1C7D3DED005DF397 /* toolbar_reload.png */,
 				464A7E811C78299F006100DB /* icon */,
 				4683829E1C7696FC001DC810 /* reply.png */,
 				4683829F1C7696FC001DC810 /* timeline.png */,
@@ -343,6 +357,7 @@
 				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
 				468382971C758C86001DC810 /* ResultViewController.swift */,
 				468382991C75D957001DC810 /* TweetViewController.swift */,
+				4603CC081C7D3DA1005DF397 /* StockWebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -378,7 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */,
-				46D681351C7B2D9700DDB4DE /* TweetViewCell.xib */,
+				4603CC041C7D2BE3005DF397 /* TweetViewWithImageCell.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -558,7 +573,6 @@
 			files = (
 				468382A11C7696FC001DC810 /* timeline.png in Resources */,
 				464A7EA71C7829B7006100DB /* Icon@2x.png in Resources */,
-				46D681361C7B2D9700DDB4DE /* TweetViewCell.xib in Resources */,
 				464A7E941C7829AC006100DB /* Icon-83.5@2x.png in Resources */,
 				464A7EA61C7829B7006100DB /* Icon.png in Resources */,
 				464A7EA41C7829B7006100DB /* Icon-Small-50.png in Resources */,
@@ -570,6 +584,8 @@
 				464A7E921C7829AC006100DB /* Icon-76.png in Resources */,
 				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
 				464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */,
+				4603CC101C7D3DED005DF397 /* toolbar_forward.png in Resources */,
+				4603CC0F1C7D3DED005DF397 /* toolbar_external.png in Resources */,
 				460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */,
 				464A7EA31C7829B7006100DB /* Icon-72@2x.png in Resources */,
 				464A7E801C78281A006100DB /* imagenius-logo.png in Resources */,
@@ -583,6 +599,8 @@
 				464A7EA91C7829B7006100DB /* iTunesArtwork@2x.png in Resources */,
 				464A7E8E1C7829AC006100DB /* Icon-40@2x.png in Resources */,
 				464A7E8F1C7829AC006100DB /* Icon-40@3x.png in Resources */,
+				4603CC111C7D3DED005DF397 /* toolbar_reload.png in Resources */,
+				4603CC0E1C7D3DED005DF397 /* toolbar_back.png in Resources */,
 				464A7E931C7829AC006100DB /* Icon-76@2x.png in Resources */,
 				464A7EF01C7973C1006100DB /* Default-736h@3x.png in Resources */,
 				464A7E901C7829AC006100DB /* Icon-60@2x.png in Resources */,
@@ -673,10 +691,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4603CC091C7D3DA1005DF397 /* StockWebViewController.swift in Sources */,
 				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
 				46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */,
 				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
 				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
+				4603CC051C7D2BE3005DF397 /* TweetViewWithImageCell.swift in Sources */,
 				46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */,
 				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
@@ -832,6 +852,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -849,6 +870,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

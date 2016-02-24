@@ -9,13 +9,15 @@
 import UIKit
 import Accounts
 import SwifteriOS
+import TTTAttributedLabel
 
-class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate {
     var tweetArray: [JSONValue] = []
     @IBOutlet var timelineTableView: UITableView!
     var swifter: Swifter!
     var maxId: String!
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    var refreshControl: UIRefreshControl!
     // 今どっちを選択しているか？
     var tlmode: String!
     // tabの処理
@@ -28,14 +30,19 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         mainTabBar.delegate = self
         self.timelineTableView.estimatedRowHeight = 120
         self.timelineTableView.rowHeight = UITableViewAutomaticDimension
+        // 引っ張ってロードするやつ
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        timelineTableView.addSubview(refreshControl)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if saveData.objectForKey("twitter") == nil {
+        if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self)
         }
-        if saveData.objectForKey("twitter") != nil {
+        if saveData.objectForKey(Settings.Saveword.twitter) != nil {
             let accountStore = ACAccountStore()
             var accounts = [ACAccount]()
             var account: ACAccount?
@@ -55,11 +62,17 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         }
     }
     
+    // refresh処理
+    func refresh() {
+        self.tweetArray = []
+        loadTweet()
+        self.refreshControl.endRefreshing()
+    }
     
     @IBAction func accountChange(sender: AnyObject) {
         TwitterUtil.loginTwitter(self)
         self.tweetArray = []
-        if saveData.objectForKey("twitter") != nil {
+        if saveData.objectForKey(Settings.Saveword.twitter) != nil {
             let accountStore = ACAccountStore()
             var accounts = [ACAccount]()
             var account: ACAccount?
@@ -68,7 +81,7 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
                 if granted {
                     accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
                     if accounts.count != 0 {
-                        account = accounts[self.saveData.objectForKey("twitter") as! Int]
+                        account = accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
                         self.swifter = Swifter(account: account!)
                         self.loadTweet()
                     }
@@ -136,27 +149,41 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         return tweetArray.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:TweetViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as! TweetViewCell
-        
-        let tweet = tweetArray[indexPath.row]
-        let userInfo = tweet["user"]
-        
-        cell.tweetLabel.text = tweet["text"].string
-        cell.userLabel.text = userInfo["name"].string
-        let userID = userInfo["screen_name"].string!
-        cell.userIDLabel.text = "@\(userID)"
-        let userImgPath:String = userInfo["profile_image_url_https"].string!
-        let userImgURL:NSURL = NSURL(string: userImgPath)!
-        let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
-        cell.userImgView.image = UIImage(data: userImgPathData)
-        
-        if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
-            self.loadMore()
+        if tweetArray.count < indexPath.row {
+            Utility.simpleAlert("ローディング中にエラーが発生しました。", presentView: self)
+            return UITableViewCell()
         }
-        
-        cell.layoutIfNeeded()
-        
-        return cell
+        let tweet = tweetArray[indexPath.row]
+        if tweet["entities"]["media"] != [] && tweet["entities"]["media"]["type"] == "photo" {
+            print("photo tweet")
+            let cell:TweetViewWithImageCell = tableView.dequeueReusableCellWithIdentifier("TweetCellWithImage") as! TweetViewWithImageCell
+            cell.setOutlet(tweet)
+            if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
+                self.loadMore()
+            }
+            cell.layoutIfNeeded()
+            return cell
+        } else {
+            let cell:TweetViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as! TweetViewCell
+            cell.setOutlet(tweet)
+            if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
+                self.loadMore()
+            }
+            cell.layoutIfNeeded()
+            return cell
+        }
+    }
+
+    // TableView内のリンクが押された時
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        self.openWebView(url)
+    }
+    // WebViewを開く
+    func openWebView(url: NSURL) {
+        let webviewController = StockWebViewController()
+        webviewController.url = url
+        // webviewController.hideBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(webviewController, animated: true)
     }
 }
 

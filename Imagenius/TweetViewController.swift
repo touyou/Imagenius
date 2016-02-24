@@ -15,6 +15,7 @@ class TweetViewController: UIViewController {
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
     @IBOutlet var accountImage: UIButton!
+    @IBOutlet var tweetImageView: UIImageView!
     
     var MAX_WORD: Int = 140
     var tweetText: String?
@@ -29,7 +30,7 @@ class TweetViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if saveData.objectForKey("twitter") == nil {
+        if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self)
         }
         let accountStore = ACAccountStore()
@@ -45,6 +46,15 @@ class TweetViewController: UIViewController {
                 }
             }
         }
+        
+        if saveData.objectForKey(Settings.Saveword.image) != nil {
+            tweetImage = UIImage(data: (saveData.objectForKey(Settings.Saveword.image) as? NSData)!)
+            tweetImageView.image = tweetImage
+            saveData.setObject(nil, forKey: Settings.Saveword.image)
+        }
+        
+        searchField.text = ""
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
@@ -91,7 +101,7 @@ class TweetViewController: UIViewController {
             if granted {
                 accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
                 if accounts.count != 0 {
-                    account = accounts[self.saveData.objectForKey("twitter") as! Int]
+                    account = accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
                     self.swifter = Swifter(account: account!)
                 }
             }
@@ -100,6 +110,7 @@ class TweetViewController: UIViewController {
     // 画像検索へ
     @IBAction func searchButton() {
         if searchField.text != "" {
+            saveData.setObject(searchField.text!, forKey: Settings.Saveword.search)
             performSegueWithIdentifier("toImageView", sender: nil)
         } else {
             Utility.simpleAlert("検索ワードを入力してください。", presentView: self)
@@ -129,12 +140,5 @@ class TweetViewController: UIViewController {
         }
         swifter.postStatusUpdate(tweetText!, media: UIImagePNGRepresentation(tweetImage!)!)
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toImageView" {
-            let imageView = segue.destinationViewController as! ImageViewController
-            imageView.searchWord = searchField.text!
-        }
     }
 }

@@ -23,6 +23,10 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         imageCollectionView.dataSource = self
         imageCollectionView.delegate = self
         
+        if saveData.objectForKey(Settings.Saveword.search) != nil {
+            searchWord = saveData.objectForKey(Settings.Saveword.search) as! String
+        }
+        
         tiqav()
     }
     // Tiqav.comでの検索

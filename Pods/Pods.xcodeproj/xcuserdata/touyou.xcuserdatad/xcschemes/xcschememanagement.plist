@@ -8,36 +8,31 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>FMAssetStream.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-Imagenius.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>SCLAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>SWTableViewCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
+		</dict>
+		<key>TTTAttributedLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -52,17 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>352000D9E1CE1BAE02FFB454BA99D327</key>
+		<key>32442202CAFBA94ECD54A08CA9C42D1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>460AED0DA419BF5EC75853F6E1B753FB</key>
+		<key>8FE94DB5E77204E4506504FF1CFD8173</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>587C410E46B0531D9C9E2AF80F384FF0</key>
+		<key>E08DDF7FBEBF0FC8C2EFF5EB2033BAAE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E481CF2410CCC8E44FDF44D6FE6A4F29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
