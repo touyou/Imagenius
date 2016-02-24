@@ -10,26 +10,31 @@ import UIKit
 import Accounts
 import SwifteriOS
 import TTTAttributedLabel
+import DZNEmptyDataSet
+import SWTableViewCell
 
-class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate {
     var tweetArray: [JSONValue] = []
-    @IBOutlet var timelineTableView: UITableView!
     var swifter: Swifter!
     var maxId: String!
+    var replyID: String?
+    var replyStr: String?
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var refreshControl: UIRefreshControl!
-    // 今どっちを選択しているか？
-    var tlmode: String!
-    // tabの処理
-    @IBOutlet var mainTabBar: UITabBar!
-    @IBOutlet var homeTabBarItem: UITabBarItem!
-    @IBOutlet var replyTabBarItem: UITabBarItem!
+    var accountImg: UIImage?
+    var account: ACAccount?
+    let accountStore = ACAccountStore()
+    var accounts = [ACAccount]()
+    
+    @IBOutlet var timelineTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainTabBar.delegate = self
-        self.timelineTableView.estimatedRowHeight = 120
+        self.timelineTableView.estimatedRowHeight = 200
         self.timelineTableView.rowHeight = UITableViewAutomaticDimension
+        self.timelineTableView.emptyDataSetDelegate = self
+        self.timelineTableView.emptyDataSetSource = self
+        self.timelineTableView.tableFooterView = UIView()
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
@@ -37,28 +42,30 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         timelineTableView.addSubview(refreshControl)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self)
-        }
-        if saveData.objectForKey(Settings.Saveword.twitter) != nil {
-            let accountStore = ACAccountStore()
-            var accounts = [ACAccount]()
-            var account: ACAccount?
+            TwitterUtil.loginTwitter(self, success: { (ac)->() in
+                self.account = ac
+                self.swifter = Swifter(account: self.account!)
+                self.loadTweet()
+            })
+        } else {
             let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
             accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
                 if granted {
-                    accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                    if accounts.count != 0 {
-                        account = accounts[self.saveData.objectForKey("twitter") as! Int]
-                        self.swifter = Swifter(account: account!)
+                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                    if self.accounts.count != 0 {
+                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                        self.swifter = Swifter(account: self.account!)
                         self.loadTweet()
                     }
                 }
             }
-            self.tlmode = "home"
-            self.mainTabBar.selectedItem  = self.homeTabBarItem
         }
     }
     
@@ -70,65 +77,16 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
     }
     
     @IBAction func accountChange(sender: AnyObject) {
-        TwitterUtil.loginTwitter(self)
         self.tweetArray = []
-        if saveData.objectForKey(Settings.Saveword.twitter) != nil {
-            let accountStore = ACAccountStore()
-            var accounts = [ACAccount]()
-            var account: ACAccount?
-            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-                if granted {
-                    accounts = accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                    if accounts.count != 0 {
-                        account = accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                        self.swifter = Swifter(account: account!)
-                        self.loadTweet()
-                    }
-                }
-            }
-        }
-    }
-    
-    // tabBarが選択されたとき
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        if item == homeTabBarItem {
-            tlmode = "home"
-            tweetArray = []
+        TwitterUtil.loginTwitter(self, success: { (ac) -> () in
+            self.account = ac
+            self.swifter = Swifter(account: self.account!)
             self.loadTweet()
-        } else if item == replyTabBarItem {
-            tlmode = "reply"
-            tweetArray = []
-            self.loadTweet()
-        }
+        })
     }
     
     // Tweetのロード
     func load(moreflag: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
-        }
-        let successHandler: (([JSONValue]?) -> Void) = { statuses in
-            guard let tweets = statuses else { return }
-            for var i = 0; i < tweets.count - 1; i++ {
-                self.tweetArray.append(tweets[i])
-            }
-            self.maxId = tweets[tweets.count - 1]["id_str"].string
-            self.timelineTableView.reloadData()
-        }
-        if !moreflag {
-            if tlmode == "home" {
-                self.swifter.getStatusesHomeTimelineWithCount(41, includeEntities: true, success: successHandler, failure: failureHandler)
-            } else if tlmode == "reply" {
-                self.swifter.getStatusesMentionTimelineWithCount(41, includeEntities: true, success: successHandler, failure: failureHandler)
-            }
-        } else {
-            if tlmode == "home" {
-                self.swifter.getStatusesHomeTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
-            } else if tlmode == "reply" {
-                self.swifter.getStatusesMentionTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
-            }
-        }
     }
     func loadTweet() {
         if swifter != nil {
@@ -149,8 +107,8 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         return tweetArray.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tweetArray.count < indexPath.row {
-            Utility.simpleAlert("ローディング中にエラーが発生しました。", presentView: self)
+        if tweetArray.count <= indexPath.row || indexPath.row < 0 {
+            // Utility.simpleAlert("ローディング中にエラーが発生しました。", presentView: self)
             return UITableViewCell()
         }
         let tweet = tweetArray[indexPath.row]
@@ -161,6 +119,8 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
             if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
                 self.loadMore()
             }
+            cell.rightUtilityButtons = self.rightButtons() as [AnyObject]
+            cell.delegate = self
             cell.layoutIfNeeded()
             return cell
         } else {
@@ -169,11 +129,50 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
             if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
                 self.loadMore()
             }
+            cell.rightUtilityButtons = self.rightButtons() as [AnyObject]
+            cell.delegate = self
             cell.layoutIfNeeded()
             return cell
         }
     }
-
+    // TableViewをスライドした時のボタン一覧
+    func rightButtons() -> NSArray {
+        let rightUtilityButtons: NSMutableArray = NSMutableArray()
+        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "fav_button.png")!))
+        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.replyColor, icon: UIImage(named: "rep_button.png")!))
+        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet_button.png")!))
+        return rightUtilityButtons
+    }
+    // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
+    func addUtilityButtonWithColor(color : UIColor, icon : UIImage) -> UIButton {
+        let button:UIButton = UIButton(type: UIButtonType.Custom)
+        button.backgroundColor = color
+        button.setImage(icon, forState: .Normal)
+        return button
+    }
+    // TableViewをスライドした時のボタンの挙動
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
+        let tweet = tweetArray[cellIndexPath.row]
+        switch index {
+        case 0:
+            // fav
+            swifter.postCreateFavoriteWithID(tweet["id_str"].string!)
+            break
+        case 1:
+            // reply
+            replyID = tweet["id_str"].string
+            replyStr = "@\(tweet["user"]["screen_name"].string!) "
+            performSegueWithIdentifier("toTweetView", sender: nil)
+            break
+        case 2:
+            // retweet
+            swifter.postStatusRetweetWithID(tweet["id_str"].string!)
+            break
+        default:
+            break
+        }
+    }
     // TableView内のリンクが押された時
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         self.openWebView(url)
@@ -185,5 +184,38 @@ class MainViewController: UIViewController, UITabBarDelegate, UITableViewDelegat
         // webviewController.hideBottomBarWhenPushed = true
         self.navigationController?.pushViewController(webviewController, animated: true)
     }
+    
+    // 先にユーザーのプロフ画像を読み込んでおく
+    func changeAccountImage() {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+        }
+        swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
+            if let userDict = user {
+                if let userImage = userDict["profile_image_url_https"] {
+                    self.accountImg = UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!
+                }
+            }
+            }, failure: failureHandler)
+    }
+    // ツイート編集画面に行く前にアカウント画像を取得しておく
+    @IBAction func pushTweet() {
+        changeAccountImage()
+        performSegueWithIdentifier("toTweetView", sender: nil)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toTweetView" {
+            let tweetView = segue.destinationViewController as! TweetViewController
+            tweetView.accountImg = self.accountImg
+            tweetView.replyID = self.replyID
+            tweetView.replyStr = self.replyStr
+        }
+    }
+    
+    //
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "表示できるツイートがありません。"
+        let font = UIFont.systemFontOfSize(20)
+        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
 }
-

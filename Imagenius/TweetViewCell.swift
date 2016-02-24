@@ -9,8 +9,9 @@
 import UIKit
 import SwifteriOS
 import TTTAttributedLabel
+import SWTableViewCell
 
-class TweetViewCell: UITableViewCell {
+class TweetViewCell: SWTableViewCell {
     @IBOutlet var tweetLabel: TTTAttributedLabel!
     @IBOutlet var userIDLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
@@ -29,7 +30,7 @@ class TweetViewCell: UITableViewCell {
         
         self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         
-        self.tweetLabel.text = tweet["text"].string
+        self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
         self.userLabel.text = userInfo["name"].string
         let userID = userInfo["screen_name"].string!
         self.userIDLabel.text = "@\(userID)"
@@ -37,5 +38,9 @@ class TweetViewCell: UITableViewCell {
         let userImgURL:NSURL = NSURL(string: userImgPath)!
         let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
         self.userImgView.image = UIImage(data: userImgPathData)
+        self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
+        self.userImgView.clipsToBounds = true
+        
+        
     }
 }

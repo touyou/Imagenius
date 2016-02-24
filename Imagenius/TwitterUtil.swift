@@ -11,7 +11,7 @@ import UIKit
 import Accounts
 class TwitterUtil {
     
-    class func loginTwitter(present: UIViewController) {
+    class func loginTwitter(present: UIViewController, success: ((ACAccount?) -> ())? = nil) {
         let accountStore = ACAccountStore()
         var accounts = [ACAccount]()
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
@@ -21,7 +21,7 @@ class TwitterUtil {
                 if accounts.count == 0 {
                     Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: present)
                 } else {
-                    self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present)
+                    self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present, success: success)
                 }
             } else {
                 Utility.simpleAlert("Error", presentView: present)
@@ -30,7 +30,7 @@ class TwitterUtil {
     }
     
     // Twitterアカウントの切り替え
-    class func showAndSelectTwitterAccountWithSelectionSheets(accounts: [ACAccount], present: UIViewController) {
+    class func showAndSelectTwitterAccountWithSelectionSheets(accounts: [ACAccount], present: UIViewController, success: ((ACAccount?)->())? = nil) {
         // アクションシートの設定
         let alertController = UIAlertController(title: "Select Account", message: "Please select twitter account", preferredStyle: .ActionSheet)
         let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -46,6 +46,7 @@ class TwitterUtil {
                         break
                     }
                 }
+                success?(account)
             }))
             
         }

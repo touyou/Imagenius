@@ -18,6 +18,22 @@ class Utility {
         alertController.addAction(defaultAction)
         presentView.presentViewController(alertController, animated: true, completion: nil)
     }
+    // HTML特殊文字を変換する
+    // https://gist.github.com/mikesteele/70ae98d04fdc35cb1d5f
+    class func convertSpecialCharacters(string: String) -> String {
+        var newString = string
+        let char_dictionary = [
+            "&amp;": "&",
+            "&lt;": "<",
+            "&gt;": ">",
+            "&quot;": "\"",
+            "&apos;": "'"
+        ];
+        for (escaped_char, unescaped_char) in char_dictionary {
+            newString = newString.stringByReplacingOccurrencesOfString(escaped_char, withString: unescaped_char, options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
+        }
+        return newString
+    }
     // 画像をあらかじめリサイズしておく
     class func cropThumbnailImage(image :UIImage, w:Int, h:Int) -> UIImage {
         let origRef    = image.CGImage;
@@ -51,8 +67,5 @@ class Utility {
         let cropImage = UIImage(CGImage: cropRef!)
         
         return cropImage
-    }
-    class func cropCircleImage(image: UIImage, w: Int, h: Int) -> UIImage {
-        return image
     }
 }
