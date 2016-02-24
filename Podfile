@@ -4,8 +4,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Imagenius' do
-    pod 'FMAssetStream'
-    pod 'SCLAlertView'
     pod 'DZNEmptyDataSet'
     pod 'SWTableViewCell', '~> 0.3.7'
     pod 'TTTAttributedLabel'

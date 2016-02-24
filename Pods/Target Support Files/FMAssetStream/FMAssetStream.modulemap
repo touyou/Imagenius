@@ -1,6 +1,0 @@
-framework module FMAssetStream {
-  umbrella header "FMAssetStream-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -9,17 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FMAssetStream.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Imagenius.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SCLAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>086717F47861C59D4D335319A05E4743</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>32442202CAFBA94ECD54A08CA9C42D1F</key>
+		<key>5289CA845E166C3F4200B45C9C69A60B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FE94DB5E77204E4506504FF1CFD8173</key>
+		<key>F38F78382EC31A5FD9900008C356F0C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E08DDF7FBEBF0FC8C2EFF5EB2033BAAE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E481CF2410CCC8E44FDF44D6FE6A4F29</key>
+		<key>F527CC9E0202F944E71605AD3E3C4AB9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

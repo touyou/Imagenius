@@ -22,6 +22,7 @@
 		4603CC1F1C7DD984005DF397 /* fav_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC1C1C7DD984005DF397 /* fav_button.png */; };
 		4603CC201C7DD984005DF397 /* rep_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC1D1C7DD984005DF397 /* rep_button.png */; };
 		4603CC211C7DD984005DF397 /* retweet_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC1E1C7DD984005DF397 /* retweet_button.png */; };
+		4603CC251C7DE062005DF397 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC241C7DE062005DF397 /* Settings.bundle */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
 		460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */; };
 		460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3C1C6B5CF60089CC7E /* Main.storyboard */; };
@@ -148,6 +149,7 @@
 		4603CC1C1C7DD984005DF397 /* fav_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav_button.png; sourceTree = "<group>"; };
 		4603CC1D1C7DD984005DF397 /* rep_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rep_button.png; sourceTree = "<group>"; };
 		4603CC1E1C7DD984005DF397 /* retweet_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_button.png; sourceTree = "<group>"; };
+		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -243,9 +245,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4603CC231C7DE04D005DF397 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4603CC241C7DE062005DF397 /* Settings.bundle */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		460B4A2C1C6B5CF60089CC7E = {
 			isa = PBXGroup;
 			children = (
+				4603CC231C7DE04D005DF397 /* Supporting Files */,
 				469373521C7A020700BE1506 /* SwifteriOS.framework */,
 				4683828F1C7581A6001DC810 /* Alamofire.framework */,
 				468382901C7581A6001DC810 /* SwiftyJSON.framework */,
@@ -627,6 +638,7 @@
 				464A7E911C7829AC006100DB /* Icon-60@3x.png in Resources */,
 				4603CC171C7D96D0005DF397 /* tweet_button.png in Resources */,
 				464A7EA91C7829B7006100DB /* iTunesArtwork@2x.png in Resources */,
+				4603CC251C7DE062005DF397 /* Settings.bundle in Resources */,
 				464A7E8E1C7829AC006100DB /* Icon-40@2x.png in Resources */,
 				464A7E8F1C7829AC006100DB /* Icon-40@3x.png in Resources */,
 				4603CC111C7D3DED005DF397 /* toolbar_reload.png in Resources */,
@@ -667,7 +679,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\nAPP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"";
 		};
 		4F0F1E317B970F9DFBD2323D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
