@@ -11,7 +11,7 @@ import SwifteriOS
 import TTTAttributedLabel
 import SWTableViewCell
 
-class TweetViewCell: SWTableViewCell {
+class TweetViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet var tweetLabel: TTTAttributedLabel!
     @IBOutlet var userIDLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
@@ -19,16 +19,13 @@ class TweetViewCell: SWTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        self.tweetLabel.delegate = self
+        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        self.tweetLabel.extendsLinkTouchArea = false
     }
     
     func setOutlet(tweet: JSONValue) {
         let userInfo = tweet["user"]
-        
-        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         
         self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
         self.userLabel.text = userInfo["name"].string
@@ -42,5 +39,10 @@ class TweetViewCell: SWTableViewCell {
         self.userImgView.clipsToBounds = true
         
         
+    }
+    
+    // MARK: - TTTAttributedLabelDelegate
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        Utility.openWebView(url)
     }
 }

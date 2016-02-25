@@ -11,7 +11,7 @@ import SwifteriOS
 import TTTAttributedLabel
 import SWTableViewCell
 
-class TweetViewWithImageCell: SWTableViewCell {
+class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
 
     @IBOutlet var tweetLabel: TTTAttributedLabel!
     @IBOutlet var userIDLabel: UILabel!
@@ -21,6 +21,9 @@ class TweetViewWithImageCell: SWTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        self.tweetLabel.extendsLinkTouchArea = false
+        self.tweetLabel.delegate = self
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -29,8 +32,6 @@ class TweetViewWithImageCell: SWTableViewCell {
 
     func setOutlet(tweet: JSONValue) {
         let userInfo = tweet["user"]
-        
-        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         
         self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
         self.userLabel.text = userInfo["name"].string
@@ -48,5 +49,10 @@ class TweetViewWithImageCell: SWTableViewCell {
         self.tweetImgView.image = UIImage(data: tweetImgPathData)
         
         
+    }
+    
+    // TableView内のリンクが押された時
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        Utility.openWebView(url)
     }
 }

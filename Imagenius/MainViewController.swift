@@ -13,7 +13,7 @@ import TTTAttributedLabel
 import DZNEmptyDataSet
 import SWTableViewCell
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate {
     var tweetArray: [JSONValue] = []
     var swifter: Swifter!
     var maxId: String!
@@ -34,6 +34,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.timelineTableView.rowHeight = UITableViewAutomaticDimension
         self.timelineTableView.emptyDataSetDelegate = self
         self.timelineTableView.emptyDataSetSource = self
+        self.timelineTableView.allowsSelection = false
         self.timelineTableView.tableFooterView = UIView()
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
@@ -112,14 +113,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return UITableViewCell()
         }
         let tweet = tweetArray[indexPath.row]
-        if tweet["entities"]["media"] != [] && tweet["entities"]["media"]["type"] == "photo" {
+        let favorited = tweet["favorited"].bool!
+        let retweeted = tweet["retweeted"].bool!
+        if tweet["entities"]["media"].object != nil {
             print("photo tweet")
+            print(tweet)
             let cell:TweetViewWithImageCell = tableView.dequeueReusableCellWithIdentifier("TweetCellWithImage") as! TweetViewWithImageCell
             cell.setOutlet(tweet)
             if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
                 self.loadMore()
             }
-            cell.rightUtilityButtons = self.rightButtons() as [AnyObject]
+            cell.rightUtilityButtons = self.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
+            cell.leftUtilityButtons = self.leftButtons() as [AnyObject]
             cell.delegate = self
             cell.layoutIfNeeded()
             return cell
@@ -129,19 +134,33 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
                 self.loadMore()
             }
-            cell.rightUtilityButtons = self.rightButtons() as [AnyObject]
+            cell.rightUtilityButtons = self.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
+            cell.leftUtilityButtons = self.leftButtons() as [AnyObject]
             cell.delegate = self
             cell.layoutIfNeeded()
             return cell
         }
     }
     // TableViewをスライドした時のボタン一覧
-    func rightButtons() -> NSArray {
+    func rightButtons(favorited: Bool, retweeted: Bool) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
-        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "fav_button.png")!))
-        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.replyColor, icon: UIImage(named: "rep_button.png")!))
-        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet_button.png")!))
+        if favorited {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!))
+        } else {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!))
+        }
+        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.replyColor, icon: UIImage(named: "reply-action_0")!))
+        if retweeted {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!))
+        } else {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!))
+        }
         return rightUtilityButtons
+    }
+    func leftButtons() -> NSArray {
+        let leftUtilityButtons: NSMutableArray = NSMutableArray()
+        leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
+        return leftUtilityButtons
     }
     // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
     func addUtilityButtonWithColor(color : UIColor, icon : UIImage) -> UIButton {
@@ -157,6 +176,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch index {
         case 0:
             // fav
+            if tweet["favorited"].bool! {
+                swifter.postDestroyFavoriteWithID(tweet["id_str"].string!)
+                break
+            }
             swifter.postCreateFavoriteWithID(tweet["id_str"].string!)
             break
         case 1:
@@ -167,24 +190,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         case 2:
             // retweet
+            if tweet["retweeted"].bool! {
+                break
+            }
             swifter.postStatusRetweetWithID(tweet["id_str"].string!)
             break
         default:
             break
         }
     }
-    // TableView内のリンクが押された時
-    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        self.openWebView(url)
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+        let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
+        let tweet = tweetArray[cellIndexPath.row]
+        switch index {
+        case 0:
+            let url = NSURL(string: "https://twitter.com/"+tweet["user"]["screen_name"].string!+"/status/"+tweet["id_str"].string!)!
+            Utility.openWebView(url)
+            break
+        default:
+            break
+        }
     }
-    // WebViewを開く
-    func openWebView(url: NSURL) {
-        let webviewController = StockWebViewController()
-        webviewController.url = url
-        // webviewController.hideBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(webviewController, animated: true)
-    }
-    
     // 先にユーザーのプロフ画像を読み込んでおく
     func changeAccountImage() {
         let failureHandler: ((NSError) -> Void) = { error in
@@ -212,7 +238,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    //
+    // 要素が無い時
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFontOfSize(20)

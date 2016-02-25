@@ -68,4 +68,10 @@ class Utility {
         
         return cropImage
     }
+    // Safariで開く
+    class func openWebView(url: NSURL) {
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
 }
