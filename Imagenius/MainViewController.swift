@@ -145,15 +145,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func rightButtons(favorited: Bool, retweeted: Bool) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
         if favorited {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: (UIImage(named: "like-action")!)))
         } else {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!))
         }
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.replyColor, icon: UIImage(named: "reply-action_0")!))
         if retweeted {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!))
-        } else {
             rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!))
+        } else {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!))
         }
         return rightUtilityButtons
     }
