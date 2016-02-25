@@ -323,8 +323,16 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="リプライ" image="reply" id="FUw-np-xDv"/>
                     <navigationItem key="navigationItem" title="Imagenius" id="IRq-XO-nuI">
-                        <barButtonItem key="leftBarButtonItem" title="Account" id="eKU-gd-JHx"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="J2G-1B-T8Q"/>
+                        <barButtonItem key="leftBarButtonItem" title="Account" id="eKU-gd-JHx">
+                            <connections>
+                                <action selector="accountChange:" destination="RyR-MI-pon" id="oXr-eb-jtn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="J2G-1B-T8Q">
+                            <connections>
+                                <action selector="pushTweet" destination="RyR-MI-pon" id="uH8-yW-7Ha"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="timelineTableView" destination="Pcq-xR-Hr1" id="54F-ss-hgf"/>
