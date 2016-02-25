@@ -24,6 +24,11 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         self.tweetLabel.extendsLinkTouchArea = false
         self.tweetLabel.delegate = self
+        self.tweetLabel.linkAttributes = [
+            kCTForegroundColorAttributeName: UIColor.blueColor(),
+            NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
+        ]
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -34,13 +39,20 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         let userInfo = tweet["user"]
         
         self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
+        self.highrightHashtagsInLabel(tweetLabel)
+        self.highrightMentionsInLabel(tweetLabel)
+        
         self.userLabel.text = userInfo["name"].string
         let userID = userInfo["screen_name"].string!
         self.userIDLabel.text = "@\(userID)"
         let userImgPath:String = userInfo["profile_image_url_https"].string!
         let userImgURL:NSURL = NSURL(string: userImgPath)!
-        let userImgPathData:NSData = NSData(contentsOfURL: userImgURL)!
-        self.userImgView.image = UIImage(data: userImgPathData)
+        let userImgPathData:NSData? = NSData(contentsOfURL: userImgURL)
+        if userImgPathData != nil {
+            self.userImgView.image = UIImage(data: userImgPathData!)
+        } else {
+            self.userImgView.image = UIImage(named: "user_empty")
+        }
         self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
         self.userImgView.clipsToBounds = true
         let tweetImgPath:String = tweet["entities"]["media"]["media_url_https"].string!
@@ -54,5 +66,32 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
     // TableView内のリンクが押された時
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         Utility.openWebView(url)
+    }
+    
+    // mention link
+    func highrightMentionsInLabel(label: TTTAttributedLabel) {
+        let text: NSString = label.text!
+        let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
+        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
+        for match in matches {
+            let matchRange = match.rangeAtIndex(1)
+            let mentionString = text.substringWithRange(matchRange)
+            let user = mentionString.substringFromIndex(mentionString.startIndex.advancedBy(1))
+            let linkURLString = NSString(format: "https://twitter.com/%@", user)
+            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
+        }
+    }
+    // hashtag link
+    func highrightHashtagsInLabel(label: TTTAttributedLabel) {
+        let text: NSString = label.text!
+        let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
+        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
+        for match in matches {
+            let matchRange = match.rangeAtIndex(1)
+            let hashtagString = text.substringWithRange(matchRange)
+            let word = hashtagString.substringFromIndex(hashtagString.startIndex.advancedBy(1))
+            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word)
+            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
+        }
     }
 }

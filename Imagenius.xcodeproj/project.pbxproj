@@ -26,6 +26,8 @@
 		464722701C7F1C2D00C6378E /* like-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226D1C7F1C2D00C6378E /* like-action.png */; };
 		464722711C7F1C2D00C6378E /* reply-action_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226E1C7F1C2D00C6378E /* reply-action_0.png */; };
 		464722721C7F1C2D00C6378E /* retweet-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226F1C7F1C2D00C6378E /* retweet-action.png */; };
+		464722751C7F477600C6378E /* use_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 464722731C7F477600C6378E /* use_white.png */; };
+		464722761C7F477600C6378E /* user_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 464722741C7F477600C6378E /* user_empty.png */; };
 		464A7E801C78281A006100DB /* imagenius-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E7F1C78281A006100DB /* imagenius-logo.png */; };
 		464A7E8D1C7829AC006100DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E821C7829AC006100DB /* Icon-40.png */; };
 		464A7E8E1C7829AC006100DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7E831C7829AC006100DB /* Icon-40@2x.png */; };
@@ -155,6 +157,8 @@
 		4647226D1C7F1C2D00C6378E /* like-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-action.png"; sourceTree = "<group>"; };
 		4647226E1C7F1C2D00C6378E /* reply-action_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply-action_0.png"; sourceTree = "<group>"; };
 		4647226F1C7F1C2D00C6378E /* retweet-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retweet-action.png"; sourceTree = "<group>"; };
+		464722731C7F477600C6378E /* use_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = use_white.png; sourceTree = "<group>"; };
+		464722741C7F477600C6378E /* user_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_empty.png; sourceTree = "<group>"; };
 		464A7E7F1C78281A006100DB /* imagenius-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imagenius-logo.png"; sourceTree = "<group>"; };
 		464A7E821C7829AC006100DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
 		464A7E831C7829AC006100DB /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				464722731C7F477600C6378E /* use_white.png */,
+				464722741C7F477600C6378E /* user_empty.png */,
 				4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */,
 				4603CC141C7D96D0005DF397 /* search_button.png */,
 				4647226D1C7F1C2D00C6378E /* like-action.png */,
@@ -607,6 +613,8 @@
 				464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */,
 				464A7E921C7829AC006100DB /* Icon-76.png in Resources */,
 				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
+				464722761C7F477600C6378E /* user_empty.png in Resources */,
+				464722751C7F477600C6378E /* use_white.png in Resources */,
 				464722701C7F1C2D00C6378E /* like-action.png in Resources */,
 				464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */,
 				4603CC131C7D96B5005DF397 /* cancel_button.png in Resources */,

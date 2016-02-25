@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="P85-Ym-KbL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="26P-aR-0ph">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8B-k9-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="368"/>
+            <point key="canvasLocation" x="-188" y="1280"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cx8-aM-3Hq">
@@ -171,7 +171,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJx-2I-kKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859" y="1021"/>
+            <point key="canvasLocation" x="275" y="1280"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="PdO-ML-Ggr">
@@ -199,7 +199,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-tR-bZp">
                                                     <rect key="frame" x="66" y="1" width="117" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgg-de-OUb">
@@ -256,7 +256,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzC-AF-I7P">
                                                     <rect key="frame" x="66" y="1" width="117" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffi-Co-t2W">
@@ -322,17 +322,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="リプライ" image="reply" id="FUw-np-xDv"/>
-                    <navigationItem key="navigationItem" title="Imagenius" id="AdC-RB-I5s">
-                        <barButtonItem key="leftBarButtonItem" title="Account" id="DVG-VP-A0q">
-                            <connections>
-                                <action selector="accountChange:" destination="RyR-MI-pon" id="ym3-UX-x9P"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Nin-Wt-nOH">
-                            <connections>
-                                <action selector="pushTweet" destination="RyR-MI-pon" id="xM2-vM-lmg"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Imagenius" id="IRq-XO-nuI">
+                        <barButtonItem key="leftBarButtonItem" title="Account" id="eKU-gd-JHx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="J2G-1B-T8Q"/>
                     </navigationItem>
                     <connections>
                         <outlet property="timelineTableView" destination="Pcq-xR-Hr1" id="54F-ss-hgf"/>
@@ -341,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHE-g6-443" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="216" y="1669"/>
+            <point key="canvasLocation" x="-636" y="1769"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="f1t-Rp-0f9">
@@ -369,7 +361,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI4-aN-hM5">
                                                     <rect key="frame" x="66" y="1" width="117" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbX-VJ-iXc">
@@ -426,7 +418,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0i6-MC-VOG">
                                                     <rect key="frame" x="66" y="1" width="117" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDI-5k-pMG">
@@ -492,15 +484,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="タイムライン" image="timeline" id="50E-ll-6yH"/>
-                    <navigationItem key="navigationItem" title="Imagenius" id="tSl-Pp-wwz">
-                        <barButtonItem key="leftBarButtonItem" title="Account" id="Qc1-Az-NAm">
+                    <navigationItem key="navigationItem" title="Imagenius" id="oHD-cH-Ohk">
+                        <barButtonItem key="leftBarButtonItem" title="Account" id="6rl-V7-teF">
                             <connections>
-                                <action selector="accountChange:" destination="4am-0x-jf5" id="eot-jt-uai"/>
+                                <action selector="accountChange:" destination="4am-0x-jf5" id="N0e-C7-qZF"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="RMS-Yb-QgC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Iv1-au-KxH">
                             <connections>
-                                <action selector="pushTweet" destination="4am-0x-jf5" id="Zkf-91-cDH"/>
+                                <action selector="pushTweet" destination="4am-0x-jf5" id="dyn-k9-gMa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -511,42 +503,54 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shp-g9-pc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="1021"/>
+            <point key="canvasLocation" x="-636" y="941"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Imagenius-->
         <scene sceneID="XGA-g8-8f5">
             <objects>
                 <tabBarController id="26P-aR-0ph" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ZLB-FE-6gv"/>
+                    <navigationItem key="navigationItem" title="Imagenius" id="ZLB-FE-6gv">
+                        <barButtonItem key="leftBarButtonItem" title="Account" id="DVG-VP-A0q">
+                            <connections>
+                                <action selector="accountChange:" destination="RyR-MI-pon" id="ym3-UX-x9P"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Nin-Wt-nOH">
+                            <connections>
+                                <action selector="pushTweet" destination="RyR-MI-pon" id="xM2-vM-lmg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zyR-tZ-guW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4am-0x-jf5" kind="relationship" relationship="viewControllers" id="XNn-Bg-u3a"/>
-                        <segue destination="RyR-MI-pon" kind="relationship" relationship="viewControllers" id="1SP-Bh-pVb"/>
+                        <segue destination="P85-Ym-KbL" kind="relationship" relationship="viewControllers" id="NTO-2f-Nj0"/>
+                        <segue destination="pV9-qt-0Uh" kind="relationship" relationship="viewControllers" id="cey-dt-8lu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74K-ne-cwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-488" y="1195"/>
+            <point key="canvasLocation" x="-1558" y="1271"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--タイムライン-->
         <scene sceneID="RWs-iv-72y">
             <objects>
                 <navigationController id="P85-Ym-KbL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="タイムライン" image="timeline" id="UhW-zy-tmj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ht9-K4-7SV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="26P-aR-0ph" kind="relationship" relationship="rootViewController" id="CpZ-TI-DHi"/>
+                        <segue destination="4am-0x-jf5" kind="relationship" relationship="rootViewController" id="7fl-M1-xZl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgP-ZE-Rwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-854" y="1553"/>
+            <point key="canvasLocation" x="-1081" y="941"/>
         </scene>
         <!--画像検索結果-->
         <scene sceneID="a8w-l9-bB4">
@@ -605,7 +609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4f4-Uh-5HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="1021"/>
+            <point key="canvasLocation" x="756" y="1271"/>
         </scene>
         <!--選択画像-->
         <scene sceneID="0Io-2V-WT8">
@@ -643,7 +647,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-Jc-LbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="1015"/>
+            <point key="canvasLocation" x="1205" y="1280"/>
+        </scene>
+        <!--リプライ-->
+        <scene sceneID="ltq-B2-S5g">
+            <objects>
+                <navigationController id="pV9-qt-0Uh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="リプライ" image="reply" id="UO0-yD-2MC"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SF2-WV-ldd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="RyR-MI-pon" kind="relationship" relationship="rootViewController" id="Fqx-Df-cXf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NYB-Ht-AGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1081" y="1769"/>
         </scene>
     </scenes>
     <resources>

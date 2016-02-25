@@ -18,6 +18,7 @@ enum Settings {
         static let selectedColor = UIColor(red: 170/255, green: 184/255, blue: 194/255, alpha: 1.0)
         static let deleteColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
         static let twitterColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha:1.0)
+        static let userColor = UIColor(red: 230/255, green: 151/255, blue: 24/255, alpha: 1.0)
     }
     enum Saveword {
         static let image = "tweet_image"

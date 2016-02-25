@@ -149,7 +149,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!))
         }
-        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.replyColor, icon: UIImage(named: "reply-action_0")!))
+        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "reply-action_0")!))
         if retweeted {
             rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!))
         } else {
@@ -160,6 +160,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func leftButtons() -> NSArray {
         let leftUtilityButtons: NSMutableArray = NSMutableArray()
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
+        leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.userColor, icon: UIImage(named: "use_white")!))
         return leftUtilityButtons
     }
     // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
@@ -207,6 +208,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let url = NSURL(string: "https://twitter.com/"+tweet["user"]["screen_name"].string!+"/status/"+tweet["id_str"].string!)!
             Utility.openWebView(url)
             break
+        case 1:
+            let url = NSURL(string: "https://twitter.com/"+tweet["user"]["screen_name"].string!)!
+            Utility.openWebView(url)
         default:
             break
         }
