@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Swifter-master/Swifter.xcodeproj">
+      location = "group:../Swifter-master/Swifter.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Imagenius.xcodeproj">

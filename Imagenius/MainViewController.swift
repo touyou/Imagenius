@@ -196,7 +196,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 2:
             // retweet
             if tweet["retweeted"].bool! {
-                (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
+                // (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
                 break
             }
             swifter.postStatusRetweetWithID(tweet["id_str"].string!, success: {
