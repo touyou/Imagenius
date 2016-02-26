@@ -1,6 +1,6 @@
 # Imagenius
 面白画像でスマートなTwitterライフを
-![imagenius_logo](extra/imagenius-logo.png)
+![imagenius_logo](extra/imagenius-logo_new.png)
 
 # 機能  
 - TL、リプ通知の表示
