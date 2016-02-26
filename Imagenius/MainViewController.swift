@@ -250,6 +250,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             tweetView.accountImg = self.accountImg
             tweetView.replyID = self.replyID
             tweetView.replyStr = self.replyStr
+            self.accountImg = nil
+            self.replyID = nil
+            self.replyStr = nil
         }
     }
     

@@ -63,7 +63,7 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
         let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
         let tweetImgPathData:NSData = NSData(contentsOfURL: tweetImgURL)!
-        self.tweetImgView.image = Utility.cropThumbnailImage(UIImage(data: tweetImgPathData)!, w: 244, h: 150)
+        self.tweetImgView.image = Utility.cropThumbnailImage(UIImage(data: tweetImgPathData)!, w: Int(self.tweetImgView.frame.width), h: Int(self.tweetImgView.frame.height))
         
         self.tweetImageURL = NSURL(string: tweet["extended_entities"]["media"][0]["url"].string!)
     }

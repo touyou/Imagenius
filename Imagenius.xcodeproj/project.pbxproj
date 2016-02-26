@@ -69,6 +69,7 @@
 		46C25AB81C8021D3003E314A /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25AAD1C8021D3003E314A /* Icon-Small.png */; };
 		46C25AB91C8021D3003E314A /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25AAE1C8021D3003E314A /* Icon-Small@2x.png */; };
 		46C25ABA1C8021D3003E314A /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25AAF1C8021D3003E314A /* Icon-Small@3x.png */; };
+		46C25AC11C806297003E314A /* imagenius-logo_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25AC01C806297003E314A /* imagenius-logo_new.png */; };
 		46D680B01C7AC62700DDB4DE /* TweetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */; };
 		46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */; };
 		46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F21C7AFF7A00DDB4DE /* Settings.swift */; };
@@ -202,6 +203,7 @@
 		46C25AAD1C8021D3003E314A /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		46C25AAE1C8021D3003E314A /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		46C25AAF1C8021D3003E314A /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		46C25AC01C806297003E314A /* imagenius-logo_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imagenius-logo_new.png"; sourceTree = "<group>"; };
 		46D680AF1C7AC62700DDB4DE /* TweetViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewCell.swift; sourceTree = "<group>"; };
 		46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUtil.swift; sourceTree = "<group>"; };
 		46D680F21C7AFF7A00DDB4DE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46C25AC01C806297003E314A /* imagenius-logo_new.png */,
 				46C25A5F1C7FF245003E314A /* tweet_button_1.png */,
 				464722731C7F477600C6378E /* use_white.png */,
 				464722741C7F477600C6378E /* user_empty.png */,
@@ -627,6 +630,7 @@
 				46C25AB51C8021D3003E314A /* Icon-76.png in Resources */,
 				460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */,
 				464A7E801C78281A006100DB /* imagenius-logo.png in Resources */,
+				46C25AC11C806297003E314A /* imagenius-logo_new.png in Resources */,
 				464722711C7F1C2D00C6378E /* reply-action_0.png in Resources */,
 				4647226C1C7F17E100C6378E /* TwitterLogo_white_1.png in Resources */,
 				46C25AA41C8021CA003E314A /* iTunesArtwork@2x.png in Resources */,

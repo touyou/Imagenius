@@ -15,6 +15,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     var searchWord: String = ""
     var reqs: [NSURLRequest] = []
     var selectedImage: UIImage?
+    var imageSize: Int!
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -28,6 +29,8 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
         
         self.navigationController?.navigationBar.backgroundColor = Settings.Colors.mainColor
+        
+        imageSize = Int(self.view.frame.width)
         
         tiqav()
     }
