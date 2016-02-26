@@ -41,6 +41,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
         refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
+        // navigationBarについて設定
+        // self.navigationController?.navigationBar.setBackgroundImage(Utility.resizeImage(UIImage(named: "imagenius-logo.png")!, size: CGSize(width: 200, height: 50)), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.backgroundColor = Settings.Colors.mainColor
     }
     
     override func viewWillAppear(animated: Bool) {

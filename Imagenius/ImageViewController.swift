@@ -27,6 +27,8 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             searchWord = saveData.objectForKey(Settings.Saveword.search) as! String
         }
         
+        self.navigationController?.navigationBar.backgroundColor = Settings.Colors.mainColor
+        
         tiqav()
     }
     // Tiqav.comでの検索

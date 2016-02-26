@@ -161,7 +161,7 @@ class TweetViewController: UIViewController {
         swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
             if let userDict = user {
                 if let userImage = userDict["profile_image_url_https"] {
-                    self.accountImg = UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!
+                    self.accountImg = Utility.resizeImage(UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!, size: CGSize(width: 50, height: 50))
                     self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
                     self.accountImage.clipsToBounds = true
                     self.accountImage.setImage(self.accountImg, forState: .Normal)

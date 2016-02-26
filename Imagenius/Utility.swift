@@ -34,7 +34,7 @@ class Utility {
         }
         return newString
     }
-    // 画像をあらかじめリサイズしておく
+    // 画像をあらかじめクロップしておく
     class func cropThumbnailImage(image :UIImage, w:Int, h:Int) -> UIImage {
         let origRef    = image.CGImage;
         let origWidth  = Int(CGImageGetWidth(origRef))
@@ -67,6 +67,18 @@ class Utility {
         let cropImage = UIImage(CGImage: cropRef!)
         
         return cropImage
+    }
+    // 画像のリサイズ
+    class func resizeImage(image: UIImage, size: CGSize) -> UIImage {
+        let widthRatio = size.width / image.size.width
+        let heightRatio = size.height / image.size.height
+        let ratio = (widthRatio < heightRatio) ? widthRatio : heightRatio
+        let resizedSize = CGSize(width: (image.size.width * ratio), height: (image.size.height * ratio))
+        UIGraphicsBeginImageContext(resizedSize)
+        image.drawInRect(CGRect(x: 0, y: 0, width: resizedSize.width, height: resizedSize.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return resizedImage
     }
     // Safariで開く
     class func openWebView(url: NSURL) {
