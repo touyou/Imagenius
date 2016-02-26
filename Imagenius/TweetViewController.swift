@@ -9,6 +9,7 @@
 import UIKit
 import SwifteriOS
 import Accounts
+import GoogleMobileAds
 
 class TweetViewController: UIViewController {
     @IBOutlet var countLabel: UILabel!
@@ -55,6 +56,15 @@ class TweetViewController: UIViewController {
         if replyStr != nil {
             tweetTextView.text = replyStr
         }
+        
+        // Google Ads関連
+        self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        // for test
+        // self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        // for sale
+        self.bannerView.adUnitID = "ca-app-pub-2853999389157478/5283774064"
+        self.bannerView.rootViewController = self
+        self.bannerView.loadRequest(GADRequest())
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -169,4 +179,8 @@ class TweetViewController: UIViewController {
             }
         }, failure: failureHandler)
     }
+    
+    // Google Ads関連
+    @IBOutlet var bannerView: GADBannerView!
+    
 }

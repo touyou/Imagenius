@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vq4-Pw-gER">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="440"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-D2-afY">
                                                 <rect key="frame" x="0.0" y="235" width="606" height="110"/>
@@ -101,6 +101,13 @@
                                                     <outlet property="delegate" destination="Nyu-L3-XkN" id="O50-9o-egU"/>
                                                 </connections>
                                             </textView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6k-Gf-Zhm" customClass="GADBannerView">
+                                                <rect key="frame" x="0.0" y="435" width="606" height="90"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="GVO-1F-qQR"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -108,15 +115,18 @@
                                             <constraint firstItem="pgb-XM-hzs" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="CUf-tD-NZx"/>
                                             <constraint firstAttribute="trailing" secondItem="MQP-S9-zls" secondAttribute="trailing" constant="-6" id="J4Y-Gy-Fyc"/>
                                             <constraint firstAttribute="trailing" secondItem="pgb-XM-hzs" secondAttribute="trailing" constant="-6" id="Sng-ke-UpJ"/>
-                                            <constraint firstAttribute="height" constant="440" id="Sx1-rE-3dQ"/>
+                                            <constraint firstAttribute="height" constant="600" id="Sx1-rE-3dQ"/>
                                             <constraint firstItem="RWM-D2-afY" firstAttribute="top" secondItem="MQP-S9-zls" secondAttribute="bottom" id="UfI-Er-aVa"/>
                                             <constraint firstItem="MQP-S9-zls" firstAttribute="top" secondItem="vq4-Pw-gER" secondAttribute="top" constant="75" id="c0o-Xk-Nxd"/>
+                                            <constraint firstItem="H6k-Gf-Zhm" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="e4O-Pi-GAO"/>
                                             <constraint firstItem="RWM-D2-afY" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="ep6-dH-vl3"/>
+                                            <constraint firstAttribute="trailing" secondItem="H6k-Gf-Zhm" secondAttribute="trailing" constant="-6" id="fLd-T4-Moc"/>
                                             <constraint firstItem="6NW-fT-Jsm" firstAttribute="top" secondItem="pgb-XM-hzs" secondAttribute="bottom" id="hnk-Yg-k9i"/>
                                             <constraint firstItem="MQP-S9-zls" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" constant="2" id="kaj-IJ-LBM"/>
                                             <constraint firstAttribute="trailing" secondItem="6NW-fT-Jsm" secondAttribute="trailing" constant="-6" id="nXU-my-AEJ"/>
                                             <constraint firstItem="6NW-fT-Jsm" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="nwF-6o-dG7"/>
                                             <constraint firstAttribute="trailing" secondItem="RWM-D2-afY" secondAttribute="trailing" constant="-6" id="q6H-eu-xFk"/>
+                                            <constraint firstItem="H6k-Gf-Zhm" firstAttribute="top" secondItem="6NW-fT-Jsm" secondAttribute="bottom" id="x01-Bj-3UB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -177,6 +187,7 @@
                     </view>
                     <connections>
                         <outlet property="accountImage" destination="gVG-nf-Atd" id="ukI-YQ-0Zu"/>
+                        <outlet property="bannerView" destination="H6k-Gf-Zhm" id="9Nv-9P-HJO"/>
                         <outlet property="scvBackGround" destination="CvR-fS-nZz" id="CB8-eB-p15"/>
                         <outlet property="searchField" destination="5ag-fi-7eg" id="UN9-mJ-mqn"/>
                         <outlet property="tweetImageHeight" destination="53C-Zy-N5M" id="K7X-aQ-KLc"/>

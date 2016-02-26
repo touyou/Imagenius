@@ -7,6 +7,7 @@ target 'Imagenius' do
     pod 'DZNEmptyDataSet'
     pod 'SWTableViewCell', '~> 0.3.7'
     pod 'TTTAttributedLabel'
+    pod 'Google-Mobile-Ads-SDK', '~> 7.0'
 end
 
 target 'ImageniusTests' do

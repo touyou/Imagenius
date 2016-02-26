@@ -1,15 +1,18 @@
 PODS:
   - DZNEmptyDataSet (1.7.3)
+  - Google-Mobile-Ads-SDK (7.7.0)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
+  - Google-Mobile-Ads-SDK (~> 7.0)
   - SWTableViewCell (~> 0.3.7)
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
+  Google-Mobile-Ads-SDK: d290e523a6e2f223256abcbf8e0c778b55b1f04e
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
