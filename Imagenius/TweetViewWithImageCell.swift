@@ -55,10 +55,10 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         }
         self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
         self.userImgView.clipsToBounds = true
-        let tweetImgPath:String = tweet["entities"]["media"]["media_url_https"].string!
+        let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
         let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
         let tweetImgPathData:NSData = NSData(contentsOfURL: tweetImgURL)!
-        self.tweetImgView.image = UIImage(data: tweetImgPathData)
+        self.tweetImgView.image = Utility.cropThumbnailImage(UIImage(data: tweetImgPathData)!, w: 244, h: 150)
         
         
     }

@@ -115,9 +115,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let tweet = tweetArray[indexPath.row]
         let favorited = tweet["favorited"].bool!
         let retweeted = tweet["retweeted"].bool!
-        if tweet["entities"]["media"].object != nil {
-            print("photo tweet")
-            print(tweet)
+        if TwitterUtil.isContainMedia(tweet) {
             let cell:TweetViewWithImageCell = tableView.dequeueReusableCellWithIdentifier("TweetCellWithImage") as! TweetViewWithImageCell
             cell.setOutlet(tweet)
             if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {

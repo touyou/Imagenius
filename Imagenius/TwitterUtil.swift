@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 import Accounts
+import SwifteriOS
+
 class TwitterUtil {
-    
+    // login
     class func loginTwitter(present: UIViewController, success: ((ACAccount?) -> ())? = nil) {
         let accountStore = ACAccountStore()
         var accounts = [ACAccount]()
@@ -57,5 +59,13 @@ class TwitterUtil {
         
         // アクションシート表示
         present.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    // 画像がツイートに含まれているか？
+    class func isContainMedia(tweet: JSONValue) -> Bool {
+        if tweet["extended_entities"].object != nil {
+            return true
+        }
+        return false
     }
 }

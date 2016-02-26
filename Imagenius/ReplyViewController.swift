@@ -19,6 +19,7 @@ class ReplyViewController: MainViewController {
             guard let tweets = statuses else { return }
             for var i = 0; i < tweets.count - 1; i++ {
                 self.tweetArray.append(tweets[i])
+                // print(tweets[i])
             }
             if tweets.count < 1 {
                 self.maxId = ""
