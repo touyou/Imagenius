@@ -151,7 +151,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94117647058823528" green="0.37254901960784315" blue="0.36470588235294116" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.37254901960784315" blue="0.36470588235294116" alpha="0.90315193965517238" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="O8y-ei-Dka" firstAttribute="top" secondItem="CNf-qe-5MY" secondAttribute="top" constant="32" id="1Q4-yU-4Zf"/>
                                     <constraint firstItem="gVG-nf-Atd" firstAttribute="top" secondItem="CNf-qe-5MY" secondAttribute="top" constant="20" id="5SK-Yh-UI0"/>
@@ -165,12 +165,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="CNf-qe-5MY" secondAttribute="trailing" constant="-20" id="3TH-nx-2La"/>
                             <constraint firstItem="CvR-fS-nZz" firstAttribute="top" secondItem="pav-nR-tfY" secondAttribute="topMargin" id="3gD-gv-WuX"/>
+                            <constraint firstItem="CNf-qe-5MY" firstAttribute="leading" secondItem="pav-nR-tfY" secondAttribute="leadingMargin" constant="-20" id="JAe-bA-zOE"/>
                             <constraint firstItem="CvR-fS-nZz" firstAttribute="leading" secondItem="pav-nR-tfY" secondAttribute="leadingMargin" constant="-20" id="KPt-5F-KXP"/>
+                            <constraint firstItem="CNf-qe-5MY" firstAttribute="top" secondItem="Km1-k3-8x3" secondAttribute="bottom" constant="-20" id="V46-sx-TFS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CvR-fS-nZz" secondAttribute="trailing" constant="-20" id="XbP-kh-UcU"/>
-                            <constraint firstItem="CNf-qe-5MY" firstAttribute="top" secondItem="pav-nR-tfY" secondAttribute="topMargin" id="ZWb-cb-h49"/>
-                            <constraint firstItem="CNf-qe-5MY" firstAttribute="centerX" secondItem="pav-nR-tfY" secondAttribute="centerX" id="emv-tx-Dbb"/>
-                            <constraint firstItem="CNf-qe-5MY" firstAttribute="width" secondItem="pav-nR-tfY" secondAttribute="width" id="mXp-DI-4eI"/>
                             <constraint firstItem="vq4-Pw-gER" firstAttribute="width" secondItem="pav-nR-tfY" secondAttribute="width" id="qqm-V5-W6H"/>
                             <constraint firstItem="sZv-1O-JJT" firstAttribute="top" secondItem="CvR-fS-nZz" secondAttribute="bottom" id="sMn-YL-62C"/>
                         </constraints>
