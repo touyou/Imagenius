@@ -36,6 +36,9 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-cW-oah">
                                                         <rect key="frame" x="489" y="0.0" width="107" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="107" id="l9J-wj-wuR"/>
+                                                        </constraints>
                                                         <state key="normal" image="tweet_button_1"/>
                                                         <connections>
                                                             <action selector="tweetButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="CCk-aA-p82"/>
