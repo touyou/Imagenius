@@ -176,10 +176,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             // fav
             if tweet["favorited"].bool! {
-                swifter.postDestroyFavoriteWithID(tweet["id_str"].string!)
+                swifter.postDestroyFavoriteWithID(tweet["id_str"].string!, success: {
+                    statuses in
+                    (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.selectedColor
+                })
                 break
             }
-            swifter.postCreateFavoriteWithID(tweet["id_str"].string!)
+            swifter.postCreateFavoriteWithID(tweet["id_str"].string!, success: {
+                statuses in
+                (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.favColor
+            })
             break
         case 1:
             // reply
@@ -190,9 +196,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 2:
             // retweet
             if tweet["retweeted"].bool! {
+                (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
                 break
             }
-            swifter.postStatusRetweetWithID(tweet["id_str"].string!)
+            swifter.postStatusRetweetWithID(tweet["id_str"].string!, success: {
+                statuses in
+                (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.retweetColor
+            })
             break
         default:
             break
