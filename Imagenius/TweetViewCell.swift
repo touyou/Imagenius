@@ -23,7 +23,7 @@ class TweetViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         self.tweetLabel.extendsLinkTouchArea = false
         self.tweetLabel.linkAttributes = [
-            kCTForegroundColorAttributeName: UIColor.blueColor(),
+            kCTForegroundColorAttributeName: Settings.Colors.twitterColor,
             NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
         ]
     }

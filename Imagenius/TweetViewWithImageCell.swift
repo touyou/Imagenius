@@ -28,7 +28,7 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         self.tweetLabel.extendsLinkTouchArea = false
         self.tweetLabel.delegate = self
         self.tweetLabel.linkAttributes = [
-            kCTForegroundColorAttributeName: UIColor.blueColor(),
+            kCTForegroundColorAttributeName: Settings.Colors.twitterColor,
             NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
         ]
         

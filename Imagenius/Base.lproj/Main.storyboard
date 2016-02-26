@@ -24,30 +24,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vq4-Pw-gER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MQP-S9-zls">
-                                                <rect key="frame" x="0.0" y="70" width="320" height="160"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="160" id="nKV-vD-2A9"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="Nyu-L3-XkN" id="O50-9o-egU"/>
-                                                </connections>
-                                            </textView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-D2-afY">
-                                                <rect key="frame" x="0.0" y="230" width="320" height="110"/>
+                                                <rect key="frame" x="0.0" y="230" width="326" height="110"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="110" id="53C-Zy-N5M"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgb-XM-hzs">
-                                                <rect key="frame" x="0.0" y="340" width="320" height="30"/>
+                                                <rect key="frame" x="0.0" y="340" width="326" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-cW-oah">
-                                                        <rect key="frame" x="255" y="3" width="57" height="24"/>
-                                                        <state key="normal" image="tweet_button"/>
+                                                        <rect key="frame" x="223" y="0.0" width="95" height="40"/>
+                                                        <state key="normal" image="tweet_button_1"/>
                                                         <connections>
                                                             <action selector="tweetButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="CCk-aA-p82"/>
                                                         </connections>
@@ -55,57 +43,71 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="omq-jq-m08"/>
+                                                    <constraint firstAttribute="height" constant="40" id="omq-jq-m08"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NW-fT-Jsm">
-                                                <rect key="frame" x="0.0" y="370" width="320" height="50"/>
+                                                <rect key="frame" x="0.0" y="380" width="326" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-fi-7eg">
-                                                        <rect key="frame" x="8" y="11" width="252" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="Nyu-L3-XkN" id="u7H-XP-Q5D"/>
-                                                        </connections>
-                                                    </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9Z-Mp-iOM">
-                                                        <rect key="frame" x="275" y="11" width="30" height="30"/>
+                                                        <rect key="frame" x="283" y="11" width="30" height="30"/>
                                                         <state key="normal" image="search_button"/>
                                                         <connections>
                                                             <action selector="searchButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="BTK-gt-VCC"/>
                                                         </connections>
                                                     </button>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-fi-7eg">
+                                                        <rect key="frame" x="13" y="11" width="262" height="30"/>
+                                                        <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Nyu-L3-XkN" id="u7H-XP-Q5D"/>
+                                                        </connections>
+                                                    </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="JKt-Z0-Ocr"/>
                                                 </constraints>
                                             </view>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MQP-S9-zls">
+                                                <rect key="frame" x="2" y="70" width="324" height="160"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="nKV-vD-2A9"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.198816764541387" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Nyu-L3-XkN" id="O50-9o-egU"/>
+                                                </connections>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="MQP-S9-zls" firstAttribute="centerX" secondItem="vq4-Pw-gER" secondAttribute="centerX" id="1up-iM-IRc"/>
-                                            <constraint firstItem="pgb-XM-hzs" firstAttribute="centerX" secondItem="vq4-Pw-gER" secondAttribute="centerX" id="2HM-us-tAP"/>
                                             <constraint firstItem="pgb-XM-hzs" firstAttribute="top" secondItem="RWM-D2-afY" secondAttribute="bottom" id="71v-2X-mAH"/>
-                                            <constraint firstItem="pgb-XM-hzs" firstAttribute="width" secondItem="vq4-Pw-gER" secondAttribute="width" id="BvO-km-JTQ"/>
-                                            <constraint firstItem="RWM-D2-afY" firstAttribute="width" secondItem="vq4-Pw-gER" secondAttribute="width" id="KZa-ED-3Wx"/>
-                                            <constraint firstItem="MQP-S9-zls" firstAttribute="width" secondItem="vq4-Pw-gER" secondAttribute="width" id="Njo-1J-XG5"/>
+                                            <constraint firstItem="pgb-XM-hzs" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="CUf-tD-NZx"/>
+                                            <constraint firstAttribute="trailing" secondItem="MQP-S9-zls" secondAttribute="trailing" constant="-6" id="J4Y-Gy-Fyc"/>
                                             <constraint firstItem="MQP-S9-zls" firstAttribute="top" secondItem="vq4-Pw-gER" secondAttribute="top" constant="70" id="OqA-kD-PNu"/>
-                                            <constraint firstItem="6NW-fT-Jsm" firstAttribute="centerX" secondItem="vq4-Pw-gER" secondAttribute="centerX" id="QOG-xf-2wi"/>
+                                            <constraint firstAttribute="trailing" secondItem="pgb-XM-hzs" secondAttribute="trailing" constant="-6" id="Sng-ke-UpJ"/>
                                             <constraint firstAttribute="height" constant="440" id="Sx1-rE-3dQ"/>
                                             <constraint firstItem="RWM-D2-afY" firstAttribute="top" secondItem="MQP-S9-zls" secondAttribute="bottom" id="UfI-Er-aVa"/>
-                                            <constraint firstItem="RWM-D2-afY" firstAttribute="centerX" secondItem="vq4-Pw-gER" secondAttribute="centerX" id="bYi-Zb-54z"/>
+                                            <constraint firstItem="RWM-D2-afY" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="ep6-dH-vl3"/>
                                             <constraint firstItem="6NW-fT-Jsm" firstAttribute="top" secondItem="pgb-XM-hzs" secondAttribute="bottom" id="hnk-Yg-k9i"/>
-                                            <constraint firstItem="6NW-fT-Jsm" firstAttribute="width" secondItem="vq4-Pw-gER" secondAttribute="width" id="yyn-GO-dC2"/>
+                                            <constraint firstItem="MQP-S9-zls" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" constant="2" id="kaj-IJ-LBM"/>
+                                            <constraint firstAttribute="trailing" secondItem="6NW-fT-Jsm" secondAttribute="trailing" constant="-6" id="nXU-my-AEJ"/>
+                                            <constraint firstItem="6NW-fT-Jsm" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" id="nwF-6o-dG7"/>
+                                            <constraint firstAttribute="trailing" secondItem="RWM-D2-afY" secondAttribute="trailing" constant="-6" id="q6H-eu-xFk"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="vq4-Pw-gER" secondAttribute="bottom" id="2lh-EB-Hjd"/>
-                                    <constraint firstItem="vq4-Pw-gER" firstAttribute="leading" secondItem="CvR-fS-nZz" secondAttribute="leading" id="Cte-2t-peS"/>
+                                    <constraint firstItem="vq4-Pw-gER" firstAttribute="leading" secondItem="CvR-fS-nZz" secondAttribute="leading" id="MW8-zA-AoD"/>
                                     <constraint firstItem="vq4-Pw-gER" firstAttribute="top" secondItem="CvR-fS-nZz" secondAttribute="top" id="Zj0-Et-eb3"/>
-                                    <constraint firstAttribute="trailing" secondItem="vq4-Pw-gER" secondAttribute="trailing" id="lXi-he-ADC"/>
+                                    <constraint firstAttribute="trailing" secondItem="vq4-Pw-gER" secondAttribute="trailing" id="bXq-Iq-QfF"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNf-qe-5MY">
@@ -216,12 +218,12 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOD-V9-oGh" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="68" y="18" width="244" height="16"/>
+                                                    <rect key="frame" x="68" y="26" width="244" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="tweet label">
                                                             <attributes>
-                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HiraginoSans-W2"/>
+                                                                <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="15" name="HiraginoSans-W0"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -236,7 +238,7 @@
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="lTR-yu-8E4" secondAttribute="bottom" constant="10" id="QEh-6N-Wye"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="yOD-V9-oGh" secondAttribute="trailing" id="gDW-xJ-aj3"/>
                                                 <constraint firstItem="lTR-yu-8E4" firstAttribute="top" secondItem="xjz-AS-XrW" secondAttribute="topMargin" constant="2" id="ghh-sm-cGV"/>
-                                                <constraint firstItem="yOD-V9-oGh" firstAttribute="top" secondItem="xjz-AS-XrW" secondAttribute="topMargin" constant="10" id="mAf-jH-cAK"/>
+                                                <constraint firstItem="yOD-V9-oGh" firstAttribute="top" secondItem="xjz-AS-XrW" secondAttribute="topMargin" constant="18" id="mAf-jH-cAK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -266,11 +268,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-zT-icx" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="68" y="18" width="244" height="16"/>
+                                                    <rect key="frame" x="68" y="26" width="244" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="tweet label">
                                                             <attributes>
-                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <font key="NSFont" size="15" name="HiraginoSans-W2"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -286,14 +288,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="thc-vj-NTL">
-                                                    <rect key="frame" x="68" y="42" width="244" height="150"/>
+                                                    <rect key="frame" x="68" y="50" width="244" height="142"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="yAB-zT-icx" secondAttribute="trailing" id="3dg-Hx-yqJ"/>
                                                 <constraint firstItem="yba-ir-iXz" firstAttribute="top" secondItem="JxG-gm-SHa" secondAttribute="topMargin" constant="2" id="5Y7-DZ-sXQ"/>
                                                 <constraint firstItem="thc-vj-NTL" firstAttribute="top" secondItem="yAB-zT-icx" secondAttribute="bottom" constant="8" id="5hC-4h-FYr"/>
-                                                <constraint firstItem="yAB-zT-icx" firstAttribute="top" secondItem="JxG-gm-SHa" secondAttribute="topMargin" constant="10" id="9zk-V5-xjS"/>
+                                                <constraint firstItem="yAB-zT-icx" firstAttribute="top" secondItem="JxG-gm-SHa" secondAttribute="topMargin" constant="18" id="9zk-V5-xjS"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yba-ir-iXz" secondAttribute="bottom" constant="10" id="BKF-RF-r8f"/>
                                                 <constraint firstItem="thc-vj-NTL" firstAttribute="width" secondItem="yAB-zT-icx" secondAttribute="width" id="Irf-J0-aC7"/>
                                                 <constraint firstItem="yAB-zT-icx" firstAttribute="leading" secondItem="yba-ir-iXz" secondAttribute="trailing" constant="8" id="Lfm-27-lAQ"/>
@@ -386,12 +388,12 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qP1-g7-Iay" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="68" y="18" width="244" height="16"/>
+                                                    <rect key="frame" x="68" y="26" width="244" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="tweet label">
                                                             <attributes>
-                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HiraginoSans-W2"/>
+                                                                <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="15" name="HiraginoSans-W0"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -402,7 +404,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="b4E-LW-Wz2" secondAttribute="bottom" constant="10" id="Pw7-8p-H8n"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="qP1-g7-Iay" secondAttribute="bottom" constant="10" id="U7V-Yk-dEr"/>
-                                                <constraint firstItem="qP1-g7-Iay" firstAttribute="top" secondItem="HP2-Sr-RXZ" secondAttribute="topMargin" constant="10" id="Yg3-BU-76L"/>
+                                                <constraint firstItem="qP1-g7-Iay" firstAttribute="top" secondItem="HP2-Sr-RXZ" secondAttribute="topMargin" constant="18" id="Yg3-BU-76L"/>
                                                 <constraint firstItem="qP1-g7-Iay" firstAttribute="leading" secondItem="b4E-LW-Wz2" secondAttribute="trailing" constant="8" id="a14-Y3-CVn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qP1-g7-Iay" secondAttribute="trailing" id="eXg-B7-XhY"/>
                                                 <constraint firstItem="b4E-LW-Wz2" firstAttribute="leading" secondItem="HP2-Sr-RXZ" secondAttribute="leadingMargin" constant="2" id="n4I-j2-KV5"/>
@@ -436,12 +438,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WM-dM-gAm" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="68" y="18" width="244" height="16"/>
+                                                    <rect key="frame" x="68" y="26" width="244" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="tweet label">
                                                             <attributes>
-                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HiraginoSans-W2"/>
+                                                                <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="15" name="HiraginoSans-W0"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -456,7 +458,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4z-DS-K1Z">
-                                                    <rect key="frame" x="68" y="42" width="244" height="150"/>
+                                                    <rect key="frame" x="68" y="50" width="244" height="142"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -469,7 +471,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="5WM-dM-gAm" secondAttribute="trailing" id="iPy-v9-i5w"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="3by-h8-UJp" secondAttribute="bottom" constant="10" id="rOY-Xx-N7k"/>
                                                 <constraint firstItem="3by-h8-UJp" firstAttribute="leading" secondItem="0xN-ZJ-Mrj" secondAttribute="leadingMargin" constant="2" id="w9N-Oj-Hj9"/>
-                                                <constraint firstItem="5WM-dM-gAm" firstAttribute="top" secondItem="0xN-ZJ-Mrj" secondAttribute="topMargin" constant="10" id="yxz-MI-yDX"/>
+                                                <constraint firstItem="5WM-dM-gAm" firstAttribute="top" secondItem="0xN-ZJ-Mrj" secondAttribute="topMargin" constant="18" id="yxz-MI-yDX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -680,7 +682,7 @@
         <image name="reply" width="22" height="22"/>
         <image name="search_button" width="50" height="50"/>
         <image name="timeline" width="22" height="22"/>
-        <image name="tweet_button" width="125" height="50"/>
+        <image name="tweet_button_1" width="107" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="X78-Y3-guK"/>
