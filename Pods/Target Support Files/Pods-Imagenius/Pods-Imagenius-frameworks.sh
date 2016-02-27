@@ -85,11 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Imagenius/DZNEmptyDataSet.framework"
+  install_framework "Pods-Imagenius/KTCenterFlowLayout.framework"
   install_framework "Pods-Imagenius/SWTableViewCell.framework"
   install_framework "Pods-Imagenius/TTTAttributedLabel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Imagenius/DZNEmptyDataSet.framework"
+  install_framework "Pods-Imagenius/KTCenterFlowLayout.framework"
   install_framework "Pods-Imagenius/SWTableViewCell.framework"
   install_framework "Pods-Imagenius/TTTAttributedLabel.framework"
 fi

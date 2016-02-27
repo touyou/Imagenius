@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KTCenterFlowLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Imagenius.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5289CA845E166C3F4200B45C9C69A60B</key>
+		<key>1FE4FA25658FBCAE365E16E9A93B0AF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F38F78382EC31A5FD9900008C356F0C8</key>
+		<key>5528A485BA42D776F126482BED50D201</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F527CC9E0202F944E71605AD3E3C4AB9</key>
+		<key>887089F26E2D435750153B19EC22F1F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A0FB6CD745896A780A750C4E77FFE06E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

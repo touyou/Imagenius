@@ -19,7 +19,6 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet var userImgView: UIImageView!
     @IBOutlet var tweetImgView: UIImageView!
     
-    let TagTweetImageView = 1
     var tweetImageURL: NSURL?
     
     override func awakeFromNib() {
@@ -33,7 +32,6 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         ]
         
         self.tweetImgView.userInteractionEnabled = true
-        self.tweetImgView.tag = TagTweetImageView
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -71,25 +69,6 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
     // TableView内のリンクが押された時
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         Utility.openWebView(url)
-    }
-    // imageViewがタップされたら処理するはずなんだけどなんか呼ばれてない、保留
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        // nothing
-    }
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
-        print("touched")
-        for touch: UITouch in touches {
-            let tag = touch.view!.tag
-            switch tag {
-            case TagTweetImageView:
-                if self.tweetImageURL != nil {
-                    Utility.openWebView(self.tweetImageURL!)
-                }
-            default:
-                break
-            }
-        }
     }
     
     // mention link

@@ -9,13 +9,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import KTCenterFlowLayout
 
 class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var imageCollectionView: UICollectionView!
     var searchWord: String = ""
     var reqs: [NSURLRequest] = []
     var selectedImage: UIImage?
-    var imageSize: Int!
+    var imageSize: CGFloat!
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -28,7 +29,14 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             searchWord = saveData.objectForKey(Settings.Saveword.search) as! String
         }
         
-        imageSize = Int(self.view.frame.width)
+        // AutoLayout対応のためセル調整
+        imageSize = (self.view.frame.width) / 4
+        let flowLayout = KTCenterFlowLayout()
+        flowLayout.scrollDirection = .Vertical
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
+        imageCollectionView.collectionViewLayout = flowLayout
         
         tiqav()
     }
@@ -74,7 +82,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageViewCell
         NSURLConnection.sendAsynchronousRequest(reqs[indexPath.row], queue: NSOperationQueue.mainQueue(), completionHandler: {(res, data, err) in
             let image = UIImage(data: data!)
-            cell.imageView.image = Utility.cropThumbnailImage(image!, w: 106, h: 106)
+            cell.imageView.image = Utility.cropThumbnailImage(image!, w: Int(self.imageSize), h: Int(self.imageSize))
         })
         return cell
     }
@@ -92,4 +100,5 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             resultView.image = self.selectedImage
         }
     }
+    // CollectionViewのAutoLayout対応
 }

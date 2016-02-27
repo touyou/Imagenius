@@ -94,7 +94,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="nKV-vD-2A9"/>
                                                 </constraints>
-                                                <color key="textColor" white="0.198816764541387" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
@@ -702,6 +702,7 @@
                             <constraint firstItem="EJg-OS-P6V" firstAttribute="centerX" secondItem="kiu-IM-aJG" secondAttribute="centerX" id="KUA-7P-J4c"/>
                             <constraint firstItem="EJg-OS-P6V" firstAttribute="leading" secondItem="kiu-IM-aJG" secondAttribute="leadingMargin" constant="-20" id="PeW-Wc-zOQ"/>
                             <constraint firstItem="EJg-OS-P6V" firstAttribute="top" secondItem="kiu-IM-aJG" secondAttribute="topMargin" id="Vxf-vc-PIH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EJg-OS-P6V" secondAttribute="trailing" constant="-20" id="x4F-Ea-8pt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="画像検索結果" id="QXy-jl-Wlk">
@@ -796,6 +797,6 @@
         <image name="tweet_button_1" width="107" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X78-Y3-guK"/>
+        <segue reference="xcG-Qk-skd"/>
     </inferredMetricsTieBreakers>
 </document>

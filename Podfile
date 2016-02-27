@@ -8,6 +8,7 @@ target 'Imagenius' do
     pod 'SWTableViewCell', '~> 0.3.7'
     pod 'TTTAttributedLabel'
     pod 'Google-Mobile-Ads-SDK', '~> 7.0'
+    pod 'KTCenterFlowLayout'
 end
 
 target 'ImageniusTests' do

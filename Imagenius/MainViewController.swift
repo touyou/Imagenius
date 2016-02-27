@@ -118,6 +118,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if TwitterUtil.isContainMedia(tweet) {
             let cell:TweetViewWithImageCell = tableView.dequeueReusableCellWithIdentifier("TweetCellWithImage") as! TweetViewWithImageCell
             cell.setOutlet(tweet)
+            let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+            cell.tweetImgView.addGestureRecognizer(tapGesture)
+            cell.tweetImgView.tag = indexPath.row
             if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
                 self.loadMore()
             }
@@ -137,6 +140,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.delegate = self
             cell.layoutIfNeeded()
             return cell
+        }
+    }
+    // imageViewがタップされたら処理するはずなんだけどなんか呼ばれてない、保留
+    func tapped(sender: UITapGestureRecognizer) {
+        if let theView = sender.view {
+            let rowNum = theView.tag
+            if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["media_url"].string {
+                Utility.openWebView(NSURL(string: imagURL)!)
+            }
         }
     }
     // TableViewをスライドした時のボタン一覧
