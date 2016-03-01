@@ -33,8 +33,6 @@
 		464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEC1C7973C1006100DB /* Default-667h@2x.png */; };
 		464A7EF01C7973C1006100DB /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EED1C7973C1006100DB /* Default-736h@3x.png */; };
 		464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */; };
-		464A804B1C799BE6006100DB /* FMAssetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80471C799BE6006100DB /* FMAssetStream.framework */; };
-		464A804C1C799BE6006100DB /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80481C799BE6006100DB /* SCLAlertView.framework */; };
 		464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80491C799BE6006100DB /* SWTableViewCell.framework */; };
 		464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80601C79EFCD006100DB /* SwifteriOS.framework */; };
 		4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683828D1C757FE2001DC810 /* ImageViewController.swift */; };
@@ -46,8 +44,6 @@
 		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
 		468382A01C7696FC001DC810 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829E1C7696FC001DC810 /* reply.png */; };
 		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
-		469373531C7A020700BE1506 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469373521C7A020700BE1506 /* SwifteriOS.framework */; };
-		469373541C7A020700BE1506 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 469373521C7A020700BE1506 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		46C25A601C7FF245003E314A /* tweet_button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A5F1C7FF245003E314A /* tweet_button_1.png */; };
 		46C25A9C1C8021C9003E314A /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A931C8021C9003E314A /* Icon-60.png */; };
 		46C25A9D1C8021C9003E314A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A941C8021C9003E314A /* Icon-72.png */; };
@@ -127,7 +123,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				469373541C7A020700BE1506 /* SwifteriOS.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +176,6 @@
 		4683829B1C75DF0C001DC810 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		4683829E1C7696FC001DC810 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		4683829F1C7696FC001DC810 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
-		469373521C7A020700BE1506 /* SwifteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwifteriOS.framework; path = "/Users/touyou/Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<absolute>"; };
 		46C25A5F1C7FF245003E314A /* tweet_button_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweet_button_1.png; sourceTree = "<group>"; };
 		46C25A931C8021C9003E314A /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
 		46C25A941C8021C9003E314A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -218,10 +212,7 @@
 			files = (
 				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
 				464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */,
-				464A804B1C799BE6006100DB /* FMAssetStream.framework in Frameworks */,
-				464A804C1C799BE6006100DB /* SCLAlertView.framework in Frameworks */,
 				464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */,
-				469373531C7A020700BE1506 /* SwifteriOS.framework in Frameworks */,
 				468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */,
 				468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */,
 				25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */,
@@ -257,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				4603CC231C7DE04D005DF397 /* Supporting Files */,
-				469373521C7A020700BE1506 /* SwifteriOS.framework */,
 				4683828F1C7581A6001DC810 /* Alamofire.framework */,
 				468382901C7581A6001DC810 /* SwiftyJSON.framework */,
 				460B4A371C6B5CF60089CC7E /* Imagenius */,
@@ -887,6 +877,8 @@
 			baseConfigurationReference = 0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -896,6 +888,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zatunen.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
@@ -905,7 +898,8 @@
 			baseConfigurationReference = 60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -915,6 +909,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zatunen.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
