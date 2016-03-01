@@ -10,5 +10,15 @@
  
 いいね、リツイート、リプライやツイートの詳細、ツイートしたユーザープロフィールの情報へはスワイプしてあらわれるボタンをタップすることでできます。
 
-# To-Do
-- レイアウトの調整
+# 使用ライブラリ
+- Swifter
+- Alamofire
+- SwiftyJSON
+- Google-Mobile-Ads-SDK
+- DZNEmptyDataset
+- SWTableViewCell
+- KTCenterFlowLayout
+- TTTAttributedLabel
+
+# リンク
+- [初めてのオリジナルiPhoneアプリをつくるまで](http://qiita.com/touyoubuntu/items/ea7b42e00050083bd2ff)
