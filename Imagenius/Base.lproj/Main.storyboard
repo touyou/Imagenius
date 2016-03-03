@@ -198,7 +198,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8B-k9-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352.5" y="1352.1126760563379"/>
+            <point key="canvasLocation" x="-357" y="994"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="l4b-Pj-GkN">
+            <objects>
+                <viewController id="7KO-t1-W1S" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K9t-m6-AWO"/>
+                        <viewControllerLayoutGuide type="bottom" id="i2Y-2K-xmN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rOx-De-a11">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e7R-m1-8iJ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e7R-m1-8iJ" firstAttribute="centerX" secondItem="rOx-De-a11" secondAttribute="centerX" id="6XH-4N-91R"/>
+                            <constraint firstItem="e7R-m1-8iJ" firstAttribute="top" secondItem="K9t-m6-AWO" secondAttribute="bottom" id="RC6-Ib-wbt"/>
+                            <constraint firstItem="e7R-m1-8iJ" firstAttribute="leading" secondItem="rOx-De-a11" secondAttribute="leadingMargin" constant="-20" id="V6a-ju-DWr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e7R-m1-8iJ" secondAttribute="trailing" constant="-20" id="Y5J-Us-gae"/>
+                            <constraint firstItem="i2Y-2K-xmN" firstAttribute="top" secondItem="e7R-m1-8iJ" secondAttribute="bottom" id="Zqv-ec-wUf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="I6c-nd-efi">
+                        <barButtonItem key="leftBarButtonItem" title="戻る" id="3qC-Ws-uGP"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="NrZ-DG-m4E"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QWb-Ro-c49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-357" y="1868"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cx8-aM-3Hq">
@@ -214,7 +248,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJx-2I-kKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515.625" y="1352.1126760563379"/>
+            <point key="canvasLocation" x="383" y="994"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="PdO-ML-Ggr">
@@ -299,11 +333,11 @@
                                             <outlet property="userLabel" destination="Mgg-ox-EvS" id="NQK-ff-gef"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCellWithImage" rowHeight="200" id="qOT-HP-43Q" customClass="TweetViewWithImageCell" customModule="Imagenius" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TweetCellWithImage" rowHeight="200" id="qOT-HP-43Q" customClass="TweetViewWithImageCell" customModule="Imagenius" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="292" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qOT-HP-43Q" id="nDO-7z-xKE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEb-jN-GaH">
@@ -323,7 +357,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0n-R6-Bg7" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="68" y="26" width="524" height="16"/>
+                                                    <rect key="frame" x="68" y="26" width="491" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="tweet label">
                                                             <attributes>
@@ -345,7 +379,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PkK-Sr-rGu">
-                                                    <rect key="frame" x="66" y="50" width="526" height="141.5"/>
+                                                    <rect key="frame" x="66" y="50" width="493" height="141.5"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -406,6 +440,7 @@
                     <connections>
                         <outlet property="timelineTableView" destination="Pcq-xR-Hr1" id="54F-ss-hgf"/>
                         <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="xcG-Qk-skd"/>
+                        <segue destination="7KO-t1-W1S" kind="push" id="PsZ-9P-gOQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHE-g6-443" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -428,11 +463,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="200" id="ER6-ZO-aR2" customClass="TweetViewCell" customModule="Imagenius" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="200" id="ER6-ZO-aR2" customClass="TweetViewCell" customModule="Imagenius" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ER6-ZO-aR2" id="dZn-NT-sdE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VV8-Xs-PWC">
@@ -452,7 +487,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er4-qf-tEM" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="68" y="26" width="524" height="16"/>
+                                                    <rect key="frame" x="68" y="26" width="491" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="tweet label">
                                                             <attributes>
@@ -602,6 +637,7 @@
                     <connections>
                         <outlet property="timelineTableView" destination="BNP-VV-Jor" id="t2B-fp-gFZ"/>
                         <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="X78-Y3-guK"/>
+                        <segue destination="7KO-t1-W1S" kind="push" id="Vxb-ww-xk7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shp-g9-pc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -719,7 +755,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4f4-Uh-5HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1417.5" y="1342.6056338028168"/>
+            <point key="canvasLocation" x="1089" y="994"/>
         </scene>
         <!--選択画像-->
         <scene sceneID="0Io-2V-WT8">
@@ -769,7 +805,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-Jc-LbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2259" y="1352"/>
+            <point key="canvasLocation" x="1795" y="994"/>
         </scene>
         <!--リプライ-->
         <scene sceneID="ltq-B2-S5g">
@@ -797,6 +833,7 @@
         <image name="tweet_button_1" width="107" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xcG-Qk-skd"/>
+        <segue reference="Vxb-ww-xk7"/>
+        <segue reference="X78-Y3-guK"/>
     </inferredMetricsTieBreakers>
 </document>
