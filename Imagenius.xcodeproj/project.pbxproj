@@ -887,7 +887,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -909,7 +909,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
