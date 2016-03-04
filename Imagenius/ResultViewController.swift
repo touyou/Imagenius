@@ -10,10 +10,12 @@ import UIKit
 
 class ResultViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
+    
     var image: UIImage?
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
+    // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         if image == nil {
@@ -23,6 +25,8 @@ class ResultViewController: UIViewController {
         }
     }
     
+    
+    // ボタン関連-----------------------------------------------------------------
     // OKボタンのとき
     @IBAction func pushOK() {
         let imageData:NSData = UIImagePNGRepresentation(image!)!

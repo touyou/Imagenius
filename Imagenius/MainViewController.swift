@@ -14,20 +14,22 @@ import DZNEmptyDataSet
 import SWTableViewCell
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate {
+    @IBOutlet var timelineTableView: UITableView!
+    
     var tweetArray: [JSONValue] = []
     var swifter: Swifter!
     var maxId: String!
     var replyID: String?
     var replyStr: String?
-    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var refreshControl: UIRefreshControl!
     var accountImg: UIImage?
     var account: ACAccount?
-    let accountStore = ACAccountStore()
     var accounts = [ACAccount]()
     
-    @IBOutlet var timelineTableView: UITableView!
+    let accountStore = ACAccountStore()
+    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
+    // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         self.timelineTableView.estimatedRowHeight = 200
@@ -41,10 +43,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
         refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -70,13 +68,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // refresh処理
-    func refresh() {
-        self.tweetArray = []
-        loadTweet()
-        self.refreshControl.endRefreshing()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toTweetView" {
+            let tweetView = segue.destinationViewController as! TweetViewController
+            tweetView.accountImg = self.accountImg
+            tweetView.replyID = self.replyID
+            tweetView.replyStr = self.replyStr
+            self.accountImg = nil
+            self.replyID = nil
+            self.replyStr = nil
+        }
     }
     
+    
+    // ボタン関連-----------------------------------------------------------------
+    // アカウント切り替えボタン
     @IBAction func accountChange(sender: AnyObject) {
         self.tweetArray = []
         TwitterUtil.loginTwitter(self, success: { (ac) -> () in
@@ -85,22 +91,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.loadTweet()
         })
     }
-    
-    // Tweetのロード
-    func load(moreflag: Bool) {
-    }
-    func loadTweet() {
-        if swifter != nil {
-            load(false)
-        }
-    }
-    func loadMore() {
-        if swifter != nil {
-            load(true)
-        }
+    // ツイート編集画面に行く前にアカウント画像を取得しておく
+    @IBAction func pushTweet() {
+        changeAccountImage()
+        performSegueWithIdentifier("toTweetView", sender: nil)
     }
     
-    // TableView関係
+    
+    // TableView関連-------------------------------------------------------------
+    // 基本設定三つ
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -142,7 +141,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell
         }
     }
-    // imageViewがタップされたら処理するはずなんだけどなんか呼ばれてない、保留
+    // imageViewがタップされたら画像のURLを開く
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
@@ -151,7 +150,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    // TableViewをスライドした時のボタン一覧
+    // SWTableViewCell関連
+    // 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
         if favorited {
@@ -167,6 +167,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return rightUtilityButtons
     }
+    // 左のボタン
     func leftButtons() -> NSArray {
         let leftUtilityButtons: NSMutableArray = NSMutableArray()
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
@@ -180,7 +181,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         button.setImage(icon, forState: .Normal)
         return button
     }
-    // TableViewをスライドした時のボタンの挙動
+    // 右スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
@@ -220,6 +221,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         }
     }
+    // 左スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
@@ -235,7 +237,37 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         }
     }
-    // 先にユーザーのプロフ画像を読み込んでおく
+    // DZNEmptyDataSetの設定
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "表示できるツイートがありません。"
+        let font = UIFont.systemFontOfSize(20)
+        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
+
+    
+    // Utility------------------------------------------------------------------
+    // refresh処理
+    func refresh() {
+        self.tweetArray = []
+        loadTweet()
+        self.refreshControl.endRefreshing()
+    }
+    // Tweetのロード
+    func load(moreflag: Bool) {
+    }
+    // Tweetをロードする
+    func loadTweet() {
+        if swifter != nil {
+            load(false)
+        }
+    }
+    // さらに下を読み込む
+    func loadMore() {
+        if swifter != nil {
+            load(true)
+        }
+    }
+    // ユーザーのプロフ画像を読み込む
     func changeAccountImage() {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
@@ -247,28 +279,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             }, failure: failureHandler)
-    }
-    // ツイート編集画面に行く前にアカウント画像を取得しておく
-    @IBAction func pushTweet() {
-        changeAccountImage()
-        performSegueWithIdentifier("toTweetView", sender: nil)
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toTweetView" {
-            let tweetView = segue.destinationViewController as! TweetViewController
-            tweetView.accountImg = self.accountImg
-            tweetView.replyID = self.replyID
-            tweetView.replyStr = self.replyStr
-            self.accountImg = nil
-            self.replyID = nil
-            self.replyStr = nil
-        }
-    }
-    
-    // 要素が無い時
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "表示できるツイートがありません。"
-        let font = UIFont.systemFontOfSize(20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
     }
 }

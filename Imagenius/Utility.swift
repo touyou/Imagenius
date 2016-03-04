@@ -11,6 +11,7 @@ import UIKit
 import Accounts
 
 class Utility {
+    // UI関連--------------------------------------------------------------------
     // 単純なアラートをつくる関数
     class func simpleAlert(titleString: String, presentView: UIViewController) {
         let alertController = UIAlertController(title: titleString, message: nil, preferredStyle: .Alert)
@@ -18,22 +19,14 @@ class Utility {
         alertController.addAction(defaultAction)
         presentView.presentViewController(alertController, animated: true, completion: nil)
     }
-    // HTML特殊文字を変換する
-    // https://gist.github.com/mikesteele/70ae98d04fdc35cb1d5f
-    class func convertSpecialCharacters(string: String) -> String {
-        var newString = string
-        let char_dictionary = [
-            "&amp;": "&",
-            "&lt;": "<",
-            "&gt;": ">",
-            "&quot;": "\"",
-            "&apos;": "'"
-        ];
-        for (escaped_char, unescaped_char) in char_dictionary {
-            newString = newString.stringByReplacingOccurrencesOfString(escaped_char, withString: unescaped_char, options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
+    // Safariで開く
+    class func openWebView(url: NSURL) {
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
         }
-        return newString
     }
+    
+    // 画像処理------------------------------------------------------------------
     // 画像をあらかじめクロップしておく
     class func cropThumbnailImage(image :UIImage, w:Int, h:Int) -> UIImage {
         let origRef    = image.CGImage;
@@ -80,10 +73,22 @@ class Utility {
         UIGraphicsEndImageContext()
         return resizedImage
     }
-    // Safariで開く
-    class func openWebView(url: NSURL) {
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
+    
+    // その他--------------------------------------------------------------------
+    // HTML特殊文字を変換する
+    // https://gist.github.com/mikesteele/70ae98d04fdc35cb1d5f
+    class func convertSpecialCharacters(string: String) -> String {
+        var newString = string
+        let char_dictionary = [
+            "&amp;": "&",
+            "&lt;": "<",
+            "&gt;": ">",
+            "&quot;": "\"",
+            "&apos;": "'"
+        ];
+        for (escaped_char, unescaped_char) in char_dictionary {
+            newString = newString.stringByReplacingOccurrencesOfString(escaped_char, withString: unescaped_char, options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
         }
+        return newString
     }
 }

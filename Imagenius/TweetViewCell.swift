@@ -17,6 +17,7 @@ class TweetViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet var userLabel: UILabel!
     @IBOutlet var userImgView: UIImageView!
     
+    // TableViewCellが生成された時-------------------------------------------------
     override func awakeFromNib() {
         super.awakeFromNib()
         self.tweetLabel.delegate = self
@@ -28,34 +29,10 @@ class TweetViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         ]
     }
     
-    func setOutlet(tweet: JSONValue) {
-        let userInfo = tweet["user"]
-        
-        self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
-        self.highrightHashtagsInLabel(tweetLabel)
-        self.highrightMentionsInLabel(tweetLabel)
-        
-        self.userLabel.text = userInfo["name"].string
-        let userID = userInfo["screen_name"].string!
-        
-        self.userIDLabel.text = "@\(userID)"
-        let userImgPath:String = userInfo["profile_image_url_https"].string!
-        let userImgURL:NSURL = NSURL(string: userImgPath)!
-        let userImgPathData:NSData? = NSData(contentsOfURL: userImgURL)
-        if userImgPathData != nil {
-            self.userImgView.image = UIImage(data: userImgPathData!)
-        } else {
-            self.userImgView.image = UIImage(named: "user_empty")
-        }
-        self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
-        self.userImgView.clipsToBounds = true
-    }
-    
-    // MARK: - TTTAttributedLabelDelegate
+    // MARK: - TTTAttributedLabelDelegate---------------------------------------
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         Utility.openWebView(url)
     }
-    
     // mention link
     func highrightMentionsInLabel(label: TTTAttributedLabel) {
         let text: NSString = label.text!
@@ -81,5 +58,29 @@ class TweetViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
             let linkURLString = NSString(format: "https://twitter.com/#%@", word)
             label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
         }
+    }
+    
+    // 要素を設定-----------------------------------------------------------------
+    func setOutlet(tweet: JSONValue) {
+        let userInfo = tweet["user"]
+        
+        self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
+        self.highrightHashtagsInLabel(tweetLabel)
+        self.highrightMentionsInLabel(tweetLabel)
+        
+        self.userLabel.text = userInfo["name"].string
+        let userID = userInfo["screen_name"].string!
+        
+        self.userIDLabel.text = "@\(userID)"
+        let userImgPath:String = userInfo["profile_image_url_https"].string!
+        let userImgURL:NSURL = NSURL(string: userImgPath)!
+        let userImgPathData:NSData? = NSData(contentsOfURL: userImgURL)
+        if userImgPathData != nil {
+            self.userImgView.image = UIImage(data: userImgPathData!)
+        } else {
+            self.userImgView.image = UIImage(named: "user_empty")
+        }
+        self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
+        self.userImgView.clipsToBounds = true
     }
 }

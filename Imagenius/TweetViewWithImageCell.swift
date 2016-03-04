@@ -12,7 +12,6 @@ import TTTAttributedLabel
 import SWTableViewCell
 
 class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
-
     @IBOutlet var tweetLabel: TTTAttributedLabel!
     @IBOutlet var userIDLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
@@ -21,6 +20,7 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
     
     var tweetImageURL: NSURL?
     
+    // TableViewCellが生成された時------------------------------------------------
     override func awakeFromNib() {
         super.awakeFromNib()
         self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
@@ -33,11 +33,39 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         
         self.tweetImgView.userInteractionEnabled = true
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    // TTTAttributedLabel関連----------------------------------------------------
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        Utility.openWebView(url)
     }
-
+    // mention link
+    func highrightMentionsInLabel(label: TTTAttributedLabel) {
+        let text: NSString = label.text!
+        let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
+        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
+        for match in matches {
+            let matchRange = match.rangeAtIndex(1)
+            let mentionString = text.substringWithRange(matchRange)
+            let user = mentionString.substringFromIndex(mentionString.startIndex.advancedBy(1))
+            let linkURLString = NSString(format: "https://twitter.com/%@", user)
+            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
+        }
+    }
+    // hashtag link
+    func highrightHashtagsInLabel(label: TTTAttributedLabel) {
+        let text: NSString = label.text!
+        let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
+        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
+        for match in matches {
+            let matchRange = match.rangeAtIndex(1)
+            let hashtagString = text.substringWithRange(matchRange)
+            let word = hashtagString.substringFromIndex(hashtagString.startIndex.advancedBy(1))
+            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word)
+            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
+        }
+    }
+    
+    // 要素の設定-----------------------------------------------------------------
     func setOutlet(tweet: JSONValue) {
         let userInfo = tweet["user"]
         
@@ -66,35 +94,4 @@ class TweetViewWithImageCell: SWTableViewCell, TTTAttributedLabelDelegate {
         self.tweetImageURL = NSURL(string: tweet["extended_entities"]["media"][0]["url"].string!)
     }
     
-    // TableView内のリンクが押された時
-    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        Utility.openWebView(url)
-    }
-    
-    // mention link
-    func highrightMentionsInLabel(label: TTTAttributedLabel) {
-        let text: NSString = label.text!
-        let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
-        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
-        for match in matches {
-            let matchRange = match.rangeAtIndex(1)
-            let mentionString = text.substringWithRange(matchRange)
-            let user = mentionString.substringFromIndex(mentionString.startIndex.advancedBy(1))
-            let linkURLString = NSString(format: "https://twitter.com/%@", user)
-            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
-        }
-    }
-    // hashtag link
-    func highrightHashtagsInLabel(label: TTTAttributedLabel) {
-        let text: NSString = label.text!
-        let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
-        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
-        for match in matches {
-            let matchRange = match.rangeAtIndex(1)
-            let hashtagString = text.substringWithRange(matchRange)
-            let word = hashtagString.substringFromIndex(hashtagString.startIndex.advancedBy(1))
-            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word)
-            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
-        }
-    }
 }

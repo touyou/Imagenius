@@ -11,7 +11,6 @@
 		4603CC051C7D2BE3005DF397 /* TweetViewWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603CC041C7D2BE3005DF397 /* TweetViewWithImageCell.swift */; };
 		4603CC131C7D96B5005DF397 /* cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC121C7D96B5005DF397 /* cancel_button.png */; };
 		4603CC161C7D96D0005DF397 /* search_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC141C7D96D0005DF397 /* search_button.png */; };
-		4603CC171C7D96D0005DF397 /* tweet_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC151C7D96D0005DF397 /* tweet_button.png */; };
 		4603CC191C7DA0C0005DF397 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603CC181C7DA0C0005DF397 /* TimeLineViewController.swift */; };
 		4603CC1B1C7DA0F7005DF397 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603CC1A1C7DA0F7005DF397 /* ReplyViewController.swift */; };
 		4603CC251C7DE062005DF397 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC241C7DE062005DF397 /* Settings.bundle */; };
@@ -135,7 +134,6 @@
 		4603CC041C7D2BE3005DF397 /* TweetViewWithImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewWithImageCell.swift; sourceTree = "<group>"; };
 		4603CC121C7D96B5005DF397 /* cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel_button.png; sourceTree = "<group>"; };
 		4603CC141C7D96D0005DF397 /* search_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_button.png; sourceTree = "<group>"; };
-		4603CC151C7D96D0005DF397 /* tweet_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweet_button.png; sourceTree = "<group>"; };
 		4603CC181C7DA0C0005DF397 /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		4603CC1A1C7DA0F7005DF397 /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -274,15 +272,12 @@
 		460B4A371C6B5CF60089CC7E /* Imagenius */ = {
 			isa = PBXGroup;
 			children = (
+				461B7F401C8926BD00419759 /* StoryBoard */,
 				46D681321C7B293200DDB4DE /* Entities */,
 				46D681311C7B290200DDB4DE /* Views */,
 				46D681301C7B28B700DDB4DE /* ViewControllers */,
-				464A7EEA1C7973C1006100DB /* Defaults-master */,
 				4683829D1C7696CD001DC810 /* Resources */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
-				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
-				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
-				460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */,
 				460B4A441C6B5CF60089CC7E /* Info.plist */,
 			);
 			path = Imagenius;
@@ -304,6 +299,48 @@
 				460B4A5A1C6B5CF60089CC7E /* Info.plist */,
 			);
 			path = ImageniusUITests;
+			sourceTree = "<group>";
+		};
+		461B7F391C89253000419759 /* logo */ = {
+			isa = PBXGroup;
+			children = (
+				46C25AC01C806297003E314A /* imagenius-logo_new.png */,
+				464A7E7F1C78281A006100DB /* imagenius-logo.png */,
+			);
+			name = logo;
+			sourceTree = "<group>";
+		};
+		461B7F3E1C89256B00419759 /* button */ = {
+			isa = PBXGroup;
+			children = (
+				46C25A5F1C7FF245003E314A /* tweet_button_1.png */,
+				464722731C7F477600C6378E /* use_white.png */,
+				4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */,
+				4603CC141C7D96D0005DF397 /* search_button.png */,
+				4647226D1C7F1C2D00C6378E /* like-action.png */,
+				4647226E1C7F1C2D00C6378E /* reply-action_0.png */,
+				4647226F1C7F1C2D00C6378E /* retweet-action.png */,
+				4603CC121C7D96B5005DF397 /* cancel_button.png */,
+			);
+			name = button;
+			sourceTree = "<group>";
+		};
+		461B7F3F1C89259300419759 /* tab bar */ = {
+			isa = PBXGroup;
+			children = (
+				4683829E1C7696FC001DC810 /* reply.png */,
+				4683829F1C7696FC001DC810 /* timeline.png */,
+			);
+			name = "tab bar";
+			sourceTree = "<group>";
+		};
+		461B7F401C8926BD00419759 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
+				460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoard;
 			sourceTree = "<group>";
 		};
 		464A7E811C78299F006100DB /* icon */ = {
@@ -357,21 +394,13 @@
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				46C25AC01C806297003E314A /* imagenius-logo_new.png */,
-				46C25A5F1C7FF245003E314A /* tweet_button_1.png */,
-				464722731C7F477600C6378E /* use_white.png */,
+				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
 				464722741C7F477600C6378E /* user_empty.png */,
-				4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */,
-				4603CC141C7D96D0005DF397 /* search_button.png */,
-				4647226D1C7F1C2D00C6378E /* like-action.png */,
-				4647226E1C7F1C2D00C6378E /* reply-action_0.png */,
-				4647226F1C7F1C2D00C6378E /* retweet-action.png */,
-				4603CC151C7D96D0005DF397 /* tweet_button.png */,
-				4603CC121C7D96B5005DF397 /* cancel_button.png */,
+				464A7EEA1C7973C1006100DB /* Defaults-master */,
+				461B7F3E1C89256B00419759 /* button */,
+				461B7F391C89253000419759 /* logo */,
+				461B7F3F1C89259300419759 /* tab bar */,
 				464A7E811C78299F006100DB /* icon */,
-				4683829E1C7696FC001DC810 /* reply.png */,
-				4683829F1C7696FC001DC810 /* timeline.png */,
-				464A7E7F1C78281A006100DB /* imagenius-logo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -628,7 +657,6 @@
 				46C25AA41C8021CA003E314A /* iTunesArtwork@2x.png in Resources */,
 				460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */,
 				464722721C7F1C2D00C6378E /* retweet-action.png in Resources */,
-				4603CC171C7D96D0005DF397 /* tweet_button.png in Resources */,
 				46C25AA11C8021C9003E314A /* Icon.png in Resources */,
 				46C25AB31C8021D3003E314A /* Icon-60@2x.png in Resources */,
 				46C25A601C7FF245003E314A /* tweet_button_1.png in Resources */,

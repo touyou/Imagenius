@@ -13,6 +13,7 @@ import KTCenterFlowLayout
 
 class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var imageCollectionView: UICollectionView!
+    
     var searchWord: String = ""
     var reqs: [NSURLRequest] = []
     var selectedImage: UIImage?
@@ -20,6 +21,7 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
+    // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         imageCollectionView.dataSource = self
@@ -40,35 +42,23 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         tiqav()
     }
-    // Tiqav.comでの検索
-    func tiqav() {
-        let text = "http://api.tiqav.com/search.json?q="+searchWord
-        Alamofire.request(.GET, encodeURL(text), parameters: nil).responseJSON(completionHandler: {
-            response in
-            guard let object = response.result.value else {
-                return
-            }
-            let json = SwiftyJSON.JSON(object)
-            json.forEach({(_, json) in
-                let url = NSURL(string: "http://img.tiqav.com/" + String(json["id"]) + "." + json["ext"].string!)
-                let req = NSURLRequest(URL: url!)
-                self.reqs.append(req)
-            })
-            // CollectionViewをリロードする
-            self.imageCollectionView.reloadData()
-        })
-    }
-    // 日本語を含む検索語でAPIを叩くため
-    func encodeURL(text: String) -> NSURL! {
-        return NSURL(string: text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toResultView" {
+            let resultView = segue.destinationViewController as! ResultViewController
+            resultView.image = self.selectedImage
+        }
     }
     
-    // NavigationBarまわり
+    
+    // ボタン関連-----------------------------------------------------------------
+    // キャンセルのボタン
     @IBAction func cancelButton() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // CollectionViewまわりの設定
+    
+    // CollectionViewまわりの設定-------------------------------------------------
     // セクション数
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -93,12 +83,29 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.performSegueWithIdentifier("toResultView", sender: nil)
         })
     }
-    // 検索ワードを渡す
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toResultView" {
-            let resultView = segue.destinationViewController as! ResultViewController
-            resultView.image = self.selectedImage
-        }
+    
+    
+    // Utility------------------------------------------------------------------
+    // Tiqav.comでの検索
+    func tiqav() {
+        let text = "http://api.tiqav.com/search.json?q="+searchWord
+        Alamofire.request(.GET, encodeURL(text), parameters: nil).responseJSON(completionHandler: {
+            response in
+            guard let object = response.result.value else {
+                return
+            }
+            let json = SwiftyJSON.JSON(object)
+            json.forEach({(_, json) in
+                let url = NSURL(string: "http://img.tiqav.com/" + String(json["id"]) + "." + json["ext"].string!)
+                let req = NSURLRequest(URL: url!)
+                self.reqs.append(req)
+            })
+            // CollectionViewをリロードする
+            self.imageCollectionView.reloadData()
+        })
     }
-    // CollectionViewのAutoLayout対応
+    // 日本語を含む検索語でAPIを叩くため
+    func encodeURL(text: String) -> NSURL! {
+        return NSURL(string: text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+    }
 }

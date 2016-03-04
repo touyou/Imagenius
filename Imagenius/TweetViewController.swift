@@ -19,6 +19,8 @@ class TweetViewController: UIViewController {
     @IBOutlet var tweetImageView: UIImageView!
     @IBOutlet var scvBackGround: UIScrollView!
     @IBOutlet var tweetImageHeight: NSLayoutConstraint!
+    // Google Ads関連
+    @IBOutlet var bannerView: GADBannerView!
     
     var MAX_WORD: Int = 140
     var tweetText: String?
@@ -28,10 +30,12 @@ class TweetViewController: UIViewController {
     var accountImg: UIImage?
     var swifter:Swifter!
     var account: ACAccount?
-    let accountStore = ACAccountStore()
     var accounts = [ACAccount]()
+    
+    let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
+    // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
@@ -98,31 +102,15 @@ class TweetViewController: UIViewController {
         notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    // キーボード関係の処理
-    // returnでキーボードを閉じる
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
-        view.endEditing(true)
-        return true
-    }
-    // キーボードがあらわれたら上にあげる
-    func handleKeyboardWillShowNotification(notification: NSNotification) {
-        // let userInfo = notification.userInfo!
-        // _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        // let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
-        
-    }
-    // キーボードがいなくなったら下に下げる
-    func handleKeyboardWillHideNotification(notification: NSNotification) {
-    }
     
-    // ボタン関係
+    // ボタン関係-----------------------------------------------------------------
     // 投稿せずに終了
     @IBAction func cancelButton() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     // アカウントを切り替える
     @IBAction func accountButton() {
-        // アカウントの切り替えできたらいいな
+        // アカウントの切り替え
         TwitterUtil.loginTwitter(self, success: { (ac) -> () in
             self.account = ac
             self.swifter = Swifter(account: self.account!)
@@ -138,8 +126,8 @@ class TweetViewController: UIViewController {
             Utility.simpleAlert("検索ワードを入力してください。", presentView: self)
         }
     }
+    // ツイート処理
     @IBAction func tweetButton() {
-        // ツイート処理
         // ここに140字以上の処理を書く
         tweetText = tweetTextView.text
         if (tweetText!.characters.count > MAX_WORD) {
@@ -164,6 +152,23 @@ class TweetViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    // キーボード関係の処理---------------------------------------------------------
+    // returnでキーボードを閉じる
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    // キーボードがあらわれた時の処理
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+    }
+    // キーボードがいなくなった時の処理
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+    }
+    
+    
+    // Utility------------------------------------------------------------------
+    // アカウントの画像を切替える
     func changeAccountImage() {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
@@ -179,8 +184,4 @@ class TweetViewController: UIViewController {
             }
         }, failure: failureHandler)
     }
-    
-    // Google Ads関連
-    @IBOutlet var bannerView: GADBannerView!
-    
 }

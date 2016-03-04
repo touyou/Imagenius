@@ -9,8 +9,11 @@
 import UIKit
 
 enum Settings {
+    // 色設定
+    // 上から
+    // テーマカラー、いいねボタンカラー(active)、リプライボタンカラー、リツイートボタンカラー(active)
+    // 選択済みボタンカラー、削除ボタン用カラー、ツイッターブルー、ユーザーボタンカラー
     enum Colors {
-        // static letにすると一度だけしか生成されない
         static let mainColor = UIColor(red: 240/255, green: 95/255, blue: 93/255, alpha: 1.0) // #F05F5D
         static let favColor = UIColor(red: 232/255, green: 28/255, blue: 79/255, alpha: 1.0) // #E81C4F
         static let replyColor = UIColor(red: 84/255, green: 233/255, blue: 244/255, alpha: 1.0) // #54E9F4
@@ -20,6 +23,7 @@ enum Settings {
         static let twitterColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha:1.0) // #55ACEE
         static let userColor = UIColor(red: 230/255, green: 151/255, blue: 24/255, alpha: 1.0) // #E69718
     }
+    // NSUserDefaults用のキーを管理
     enum Saveword {
         static let image = "tweet_image"
         static let twitter = "twitter_account"
