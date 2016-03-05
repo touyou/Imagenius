@@ -114,32 +114,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let tweet = tweetArray[indexPath.row]
         let favorited = tweet["favorited"].bool!
         let retweeted = tweet["retweeted"].bool!
-        if TwitterUtil.isContainMedia(tweet) {
-            let cell:TweetViewWithImageCell = tableView.dequeueReusableCellWithIdentifier("TweetCellWithImage") as! TweetViewWithImageCell
-            cell.setOutlet(tweet)
-            let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
-            cell.tweetImgView.addGestureRecognizer(tapGesture)
-            cell.tweetImgView.tag = indexPath.row
-            if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
-                self.loadMore()
-            }
-            cell.rightUtilityButtons = self.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
-            cell.leftUtilityButtons = self.leftButtons() as [AnyObject]
-            cell.delegate = self
-            cell.layoutIfNeeded()
-            return cell
-        } else {
-            let cell:TweetViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as! TweetViewCell
-            cell.setOutlet(tweet)
-            if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
-                self.loadMore()
-            }
-            cell.rightUtilityButtons = self.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
-            cell.leftUtilityButtons = self.leftButtons() as [AnyObject]
-            cell.delegate = self
-            cell.layoutIfNeeded()
-            return cell
+        // test
+        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
+        cell.setOutlet(tweet)
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        cell.tweetImgView.addGestureRecognizer(tapGesture)
+        cell.tweetImgView.tag = indexPath.row
+        if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
+            self.loadMore()
         }
+        cell.rightUtilityButtons = self.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
+        cell.leftUtilityButtons = self.leftButtons() as [AnyObject]
+        cell.delegate = self
+        cell.layoutIfNeeded()
+        return cell
     }
     // imageViewがタップされたら画像のURLを開く
     func tapped(sender: UITapGestureRecognizer) {

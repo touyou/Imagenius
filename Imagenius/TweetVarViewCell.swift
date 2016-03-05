@@ -16,10 +16,10 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet var userIDLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
     @IBOutlet var userImgView: UIImageView!
+    @IBOutlet var tweetImgView: UIImageView!
     @IBOutlet var tweetSubView: UIView!
     @IBOutlet var subViewHeight: NSLayoutConstraint!
-    
-    var tweetImageURL: [NSURL]?
+    @IBOutlet var imageCountLabel: UILabel!
     
     // TableViewCellが生成された時------------------------------------------------
     override func awakeFromNib() {
@@ -32,7 +32,7 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
             NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
         ]
         
-        // self.tweetImgView.userInteractionEnabled = true
+        self.tweetImgView.userInteractionEnabled = true
     }
     
     // TTTAttributedLabel関連----------------------------------------------------
@@ -89,41 +89,28 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         self.userImgView.clipsToBounds = true
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
-        let imageCount:Int = tweet["extended_entities"]["media"].object!.count
-        switch imageCount {
-        case 0:
+        guard let tweetMedia = tweet["extended_entities"]["media"].array else {
             subViewHeight.constant = 0
-        case 1:
-            initSubView(1)
-        case 2:
-            initSubView(2)
-        case 3:
-            initSubView(3)
-        case 4:
-            initSubView(4)
-        default:
-            break
+            return
         }
         
-        // let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
-        // let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
-        // let tweetImgPathData:NSData = NSData(contentsOfURL: tweetImgURL)!
-        // self.tweetImgView.image = Utility.cropThumbnailImage(UIImage(data: tweetImgPathData)!, w: Int(self.tweetImgView.frame.width), h: Int(self.tweetImgView.frame.height))
-        // self.tweetImageURL = NSURL(string: tweet["extended_entities"]["media"][0]["url"].string!)
+        let imageCount = tweetMedia.count
+        subViewHeight.constant = tweetSubView.bounds.width / 2
+        tweetSubView.layer.cornerRadius = tweetSubView.frame.width * 0.017
+        tweetSubView.clipsToBounds = true
+        let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
+        let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
+        let tweetImgPathData:NSData = NSData(contentsOfURL: tweetImgURL)!
+        self.tweetImgView.image = UIImage(data: tweetImgPathData)!
+        switch tweet["extended_entities"]["media"][0]["type"].string! {
+        case "photo":
+            imageCountLabel.text = "\(imageCount)枚の写真"
+        case "video":
+            imageCountLabel.text = "動画"
+        default:
+            imageCountLabel.text = "GIF"
+        }
     }
     
     // Utility------------------------------------------------------------------
-    func initSubView(num: Int) {
-        subViewHeight.constant = tweetSubView.frame.width / 3 * 2
-        let h = tweetSubView.frame.width / 3 * 2; let w = tweetSubView.frame.width
-        tweetSubView.layer.cornerRadius = w * 0.1
-        tweetSubView.clipsToBounds = true
-        
-        for var i = 0; i < num; i++ {
-            if num == 1 {
-                let tweetImageView = UIImageView()
-                // tweetImageView
-            }
-        }
-    }
 }
