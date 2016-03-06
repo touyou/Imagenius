@@ -31,7 +31,7 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
             kCTForegroundColorAttributeName: Settings.Colors.twitterColor,
             NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
         ]
-        
+        subViewHeight.constant = 0
         self.tweetImgView.userInteractionEnabled = true
     }
     
@@ -67,7 +67,7 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
     }
     
     // 要素の設定-----------------------------------------------------------------
-    func setOutlet(tweet: JSONValue) {
+    func setOutlet(tweet: JSONValue, tweetHeight: CGFloat) {
         let userInfo = tweet["user"]
         
         self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
@@ -90,14 +90,15 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet["extended_entities"]["media"].array else {
-            subViewHeight.constant = 0
             return
         }
         
         let imageCount = tweetMedia.count
-        subViewHeight.constant = tweetSubView.bounds.width / 2
+        subViewHeight.constant = tweetHeight
         tweetSubView.layer.cornerRadius = tweetSubView.frame.width * 0.017
         tweetSubView.clipsToBounds = true
+        tweetSubView.layer.borderColor = Settings.Colors.selectedColor.CGColor
+        tweetSubView.layer.borderWidth = 0.19
         let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
         let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
         let tweetImgPathData:NSData = NSData(contentsOfURL: tweetImgURL)!

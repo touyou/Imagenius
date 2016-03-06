@@ -116,7 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let retweeted = tweet["retweeted"].bool!
         // test
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
-        cell.setOutlet(tweet)
+        cell.setOutlet(tweet, tweetHeight: self.view.bounds.width / 1.8)
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
         cell.tweetImgView.addGestureRecognizer(tapGesture)
         cell.tweetImgView.tag = indexPath.row
