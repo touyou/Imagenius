@@ -138,6 +138,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
+            if tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string == nil {
+                
+            }
             switch tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string! {
             case "photo":
                 let tempData = NSMutableArray()

@@ -90,6 +90,8 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet["extended_entities"]["media"].array else {
+            subViewHeight.constant = 0
+            self.layoutIfNeeded()
             return
         }
         
@@ -111,6 +113,7 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         default:
             imageCountLabel.text = "GIF"
         }
+        self.layoutIfNeeded()
     }
     
     // Utility------------------------------------------------------------------
