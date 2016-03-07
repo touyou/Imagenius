@@ -376,8 +376,11 @@
         <!--Image Pre View Controller-->
         <scene sceneID="YBK-Pj-afE">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="sk6-zJ-xoB" customClass="ImagePreViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="sk6-zJ-xoB" customClass="ImagePreViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="9m3-NS-PKr"/>
+                    <connections>
+                        <segue destination="BCe-nZ-YFR" kind="showDetail" action="showViewController:sender:" id="Cnm-0E-bgG"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUK-ih-sO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -396,15 +399,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ra4-ML-ySh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="5" y="20" width="590" height="580"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ewp-0J-lat" firstAttribute="top" secondItem="Ra4-ML-ySh" secondAttribute="bottom" id="UYi-aH-CBE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ra4-ML-ySh" secondAttribute="trailing" constant="-20" id="W0w-yo-EX3"/>
-                            <constraint firstItem="Ra4-ML-ySh" firstAttribute="leading" secondItem="04f-Mz-tjR" secondAttribute="leadingMargin" constant="-20" id="Zqf-3n-15s"/>
-                            <constraint firstItem="Ra4-ML-ySh" firstAttribute="top" secondItem="04f-Mz-tjR" secondAttribute="topMargin" id="o5h-ti-Qer"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ra4-ML-ySh" secondAttribute="trailing" constant="-15" id="W0w-yo-EX3"/>
+                            <constraint firstItem="Ra4-ML-ySh" firstAttribute="leading" secondItem="04f-Mz-tjR" secondAttribute="leadingMargin" constant="-15" id="Zqf-3n-15s"/>
+                            <constraint firstItem="ewp-0J-lat" firstAttribute="top" secondItem="Ra4-ML-ySh" secondAttribute="bottom" id="gCp-hl-W7f"/>
+                            <constraint firstItem="Ra4-ML-ySh" firstAttribute="top" secondItem="rv1-zx-xvN" secondAttribute="bottom" id="sUI-4T-pli"/>
                         </constraints>
                     </view>
                     <connections>
@@ -706,14 +709,8 @@
                             <constraint firstItem="NWn-f9-MIw" firstAttribute="centerX" secondItem="ZBq-Sn-cmb" secondAttribute="centerX" id="0fC-wF-USX"/>
                             <constraint firstItem="NWn-f9-MIw" firstAttribute="top" secondItem="8hx-cr-ZLZ" secondAttribute="bottom" id="Kij-dd-wvG"/>
                             <constraint firstItem="NWn-f9-MIw" firstAttribute="leading" secondItem="ZBq-Sn-cmb" secondAttribute="leadingMargin" constant="-20" id="eEs-hr-JgJ"/>
-                            <constraint firstItem="NWn-f9-MIw" firstAttribute="centerY" secondItem="ZBq-Sn-cmb" secondAttribute="centerY" id="qVz-Fc-kHg"/>
                             <constraint firstItem="Fmk-Bq-JjH" firstAttribute="top" secondItem="NWn-f9-MIw" secondAttribute="bottom" id="w52-EE-4E1"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="qVz-Fc-kHg"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="選択画像" id="tSG-D7-xRz">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ilg-gK-ev3">
