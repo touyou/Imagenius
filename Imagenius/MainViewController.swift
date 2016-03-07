@@ -25,6 +25,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var accountImg: UIImage?
     var account: ACAccount?
     var accounts = [ACAccount]()
+    var imageData: NSMutableArray?
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -77,6 +78,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.accountImg = nil
             self.replyID = nil
             self.replyStr = nil
+        } else if segue.identifier == "toPreView" {
+            let preView = segue.destinationViewController as! ImagePreViewController
+            preView.pageData = self.imageData
+            self.imageData = nil
         }
     }
     
@@ -114,7 +119,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let tweet = tweetArray[indexPath.row]
         let favorited = tweet["favorited"].bool!
         let retweeted = tweet["retweeted"].bool!
-        // test
+        
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
         cell.setOutlet(tweet, tweetHeight: self.view.bounds.width / 1.8)
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
@@ -133,8 +138,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
-            if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["media_url"].string {
-                Utility.openWebView(NSURL(string: imagURL)!)
+            switch tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string! {
+            case "photo":
+                let tempData = NSMutableArray()
+                for data in tweetArray[rowNum]["extended_entities"]["media"].array! {
+                    tempData.addObject(NSData(contentsOfURL: NSURL(string: data["media_url"].string!)!)!)
+                }
+                imageData = tempData
+                performSegueWithIdentifier("toPreView", sender: nil)
+            default:
+                if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["media_url"].string {
+                    Utility.openWebView(NSURL(string: imagURL)!)
+                }
             }
         }
     }

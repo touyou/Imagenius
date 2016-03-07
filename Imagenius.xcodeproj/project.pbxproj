@@ -68,6 +68,8 @@
 		46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */; };
 		46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D680F21C7AFF7A00DDB4DE /* Settings.swift */; };
 		46DF35041C89CF9300CB177F /* TweetVarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF35031C89CF9300CB177F /* TweetVarViewCell.swift */; };
+		46DF35141C8C82E700CB177F /* ImagePreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF35131C8C82E700CB177F /* ImagePreViewController.swift */; };
+		46DF351A1C8C848A00CB177F /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF35191C8C848A00CB177F /* PreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +201,8 @@
 		46D680F01C7AED0B00DDB4DE /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUtil.swift; sourceTree = "<group>"; };
 		46D680F21C7AFF7A00DDB4DE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		46DF35031C89CF9300CB177F /* TweetVarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetVarViewCell.swift; sourceTree = "<group>"; };
+		46DF35131C8C82E700CB177F /* ImagePreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreViewController.swift; sourceTree = "<group>"; };
+		46DF35191C8C848A00CB177F /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
 		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
 		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -406,12 +410,8 @@
 		46D681301C7B28B700DDB4DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */,
-				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
-				468382971C758C86001DC810 /* ResultViewController.swift */,
-				468382991C75D957001DC810 /* TweetViewController.swift */,
-				4603CC181C7DA0C0005DF397 /* TimeLineViewController.swift */,
-				4603CC1A1C7DA0F7005DF397 /* ReplyViewController.swift */,
+				46DF351B1C8C84AF00CB177F /* MainView */,
+				46DF351C1C8C84E000CB177F /* TweetView */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -449,6 +449,28 @@
 				46DF35031C89CF9300CB177F /* TweetVarViewCell.swift */,
 			);
 			name = MainView;
+			sourceTree = "<group>";
+		};
+		46DF351B1C8C84AF00CB177F /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				460B4A3A1C6B5CF60089CC7E /* MainViewController.swift */,
+				4603CC181C7DA0C0005DF397 /* TimeLineViewController.swift */,
+				4603CC1A1C7DA0F7005DF397 /* ReplyViewController.swift */,
+				46DF35131C8C82E700CB177F /* ImagePreViewController.swift */,
+				46DF35191C8C848A00CB177F /* PreViewController.swift */,
+			);
+			name = MainView;
+			sourceTree = "<group>";
+		};
+		46DF351C1C8C84E000CB177F /* TweetView */ = {
+			isa = PBXGroup;
+			children = (
+				468382991C75D957001DC810 /* TweetViewController.swift */,
+				4683828D1C757FE2001DC810 /* ImageViewController.swift */,
+				468382971C758C86001DC810 /* ResultViewController.swift */,
+			);
+			name = TweetView;
 			sourceTree = "<group>";
 		};
 		CA5CFC7A612E4DAD618FD845 /* Pods */ = {
@@ -760,6 +782,8 @@
 				4603CC1B1C7DA0F7005DF397 /* ReplyViewController.swift in Sources */,
 				46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */,
 				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
+				46DF35141C8C82E700CB177F /* ImagePreViewController.swift in Sources */,
+				46DF351A1C8C848A00CB177F /* PreViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
