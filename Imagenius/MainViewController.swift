@@ -48,7 +48,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.tweetArray = []
+        // self.tweetArray = []
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac)->() in
                 self.account = ac
@@ -61,9 +61,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if granted {
                     self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
                     if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                        self.swifter = Swifter(account: self.account!)
-                        self.loadTweet()
+                        let tempaccount = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                        if self.account == nil || self.account != tempaccount {
+                            self.account = tempaccount
+                            self.swifter = Swifter(account: self.account!)
+                            self.loadTweet()
+                        }
                     }
                 }
             }
