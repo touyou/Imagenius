@@ -29,5 +29,6 @@ enum Settings {
         static let image = "tweet_image"
         static let twitter = "twitter_account"
         static let search = "search_word"
+        static let changed = "account_changed"
     }
 }

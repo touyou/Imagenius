@@ -44,11 +44,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
         refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        // self.tweetArray = []
+        saveData.setObject(false, forKey: Settings.Saveword.changed)
+        
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac)->() in
                 self.account = ac
@@ -61,10 +58,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if granted {
                     self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
                     if self.accounts.count != 0 {
-                        let tempaccount = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                        if self.account == nil || self.account != tempaccount {
-                            self.account = tempaccount
+                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                        self.swifter = Swifter(account: self.account!)
+                        self.loadTweet()
+                    }
+                }
+            }
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if saveData.objectForKey(Settings.Saveword.changed) != nil {
+            if saveData.objectForKey(Settings.Saveword.changed) as! Bool {
+                let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+                accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+                    if granted {
+                        self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                        if self.accounts.count != 0 {
+                            self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
                             self.swifter = Swifter(account: self.account!)
+                            self.tweetArray = []
+                            self.saveData.setObject(false, forKey: Settings.Saveword.changed)
                             self.loadTweet()
                         }
                     }
