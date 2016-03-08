@@ -48,6 +48,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.tweetArray = []
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac)->() in
                 self.account = ac
@@ -150,7 +151,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 imageData = tempData
                 performSegueWithIdentifier("toPreView", sender: nil)
             default:
-                if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["media_url"].string {
+                if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
                     Utility.openWebView(NSURL(string: imagURL)!)
                 }
             }
