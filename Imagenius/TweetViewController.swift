@@ -11,7 +11,7 @@ import SwifteriOS
 import Accounts
 import GoogleMobileAds
 
-class TweetViewController: UIViewController {
+class TweetViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
@@ -59,7 +59,12 @@ class TweetViewController: UIViewController {
         }
         if replyStr != nil {
             tweetTextView.text = replyStr
+            tweetTextView.textColor = Settings.Colors.textBlackColor
+        } else {
+            tweetTextView.text = "何をつぶやく？"
+            tweetTextView.textColor = UIColor.lightGrayColor()
         }
+        searchField.placeholder = "画像を検索する"
         
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
@@ -166,6 +171,24 @@ class TweetViewController: UIViewController {
     func handleKeyboardWillHideNotification(notification: NSNotification) {
     }
     
+    // textViewのプレースホルダー--------------------------------------------------
+    // 編集はじめ
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = replyStr
+            textView.textColor = Settings.Colors.textBlackColor
+        }
+    }
+    // 編集中
+    // func textViewDidChange(textView: UITextView) {
+    // }
+    // 編集終わり
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "何をつぶやく？"
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
     
     // Utility------------------------------------------------------------------
     // アカウントの画像を切替える

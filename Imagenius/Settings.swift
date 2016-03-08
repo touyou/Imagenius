@@ -22,6 +22,7 @@ enum Settings {
         static let deleteColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
         static let twitterColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha:1.0) // #55ACEE
         static let userColor = UIColor(red: 230/255, green: 151/255, blue: 24/255, alpha: 1.0) // #E69718
+        static let textBlackColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0) // #333333
     }
     // NSUserDefaults用のキーを管理
     enum Saveword {
