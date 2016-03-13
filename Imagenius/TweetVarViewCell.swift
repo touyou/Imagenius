@@ -11,7 +11,7 @@ import SwifteriOS
 import TTTAttributedLabel
 import SWTableViewCell
 
-class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
+class TweetVarViewCell: SWTableViewCell {
     @IBOutlet var tweetLabel: TTTAttributedLabel!
     @IBOutlet var userIDLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
@@ -26,7 +26,6 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         super.awakeFromNib()
         self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         self.tweetLabel.extendsLinkTouchArea = false
-        self.tweetLabel.delegate = self
         self.tweetLabel.linkAttributes = [
             kCTForegroundColorAttributeName: Settings.Colors.twitterColor,
             NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
@@ -36,9 +35,6 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
     }
     
     // TTTAttributedLabel関連----------------------------------------------------
-    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        Utility.openWebView(url)
-    }
     // mention link
     func highrightMentionsInLabel(label: TTTAttributedLabel) {
         let text: NSString = label.text!
@@ -58,10 +54,10 @@ class TweetVarViewCell: SWTableViewCell, TTTAttributedLabelDelegate {
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
         let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
-            let matchRange = match.rangeAtIndex(1)
+            let matchRange = match.rangeAtIndex(0)
             let hashtagString = text.substringWithRange(matchRange)
             let word = hashtagString.substringFromIndex(hashtagString.startIndex.advancedBy(1))
-            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word)
+            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
         }
     }

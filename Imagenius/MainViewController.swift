@@ -13,7 +13,7 @@ import TTTAttributedLabel
 import DZNEmptyDataSet
 import SWTableViewCell
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
     @IBOutlet var timelineTableView: UITableView!
     
     var tweetArray: [JSONValue] = []
@@ -140,6 +140,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let retweeted = tweet["retweeted"].bool!
         
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
+        cell.tweetLabel.delegate = self
         cell.setOutlet(tweet, tweetHeight: self.view.bounds.width / 1.8)
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
         cell.tweetImgView.addGestureRecognizer(tapGesture)
@@ -171,6 +172,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             default:
                 if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
                     Utility.openWebView(NSURL(string: imagURL)!)
+                    performSegueWithIdentifier("openWebView", sender: nil)
                 }
             }
         }
@@ -254,10 +256,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             let url = NSURL(string: "https://twitter.com/"+tweet["user"]["screen_name"].string!+"/status/"+tweet["id_str"].string!)!
             Utility.openWebView(url)
+            performSegueWithIdentifier("openWebView", sender: nil)
             break
         case 1:
             let url = NSURL(string: "https://twitter.com/"+tweet["user"]["screen_name"].string!)!
             Utility.openWebView(url)
+            performSegueWithIdentifier("openWebView", sender: nil)
         default:
             break
         }
@@ -267,6 +271,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFontOfSize(20)
         return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
+    // TTTAttributedLabelDelegate
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        Utility.openWebView(url)
+        performSegueWithIdentifier("openWebView", sender: nil)
     }
 
     

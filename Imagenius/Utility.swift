@@ -21,9 +21,8 @@ class Utility {
     }
     // Safariで開く
     class func openWebView(url: NSURL) {
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
-        }
+        let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        saveData.setObject(url.absoluteString, forKey: Settings.Saveword.url)
     }
     
     // 画像処理------------------------------------------------------------------

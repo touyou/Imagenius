@@ -34,6 +34,9 @@
 		464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */; };
 		464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80491C799BE6006100DB /* SWTableViewCell.framework */; };
 		464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80601C79EFCD006100DB /* SwifteriOS.framework */; };
+		467549C61C9574D800FB3747 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467549C51C9574D800FB3747 /* WebViewController.swift */; };
+		467549C81C95977E00FB3747 /* toolbar_forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 467549C71C95977E00FB3747 /* toolbar_forward.png */; };
+		467549CA1C95978900FB3747 /* toolbar_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 467549C91C95978900FB3747 /* toolbar_back.png */; };
 		4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683828D1C757FE2001DC810 /* ImageViewController.swift */; };
 		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
 		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
@@ -167,6 +170,9 @@
 		464A80481C799BE6006100DB /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		464A80491C799BE6006100DB /* SWTableViewCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWTableViewCell.framework; path = "Pods/../build/Debug-iphoneos/SWTableViewCell.framework"; sourceTree = "<group>"; };
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
+		467549C51C9574D800FB3747 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		467549C71C95977E00FB3747 /* toolbar_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_forward.png; sourceTree = "<group>"; };
+		467549C91C95978900FB3747 /* toolbar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_back.png; sourceTree = "<group>"; };
 		4683828D1C757FE2001DC810 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4683828F1C7581A6001DC810 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -315,6 +321,8 @@
 		461B7F3E1C89256B00419759 /* button */ = {
 			isa = PBXGroup;
 			children = (
+				467549C91C95978900FB3747 /* toolbar_back.png */,
+				467549C71C95977E00FB3747 /* toolbar_forward.png */,
 				46C25A5F1C7FF245003E314A /* tweet_button_1.png */,
 				464722731C7F477600C6378E /* use_white.png */,
 				4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */,
@@ -393,6 +401,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		467549C01C9574AA00FB3747 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				467549C51C9574D800FB3747 /* WebViewController.swift */,
+			);
+			name = WebView;
+			sourceTree = "<group>";
+		};
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +426,7 @@
 		46D681301C7B28B700DDB4DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				467549C01C9574AA00FB3747 /* WebView */,
 				46DF351B1C8C84AF00CB177F /* MainView */,
 				46DF351C1C8C84E000CB177F /* TweetView */,
 			);
@@ -646,6 +663,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467549C81C95977E00FB3747 /* toolbar_forward.png in Resources */,
 				468382A11C7696FC001DC810 /* timeline.png in Resources */,
 				4603CC161C7D96D0005DF397 /* search_button.png in Resources */,
 				468382A01C7696FC001DC810 /* reply.png in Resources */,
@@ -653,6 +671,7 @@
 				464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */,
 				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
 				46C25AB21C8021D3003E314A /* Icon-40@3x.png in Resources */,
+				467549CA1C95978900FB3747 /* toolbar_back.png in Resources */,
 				46C25A9C1C8021C9003E314A /* Icon-60.png in Resources */,
 				464722761C7F477600C6378E /* user_empty.png in Resources */,
 				46C25A9E1C8021C9003E314A /* Icon-72@2x.png in Resources */,
@@ -786,6 +805,7 @@
 				46DF351A1C8C848A00CB177F /* PreViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
+				467549C61C9574D800FB3747 /* WebViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

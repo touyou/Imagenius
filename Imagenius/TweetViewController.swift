@@ -12,7 +12,7 @@ import Accounts
 import GoogleMobileAds
 
 class TweetViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet var countLabel: UILabel!
+    // @IBOutlet var countLabel: UILabel!
     @IBOutlet var placeHolderLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
