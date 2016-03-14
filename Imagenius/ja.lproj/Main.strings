@@ -1,0 +1,48 @@
+
+/* Class = "UITabBarItem"; title = "タイムライン"; ObjectID = "50E-ll-6yH"; */
+"50E-ll-6yH.title" = "タイムライン";
+
+/* Class = "UIBarButtonItem"; title = "Account"; ObjectID = "DVG-VP-A0q"; */
+"DVG-VP-A0q.title" = "Account";
+
+/* Class = "UITabBarItem"; title = "リプライ"; ObjectID = "FUw-np-xDv"; */
+"FUw-np-xDv.title" = "リプライ";
+
+/* Class = "UINavigationItem"; title = "Imagenius"; ObjectID = "IRq-XO-nuI"; */
+"IRq-XO-nuI.title" = "Imagenius";
+
+/* Class = "UILabel"; text = "何をつぶやく？"; ObjectID = "JhL-9j-YO1"; */
+"JhL-9j-YO1.text" = "何をつぶやく？";
+
+/* Class = "UILabel"; text = "@UserID"; ObjectID = "Ofx-Qw-b59"; */
+"Ofx-Qw-b59.text" = "@UserID";
+
+/* Class = "UINavigationItem"; title = "画像検索結果"; ObjectID = "QXy-jl-Wlk"; */
+"QXy-jl-Wlk.title" = "画像検索結果";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "TsY-fq-Qds"; */
+"TsY-fq-Qds.text" = "Username";
+
+/* Class = "UITabBarItem"; title = "リプライ"; ObjectID = "UO0-yD-2MC"; */
+"UO0-yD-2MC.title" = "リプライ";
+
+/* Class = "UITabBarItem"; title = "タイムライン"; ObjectID = "UhW-zy-tmj"; */
+"UhW-zy-tmj.title" = "タイムライン";
+
+/* Class = "UINavigationItem"; title = "Imagenius"; ObjectID = "ZLB-FE-6gv"; */
+"ZLB-FE-6gv.title" = "Imagenius";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "jvw-b5-LRd"; */
+"jvw-b5-LRd.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Imagenius"; ObjectID = "oHD-cH-Ohk"; */
+"oHD-cH-Ohk.title" = "Imagenius";
+
+/* Class = "UINavigationItem"; title = "選択画像"; ObjectID = "tSG-D7-xRz"; */
+"tSG-D7-xRz.title" = "選択画像";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "tzj-S5-Ad3"; */
+"tzj-S5-Ad3.text" = "Username";
+
+/* Class = "UILabel"; text = "@UserID"; ObjectID = "vD3-hk-Ywp"; */
+"vD3-hk-Ywp.text" = "@UserID";

@@ -37,6 +37,10 @@
 		467549C61C9574D800FB3747 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467549C51C9574D800FB3747 /* WebViewController.swift */; };
 		467549C81C95977E00FB3747 /* toolbar_forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 467549C71C95977E00FB3747 /* toolbar_forward.png */; };
 		467549CA1C95978900FB3747 /* toolbar_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 467549C91C95978900FB3747 /* toolbar_back.png */; };
+		467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549D11C969C2C00FB3747 /* RegExCategories.framework */; };
+		467549DD1C96ABF900FB3747 /* setting_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 467549DC1C96ABF900FB3747 /* setting_icon.png */; };
+		467549E11C96AF0000FB3747 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467549E01C96AF0000FB3747 /* SettingTableViewController.swift */; };
+		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
 		4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683828D1C757FE2001DC810 /* ImageViewController.swift */; };
 		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
 		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
@@ -173,6 +177,13 @@
 		467549C51C9574D800FB3747 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		467549C71C95977E00FB3747 /* toolbar_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_forward.png; sourceTree = "<group>"; };
 		467549C91C95978900FB3747 /* toolbar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_back.png; sourceTree = "<group>"; };
+		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
+		467549D91C969D9700FB3747 /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
+		467549DC1C96ABF900FB3747 /* setting_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_icon.png; sourceTree = "<group>"; };
+		467549E01C96AF0000FB3747 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		467549E71C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		467549E81C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4683828D1C757FE2001DC810 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		4683828F1C7581A6001DC810 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -218,6 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */,
+				467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */,
 				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
 				464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */,
 				464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */,
@@ -248,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				4603CC241C7DE062005DF397 /* Settings.bundle */,
+				467549D91C969D9700FB3747 /* Imagenius-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,8 +296,8 @@
 			children = (
 				461B7F401C8926BD00419759 /* StoryBoard */,
 				46D681321C7B293200DDB4DE /* Models */,
-				46D681311C7B290200DDB4DE /* Views */,
 				46D681301C7B28B700DDB4DE /* ViewControllers */,
+				46D681311C7B290200DDB4DE /* Views */,
 				4683829D1C7696CD001DC810 /* Resources */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
 				460B4A441C6B5CF60089CC7E /* Info.plist */,
@@ -322,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				467549C91C95978900FB3747 /* toolbar_back.png */,
+				467549DC1C96ABF900FB3747 /* setting_icon.png */,
 				467549C71C95977E00FB3747 /* toolbar_forward.png */,
 				46C25A5F1C7FF245003E314A /* tweet_button_1.png */,
 				464722731C7F477600C6378E /* use_white.png */,
@@ -409,6 +424,14 @@
 			name = WebView;
 			sourceTree = "<group>";
 		};
+		467549DF1C96AEDA00FB3747 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				467549E01C96AF0000FB3747 /* SettingTableViewController.swift */,
+			);
+			name = SettingView;
+			sourceTree = "<group>";
+		};
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +449,7 @@
 		46D681301C7B28B700DDB4DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				467549DF1C96AEDA00FB3747 /* SettingView */,
 				467549C01C9574AA00FB3747 /* WebView */,
 				46DF351B1C8C84AF00CB177F /* MainView */,
 				46DF351C1C8C84E000CB177F /* TweetView */,
@@ -502,6 +526,8 @@
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				467549E51C96BB1B00FB3747 /* MessageUI.framework */,
+				467549D11C969C2C00FB3747 /* RegExCategories.framework */,
 				464A80601C79EFCD006100DB /* SwifteriOS.framework */,
 				464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */,
 				464A80471C799BE6006100DB /* FMAssetStream.framework */,
@@ -606,7 +632,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 460B4A2C1C6B5CF60089CC7E;
@@ -673,6 +698,7 @@
 				46C25AB21C8021D3003E314A /* Icon-40@3x.png in Resources */,
 				467549CA1C95978900FB3747 /* toolbar_back.png in Resources */,
 				46C25A9C1C8021C9003E314A /* Icon-60.png in Resources */,
+				467549DD1C96ABF900FB3747 /* setting_icon.png in Resources */,
 				464722761C7F477600C6378E /* user_empty.png in Resources */,
 				46C25A9E1C8021C9003E314A /* Icon-72@2x.png in Resources */,
 				46C25AB81C8021D3003E314A /* Icon-Small.png in Resources */,
@@ -792,6 +818,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467549E11C96AF0000FB3747 /* SettingTableViewController.swift in Sources */,
 				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
 				46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */,
 				46DF35041C89CF9300CB177F /* TweetVarViewCell.swift in Sources */,
@@ -846,6 +873,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				460B4A3D1C6B5CF60089CC7E /* Base */,
+				467549E71C96C45400FB3747 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -854,6 +882,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				460B4A421C6B5CF60089CC7E /* Base */,
+				467549E81C96C45400FB3747 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -961,6 +990,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8bcf3651-90ba-4bc7-bc45-11834e86008e";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -983,6 +1013,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1484df58-9ab8-441f-a3e7-1d0506f60fdc";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 			};
 			name = Release;
 		};

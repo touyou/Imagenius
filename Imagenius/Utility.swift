@@ -24,6 +24,19 @@ class Utility {
         let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         saveData.setObject(url.absoluteString, forKey: Settings.Saveword.url)
     }
+    // share
+    class func shareSome(url: NSURL, text: String? = nil, presentView: UIViewController) {
+        let activityItems: [AnyObject]!
+        if text != nil {
+            activityItems = [url, text!]
+        } else {
+            activityItems = [url]
+        }
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let excludedActivityTypes = [UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo]
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        presentView.presentViewController(activityVC, animated: true, completion: nil)
+    }
     
     // 画像処理------------------------------------------------------------------
     // 画像をあらかじめクロップしておく

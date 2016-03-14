@@ -37,6 +37,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.timelineTableView.rowHeight = UITableViewAutomaticDimension
         self.timelineTableView.emptyDataSetDelegate = self
         self.timelineTableView.emptyDataSetSource = self
+        // cellを選択不可に
         self.timelineTableView.allowsSelection = false
         self.timelineTableView.tableFooterView = UIView()
         // 引っ張ってロードするやつ
