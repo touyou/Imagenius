@@ -488,6 +488,11 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="OZ1-cp-mkS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="4x9-HG-Po5">
+                            <connections>
+                                <action selector="safariButton" destination="eby-zA-XdT" id="ay4-On-D1y"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="mrX-As-VJu">
                             <connections>
                                 <action selector="closeViewButton" destination="eby-zA-XdT" id="PBd-Zt-RcO"/>

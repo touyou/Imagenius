@@ -80,4 +80,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     @IBAction func closeViewButton() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    @IBAction func safariButton() {
+        let url = self.webView.URL
+        UIApplication.sharedApplication().openURL(url!)
+    }
 }
