@@ -30,6 +30,7 @@ enum Settings {
         static let twitter = "twitter_account"
         static let search = "search_word"
         static let changed = "account_changed"
+        static let changed2 = "tab_changed"
         static let url = "open_url"
     }
 }

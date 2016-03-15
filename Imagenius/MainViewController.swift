@@ -46,6 +46,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
         saveData.setObject(false, forKey: Settings.Saveword.changed)
+        saveData.setObject(false, forKey: Settings.Saveword.changed2)
         
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac)->() in
@@ -81,6 +82,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                             self.swifter = Swifter(account: self.account!)
                             self.tweetArray = []
                             self.saveData.setObject(false, forKey: Settings.Saveword.changed)
+                            self.saveData.setObject(true, forKey: Settings.Saveword.changed2)
+                            print("account change in did")
+                            self.loadTweet()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if saveData.objectForKey(Settings.Saveword.changed2) != nil {
+            if saveData.objectForKey(Settings.Saveword.changed2) as! Bool {
+                let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+                accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+                    if granted {
+                        self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                        if self.accounts.count != 0 {
+                            self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                            self.swifter = Swifter(account: self.account!)
+                            self.tweetArray = []
+                            self.saveData.setObject(false, forKey: Settings.Saveword.changed2)
+                            print("account change in will")
                             self.loadTweet()
                         }
                     }
