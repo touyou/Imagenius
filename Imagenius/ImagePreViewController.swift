@@ -24,6 +24,10 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
         self.view.gestureRecognizers = self.gestureRecognizers
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     // pageViewController関連----------------------------------------------------
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         var index = self.indexOfViewController(viewController as! PreViewController)

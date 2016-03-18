@@ -34,7 +34,7 @@ class TwitterUtil {
     // Twitterアカウントの切り替え
     class func showAndSelectTwitterAccountWithSelectionSheets(accounts: [ACAccount], present: UIViewController, success: ((ACAccount?)->())? = nil) {
         // アクションシートの設定
-        let alertController = UIAlertController(title: "Select Account", message: "Please select twitter account", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .ActionSheet)
         let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         for var i=0; i<accounts.count; i++ {

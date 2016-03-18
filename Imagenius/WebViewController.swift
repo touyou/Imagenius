@@ -74,6 +74,10 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     // ボタン関連-----------------------------------------------------------------
     @IBAction func didTapBackButton() {
         self.webView.goBack()

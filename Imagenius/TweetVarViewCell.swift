@@ -57,7 +57,7 @@ class TweetVarViewCell: SWTableViewCell {
             let matchRange = match.rangeAtIndex(0)
             let hashtagString = text.substringWithRange(matchRange)
             let word = hashtagString.substringFromIndex(hashtagString.startIndex.advancedBy(1))
-            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
             label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
         }
     }

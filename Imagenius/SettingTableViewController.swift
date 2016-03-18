@@ -42,6 +42,10 @@ class SettingTableViewController: UITableViewController, MFMailComposeViewContro
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     // tableView関連
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return labelTexts.count

@@ -364,7 +364,7 @@
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="eKU-gd-JHx">
                             <connections>
                                 <action selector="accountChange:" destination="RyR-MI-pon" id="oXr-eb-jtn"/>
-                                <segue destination="tsV-LL-8hz" kind="push" id="WQ3-wt-xNC"/>
+                                <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="WQ3-wt-xNC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="J2G-1B-T8Q">
@@ -376,8 +376,8 @@
                     <connections>
                         <outlet property="timelineTableView" destination="Pcq-xR-Hr1" id="54F-ss-hgf"/>
                         <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="xcG-Qk-skd"/>
-                        <segue destination="sk6-zJ-xoB" kind="push" identifier="toPreView" id="ykC-G6-UoE"/>
-                        <segue destination="Ah1-gb-JqM" kind="push" identifier="openWebView" id="pVq-SY-5Du"/>
+                        <segue destination="sk6-zJ-xoB" kind="show" identifier="toPreView" id="ykC-G6-UoE"/>
+                        <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="pVq-SY-5Du"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHE-g6-443" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -418,7 +418,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="WGa-wM-HuK"/>
                     <connections>
-                        <segue destination="Ah1-gb-JqM" kind="push" identifier="openWebView" id="gMF-E4-iH0"/>
+                        <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="gMF-E4-iH0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-hu-nFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -431,7 +431,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="sk6-zJ-xoB" customClass="ImagePreViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="9m3-NS-PKr"/>
                     <connections>
-                        <segue destination="BCe-nZ-YFR" kind="showDetail" action="showViewController:sender:" id="Cnm-0E-bgG"/>
+                        <segue destination="BCe-nZ-YFR" kind="showDetail" identifier="toImage" action="showViewController:sender:" id="Cnm-0E-bgG"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUK-ih-sO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -663,7 +663,7 @@
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="6rl-V7-teF">
                             <connections>
                                 <action selector="accountChange:" destination="4am-0x-jf5" id="N0e-C7-qZF"/>
-                                <segue destination="tsV-LL-8hz" kind="push" id="hPE-w5-f9m"/>
+                                <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="hPE-w5-f9m"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Iv1-au-KxH">
@@ -675,8 +675,8 @@
                     <connections>
                         <outlet property="timelineTableView" destination="BNP-VV-Jor" id="t2B-fp-gFZ"/>
                         <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="X78-Y3-guK"/>
-                        <segue destination="sk6-zJ-xoB" kind="push" identifier="toPreView" id="00H-L2-gAg"/>
-                        <segue destination="Ah1-gb-JqM" kind="push" identifier="openWebView" id="G3I-45-7jI"/>
+                        <segue destination="sk6-zJ-xoB" kind="show" identifier="toPreView" id="00H-L2-gAg"/>
+                        <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="G3I-45-7jI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shp-g9-pc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -869,9 +869,9 @@
         <image name="tweet_button_1" width="107" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xcG-Qk-skd"/>
-        <segue reference="ykC-G6-UoE"/>
-        <segue reference="WQ3-wt-xNC"/>
+        <segue reference="00H-L2-gAg"/>
         <segue reference="G3I-45-7jI"/>
+        <segue reference="hPE-w5-f9m"/>
+        <segue reference="X78-Y3-guK"/>
     </inferredMetricsTieBreakers>
 </document>

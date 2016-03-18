@@ -40,6 +40,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // cellを選択不可に
         self.timelineTableView.allowsSelection = false
         self.timelineTableView.tableFooterView = UIView()
+        
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
@@ -130,6 +131,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     // ボタン関連-----------------------------------------------------------------
     // アカウント切り替えボタン
@@ -168,9 +173,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
         cell.tweetLabel.delegate = self
         cell.setOutlet(tweet, tweetHeight: self.view.bounds.width / 1.8)
+        
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
         cell.tweetImgView.addGestureRecognizer(tapGesture)
         cell.tweetImgView.tag = indexPath.row
+        
         if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
             self.loadMore()
         }
@@ -218,6 +225,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!))
         }
+        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
         return rightUtilityButtons
     }
     // 左のボタン
@@ -270,6 +278,35 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.retweetColor
             })
             break
+        case 3:
+            // block or spam
+            let failureHandler: ((NSError) -> Void) = { error in
+                Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+            }
+            let successHandler: ((user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
+                self.tweetArray = []
+                self.loadTweet()
+            }
+            let screen_name = tweet["user"]["screen_name"].string!
+            let alertController = UIAlertController(title: "ブロック・通報", message: "@\(screen_name)を", preferredStyle: .ActionSheet)
+            alertController.addAction(UIAlertAction(title: "ブロックする", style: .Default, handler: {(action)->Void in
+                let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .Alert)
+                otherAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action)->Void in
+                    self.swifter.postBlocksCreateWithScreenName(screen_name, includeEntities: true, success: successHandler, failure: failureHandler)
+                }))
+                otherAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                self.presentViewController(otherAlert, animated: true, completion: nil)
+            }))
+            alertController.addAction(UIAlertAction(title: "通報する", style: .Default, handler: {(action)->Void in
+                let otherAlert = UIAlertController(title: "\(screen_name)を通報する", message: "本当に通報しますか？", preferredStyle: .Alert)
+                otherAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action)->Void in
+                    self.swifter.postUsersReportSpamWithScreenName(screen_name, success: successHandler, failure: failureHandler)
+                }))
+                otherAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                self.presentViewController(otherAlert, animated: true, completion: nil)
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
         default:
             break
         }

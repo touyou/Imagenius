@@ -25,6 +25,10 @@ class ResultViewController: UIViewController {
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     // ボタン関連-----------------------------------------------------------------
     // OKボタンのとき

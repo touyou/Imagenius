@@ -50,6 +50,10 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     // ボタン関連-----------------------------------------------------------------
     // キャンセルのボタン
@@ -70,18 +74,22 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     // 入れるもの
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageViewCell
-        NSURLConnection.sendAsynchronousRequest(reqs[indexPath.row], queue: NSOperationQueue.mainQueue(), completionHandler: {(res, data, err) in
+        let session = NSURLSession.sharedSession()
+        let  task = session.dataTaskWithRequest(reqs[indexPath.row], completionHandler: {(data, res, err) in
             let image = UIImage(data: data!)
             cell.imageView.image = Utility.cropThumbnailImage(image!, w: Int(self.imageSize), h: Int(self.imageSize))
         })
+        task.resume()
         return cell
     }
     // 画像を選択したら
     func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        NSURLConnection.sendAsynchronousRequest(reqs[indexPath.row], queue: NSOperationQueue.mainQueue(), completionHandler: {(res, data, err) in
+        let session = NSURLSession.sharedSession()
+        let  task = session.dataTaskWithRequest(reqs[indexPath.row], completionHandler: {(data, res, err) in
             self.selectedImage = UIImage(data: data!)
             self.performSegueWithIdentifier("toResultView", sender: nil)
         })
+        task.resume()
     }
     
     
@@ -106,6 +114,6 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     // 日本語を含む検索語でAPIを叩くため
     func encodeURL(text: String) -> NSURL! {
-        return NSURL(string: text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        return NSURL(string: text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!
     }
 }
