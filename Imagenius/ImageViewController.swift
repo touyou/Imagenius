@@ -9,9 +9,10 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import DZNEmptyDataSet
 import KTCenterFlowLayout
 
-class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ImageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     @IBOutlet var imageCollectionView: UICollectionView!
     
     var searchWord: String = ""
@@ -39,6 +40,9 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
         flowLayout.minimumLineSpacing = 0
         flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
         imageCollectionView.collectionViewLayout = flowLayout
+        
+        self.imageCollectionView.emptyDataSetDelegate = self
+        self.imageCollectionView.emptyDataSetSource = self
         
         tiqav()
     }
@@ -74,24 +78,33 @@ class ImageViewController: UIViewController, UICollectionViewDataSource, UIColle
     // 入れるもの
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageViewCell
-        let session = NSURLSession.sharedSession()
-        let  task = session.dataTaskWithRequest(reqs[indexPath.row], completionHandler: {(data, res, err) in
-            let image = UIImage(data: data!)
-            cell.imageView.image = Utility.cropThumbnailImage(image!, w: Int(self.imageSize), h: Int(self.imageSize))
-        })
+        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let  task = session.dataTaskWithRequest(reqs[indexPath.row]){(data, res, err)->Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                let image = UIImage(data: data!)
+                cell.imageView.image = Utility.cropThumbnailImage(image!, w: Int(self.imageSize), h: Int(self.imageSize))
+            })
+        }
         task.resume()
         return cell
     }
     // 画像を選択したら
     func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let session = NSURLSession.sharedSession()
-        let  task = session.dataTaskWithRequest(reqs[indexPath.row], completionHandler: {(data, res, err) in
+        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let  task = session.dataTaskWithRequest(reqs[indexPath.row], completionHandler: {(data, res, err)->Void in
             self.selectedImage = UIImage(data: data!)
-            self.performSegueWithIdentifier("toResultView", sender: nil)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.performSegueWithIdentifier("toResultView", sender: nil)
+            })
         })
         task.resume()
     }
-    
+    // DZNEmptyDataSetの設定
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "該当する画像が見つかりませんでした。"
+        let font = UIFont.systemFontOfSize(20)
+        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
     
     // Utility------------------------------------------------------------------
     // Tiqav.comでの検索
