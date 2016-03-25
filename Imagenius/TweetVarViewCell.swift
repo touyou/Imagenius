@@ -106,8 +106,10 @@ class TweetVarViewCell: SWTableViewCell {
             imageCountLabel.text = "\(imageCount)枚の写真"
         case "video":
             imageCountLabel.text = "動画"
-        default:
+        case "animated_gif":
             imageCountLabel.text = "GIF"
+        default:
+            imageCountLabel.text = ""
         }
         self.layoutIfNeeded()
     }

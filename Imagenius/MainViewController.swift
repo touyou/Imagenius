@@ -12,10 +12,13 @@ import SwifteriOS
 import TTTAttributedLabel
 import DZNEmptyDataSet
 import SWTableViewCell
+import AVKit
+import AVFoundation
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
     @IBOutlet var timelineTableView: UITableView!
     
+    var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [JSONValue] = []
     var swifter: Swifter!
     var maxId: String!
@@ -44,7 +47,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
-        refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
         saveData.setObject(false, forKey: Settings.Saveword.changed)
         saveData.setObject(false, forKey: Settings.Saveword.changed2)
@@ -174,7 +177,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.tweetLabel.delegate = self
         cell.setOutlet(tweet, tweetHeight: self.view.bounds.width / 1.8)
         
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.tapped(_:)))
         cell.tweetImgView.addGestureRecognizer(tapGesture)
         cell.tweetImgView.tag = indexPath.row
         
@@ -202,9 +205,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 imageData = tempData
                 performSegueWithIdentifier("toPreView", sender: nil)
+            case "video":
+                if let videoArray = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"].array {
+                    let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
+                    for i in 0 ..< videoArray.count {
+                        let videoInfo = videoArray[i]
+                        if videoInfo["bitrate"].integer != nil {
+                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .Default, handler: { (action) -> Void in
+                                self.avPlayerViewController = AVPlayerViewController()
+                                self.avPlayerViewController.player = AVPlayer(URL: NSURL(string: videoInfo["url"].string!)!)
+                                self.presentViewController(self.avPlayerViewController, animated: true, completion: nil)
+                            }))
+                        }
+                    }
+                    
+                    // キャンセルボタンは何もせずにアクションシートを閉じる
+                    let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                    alertController.addAction(CanceledAction)
+                    
+                    // アクションシート表示
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
             default:
-                if let imagURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
-                    Utility.openWebView(NSURL(string: imagURL)!)
+                if let tweetURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
+                    Utility.openWebView(NSURL(string: tweetURL)!)
                     performSegueWithIdentifier("openWebView", sender: nil)
                 }
             }

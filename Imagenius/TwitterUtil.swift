@@ -37,11 +37,11 @@ class TwitterUtil {
         let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .ActionSheet)
         let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
-        for var i=0; i<accounts.count; i++ {
+        for i in 0 ..< accounts.count {
             let account = accounts[i]
             alertController.addAction(UIAlertAction(title: account.username, style: .Default, handler: { (action) -> Void in
                 // 選択したアカウントを返す
-                for var j=0; j<accounts.count; j++ {
+                for j in 0 ..< accounts.count {
                     if account == accounts[j] {
                         print(j)
                         saveData.setObject(j, forKey: Settings.Saveword.twitter)

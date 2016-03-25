@@ -34,8 +34,8 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         
         let request = NSURLRequest(URL: url)
         self.webView.loadRequest(request)
-        reloadButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "didTapReloadButton:")
-        stopButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "didTapStopButton:")
+        reloadButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(WebViewController.didTapReloadButton(_:)))
+        stopButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(WebViewController.didTapStopButton(_:)))
         self.navigationItem.rightBarButtonItem = reloadButton
     }
     // WKWebViewの設定

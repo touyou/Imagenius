@@ -34,7 +34,7 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
         if index == 0 || index == NSNotFound {
             return nil
         }
-        index--
+        index -= 1
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -42,7 +42,7 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
         if index == self.pageData.count - 1 || index == NSNotFound {
             return nil
         }
-        index++
+        index += 1
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     // 向きはPortrait限定なので常に表示されるページは一個

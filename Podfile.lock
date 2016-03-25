@@ -1,4 +1,5 @@
 PODS:
+  - AnimatedGIFImageSerialization (0.2.0)
   - DZNEmptyDataSet (1.7.3)
   - Google-Mobile-Ads-SDK (7.7.0)
   - KTCenterFlowLayout (1.1.1)
@@ -7,6 +8,7 @@ PODS:
   - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
+  - AnimatedGIFImageSerialization
   - DZNEmptyDataSet
   - Google-Mobile-Ads-SDK (~> 7.0)
   - KTCenterFlowLayout
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
+  AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   Google-Mobile-Ads-SDK: d290e523a6e2f223256abcbf8e0c778b55b1f04e
   KTCenterFlowLayout: eded079c349450dea12f7cf94b424d1bc3205519

@@ -17,14 +17,15 @@ class TimeLineViewController: MainViewController {
         }
         let successHandler: (([JSONValue]?) -> Void) = { statuses in
             guard let tweets = statuses else { return }
-            for var i = 0; i < tweets.count - 1; i++ {
-                self.tweetArray.append(tweets[i])
-            }
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
+                self.tweetArray.append(tweets[0])
                 self.maxId = tweets[0]["id_str"].string
             } else {
+                for i in 0 ..< tweets.count - 1 {
+                    self.tweetArray.append(tweets[i])
+                }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
             self.timelineTableView.reloadData()

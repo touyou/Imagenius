@@ -51,6 +51,7 @@
 		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
 		468382A01C7696FC001DC810 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829E1C7696FC001DC810 /* reply.png */; };
 		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
+		4689DFF51CA5684C006B48FF /* AnimatedGIFImageSerialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4689DFF41CA5684C006B48FF /* AnimatedGIFImageSerialization.framework */; };
 		46C25A601C7FF245003E314A /* tweet_button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A5F1C7FF245003E314A /* tweet_button_1.png */; };
 		46C25A9C1C8021C9003E314A /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A931C8021C9003E314A /* Icon-60.png */; };
 		46C25A9D1C8021C9003E314A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A941C8021C9003E314A /* Icon-72.png */; };
@@ -180,7 +181,6 @@
 		467549C71C95977E00FB3747 /* toolbar_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_forward.png; sourceTree = "<group>"; };
 		467549C91C95978900FB3747 /* toolbar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_back.png; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
-		467549D91C969D9700FB3747 /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
 		467549DC1C96ABF900FB3747 /* setting_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_icon.png; sourceTree = "<group>"; };
 		467549E01C96AF0000FB3747 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -195,6 +195,9 @@
 		4683829B1C75DF0C001DC810 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		4683829E1C7696FC001DC810 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		4683829F1C7696FC001DC810 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
+		4689DFEF1CA55DEE006B48FF /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
+		4689DFF21CA55E1F006B48FF /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
+		4689DFF41CA5684C006B48FF /* AnimatedGIFImageSerialization.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnimatedGIFImageSerialization.framework; path = "Pods/../build/Debug-iphoneos/AnimatedGIFImageSerialization.framework"; sourceTree = "<group>"; };
 		46C25A5F1C7FF245003E314A /* tweet_button_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweet_button_1.png; sourceTree = "<group>"; };
 		46C25A931C8021C9003E314A /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
 		46C25A941C8021C9003E314A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4689DFF51CA5684C006B48FF /* AnimatedGIFImageSerialization.framework in Frameworks */,
 				467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */,
 				467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */,
 				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
@@ -263,7 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				4603CC241C7DE062005DF397 /* Settings.bundle */,
-				467549D91C969D9700FB3747 /* Imagenius-Bridging-Header.h */,
+				4689DFF21CA55E1F006B48FF /* Imagenius-Bridging-Header.h */,
+				4689DFEF1CA55DEE006B48FF /* Imagenius-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4689DFF41CA5684C006B48FF /* AnimatedGIFImageSerialization.framework */,
 				467549E51C96BB1B00FB3747 /* MessageUI.framework */,
 				467549D11C969C2C00FB3747 /* RegExCategories.framework */,
 				464A80601C79EFCD006100DB /* SwifteriOS.framework */,
@@ -610,7 +616,7 @@
 		460B4A2D1C6B5CF60089CC7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = touyou;
 				TargetAttributes = {
@@ -980,6 +986,7 @@
 			baseConfigurationReference = 0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yosuke Fujii (87927WRCQ5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yosuke Fujii (87927WRCQ5)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -993,8 +1000,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8bcf3651-90ba-4bc7-bc45-11834e86008e";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1003,6 +1011,7 @@
 			baseConfigurationReference = 60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yosuke Fujii (B4S4333JDW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yosuke Fujii (B4S4333JDW)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1016,7 +1025,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1484df58-9ab8-441f-a3e7-1d0506f60fdc";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 			};
 			name = Release;
