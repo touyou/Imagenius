@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AnimatedGIFImageSerialization.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,12 +37,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>068EDD1432B2E515D1F24796C06D4F7E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5F0A3F8C8DB51FED4D46D248A45DA3DE</key>
+		<key>456D97ACD1D671CBD167CA89AA4A023E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96BCB70D7C2E281E261C2C7DBF6F8E49</key>
+		<key>BA0DA60890551A13C904EA9DDBC87799</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE43F77A145CE55A90DEAD76BE1499BE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D47A24A7046C69075211DF696A37D5F2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC3F9BF77563C4742D0513F70E29834A</key>
+		<key>D0D9F4EB811F95E953CACE9EA962DB54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
