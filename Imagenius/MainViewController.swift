@@ -29,6 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var account: ACAccount?
     var accounts = [ACAccount]()
     var imageData: NSMutableArray?
+    var gifURL: NSURL!
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -131,6 +132,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let preView = segue.destinationViewController as! ImagePreViewController
             preView.pageData = self.imageData
             self.imageData = nil
+        } else if segue.identifier == "toGifView" {
+            let gifView = segue.destinationViewController as! GIFViewController
+            gifView.url = self.gifURL
         }
     }
     
@@ -227,6 +231,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     alertController.popoverPresentationController?.sourceRect = theView.frame
                     // アクションシート表示
                     self.presentViewController(alertController, animated: true, completion: nil)
+                }
+            case "animated_gif":
+                // print(tweetArray[rowNum]["extended_entities"])
+                if let videoURL = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"][0]["url"].string {
+                    gifURL = NSURL(string: videoURL)
+                    performSegueWithIdentifier("toGifView", sender: nil)
                 }
             default:
                 if let tweetURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {

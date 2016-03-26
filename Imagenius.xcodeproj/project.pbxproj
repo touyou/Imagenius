@@ -21,6 +21,8 @@
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
 		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4632AEDC1CA61D4B003DDEF8 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632AEDB1CA61D4B003DDEF8 /* AVPlayerView.swift */; };
+		4632AEDE1CA61EF5003DDEF8 /* GIFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632AEDD1CA61EF5003DDEF8 /* GIFViewController.swift */; };
 		4647226C1C7F17E100C6378E /* TwitterLogo_white_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */; };
 		464722701C7F1C2D00C6378E /* like-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226D1C7F1C2D00C6378E /* like-action.png */; };
 		464722711C7F1C2D00C6378E /* reply-action_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226E1C7F1C2D00C6378E /* reply-action_0.png */; };
@@ -159,6 +161,8 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4632AEDB1CA61D4B003DDEF8 /* AVPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
+		4632AEDD1CA61EF5003DDEF8 /* GIFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFViewController.swift; sourceTree = "<group>"; };
 		4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterLogo_white_1.png; sourceTree = "<group>"; };
 		4647226D1C7F1C2D00C6378E /* like-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-action.png"; sourceTree = "<group>"; };
 		4647226E1C7F1C2D00C6378E /* reply-action_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply-action_0.png"; sourceTree = "<group>"; };
@@ -496,6 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				46DF35031C89CF9300CB177F /* TweetVarViewCell.swift */,
+				4632AEDB1CA61D4B003DDEF8 /* AVPlayerView.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				4603CC1A1C7DA0F7005DF397 /* ReplyViewController.swift */,
 				46DF35131C8C82E700CB177F /* ImagePreViewController.swift */,
 				46DF35191C8C848A00CB177F /* PreViewController.swift */,
+				4632AEDD1CA61EF5003DDEF8 /* GIFViewController.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -838,12 +844,14 @@
 				4603CC1B1C7DA0F7005DF397 /* ReplyViewController.swift in Sources */,
 				46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */,
 				4683829A1C75D957001DC810 /* TweetViewController.swift in Sources */,
+				4632AEDC1CA61D4B003DDEF8 /* AVPlayerView.swift in Sources */,
 				46DF35141C8C82E700CB177F /* ImagePreViewController.swift in Sources */,
 				46DF351A1C8C848A00CB177F /* PreViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
 				467549C61C9574D800FB3747 /* WebViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
+				4632AEDE1CA61EF5003DDEF8 /* GIFViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1004,7 @@
 				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1022,6 +1031,7 @@
 				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
