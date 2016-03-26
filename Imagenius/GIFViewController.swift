@@ -29,6 +29,10 @@ class GIFViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GIFViewController.playerItemDidReachEnd(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer.currentItem)
         
         videoPlayer.play()
+        
+        // tap時に再生と停止を切り替える
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GIFViewController.tapped(_:)))
+        self.contentView.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -65,5 +69,13 @@ class GIFViewController: UIViewController {
         layer.videoGravity = AVLayerVideoGravityResizeAspect
         layer.player = videoPlayer
         self.contentView.layer.addSublayer(layer)
+    }
+    
+    func tapped(sender: UITapGestureRecognizer) {
+        if self.videoPlayer.rate != 0.0 {
+            self.videoPlayer.pause()
+        } else {
+            self.videoPlayer.play()
+        }
     }
 }

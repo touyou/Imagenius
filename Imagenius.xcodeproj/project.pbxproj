@@ -53,7 +53,6 @@
 		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
 		468382A01C7696FC001DC810 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829E1C7696FC001DC810 /* reply.png */; };
 		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
-		4689DFF51CA5684C006B48FF /* AnimatedGIFImageSerialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4689DFF41CA5684C006B48FF /* AnimatedGIFImageSerialization.framework */; };
 		46C25A601C7FF245003E314A /* tweet_button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A5F1C7FF245003E314A /* tweet_button_1.png */; };
 		46C25A9C1C8021C9003E314A /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A931C8021C9003E314A /* Icon-60.png */; };
 		46C25A9D1C8021C9003E314A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A941C8021C9003E314A /* Icon-72.png */; };
@@ -238,7 +237,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4689DFF51CA5684C006B48FF /* AnimatedGIFImageSerialization.framework in Frameworks */,
 				467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */,
 				467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */,
 				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
@@ -291,6 +289,7 @@
 				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		460B4A361C6B5CF60089CC7E /* Products */ = {
 			isa = PBXGroup;
