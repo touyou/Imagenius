@@ -57,6 +57,10 @@ class TwitterUtil {
         let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(CanceledAction)
         
+        // iPad用
+        alertController.popoverPresentationController?.sourceView = present.view
+        alertController.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
+        
         // アクションシート表示
         present.presentViewController(alertController, animated: true, completion: nil)
     }

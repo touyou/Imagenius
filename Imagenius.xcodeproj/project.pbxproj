@@ -1003,6 +1003,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1027,6 +1028,7 @@
 				PROVISIONING_PROFILE = "1484df58-9ab8-441f-a3e7-1d0506f60fdc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

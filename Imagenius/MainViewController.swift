@@ -222,7 +222,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // キャンセルボタンは何もせずにアクションシートを閉じる
                     let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                     alertController.addAction(CanceledAction)
-                    
+                    // iPad用
+                    alertController.popoverPresentationController?.sourceView = self.view
+                    alertController.popoverPresentationController?.sourceRect = theView.frame
                     // アクションシート表示
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
@@ -330,6 +332,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.presentViewController(otherAlert, animated: true, completion: nil)
             }))
             alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            
+            // iPad用
+            alertController.popoverPresentationController?.sourceView = self.view
+            alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
+            
             self.presentViewController(alertController, animated: true, completion: nil)
         default:
             break
