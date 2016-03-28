@@ -44,4 +44,17 @@ class ResultViewController: UIViewController {
     @IBAction func pushCancel() {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
+    // Shareボタン
+    @IBAction func shareImage() {
+        let activityItems: [AnyObject]!
+        activityItems = [image!]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo]
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        // iPad用
+        activityVC.popoverPresentationController?.sourceView = self.view
+        activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
+        self.presentViewController(activityVC, animated: true, completion: nil)
+
+    }
 }

@@ -858,15 +858,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NWn-f9-MIw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="486"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhG-PY-JwG">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.37254901960784315" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="m7t-Yp-XeC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="画像フォルダへ保存/他のところへシェア">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareImage" destination="Bld-g7-KL5" eventType="touchUpInside" id="PT8-2Q-TlL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NWn-f9-MIw" firstAttribute="centerX" secondItem="ZBq-Sn-cmb" secondAttribute="centerX" id="0fC-wF-USX"/>
+                            <constraint firstItem="qhG-PY-JwG" firstAttribute="top" secondItem="NWn-f9-MIw" secondAttribute="bottom" id="1dH-4t-TYw"/>
                             <constraint firstItem="NWn-f9-MIw" firstAttribute="top" secondItem="8hx-cr-ZLZ" secondAttribute="bottom" id="Kij-dd-wvG"/>
                             <constraint firstItem="NWn-f9-MIw" firstAttribute="leading" secondItem="ZBq-Sn-cmb" secondAttribute="leadingMargin" constant="-20" id="eEs-hr-JgJ"/>
-                            <constraint firstItem="Fmk-Bq-JjH" firstAttribute="top" secondItem="NWn-f9-MIw" secondAttribute="bottom" id="w52-EE-4E1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qhG-PY-JwG" secondAttribute="trailing" constant="-20" id="vTR-Zz-UYo"/>
+                            <constraint firstItem="qhG-PY-JwG" firstAttribute="leading" secondItem="ZBq-Sn-cmb" secondAttribute="leadingMargin" constant="-20" id="vtc-4e-6Vo"/>
+                            <constraint firstItem="Fmk-Bq-JjH" firstAttribute="top" secondItem="qhG-PY-JwG" secondAttribute="bottom" id="xXb-J8-oo4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="選択画像" id="tSG-D7-xRz">
