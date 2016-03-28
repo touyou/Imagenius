@@ -21,6 +21,9 @@ class ReplyViewController: MainViewController {
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
+                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1]["id_str"].string {
+                    return
+                }
                 self.tweetArray.append(tweets[0])
                 self.maxId = tweets[0]["id_str"].string
             } else {

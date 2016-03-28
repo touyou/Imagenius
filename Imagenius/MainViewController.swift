@@ -369,6 +369,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let font = UIFont.systemFontOfSize(20)
         return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
     }
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        return NSAttributedString(string: "リロードする")
+    }
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        loadTweet()
+    }
     // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         Utility.openWebView(url)
