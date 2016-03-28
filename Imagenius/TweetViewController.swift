@@ -191,7 +191,7 @@ class TweetViewController: UIViewController, UITextViewDelegate {
     // アカウントの画像を切替える
     func changeAccountImage() {
         let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+            Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
         }
         swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
             if let userDict = user {

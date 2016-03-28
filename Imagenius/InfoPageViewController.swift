@@ -1,40 +1,41 @@
 //
-//  ImagePreViewController.swift
+//  InfoPageViewController.swift
 //  Imagenius
 //
-//  Created by 藤井陽介 on 2016/03/07.
+//  Created by 藤井陽介 on 2016/03/28.
 //  Copyright © 2016年 touyou. All rights reserved.
 //
 
 import UIKit
 
-class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-
-    @IBOutlet var pageControl: UIPageControl!
+class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
     var pageData: NSMutableArray!
+    var currentIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageData = NSMutableArray()
+        currentIndex = 0
+        pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_1")!)!)
+        pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_2")!)!)
+        pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_3")!)!)
+        
         self.delegate = self
         
-        let startViewController: PreViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+        let startViewController: InfoViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
         let viewControllers = [startViewController]
         self.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
         
         self.dataSource = self
         self.view.gestureRecognizers = self.gestureRecognizers
         
-        pageControl.numberOfPages = pageData.count
-        self.view.backgroundColor = UIColor.whiteColor()
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        self.view.backgroundColor = Settings.Colors.mainColor
     }
     
     // pageViewController関連----------------------------------------------------
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! PreViewController)
+        var index = self.indexOfViewController(viewController as! InfoViewController)
         if index == 0 || index == NSNotFound {
             return nil
         }
@@ -42,7 +43,7 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! PreViewController)
+        var index = self.indexOfViewController(viewController as! InfoViewController)
         if index == self.pageData.count - 1 || index == NSNotFound {
             return nil
         }
@@ -59,39 +60,31 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
     }
     // 現在地
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let viewController = pageViewController.viewControllers?.first as? PreViewController {
-            self.pageControl.currentPage = indexOfViewController(viewController)
+        if let viewController = pageViewController.viewControllers?.first as? InfoViewController {
+            currentIndex = indexOfViewController(viewController)
         }
     }
-   
-    // 画像をシェアする
-    @IBAction func shareImage() {
-        let image = UIImage(data: self.pageData[pageControl.currentPage] as! NSData)
-        let activityItems: [AnyObject]!
-        activityItems = [image!]
-        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        let excludedActivityTypes = [UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo]
-        activityVC.excludedActivityTypes = excludedActivityTypes
-        // iPad用
-        activityVC.popoverPresentationController?.sourceView = self.view
-        activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
-        self.presentViewController(activityVC, animated: true, completion: nil)
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return currentIndex
+    }
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 3
     }
     
     // Utility------------------------------------------------------------------
-    func indexOfViewController(viewController: PreViewController) -> Int {
-        if let dataObject: AnyObject = viewController.imageData {
+    func indexOfViewController(viewController: InfoViewController) -> Int {
+        if let dataObject: AnyObject = viewController.image {
             return self.pageData.indexOfObject(dataObject)
         } else {
             return NSNotFound
         }
     }
-    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> PreViewController? {
+    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> InfoViewController? {
         if self.pageData.count == 0 || index >= self.pageData.count {
             return nil
         }
-        let preViewController = storyboard.instantiateViewControllerWithIdentifier("PreViewController") as! PreViewController
-        preViewController.imageData = self.pageData[index] as! NSData
-        return preViewController
+        let infoViewController = storyboard.instantiateViewControllerWithIdentifier("InfoViewController") as! InfoViewController
+        infoViewController.image = self.pageData[index] as! NSData
+        return infoViewController
     }
 }

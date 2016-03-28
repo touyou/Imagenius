@@ -21,6 +21,9 @@
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
 		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		462037181CA92B4A00D4F01A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462037171CA92B4A00D4F01A /* InfoViewController.swift */; };
+		4620371A1CA92B8000D4F01A /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462037191CA92B8000D4F01A /* InfoPageViewController.swift */; };
+		4620371C1CA954DB00D4F01A /* InfoContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620371B1CA954DB00D4F01A /* InfoContainerViewController.swift */; };
 		4632AEDC1CA61D4B003DDEF8 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632AEDB1CA61D4B003DDEF8 /* AVPlayerView.swift */; };
 		4632AEDE1CA61EF5003DDEF8 /* GIFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632AEDD1CA61EF5003DDEF8 /* GIFViewController.swift */; };
 		4647226C1C7F17E100C6378E /* TwitterLogo_white_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */; };
@@ -160,6 +163,9 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		462037171CA92B4A00D4F01A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		462037191CA92B8000D4F01A /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
+		4620371B1CA954DB00D4F01A /* InfoContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContainerViewController.swift; sourceTree = "<group>"; };
 		4632AEDB1CA61D4B003DDEF8 /* AVPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		4632AEDD1CA61EF5003DDEF8 /* GIFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFViewController.swift; sourceTree = "<group>"; };
 		4647226B1C7F17E100C6378E /* TwitterLogo_white_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterLogo_white_1.png; sourceTree = "<group>"; };
@@ -379,6 +385,16 @@
 			name = StoryBoard;
 			sourceTree = "<group>";
 		};
+		462036D01CA917C800D4F01A /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				462037171CA92B4A00D4F01A /* InfoViewController.swift */,
+				462037191CA92B8000D4F01A /* InfoPageViewController.swift */,
+				4620371B1CA954DB00D4F01A /* InfoContainerViewController.swift */,
+			);
+			name = InfoView;
+			sourceTree = "<group>";
+		};
 		464A7E811C78299F006100DB /* icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +476,7 @@
 		46D681301C7B28B700DDB4DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				462036D01CA917C800D4F01A /* InfoView */,
 				467549DF1C96AEDA00FB3747 /* SettingView */,
 				467549C01C9574AA00FB3747 /* WebView */,
 				46DF351B1C8C84AF00CB177F /* MainView */,
@@ -836,9 +853,11 @@
 				467549E11C96AF0000FB3747 /* SettingTableViewController.swift in Sources */,
 				4683829C1C75DF0C001DC810 /* Utility.swift in Sources */,
 				46D680F11C7AED0B00DDB4DE /* TwitterUtil.swift in Sources */,
+				4620371A1CA92B8000D4F01A /* InfoPageViewController.swift in Sources */,
 				46DF35041C89CF9300CB177F /* TweetVarViewCell.swift in Sources */,
 				4603CC191C7DA0C0005DF397 /* TimeLineViewController.swift in Sources */,
 				468382981C758C86001DC810 /* ResultViewController.swift in Sources */,
+				4620371C1CA954DB00D4F01A /* InfoContainerViewController.swift in Sources */,
 				468382961C758414001DC810 /* ImageViewCell.swift in Sources */,
 				4603CC1B1C7DA0F7005DF397 /* ReplyViewController.swift in Sources */,
 				46D680F31C7AFF7A00DDB4DE /* Settings.swift in Sources */,
@@ -846,6 +865,7 @@
 				4632AEDC1CA61D4B003DDEF8 /* AVPlayerView.swift in Sources */,
 				46DF35141C8C82E700CB177F /* ImagePreViewController.swift in Sources */,
 				46DF351A1C8C848A00CB177F /* PreViewController.swift in Sources */,
+				462037181CA92B4A00D4F01A /* InfoViewController.swift in Sources */,
 				460B4A3B1C6B5CF60089CC7E /* MainViewController.swift in Sources */,
 				4683828E1C757FE2001DC810 /* ImageViewController.swift in Sources */,
 				467549C61C9574D800FB3747 /* WebViewController.swift in Sources */,

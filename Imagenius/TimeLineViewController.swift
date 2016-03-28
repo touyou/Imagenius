@@ -13,7 +13,7 @@ import Accounts
 class TimeLineViewController: MainViewController {
     override func load(moreflag: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+            Utility.simpleAlert("Error: タイムラインのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
         let successHandler: (([JSONValue]?) -> Void) = { statuses in
             guard let tweets = statuses else { return }

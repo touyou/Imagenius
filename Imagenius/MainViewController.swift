@@ -54,11 +54,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         saveData.setObject(false, forKey: Settings.Saveword.changed2)
         
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (ac)->() in
-                self.account = ac
-                self.swifter = Swifter(account: self.account!)
-                self.loadTweet()
-            })
+            performSegueWithIdentifier("showInfo", sender: nil)
         } else {
             let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
             accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
@@ -88,7 +84,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                             self.tweetArray = []
                             self.saveData.setObject(false, forKey: Settings.Saveword.changed)
                             self.saveData.setObject(true, forKey: Settings.Saveword.changed2)
-                            print("account change in did")
                             self.loadTweet()
                         }
                     }
@@ -110,7 +105,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                             self.swifter = Swifter(account: self.account!)
                             self.tweetArray = []
                             self.saveData.setObject(false, forKey: Settings.Saveword.changed2)
-                            print("account change in will")
                             self.loadTweet()
                         }
                     }
@@ -170,7 +164,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tweetArray.count <= indexPath.row || indexPath.row < 0 {
-            // Utility.simpleAlert("ローディング中にエラーが発生しました。", presentView: self)
             return UITableViewCell()
         }
         let tweet = tweetArray[indexPath.row]
@@ -317,7 +310,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 3:
             // block or spam
             let failureHandler: ((NSError) -> Void) = { error in
-                Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+                Utility.simpleAlert("Error: ブロック・通報を完了できませんでした。インターネット環境を確認してください。", presentView: self)
             }
             let successHandler: ((user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
                 self.tweetArray = []
@@ -408,7 +401,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // ユーザーのプロフ画像を読み込む
     func changeAccountImage() {
         let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert(String(error.localizedFailureReason), presentView: self)
+            Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
         }
         swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
             if let userDict = user {

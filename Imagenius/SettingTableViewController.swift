@@ -18,7 +18,7 @@ class SettingTableViewController: UITableViewController, MFMailComposeViewContro
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    let labelTexts: [NSArray] = [["アカウントを切り替える"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
+    let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +61,18 @@ class SettingTableViewController: UITableViewController, MFMailComposeViewContro
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
-            // login処理
-            TwitterUtil.loginTwitter(self, success: { (ac) -> () in
-                self.account = ac
-                self.swifter = Swifter(account: self.account!)
-                self.saveData.setObject(true, forKey: Settings.Saveword.changed)
-            })
+            switch indexPath.row {
+            case 0:// login処理
+                TwitterUtil.loginTwitter(self, success: { (ac) -> () in
+                    self.account = ac
+                    self.swifter = Swifter(account: self.account!)
+                    self.saveData.setObject(true, forKey: Settings.Saveword.changed)
+                })
+            case 1:
+                performSegueWithIdentifier("showInfo", sender: nil)
+            default:
+                break;
+            }
         case 1:
             switch indexPath.row {
             case 0:

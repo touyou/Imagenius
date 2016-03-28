@@ -26,7 +26,7 @@ class TwitterUtil {
                     self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present, success: success)
                 }
             } else {
-                Utility.simpleAlert("Error", presentView: present)
+                Utility.simpleAlert("Error: Twitterアカウントへのアクセスを許可してください。", presentView: present)
             }
         }
     }

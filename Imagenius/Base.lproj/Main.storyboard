@@ -372,6 +372,7 @@
                                             <outlet property="userIDLabel" destination="Ofx-Qw-b59" id="Yih-JV-B5Q"/>
                                             <outlet property="userImgView" destination="E1C-S7-Etc" id="eV3-KM-zfN"/>
                                             <outlet property="userLabel" destination="TsY-fq-Qds" id="yj4-Mf-sgT"/>
+                                            <segue destination="bKk-ff-2az" kind="presentation" identifier="showInfo" id="lSk-Dr-sWl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -452,6 +453,7 @@
                     <navigationItem key="navigationItem" title="設定" id="WGa-wM-HuK"/>
                     <connections>
                         <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="gMF-E4-iH0"/>
+                        <segue destination="bKk-ff-2az" kind="presentation" identifier="showInfo" id="guU-kt-TjK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-hu-nFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -462,9 +464,21 @@
         <scene sceneID="YBK-Pj-afE">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sk6-zJ-xoB" customClass="ImagePreViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="9m3-NS-PKr"/>
+                    <navigationItem key="navigationItem" id="9m3-NS-PKr">
+                        <nil key="title"/>
+                        <pageControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" id="VeU-2A-phd">
+                            <rect key="frame" x="20" y="3.5" width="524" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </pageControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7hY-Km-cFh">
+                            <connections>
+                                <action selector="shareImage" destination="sk6-zJ-xoB" id="HFK-SY-Wr4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="BCe-nZ-YFR" kind="showDetail" identifier="toImage" action="showViewController:sender:" id="Cnm-0E-bgG"/>
+                        <outlet property="pageControl" destination="VeU-2A-phd" id="SLh-68-7Py"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUK-ih-sO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -711,11 +725,12 @@
                         <segue destination="sk6-zJ-xoB" kind="show" identifier="toPreView" id="00H-L2-gAg"/>
                         <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="G3I-45-7jI"/>
                         <segue destination="Mo0-hY-THK" kind="show" identifier="toGifView" id="7hq-V6-HtB"/>
+                        <segue destination="bKk-ff-2az" kind="presentation" identifier="showInfo" id="q4p-k7-n0W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shp-g9-pc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1193" y="994"/>
+            <point key="canvasLocation" x="-1237" y="994"/>
         </scene>
         <!--Imagenius-->
         <scene sceneID="XGA-g8-8f5">
@@ -891,6 +906,97 @@
             </objects>
             <point key="canvasLocation" x="-2026.875" y="1868.6619718309857"/>
         </scene>
+        <!--Info Container View Controller-->
+        <scene sceneID="iM3-iJ-RFP">
+            <objects>
+                <viewController id="bKk-ff-2az" customClass="InfoContainerViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gtg-N4-sFm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jtd-6C-WbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="efO-hs-vS4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8k-MB-9Gt">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                                <connections>
+                                    <segue destination="YED-98-ax8" kind="embed" id="bxf-25-nK2"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAB-y1-zOq">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EgZ-te-D26"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="始める">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton" destination="bKk-ff-2az" eventType="touchUpInside" id="fJN-fg-6eg"/>
+                                    <action selector="loginButton" destination="ql7-aI-Sop" eventType="touchUpInside" id="k36-g6-ThY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="a8k-MB-9Gt" firstAttribute="top" secondItem="efO-hs-vS4" secondAttribute="topMargin" id="7lj-HW-Rx0"/>
+                            <constraint firstItem="Jtd-6C-WbB" firstAttribute="top" secondItem="SAB-y1-zOq" secondAttribute="bottom" id="ZnP-Fd-u2h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SAB-y1-zOq" secondAttribute="trailing" constant="-20" id="cka-ii-lTN"/>
+                            <constraint firstItem="a8k-MB-9Gt" firstAttribute="leading" secondItem="efO-hs-vS4" secondAttribute="leadingMargin" constant="-20" id="eiE-el-Axv"/>
+                            <constraint firstItem="SAB-y1-zOq" firstAttribute="leading" secondItem="efO-hs-vS4" secondAttribute="leadingMargin" constant="-20" id="sUi-cg-F0z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a8k-MB-9Gt" secondAttribute="trailing" constant="-20" id="tgV-Ct-Oep"/>
+                            <constraint firstItem="SAB-y1-zOq" firstAttribute="top" secondItem="a8k-MB-9Gt" secondAttribute="bottom" id="ynC-8P-uGo"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hr5-l8-BZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3318" y="2669"/>
+        </scene>
+        <!--Info Page View Controller-->
+        <scene sceneID="OPf-FP-E11">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="YED-98-ax8" customClass="InfoPageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DWJ-vK-KEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2632" y="2663"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="BzN-Xs-iKg">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" id="ql7-aI-Sop" customClass="InfoViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wU6-Vl-T7Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="mMx-jr-ow1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NCN-Wx-LhN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9XN-xE-f4e">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.37254901960784315" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="9XN-xE-f4e" secondAttribute="trailing" constant="-20" id="4QZ-7R-oEa"/>
+                            <constraint firstItem="9XN-xE-f4e" firstAttribute="leading" secondItem="NCN-Wx-LhN" secondAttribute="leadingMargin" constant="-20" id="5nU-LZ-vje"/>
+                            <constraint firstItem="9XN-xE-f4e" firstAttribute="top" secondItem="NCN-Wx-LhN" secondAttribute="topMargin" id="pfa-Mj-J7p"/>
+                            <constraint firstItem="mMx-jr-ow1" firstAttribute="top" secondItem="9XN-xE-f4e" secondAttribute="bottom" id="ttG-JE-w2z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="9XN-xE-f4e" id="Grv-kN-IKB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GHq-Oa-4xC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1986" y="2663"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cancel_button" width="50" height="50"/>
@@ -905,8 +1011,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="xcG-Qk-skd"/>
         <segue reference="WQ3-wt-xNC"/>
-        <segue reference="ykC-G6-UoE"/>
         <segue reference="qxN-ce-oBJ"/>
-        <segue reference="pVq-SY-5Du"/>
+        <segue reference="ykC-G6-UoE"/>
+        <segue reference="gMF-E4-iH0"/>
+        <segue reference="guU-kt-TjK"/>
     </inferredMetricsTieBreakers>
 </document>
