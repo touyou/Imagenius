@@ -3,6 +3,9 @@ PODS:
   - Google-Mobile-Ads-SDK (7.7.0)
   - KTCenterFlowLayout (1.1.1)
   - RegExCategories (1.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (1.13.4)
 
@@ -11,6 +14,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 7.0)
   - KTCenterFlowLayout
   - RegExCategories (~> 1.0)
+  - SDWebImage
   - SWTableViewCell (~> 0.3.7)
   - TTTAttributedLabel
 
@@ -19,6 +23,7 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: d290e523a6e2f223256abcbf8e0c778b55b1f04e
   KTCenterFlowLayout: eded079c349450dea12f7cf94b424d1bc3205519
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 

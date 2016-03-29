@@ -56,10 +56,6 @@
 		4683829C1C75DF0C001DC810 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4683829B1C75DF0C001DC810 /* Utility.swift */; };
 		468382A01C7696FC001DC810 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829E1C7696FC001DC810 /* reply.png */; };
 		468382A11C7696FC001DC810 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4683829F1C7696FC001DC810 /* timeline.png */; };
-		469F18B01CAA844D00C015EF /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F18AC1CAA844D00C015EF /* RxBlocking.framework */; };
-		469F18B11CAA844D00C015EF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F18AD1CAA844D00C015EF /* RxCocoa.framework */; };
-		469F18B21CAA844D00C015EF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F18AE1CAA844D00C015EF /* RxSwift.framework */; };
-		469F18B51CAA84D000C015EF /* RxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F18B41CAA84D000C015EF /* RxTests.framework */; };
 		46C25A601C7FF245003E314A /* tweet_button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A5F1C7FF245003E314A /* tweet_button_1.png */; };
 		46C25A9C1C8021C9003E314A /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A931C8021C9003E314A /* Icon-60.png */; };
 		46C25A9D1C8021C9003E314A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C25A941C8021C9003E314A /* Icon-72.png */; };
@@ -216,6 +212,11 @@
 		469F18AE1CAA844D00C015EF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		469F18AF1CAA844D00C015EF /* RxTests.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxTests.framework.dSYM; path = Carthage/Build/iOS/RxTests.framework.dSYM; sourceTree = "<group>"; };
 		469F18B41CAA84D000C015EF /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
+		469F18B81CAAAB8100C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/SDWebImage.framework"; sourceTree = "<group>"; };
+		469F18BE1CAAAB8F00C015EF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		469F18C01CAAAB9600C015EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
 		46C25A5F1C7FF245003E314A /* tweet_button_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweet_button_1.png; sourceTree = "<group>"; };
 		46C25A931C8021C9003E314A /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
 		46C25A941C8021C9003E314A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -252,10 +253,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				469F18B51CAA84D000C015EF /* RxTests.framework in Frameworks */,
-				469F18B01CAA844D00C015EF /* RxBlocking.framework in Frameworks */,
-				469F18B11CAA844D00C015EF /* RxCocoa.framework in Frameworks */,
-				469F18B21CAA844D00C015EF /* RxSwift.framework in Frameworks */,
 				467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */,
 				467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */,
 				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
@@ -569,6 +566,11 @@
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				469F18D51CAABA7A00C015EF /* SDWebImage.framework */,
+				469F18C21CAAACC800C015EF /* XCTest.framework */,
+				469F18C01CAAAB9600C015EF /* MapKit.framework */,
+				469F18BE1CAAAB8F00C015EF /* ImageIO.framework */,
+				469F18B81CAAAB8100C015EF /* SDWebImage.framework */,
 				469F18B41CAA84D000C015EF /* RxTests.framework */,
 				469F18AC1CAA844D00C015EF /* RxBlocking.framework */,
 				469F18AD1CAA844D00C015EF /* RxCocoa.framework */,
@@ -809,10 +811,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxTests.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			outputPaths = (
 			);

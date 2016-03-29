@@ -10,6 +10,7 @@ import UIKit
 import SwifteriOS
 import TTTAttributedLabel
 import SWTableViewCell
+import SDWebImage
 
 class TweetVarViewCell: SWTableViewCell {
     @IBOutlet var tweetLabel: TTTAttributedLabel!
@@ -75,12 +76,9 @@ class TweetVarViewCell: SWTableViewCell {
         self.userIDLabel.text = "@\(userID)"
         let userImgPath:String = userInfo["profile_image_url_https"].string!
         let userImgURL:NSURL = NSURL(string: userImgPath)!
-        let userImgPathData:NSData? = NSData(contentsOfURL: userImgURL)
-        if userImgPathData != nil {
-            self.userImgView.image = UIImage(data: userImgPathData!)
-        } else {
-            self.userImgView.image = UIImage(named: "user_empty")
-        }
+        
+        self.userImgView.sd_setImageWithURL(userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.RetryFailed)
+        
         self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
         self.userImgView.clipsToBounds = true
         
@@ -99,8 +97,9 @@ class TweetVarViewCell: SWTableViewCell {
         tweetSubView.layer.borderWidth = 0.19
         let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
         let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
-        let tweetImgPathData:NSData = NSData(contentsOfURL: tweetImgURL)!
-        self.tweetImgView.image = UIImage(data: tweetImgPathData)!
+        
+        self.tweetImgView.sd_setImageWithURL(tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
+        
         switch tweet["extended_entities"]["media"][0]["type"].string! {
         case "photo":
             imageCountLabel.text = "\(imageCount)枚の写真"
