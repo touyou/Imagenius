@@ -10,6 +10,7 @@ target 'Imagenius' do
     pod 'Google-Mobile-Ads-SDK', '~> 7.0'
     pod 'KTCenterFlowLayout'
     pod 'RegExCategories', '~> 1.0'
+    
 end
 
 target 'ImageniusTests' do
