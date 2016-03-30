@@ -198,7 +198,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             case "photo":
                 let tempData = NSMutableArray()
                 for data in tweetArray[rowNum]["extended_entities"]["media"].array! {
-                    tempData.addObject(NSURL(string: data["media_url"].string!)!)
+                    tempData.addObject(NSData(contentsOfURL: NSURL(string: data["media_url"].string!)!)!)
                 }
                 imageData = tempData
                 performSegueWithIdentifier("toPreView", sender: nil)

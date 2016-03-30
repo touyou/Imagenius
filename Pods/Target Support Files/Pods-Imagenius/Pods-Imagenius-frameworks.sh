@@ -86,6 +86,9 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Imagenius/DZNEmptyDataSet.framework"
   install_framework "Pods-Imagenius/KTCenterFlowLayout.framework"
+  install_framework "Pods-Imagenius/ReactiveFoundation.framework"
+  install_framework "Pods-Imagenius/ReactiveKit.framework"
+  install_framework "Pods-Imagenius/ReactiveUIKit.framework"
   install_framework "Pods-Imagenius/RegExCategories.framework"
   install_framework "Pods-Imagenius/SDWebImage.framework"
   install_framework "Pods-Imagenius/SWTableViewCell.framework"
@@ -94,6 +97,9 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Imagenius/DZNEmptyDataSet.framework"
   install_framework "Pods-Imagenius/KTCenterFlowLayout.framework"
+  install_framework "Pods-Imagenius/ReactiveFoundation.framework"
+  install_framework "Pods-Imagenius/ReactiveKit.framework"
+  install_framework "Pods-Imagenius/ReactiveUIKit.framework"
   install_framework "Pods-Imagenius/RegExCategories.framework"
   install_framework "Pods-Imagenius/SDWebImage.framework"
   install_framework "Pods-Imagenius/SWTableViewCell.framework"

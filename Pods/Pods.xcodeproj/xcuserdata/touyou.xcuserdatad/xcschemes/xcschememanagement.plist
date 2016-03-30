@@ -19,6 +19,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ReactiveFoundation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReactiveKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReactiveUIKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RegExCategories.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +57,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11948217B72A1A1EAD4224B1074ACA13</key>
+		<key>0DC099CEA4C25367F107FCE17E6FCBE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0DCB1984DB3E1F8F128A6E6C135052D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>10156E666B0981C1B49E47D569ACC8D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,17 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>354EF33BE67DC7035164F3A623AA7FF7</key>
+		<key>3BC52F73939A73AA4D3812F9920897D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>414A3B605AA2200CD4DD9CA19A818734</key>
+		<key>4599CF6EA6D5EBDD45DDF655F088ECCF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C70D01F7F85456B376FAAEC85753686</key>
+		<key>6239B70BE68C6C136CC82C9AE16746CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B39F2B93FFEE5C08F34AA64DD2632FA4</key>
+		<key>CC8128A528083A1B56A1E107943891D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED79474E3CF269184044B28A3FA89234</key>
 		<dict>
 			<key>primary</key>
 			<true/>
