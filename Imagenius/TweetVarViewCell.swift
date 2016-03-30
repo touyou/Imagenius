@@ -35,6 +35,10 @@ class TweetVarViewCell: SWTableViewCell {
         self.tweetImgView.userInteractionEnabled = true
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     // TTTAttributedLabel関連----------------------------------------------------
     // mention link
     func highrightMentionsInLabel(label: TTTAttributedLabel) {
