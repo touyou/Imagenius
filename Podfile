@@ -11,9 +11,10 @@ target 'Imagenius' do
     pod 'KTCenterFlowLayout'
     pod 'RegExCategories', '~> 1.0'
     pod 'SDWebImage'
-    pod 'ReactiveKit','~>1.0'
-    pod 'ReactiveUIKit','~>1.0'
-    pod 'ReactiveFoundation', '~>1.0'
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'RxBlocking'
+    pod 'RxTests'
 end
 
 target 'ImageniusTests' do
