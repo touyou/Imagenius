@@ -1117,7 +1117,7 @@
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8bcf3651-90ba-4bc7-bc45-11834e86008e";
@@ -1145,7 +1145,7 @@
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1484df58-9ab8-441f-a3e7-1d0506f60fdc";

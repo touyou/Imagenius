@@ -79,7 +79,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0c-fw-qO3">
                                                         <rect key="frame" x="10" y="9" width="10" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.66666666666666663" green="0.72156862745098038" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -789,7 +789,7 @@
             </objects>
             <point key="canvasLocation" x="-2026.875" y="994.01408450704218"/>
         </scene>
-        <!--画像検索結果-->
+        <!--Tiqav Image View Controller-->
         <scene sceneID="a8w-l9-bB4">
             <objects>
                 <viewController id="c2W-tc-XfD" customClass="TiqavImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
@@ -839,7 +839,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="EJg-OS-P6V" secondAttribute="trailing" constant="-20" id="x4F-Ea-8pt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="画像検索結果" id="QXy-jl-Wlk">
+                    <navigationItem key="navigationItem" id="QXy-jl-Wlk">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="FE5-hI-HeI">
                             <connections>
                                 <action selector="cancelButton" destination="c2W-tc-XfD" id="fRw-Pp-Yir"/>

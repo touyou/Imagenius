@@ -25,15 +25,13 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
     
     var searchWord: String = ""
     var selectedImage: UIImage?
+    var selectedData: NSData?
     var imageSize: CGFloat!
+    var delegate: TweetViewControllerDelegate!
     
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if saveData.objectForKey(Settings.Saveword.search) != nil {
-            searchWord = saveData.objectForKey(Settings.Saveword.search) as! String
-        }
         
         // AutoLayout対応のためセル調整
         imageSize = (self.view.frame.width) / 4
@@ -43,6 +41,8 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
         flowLayout.minimumLineSpacing = 0
         flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
         imageCollectionView.collectionViewLayout = flowLayout
+        
+        self.title = "\(searchWord)の検索結果"
         
         // DataSourceとDelegateの設定
         imageCollectionView.dataSource = viewModel
@@ -62,10 +62,24 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
             .addDisposableTo(disposeBag)
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        let imageCache: SDImageCache = SDImageCache()
+        imageCache.clearMemory()
+        imageCache.clearDisk()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        let imageCache: SDImageCache = SDImageCache()
+        imageCache.clearMemory()
+        imageCache.clearDisk()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toResultView" {
             let resultView = segue.destinationViewController as! ResultViewController
             resultView.image = self.selectedImage
+            resultView.data = self.selectedData
+            resultView.delegate = self.delegate
         }
     }
     
@@ -88,12 +102,13 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
             (a: Int, b: Int) -> Void in
             // 何回もクリックされるのを防ぐ
             self.imageCollectionView.allowsSelection = false
-            self.navigationController?.title = "loading..."
+            self.title = "loading..."
             }, completed: {
             (a: UIImage!, b: NSData!, c: NSError!, d: Bool!) -> Void in
             self.selectedImage = a
+            self.selectedData = b
             self.imageCollectionView.allowsSelection = true
-            self.navigationController?.title = "画像検索結果"
+            self.title = "\(self.searchWord)の検索結果"
             self.performSegueWithIdentifier("toResultView", sender: nil)
         })
     }

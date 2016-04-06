@@ -12,8 +12,13 @@ import Accounts
 import GoogleMobileAds
 import RxSwift
 import RxCocoa
+import SDWebImage
 
-class TweetViewController: UIViewController {
+protocol TweetViewControllerDelegate {
+    func changeImage(image: UIImage, data: NSData)
+}
+
+class TweetViewController: UIViewController, TweetViewControllerDelegate {
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var placeHolderLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
@@ -30,6 +35,7 @@ class TweetViewController: UIViewController {
     var replyStr: String?
     var replyID: String?
     var tweetImage: UIImage?
+    var tweetImageData: NSData?
     var accountImg: UIImage?
     var swifter:Swifter!
     var account: ACAccount?
@@ -61,10 +67,12 @@ class TweetViewController: UIViewController {
                 }
             }
         }
+        // レイアウト
         if replyStr != nil {
             tweetTextView.text = replyStr
         }
         searchField.placeholder = "画像を検索する"
+        tweetImageHeight.constant = 0
         
         // RxSwiftで文字数を監視
         tweetTextView.rx_text
@@ -98,15 +106,6 @@ class TweetViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
-        if saveData.objectForKey(Settings.Saveword.image) != nil {
-            tweetImageHeight.constant = 110
-            tweetImage = UIImage(data: (saveData.objectForKey(Settings.Saveword.image) as? NSData)!)
-            tweetImageView.image = tweetImage
-            saveData.setObject(nil, forKey: Settings.Saveword.image)
-        } else {
-            tweetImageHeight.constant = 0
-        }
         
         if accountImg == nil {
             self.accountImage.setTitle("login", forState: .Normal)
@@ -115,6 +114,21 @@ class TweetViewController: UIViewController {
         searchField.text = ""
         
         self.view.layoutIfNeeded()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        let imageCache: SDImageCache = SDImageCache()
+        imageCache.clearMemory()
+        imageCache.clearDisk()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toImageView" {
+            let navViewCtrl: UINavigationController = segue.destinationViewController as! UINavigationController
+            let tiqavViewCtrl: TiqavImageViewController = navViewCtrl.viewControllers[0] as! TiqavImageViewController
+            tiqavViewCtrl.searchWord = searchField.text!
+            tiqavViewCtrl.delegate = self
+        }
     }
     
     // ボタン関係-----------------------------------------------------------------
@@ -135,7 +149,6 @@ class TweetViewController: UIViewController {
     // 画像検索へ
     @IBAction func searchButton() {
         if searchField.text != "" {
-            saveData.setObject(searchField.text!, forKey: Settings.Saveword.search)
             performSegueWithIdentifier("toImageView", sender: nil)
         } else {
             Utility.simpleAlert("検索ワードを入力してください。", presentView: self)
@@ -153,17 +166,17 @@ class TweetViewController: UIViewController {
             Utility.simpleAlert("画像かテキストを入力してください。", presentView: self)
             return
         }
-        if (tweetText == nil || tweetText == "") && tweetImage != nil {
-            swifter.postStatusUpdate("", media: UIImagePNGRepresentation(tweetImage!)!)
+        if (tweetText == nil || tweetText == "") && tweetImageData != nil {
+            swifter.postStatusUpdate("", media: tweetImageData!)
             dismissViewControllerAnimated(true, completion: nil)
             return
         }
-        if tweetImage == nil {
+        if tweetImageData == nil {
             swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID)
             dismissViewControllerAnimated(true, completion: nil)
             return
         }
-        swifter.postStatusUpdate(tweetText!, media: UIImagePNGRepresentation(tweetImage!)!, inReplyToStatusID: replyID)
+        swifter.postStatusUpdate(tweetText!, media: tweetImageData!, inReplyToStatusID: replyID)
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -191,5 +204,12 @@ class TweetViewController: UIViewController {
                 }
             }
         }, failure: failureHandler)
+    }
+    // ツイートに添付する画像
+    func changeImage(image: UIImage, data: NSData) {
+        tweetImageHeight.constant = 110
+        tweetImage = image
+        tweetImageView.image = tweetImage
+        tweetImageData = data
     }
 }

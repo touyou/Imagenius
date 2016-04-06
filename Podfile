@@ -14,7 +14,7 @@ target 'Imagenius' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxBlocking'
-    pod 'RxTests'
+#    pod 'RxTests'
 end
 
 target 'ImageniusTests' do

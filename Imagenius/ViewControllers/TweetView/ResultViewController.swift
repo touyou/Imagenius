@@ -12,6 +12,8 @@ class ResultViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
     var image: UIImage?
+    var data: NSData?
+    var delegate: TweetViewControllerDelegate!
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -33,12 +35,9 @@ class ResultViewController: UIViewController {
     // ボタン関連-----------------------------------------------------------------
     // OKボタンのとき
     @IBAction func pushOK() {
-        let imageData:NSData = UIImagePNGRepresentation(image!)!
-        saveData.setObject(imageData, forKey: Settings.Saveword.image)
-        if saveData.objectForKey(Settings.Saveword.search) != nil {
-            saveData.setObject(nil, forKey: Settings.Saveword.search)
-        }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: {
+            self.delegate.changeImage(self.image!, data: self.data!)
+        })
     }
     // Cancelボタンのとき
     @IBAction func pushCancel() {

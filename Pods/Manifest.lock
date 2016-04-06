@@ -8,8 +8,6 @@ PODS:
   - RxCocoa (2.3.1):
     - RxSwift (~> 2.3.1)
   - RxSwift (2.3.1)
-  - RxTests (2.3.1):
-    - RxSwift (~> 2.3.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -24,7 +22,6 @@ DEPENDENCIES:
   - RxBlocking
   - RxCocoa
   - RxSwift
-  - RxTests
   - SDWebImage
   - SWTableViewCell (~> 0.3.7)
   - TTTAttributedLabel
@@ -37,7 +34,6 @@ SPEC CHECKSUMS:
   RxBlocking: 84fd81865a641a3843b33bae7b8315e78ddbd383
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
-  RxTests: 86e059f7257a92be9baf124975c71297555daf53
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f

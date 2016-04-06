@@ -14,10 +14,12 @@ import DZNEmptyDataSet
 import SWTableViewCell
 import AVKit
 import AVFoundation
+import SDWebImage
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
     @IBOutlet var timelineTableView: UITableView!
     
+    var viewModel = MainViewModel()
     var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [JSONValue] = []
     var swifter: Swifter!
@@ -25,7 +27,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var replyID: String?
     var replyStr: String?
     var refreshControl: UIRefreshControl!
-    var accountImg: UIImage?
     var account: ACAccount?
     var accounts = [ACAccount]()
     var imageData: NSMutableArray?
@@ -37,17 +38,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.timelineTableView.estimatedRowHeight = 200
-        self.timelineTableView.rowHeight = UITableViewAutomaticDimension
-        self.timelineTableView.emptyDataSetDelegate = self
-        self.timelineTableView.emptyDataSetSource = self
+        timelineTableView.estimatedRowHeight = 200
+        timelineTableView.rowHeight = UITableViewAutomaticDimension
+        timelineTableView.emptyDataSetDelegate = self
+        timelineTableView.emptyDataSetSource = self
+        timelineTableView.dataSource = viewModel
         // cellを選択不可に
-        self.timelineTableView.allowsSelection = false
-        self.timelineTableView.tableFooterView = UIView()
+        timelineTableView.allowsSelection = false
+        timelineTableView.tableFooterView = UIView()
+        
         
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
         refreshControl.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
         saveData.setObject(false, forKey: Settings.Saveword.changed)
@@ -68,6 +70,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
+        
+        viewModel.setViewController(self)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -113,13 +117,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        let imageCache: SDImageCache = SDImageCache()
+        imageCache.clearMemory()
+        imageCache.clearDisk()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toTweetView" {
             let tweetView = segue.destinationViewController as! TweetViewController
-            tweetView.accountImg = self.accountImg
             tweetView.replyID = self.replyID
             tweetView.replyStr = self.replyStr
-            self.accountImg = nil
             self.replyID = nil
             self.replyStr = nil
         } else if segue.identifier == "toPreView" {
@@ -140,96 +148,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // ボタン関連-----------------------------------------------------------------
     // ツイート編集画面に行く前にアカウント画像を取得しておく
     @IBAction func pushTweet() {
-        changeAccountImage()
         performSegueWithIdentifier("toTweetView", sender: nil)
     }
     
     
     // TableView関連-------------------------------------------------------------
-    // 基本設定三つ
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweetArray.count
-    }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tweetArray.count <= indexPath.row || indexPath.row < 0 {
-            return UITableViewCell()
-        }
-        let tweet = tweetArray[indexPath.row]
-        let favorited = tweet["favorited"].bool!
-        let retweeted = tweet["retweeted"].bool!
-        
-        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
-        cell.tweetLabel.delegate = self
-        cell.setOutlet(tweet, tweetHeight: self.view.bounds.width / 1.8)
-        
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.tapped(_:)))
-        cell.tweetImgView.addGestureRecognizer(tapGesture)
-        cell.tweetImgView.tag = indexPath.row
-        
-        if (self.tweetArray.count - 1) == indexPath.row && self.maxId != "" {
-            self.loadMore()
-        }
-        cell.rightUtilityButtons = self.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
-        cell.leftUtilityButtons = self.leftButtons() as [AnyObject]
-        cell.delegate = self
-        cell.layoutIfNeeded()
-        return cell
-    }
-    // imageViewがタップされたら画像のURLを開く
-    func tapped(sender: UITapGestureRecognizer) {
-        if let theView = sender.view {
-            let rowNum = theView.tag
-            if tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string == nil {
-                
-            }
-            switch tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string! {
-            case "photo":
-                let tempData = NSMutableArray()
-                for data in tweetArray[rowNum]["extended_entities"]["media"].array! {
-                    tempData.addObject(NSData(contentsOfURL: NSURL(string: data["media_url"].string!)!)!)
-                }
-                imageData = tempData
-                performSegueWithIdentifier("toPreView", sender: nil)
-            case "video":
-                if let videoArray = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"].array {
-                    let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
-                    for i in 0 ..< videoArray.count {
-                        let videoInfo = videoArray[i]
-                        if videoInfo["bitrate"].integer != nil {
-                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .Default, handler: { (action) -> Void in
-                                self.avPlayerViewController = AVPlayerViewController()
-                                self.avPlayerViewController.player = AVPlayer(URL: NSURL(string: videoInfo["url"].string!)!)
-                                self.presentViewController(self.avPlayerViewController, animated: true, completion: nil)
-                            }))
-                        }
-                    }
-                    
-                    // キャンセルボタンは何もせずにアクションシートを閉じる
-                    let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                    alertController.addAction(CanceledAction)
-                    // iPad用
-                    alertController.popoverPresentationController?.sourceView = self.view
-                    alertController.popoverPresentationController?.sourceRect = theView.frame
-                    // アクションシート表示
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                }
-            case "animated_gif":
-                // print(tweetArray[rowNum]["extended_entities"])
-                if let videoURL = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"][0]["url"].string {
-                    gifURL = NSURL(string: videoURL)
-                    performSegueWithIdentifier("toGifView", sender: nil)
-                }
-            default:
-                if let tweetURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
-                    Utility.openWebView(NSURL(string: tweetURL)!)
-                    performSegueWithIdentifier("openWebView", sender: nil)
-                }
-            }
-        }
-    }
     // SWTableViewCell関連
     // 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool) -> NSArray {
@@ -354,6 +277,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         }
     }
+    
+    
     // DZNEmptyDataSetの設定
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
@@ -366,6 +291,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
         loadTweet()
     }
+    
+    
     // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         Utility.openWebView(url)
@@ -394,18 +321,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if swifter != nil {
             load(true)
         }
-    }
-    // ユーザーのプロフ画像を読み込む
-    func changeAccountImage() {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
-        }
-        swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
-            if let userDict = user {
-                if let userImage = userDict["profile_image_url_https"] {
-                    self.accountImg = UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!
-                }
-            }
-            }, failure: failureHandler)
     }
 }

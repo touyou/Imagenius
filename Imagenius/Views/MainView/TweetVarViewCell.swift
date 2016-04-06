@@ -116,6 +116,4 @@ class TweetVarViewCell: SWTableViewCell {
         }
         self.layoutIfNeeded()
     }
-    
-    // Utility------------------------------------------------------------------
 }

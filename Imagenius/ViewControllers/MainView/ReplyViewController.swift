@@ -32,6 +32,7 @@ class ReplyViewController: MainViewController {
                 }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
+            self.viewModel.tweetArray = self.tweetArray
             self.timelineTableView.reloadData()
         }
         if !moreflag {
