@@ -77,12 +77,14 @@
 		468722C61CB260C400DEF2DB /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722C01CB260C400DEF2DB /* PreViewController.swift */; };
 		468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722C11CB260C400DEF2DB /* ReplyViewController.swift */; };
 		468722C81CB260C400DEF2DB /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722C21CB260C400DEF2DB /* TimeLineViewController.swift */; };
-		468722CC1CB260F400DEF2DB /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722C91CB260F400DEF2DB /* ImageViewController.swift */; };
+		468722CC1CB260F400DEF2DB /* TiqavImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */; };
 		468722CD1CB260F400DEF2DB /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722CA1CB260F400DEF2DB /* ResultViewController.swift */; };
 		468722CE1CB260F400DEF2DB /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722CB1CB260F400DEF2DB /* TweetViewController.swift */; };
 		468722D11CB2611400DEF2DB /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722CF1CB2611400DEF2DB /* AVPlayerView.swift */; };
 		468722D21CB2611400DEF2DB /* TweetVarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */; };
 		468722D41CB2612F00DEF2DB /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722D31CB2612F00DEF2DB /* ImageViewCell.swift */; };
+		468722E31CB4C5A500DEF2DB /* TiqavImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */; };
+		468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,12 +227,14 @@
 		468722C01CB260C400DEF2DB /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreViewController.swift; path = ViewControllers/MainView/PreViewController.swift; sourceTree = "<group>"; };
 		468722C11CB260C400DEF2DB /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReplyViewController.swift; path = ViewControllers/MainView/ReplyViewController.swift; sourceTree = "<group>"; };
 		468722C21CB260C400DEF2DB /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLineViewController.swift; path = ViewControllers/MainView/TimeLineViewController.swift; sourceTree = "<group>"; };
-		468722C91CB260F400DEF2DB /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewController.swift; path = ViewControllers/TweetView/ImageViewController.swift; sourceTree = "<group>"; };
+		468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageViewController.swift; path = ViewControllers/TweetView/TiqavImageViewController.swift; sourceTree = "<group>"; };
 		468722CA1CB260F400DEF2DB /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultViewController.swift; path = ViewControllers/TweetView/ResultViewController.swift; sourceTree = "<group>"; };
 		468722CB1CB260F400DEF2DB /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetViewController.swift; path = ViewControllers/TweetView/TweetViewController.swift; sourceTree = "<group>"; };
 		468722CF1CB2611400DEF2DB /* AVPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerView.swift; path = Views/MainView/AVPlayerView.swift; sourceTree = "<group>"; };
 		468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetVarViewCell.swift; path = Views/MainView/TweetVarViewCell.swift; sourceTree = "<group>"; };
 		468722D31CB2612F00DEF2DB /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewCell.swift; path = Views/ImageView/ImageViewCell.swift; sourceTree = "<group>"; };
+		468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageViewModel.swift; path = ViewModels/TweetView/TiqavImageViewModel.swift; sourceTree = "<group>"; };
+		468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageModel.swift; path = Models/TweetView/TiqavImageModel.swift; sourceTree = "<group>"; };
 		4689DFEF1CA55DEE006B48FF /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
 		4689DFF21CA55E1F006B48FF /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
 		4689DFF41CA5684C006B48FF /* AnimatedGIFImageSerialization.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnimatedGIFImageSerialization.framework; path = "Pods/../build/Debug-iphoneos/AnimatedGIFImageSerialization.framework"; sourceTree = "<group>"; };
@@ -321,7 +325,10 @@
 			isa = PBXGroup;
 			children = (
 				461B7F401C8926BD00419759 /* StoryBoard */,
-				46D681321C7B293200DDB4DE /* Models */,
+				468722DF1CB4C3DA00DEF2DB /* Utility */,
+				46D681321C7B293200DDB4DE /* Constant */,
+				468722E01CB4C40200DEF2DB /* ViewModels */,
+				468722E11CB4C41600DEF2DB /* Models */,
 				46D681301C7B28B700DDB4DE /* ViewControllers */,
 				46D681311C7B290200DDB4DE /* Views */,
 				4683829D1C7696CD001DC810 /* Resources */,
@@ -483,6 +490,31 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		468722DF1CB4C3DA00DEF2DB /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				468722AE1CB2603D00DEF2DB /* TwitterUtil.swift */,
+				468722AF1CB2603D00DEF2DB /* Utility.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		468722E01CB4C40200DEF2DB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		468722E11CB4C41600DEF2DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		46D681301C7B28B700DDB4DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,14 +536,12 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		46D681321C7B293200DDB4DE /* Models */ = {
+		46D681321C7B293200DDB4DE /* Constant */ = {
 			isa = PBXGroup;
 			children = (
 				468722AD1CB2603D00DEF2DB /* Settings.swift */,
-				468722AE1CB2603D00DEF2DB /* TwitterUtil.swift */,
-				468722AF1CB2603D00DEF2DB /* Utility.swift */,
 			);
-			name = Models;
+			name = Constant;
 			sourceTree = "<group>";
 		};
 		46D681331C7B2B0000DDB4DE /* ImageView */ = {
@@ -547,7 +577,7 @@
 		46DF351C1C8C84E000CB177F /* TweetView */ = {
 			isa = PBXGroup;
 			children = (
-				468722C91CB260F400DEF2DB /* ImageViewController.swift */,
+				468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */,
 				468722CA1CB260F400DEF2DB /* ResultViewController.swift */,
 				468722CB1CB260F400DEF2DB /* TweetViewController.swift */,
 			);
@@ -874,6 +904,7 @@
 				468722BC1CB2609100DEF2DB /* WebViewController.swift in Sources */,
 				468722D21CB2611400DEF2DB /* TweetVarViewCell.swift in Sources */,
 				468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */,
+				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
 				468722B61CB2606600DEF2DB /* InfoContainerViewController.swift in Sources */,
 				468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */,
 				468722C81CB260C400DEF2DB /* TimeLineViewController.swift in Sources */,
@@ -882,13 +913,14 @@
 				468722B11CB2603D00DEF2DB /* TwitterUtil.swift in Sources */,
 				468722C51CB260C400DEF2DB /* MainViewController.swift in Sources */,
 				468722B21CB2603D00DEF2DB /* Utility.swift in Sources */,
+				468722E31CB4C5A500DEF2DB /* TiqavImageViewModel.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
 				468722BA1CB2607C00DEF2DB /* SettingTableViewController.swift in Sources */,
 				468722B01CB2603D00DEF2DB /* Settings.swift in Sources */,
 				468722C31CB260C400DEF2DB /* GIFViewController.swift in Sources */,
 				468722CE1CB260F400DEF2DB /* TweetViewController.swift in Sources */,
 				468722B81CB2606600DEF2DB /* InfoViewController.swift in Sources */,
-				468722CC1CB260F400DEF2DB /* ImageViewController.swift in Sources */,
+				468722CC1CB260F400DEF2DB /* TiqavImageViewController.swift in Sources */,
 				468722D41CB2612F00DEF2DB /* ImageViewCell.swift in Sources */,
 				468722C41CB260C400DEF2DB /* ImagePreViewController.swift in Sources */,
 			);

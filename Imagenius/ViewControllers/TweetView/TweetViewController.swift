@@ -10,9 +10,11 @@ import UIKit
 import SwifteriOS
 import Accounts
 import GoogleMobileAds
+import RxSwift
+import RxCocoa
 
-class TweetViewController: UIViewController, UITextViewDelegate {
-    // @IBOutlet var countLabel: UILabel!
+class TweetViewController: UIViewController {
+    @IBOutlet var countLabel: UILabel!
     @IBOutlet var placeHolderLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
     @IBOutlet var searchField: UITextField!
@@ -35,6 +37,7 @@ class TweetViewController: UIViewController, UITextViewDelegate {
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let disposeBag = DisposeBag()
     
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
@@ -60,11 +63,28 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         }
         if replyStr != nil {
             tweetTextView.text = replyStr
-            placeHolderLabel.text = nil
-        } else {
-            placeHolderLabel.text = "何をつぶやく？"
         }
         searchField.placeholder = "画像を検索する"
+        
+        // RxSwiftで文字数を監視
+        tweetTextView.rx_text
+            .map { "\($0.characters.count)" }
+            .bindTo(countLabel.rx_text)
+            .addDisposableTo(disposeBag)
+        tweetTextView.rx_text
+            .map {
+                if $0.characters.count == 0 {
+                    self.placeHolderLabel.text = "何をつぶやく？"
+                } else if $0.characters.count > self.MAX_WORD {
+                    self.placeHolderLabel.text = nil
+                    self.countLabel.textColor = Settings.Colors.mainColor
+                } else {
+                    self.placeHolderLabel.text = nil
+                    self.countLabel.textColor = Settings.Colors.selectedColor
+                }
+            }
+            .subscribe {}
+            .addDisposableTo(disposeBag)
         
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
@@ -94,19 +114,8 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         
         searchField.text = ""
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(TweetViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(TweetViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
         self.view.layoutIfNeeded()
     }
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
     
     // ボタン関係-----------------------------------------------------------------
     // 投稿せずに終了
@@ -164,27 +173,6 @@ class TweetViewController: UIViewController, UITextViewDelegate {
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         view.endEditing(true)
         return true
-    }
-    // キーボードがあらわれた時の処理
-    func handleKeyboardWillShowNotification(notification: NSNotification) {
-    }
-    // キーボードがいなくなった時の処理
-    func handleKeyboardWillHideNotification(notification: NSNotification) {
-    }
-    
-    // textViewのプレースホルダー--------------------------------------------------
-    // 編集はじめ
-    func textViewDidBeginEditing(textView: UITextView) {
-        placeHolderLabel.text = nil
-    }
-    // 編集中
-    // func textViewDidChange(textView: UITextView) {
-    // }
-    // 編集終わり
-    func textViewDidEndEditing(textView: UITextView) {
-        if textView.text.isEmpty {
-            placeHolderLabel.text = "何をつぶやく？"
-        }
     }
     
     // Utility------------------------------------------------------------------

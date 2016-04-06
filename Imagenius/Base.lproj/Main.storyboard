@@ -76,13 +76,22 @@
                                                             <action selector="tweetButton" destination="Nyu-L3-XkN" eventType="touchUpInside" id="CCk-aA-p82"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0c-fw-qO3">
+                                                        <rect key="frame" x="10" y="9" width="10" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="MD9-cW-oah" firstAttribute="top" secondItem="pgb-XM-hzs" secondAttribute="top" id="DAD-Mn-G3i"/>
                                                     <constraint firstAttribute="trailing" secondItem="MD9-cW-oah" secondAttribute="trailing" constant="10" id="HEf-zm-O49"/>
                                                     <constraint firstAttribute="bottom" secondItem="MD9-cW-oah" secondAttribute="bottom" id="Uts-c7-0Qm"/>
+                                                    <constraint firstItem="l0c-fw-qO3" firstAttribute="leading" secondItem="pgb-XM-hzs" secondAttribute="leading" constant="10" id="aey-l8-ZDI"/>
+                                                    <constraint firstItem="l0c-fw-qO3" firstAttribute="top" secondItem="pgb-XM-hzs" secondAttribute="top" constant="9" id="dEr-XE-jFh"/>
                                                     <constraint firstAttribute="height" constant="40" id="omq-jq-m08"/>
+                                                    <constraint firstAttribute="bottom" secondItem="l0c-fw-qO3" secondAttribute="bottom" constant="10" id="wzY-YU-G6c"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NW-fT-Jsm">
@@ -228,6 +237,7 @@
                     <connections>
                         <outlet property="accountImage" destination="gVG-nf-Atd" id="ukI-YQ-0Zu"/>
                         <outlet property="bannerView" destination="H6k-Gf-Zhm" id="9Nv-9P-HJO"/>
+                        <outlet property="countLabel" destination="l0c-fw-qO3" id="L8a-os-Ce2"/>
                         <outlet property="placeHolderLabel" destination="JhL-9j-YO1" id="aaR-Bi-zzp"/>
                         <outlet property="scvBackGround" destination="CvR-fS-nZz" id="CB8-eB-p15"/>
                         <outlet property="searchField" destination="5ag-fi-7eg" id="UN9-mJ-mqn"/>
@@ -782,7 +792,7 @@
         <!--画像検索結果-->
         <scene sceneID="a8w-l9-bB4">
             <objects>
-                <viewController id="c2W-tc-XfD" customClass="ImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="c2W-tc-XfD" customClass="TiqavImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DKL-SC-LIg"/>
                         <viewControllerLayoutGuide type="bottom" id="ur7-3z-uGR"/>

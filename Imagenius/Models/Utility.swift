@@ -106,4 +106,8 @@ class Utility {
         }
         return newString
     }
+    // 日本語を含む検索語でAPIを叩くため
+    class func encodeURL(text: String) -> NSURL! {
+        return NSURL(string: text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!
+    }
 }

@@ -138,15 +138,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // ボタン関連-----------------------------------------------------------------
-    // アカウント切り替えボタン
-    @IBAction func accountChange(sender: AnyObject) {
-        self.tweetArray = []
-        TwitterUtil.loginTwitter(self, success: { (ac) -> () in
-            self.account = ac
-            self.swifter = Swifter(account: self.account!)
-            self.loadTweet()
-        })
-    }
     // ツイート編集画面に行く前にアカウント画像を取得しておく
     @IBAction func pushTweet() {
         changeAccountImage()
