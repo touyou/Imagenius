@@ -36,7 +36,7 @@ class TiqavImageViewModel: NSObject, UICollectionViewDataSource {
     }
     // 入れるもの
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: ImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! ImageViewCell
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! TiqavImageViewCell
         let url = urls[indexPath.row]
         cell.imageView.sd_setImageWithURL(url)
         return cell

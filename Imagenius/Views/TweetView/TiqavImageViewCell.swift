@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ImageViewCell: UICollectionViewCell {
+class TiqavImageViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
 }
