@@ -18,6 +18,7 @@
 		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		46312B211CB6505F009183D9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B201CB6505F009183D9 /* UserViewController.swift */; };
 		46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B221CB653B6009183D9 /* UserViewModel.swift */; };
+		46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B251CB69C1E009183D9 /* SettingBannerCell.swift */; };
 		464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEB1C7973C1006100DB /* Default-568h@2x.png */; };
 		464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEC1C7973C1006100DB /* Default-667h@2x.png */; };
 		464A7EF01C7973C1006100DB /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EED1C7973C1006100DB /* Default-736h@3x.png */; };
@@ -166,6 +167,7 @@
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46312B201CB6505F009183D9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewController.swift; path = ViewControllers/MainView/UserViewController.swift; sourceTree = "<group>"; };
 		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ViewModels/MainView/UserViewModel.swift; sourceTree = "<group>"; };
+		46312B251CB69C1E009183D9 /* SettingBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingBannerCell.swift; path = Views/SettingView/SettingBannerCell.swift; sourceTree = "<group>"; };
 		464A7EEB1C7973C1006100DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		464A7EEC1C7973C1006100DB /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		464A7EED1C7973C1006100DB /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
@@ -420,6 +422,14 @@
 			name = InfoView;
 			sourceTree = "<group>";
 		};
+		46312B241CB69BF7009183D9 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				46312B251CB69C1E009183D9 /* SettingBannerCell.swift */,
+			);
+			name = SettingView;
+			sourceTree = "<group>";
+		};
 		464A7E811C78299F006100DB /* icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +583,7 @@
 		46D681311C7B290200DDB4DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				46312B241CB69BF7009183D9 /* SettingView */,
 				46D681341C7B2B1200DDB4DE /* MainView */,
 				46D681331C7B2B0000DDB4DE /* TweetView */,
 			);
@@ -950,6 +961,7 @@
 				468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */,
 				468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */,
 				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
+				46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */,
 				468722EE1CB4E10700DEF2DB /* TwitterUtil.swift in Sources */,
 				468722B61CB2606600DEF2DB /* InfoContainerViewController.swift in Sources */,
 				468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */,

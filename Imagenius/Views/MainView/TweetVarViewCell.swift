@@ -85,6 +85,8 @@ class TweetVarViewCell: SWTableViewCell {
         
         self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
         self.userImgView.clipsToBounds = true
+        self.userImgView.layer.borderColor = Settings.Colors.selectedColor.CGColor
+        self.userImgView.layer.borderWidth = 0.19
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet["extended_entities"]["media"].array else {

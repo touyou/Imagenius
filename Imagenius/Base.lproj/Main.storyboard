@@ -444,6 +444,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="xaW-1Z-K0Z" customClass="GADBannerView">
+                            <rect key="frame" x="0.0" y="175.5" width="600" height="90.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="cDz-34-fJk"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingButton" textLabel="jvw-b5-LRd" style="IBUITableViewCellStyleDefault" id="wiN-jU-thl">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -470,6 +478,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="WGa-wM-HuK"/>
                     <connections>
+                        <outlet property="bannerView" destination="xaW-1Z-K0Z" id="S7O-Bl-eVh"/>
                         <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="gMF-E4-iH0"/>
                         <segue destination="bKk-ff-2az" kind="presentation" identifier="showInfo" id="guU-kt-TjK"/>
                     </connections>
@@ -1045,8 +1054,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyq-tT-SfE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWn-f9-MIw">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="486"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NWn-f9-MIw">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1228,11 +1237,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ykC-G6-UoE"/>
-        <segue reference="lSk-Dr-sWl"/>
         <segue reference="xcG-Qk-skd"/>
         <segue reference="qxN-ce-oBJ"/>
-        <segue reference="pVq-SY-5Du"/>
         <segue reference="lne-Pd-CqX"/>
         <segue reference="WQ3-wt-xNC"/>
+        <segue reference="guU-kt-TjK"/>
+        <segue reference="gMF-E4-iH0"/>
     </inferredMetricsTieBreakers>
 </document>
