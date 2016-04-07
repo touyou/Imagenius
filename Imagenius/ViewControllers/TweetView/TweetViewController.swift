@@ -134,7 +134,18 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     // ボタン関係-----------------------------------------------------------------
     // 投稿せずに終了
     @IBAction func cancelButton() {
-        dismissViewControllerAnimated(true, completion: nil)
+        tweetText = tweetTextView.text
+        if (tweetText == nil || tweetText == "") && tweetImage == nil {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "編集内容が破棄されます。", message: "よろしいですか？", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
+                action in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            alertController.addAction(UIAlertAction(title: "いいえ", style: .Cancel, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     // アカウントを切り替える
     @IBAction func accountButton() {

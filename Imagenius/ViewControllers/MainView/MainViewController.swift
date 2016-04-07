@@ -198,12 +198,14 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
                 swifter.postDestroyFavoriteWithID(tweet["id_str"].string!, success: {
                     statuses in
                     (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.selectedColor
+                    (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["favorite_count"].integer! - 1)", forState: .Normal)
                 })
                 break
             }
             swifter.postCreateFavoriteWithID(tweet["id_str"].string!, success: {
                 statuses in
                 (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.favColor
+                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["favorite_count"].integer! + 1)", forState: .Normal)
             })
             break
         case 1:
@@ -226,6 +228,7 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             swifter.postStatusRetweetWithID(tweet["id_str"].string!, success: {
                 statuses in
                 (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.retweetColor
+                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["retweet_count"].integer! + 1)", forState: .Normal)
             })
             break
         case 3:
