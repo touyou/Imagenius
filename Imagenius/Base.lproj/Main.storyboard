@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -406,15 +407,21 @@
                     <navigationItem key="navigationItem" title="Imagenius" id="IRq-XO-nuI">
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="eKU-gd-JHx">
                             <connections>
-                                <action selector="accountChange:" destination="RyR-MI-pon" id="oXr-eb-jtn"/>
                                 <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="WQ3-wt-xNC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="J2G-1B-T8Q">
-                            <connections>
-                                <action selector="pushTweet" destination="RyR-MI-pon" id="uH8-yW-7Ha"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="J2G-1B-T8Q">
+                                <connections>
+                                    <action selector="pushTweet" destination="RyR-MI-pon" id="uH8-yW-7Ha"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="use_white-1" id="3t2-HX-qcY">
+                                <connections>
+                                    <action selector="pushUser" destination="RyR-MI-pon" id="aEP-fq-5vt"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="timelineTableView" destination="Pcq-xR-Hr1" id="54F-ss-hgf"/>
@@ -475,6 +482,7 @@
         <scene sceneID="YBK-Pj-afE">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sk6-zJ-xoB" customClass="ImagePreViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="9m3-NS-PKr">
                         <nil key="title"/>
                         <pageControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" id="VeU-2A-phd">
@@ -508,20 +516,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ra4-ML-ySh">
-                                <rect key="frame" x="5" y="20" width="590" height="580"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54T-zC-uLs">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ra4-ML-ySh">
+                                        <rect key="frame" x="10" y="0.0" width="580" height="600"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="centerY" secondItem="54T-zC-uLs" secondAttribute="centerY" id="63t-T2-AEr"/>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="centerX" secondItem="54T-zC-uLs" secondAttribute="centerX" id="HmH-hN-DrX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ra4-ML-ySh" secondAttribute="trailing" constant="10" id="SIz-D9-Wmg"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ra4-ML-ySh" secondAttribute="bottom" id="Ugt-lU-Pai"/>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="leading" secondItem="54T-zC-uLs" secondAttribute="leading" constant="10" id="YQw-Fv-0CP"/>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="top" secondItem="54T-zC-uLs" secondAttribute="top" id="opN-dM-aAb"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ra4-ML-ySh" secondAttribute="trailing" constant="-15" id="W0w-yo-EX3"/>
-                            <constraint firstItem="Ra4-ML-ySh" firstAttribute="leading" secondItem="04f-Mz-tjR" secondAttribute="leadingMargin" constant="-15" id="Zqf-3n-15s"/>
-                            <constraint firstItem="ewp-0J-lat" firstAttribute="top" secondItem="Ra4-ML-ySh" secondAttribute="bottom" id="gCp-hl-W7f"/>
-                            <constraint firstItem="Ra4-ML-ySh" firstAttribute="top" secondItem="rv1-zx-xvN" secondAttribute="bottom" id="sUI-4T-pli"/>
+                            <constraint firstItem="ewp-0J-lat" firstAttribute="top" secondItem="54T-zC-uLs" secondAttribute="bottom" id="6gG-Ba-N6u"/>
+                            <constraint firstItem="54T-zC-uLs" firstAttribute="leading" secondItem="04f-Mz-tjR" secondAttribute="leadingMargin" constant="-20" id="RcT-EX-Uju"/>
+                            <constraint firstItem="54T-zC-uLs" firstAttribute="top" secondItem="04f-Mz-tjR" secondAttribute="topMargin" id="kjn-Bm-JUx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="54T-zC-uLs" secondAttribute="trailing" constant="-20" id="tyo-GZ-OGK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="preImageView" destination="Ra4-ML-ySh" id="pol-Z0-3OD"/>
+                        <outlet property="preScrollView" destination="54T-zC-uLs" id="ISm-PY-c1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPA-lx-I1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -715,6 +737,15 @@
                             <constraint firstItem="DHA-ah-07z" firstAttribute="centerY" secondItem="MEF-Rf-B7R" secondAttribute="centerY" id="Zbs-LG-ogC"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Vzj-Bt-qVe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="cJp-w7-x06">
+                            <connections>
+                                <action selector="pushTweet" destination="M1o-Zj-fGm" id="Xqb-nv-udJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="userTimeLine" destination="DHA-ah-07z" id="dnM-YP-0PR"/>
                         <segue destination="sk6-zJ-xoB" kind="show" identifier="toPreView" id="21d-lg-iCt"/>
@@ -864,15 +895,21 @@
                     <navigationItem key="navigationItem" title="Imagenius" id="oHD-cH-Ohk">
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="6rl-V7-teF">
                             <connections>
-                                <action selector="accountChange:" destination="4am-0x-jf5" id="N0e-C7-qZF"/>
                                 <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="hPE-w5-f9m"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Iv1-au-KxH">
-                            <connections>
-                                <action selector="pushTweet" destination="4am-0x-jf5" id="dyn-k9-gMa"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="Iv1-au-KxH">
+                                <connections>
+                                    <action selector="pushTweet" destination="4am-0x-jf5" id="dyn-k9-gMa"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="use_white-1" id="J1m-m1-5rc">
+                                <connections>
+                                    <action selector="pushUser" destination="4am-0x-jf5" id="oTa-Qo-FcR"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="timelineTableView" destination="BNP-VV-Jor" id="t2B-fp-gFZ"/>
@@ -1005,9 +1042,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NWn-f9-MIw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="486"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyq-tT-SfE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWn-f9-MIw">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="486"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="NWn-f9-MIw" firstAttribute="centerY" secondItem="wyq-tT-SfE" secondAttribute="centerY" id="51l-X6-xa5"/>
+                                    <constraint firstAttribute="trailing" secondItem="NWn-f9-MIw" secondAttribute="trailing" id="Etr-nK-7Rw"/>
+                                    <constraint firstItem="NWn-f9-MIw" firstAttribute="leading" secondItem="wyq-tT-SfE" secondAttribute="leading" id="Wcq-P4-vtL"/>
+                                    <constraint firstItem="NWn-f9-MIw" firstAttribute="centerX" secondItem="wyq-tT-SfE" secondAttribute="centerX" id="Xu2-aw-bju"/>
+                                    <constraint firstItem="NWn-f9-MIw" firstAttribute="top" secondItem="wyq-tT-SfE" secondAttribute="top" id="dwQ-zv-LBO"/>
+                                    <constraint firstAttribute="bottom" secondItem="NWn-f9-MIw" secondAttribute="bottom" id="lrS-ft-t95"/>
+                                </constraints>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhG-PY-JwG">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.37254901960784315" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
@@ -1025,10 +1075,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NWn-f9-MIw" firstAttribute="centerX" secondItem="ZBq-Sn-cmb" secondAttribute="centerX" id="0fC-wF-USX"/>
-                            <constraint firstItem="qhG-PY-JwG" firstAttribute="top" secondItem="NWn-f9-MIw" secondAttribute="bottom" id="1dH-4t-TYw"/>
-                            <constraint firstItem="NWn-f9-MIw" firstAttribute="top" secondItem="8hx-cr-ZLZ" secondAttribute="bottom" id="Kij-dd-wvG"/>
-                            <constraint firstItem="NWn-f9-MIw" firstAttribute="leading" secondItem="ZBq-Sn-cmb" secondAttribute="leadingMargin" constant="-20" id="eEs-hr-JgJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wyq-tT-SfE" secondAttribute="trailing" constant="-20" id="DWE-e5-ZLZ"/>
+                            <constraint firstItem="wyq-tT-SfE" firstAttribute="centerX" secondItem="ZBq-Sn-cmb" secondAttribute="centerX" id="JNl-5b-ysh"/>
+                            <constraint firstItem="wyq-tT-SfE" firstAttribute="leading" secondItem="ZBq-Sn-cmb" secondAttribute="leadingMargin" constant="-20" id="aaq-5W-HDI"/>
+                            <constraint firstItem="wyq-tT-SfE" firstAttribute="top" secondItem="ZBq-Sn-cmb" secondAttribute="topMargin" id="qu0-yn-K6x"/>
+                            <constraint firstItem="qhG-PY-JwG" firstAttribute="top" secondItem="wyq-tT-SfE" secondAttribute="bottom" id="sO7-wQ-Aat"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qhG-PY-JwG" secondAttribute="trailing" constant="-20" id="vTR-Zz-UYo"/>
                             <constraint firstItem="qhG-PY-JwG" firstAttribute="leading" secondItem="ZBq-Sn-cmb" secondAttribute="leadingMargin" constant="-20" id="vtc-4e-6Vo"/>
                             <constraint firstItem="Fmk-Bq-JjH" firstAttribute="top" secondItem="qhG-PY-JwG" secondAttribute="bottom" id="xXb-J8-oo4"/>
@@ -1048,6 +1099,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="NWn-f9-MIw" id="Ft3-e5-Zie"/>
+                        <outlet property="preScrollView" destination="wyq-tT-SfE" id="say-e0-ZMQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-Jc-LbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1172,14 +1224,15 @@
         <image name="toolbar_back" width="22" height="22"/>
         <image name="toolbar_forward" width="22" height="22"/>
         <image name="tweet_button_1" width="107" height="29"/>
+        <image name="use_white-1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="21d-lg-iCt"/>
-        <segue reference="mLu-x9-W3H"/>
-        <segue reference="q4p-k7-n0W"/>
-        <segue reference="hPE-w5-f9m"/>
-        <segue reference="7hq-V6-HtB"/>
-        <segue reference="Veg-Gf-dZD"/>
-        <segue reference="Bba-3S-2Fz"/>
+        <segue reference="ykC-G6-UoE"/>
+        <segue reference="lSk-Dr-sWl"/>
+        <segue reference="xcG-Qk-skd"/>
+        <segue reference="qxN-ce-oBJ"/>
+        <segue reference="pVq-SY-5Du"/>
+        <segue reference="lne-Pd-CqX"/>
+        <segue reference="WQ3-wt-xNC"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -154,9 +154,12 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     
     
     // ボタン関連-----------------------------------------------------------------
-    // ツイート編集画面に行く前にアカウント画像を取得しておく
     @IBAction func pushTweet() {
         performSegueWithIdentifier("toTweetView", sender: nil)
+    }
+    @IBAction func pushUser() {
+        selectedUser = self.account?.username
+        performSegueWithIdentifier("toUserView", sender: nil)
     }
     
     

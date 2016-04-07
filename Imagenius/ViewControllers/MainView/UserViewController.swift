@@ -111,6 +111,12 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         return UIStatusBarStyle.LightContent
     }
     
+    // ボタン関連-----------------------------------------------------------------
+    @IBAction func pushTweet() {
+        self.replyStr = "@\(user) "
+        performSegueWithIdentifier("toTweetView", sender: nil)
+    }
+    
     // TableView関連-------------------------------------------------------------
     // SWTableViewCell関連
     // 右のボタン

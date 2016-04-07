@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ResultViewController: UIViewController {
+class ResultViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var preScrollView: UIScrollView!
     
     var image: UIImage?
     var data: NSData?
@@ -25,6 +26,14 @@ class ResultViewController: UIViewController {
         } else {
             imageView.image = self.image
         }
+        self.preScrollView.delegate = self
+        self.preScrollView.minimumZoomScale = 1
+        self.preScrollView.maximumZoomScale = 4
+        
+        let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.doubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        self.imageView.userInteractionEnabled = true
+        self.imageView.addGestureRecognizer(doubleTapGesture)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -54,6 +63,31 @@ class ResultViewController: UIViewController {
         activityVC.popoverPresentationController?.sourceView = self.view
         activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
         self.presentViewController(activityVC, animated: true, completion: nil)
-
+    }
+    
+    // 画像を拡大縮小できるためのいろいろ
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    // ダブルタップ
+    func doubleTap(gesture: UITapGestureRecognizer) -> Void {
+        if (self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale) {
+            let newScale:CGFloat = self.preScrollView.zoomScale * 3
+            let zoomRect:CGRect = self.zoomRectForScale(newScale, center: gesture.locationInView(gesture.view))
+            self.preScrollView.zoomToRect(zoomRect, animated: true)
+        } else {
+            self.preScrollView.setZoomScale(1.0, animated: true)
+        }
+    }
+    // 領域
+    func zoomRectForScale(scale:CGFloat, center: CGPoint) -> CGRect{
+        var zoomRect: CGRect = CGRect()
+        zoomRect.size.height = self.preScrollView.bounds.size.height / scale
+        zoomRect.size.width = self.preScrollView.bounds.size.width / scale
+        
+        zoomRect.origin.x = center.x - zoomRect.size.width / 2.0
+        zoomRect.origin.y = center.y - zoomRect.size.height / 2.0
+        
+        return zoomRect
     }
 }
