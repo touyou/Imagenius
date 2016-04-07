@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  UserViewController.swift
 //  Imagenius
 //
-//  Created by 藤井陽介 on 2016/02/10.
+//  Created by 藤井陽介 on 2016/04/07.
 //  Copyright © 2016年 touyou. All rights reserved.
 //
 
@@ -16,10 +16,13 @@ import AVKit
 import AVFoundation
 import SDWebImage
 
-class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
-    @IBOutlet var timelineTableView: UITableView!
+class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
+    @IBOutlet var userTimeLine: UITableView!
     
-    var viewModel = MainViewModel()
+    var user: String!
+    var id_str: String!
+    
+    var viewModel = UserViewModel()
     var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [JSONValue] = []
     var swifter: Swifter!
@@ -31,8 +34,6 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     var accounts = [ACAccount]()
     var imageData: NSMutableArray?
     var gifURL: NSURL!
-    var selectedUser: String!
-    var selectedId: String!
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -40,20 +41,19 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        timelineTableView.estimatedRowHeight = 200
-        timelineTableView.rowHeight = UITableViewAutomaticDimension
-        timelineTableView.emptyDataSetDelegate = self
-        timelineTableView.emptyDataSetSource = self
-        timelineTableView.dataSource = viewModel
+        userTimeLine.estimatedRowHeight = 200
+        userTimeLine.rowHeight = UITableViewAutomaticDimension
+        userTimeLine.emptyDataSetDelegate = self
+        userTimeLine.emptyDataSetSource = self
+        userTimeLine.dataSource = viewModel
         // cellを選択不可に
-        timelineTableView.allowsSelection = false
-        timelineTableView.tableFooterView = UIView()
-        
+        userTimeLine.allowsSelection = false
+        userTimeLine.tableFooterView = UIView()
         
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
-        timelineTableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(UserViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        userTimeLine.addSubview(refreshControl)
         saveData.setObject(false, forKey: Settings.Saveword.changed)
         saveData.setObject(false, forKey: Settings.Saveword.changed2)
         
@@ -67,56 +67,21 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
                     if self.accounts.count != 0 {
                         self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
                         self.swifter = Swifter(account: self.account!)
-                        self.loadTweet()
+                        self.title = "@\(self.user)のツイート一覧"
+                        
+                        if self.id_str == nil {
+                            self.getUserIdWithScreenName(self.user, comp: {
+                                self.loadTweet()
+                            })
+                        } else {
+                            self.loadTweet()
+                        }
                     }
                 }
             }
         }
         
         viewModel.setViewController(self)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if saveData.objectForKey(Settings.Saveword.changed) != nil {
-            if saveData.objectForKey(Settings.Saveword.changed) as! Bool {
-                let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-                accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-                    if granted {
-                        self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                        if self.accounts.count != 0 {
-                            self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                            self.swifter = Swifter(account: self.account!)
-                            self.tweetArray = []
-                            self.saveData.setObject(false, forKey: Settings.Saveword.changed)
-                            self.saveData.setObject(true, forKey: Settings.Saveword.changed2)
-                            self.loadTweet()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if saveData.objectForKey(Settings.Saveword.changed2) != nil {
-            if saveData.objectForKey(Settings.Saveword.changed2) as! Bool {
-                let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-                accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-                    if granted {
-                        self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                        if self.accounts.count != 0 {
-                            self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                            self.swifter = Swifter(account: self.account!)
-                            self.tweetArray = []
-                            self.saveData.setObject(false, forKey: Settings.Saveword.changed2)
-                            self.loadTweet()
-                        }
-                    }
-                }
-            }
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,26 +104,12 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         } else if segue.identifier == "toGifView" {
             let gifView = segue.destinationViewController as! GIFViewController
             gifView.url = self.gifURL
-        } else if segue.identifier == "toUserView" {
-            let userView = segue.destinationViewController as! UserViewController
-            userView.user = self.selectedUser
-            if self.selectedId != nil {
-                userView.id_str = self.selectedId
-            }
         }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
-    
-    // ボタン関連-----------------------------------------------------------------
-    // ツイート編集画面に行く前にアカウント画像を取得しておく
-    @IBAction func pushTweet() {
-        performSegueWithIdentifier("toTweetView", sender: nil)
-    }
-    
     
     // TableView関連-------------------------------------------------------------
     // SWTableViewCell関連
@@ -183,7 +134,6 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     func leftButtons() -> NSArray {
         let leftUtilityButtons: NSMutableArray = NSMutableArray()
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
-        leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.userColor, icon: UIImage(named: "use_white")!))
         return leftUtilityButtons
     }
     // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
@@ -197,7 +147,7 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     }
     // 右スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
-        let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
+        let cellIndexPath: NSIndexPath = self.userTimeLine.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
         switch index {
         case 0:
@@ -279,7 +229,7 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     }
     // 左スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
-        let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
+        let cellIndexPath: NSIndexPath = self.userTimeLine.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
         switch index {
         case 0:
@@ -287,10 +237,6 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             Utility.openWebView(url)
             performSegueWithIdentifier("openWebView", sender: nil)
             break
-        case 1:
-            selectedUser = tweet["user"]["screen_name"].string!
-            selectedId = tweet["user"]["id_str"].string!
-            performSegueWithIdentifier("toUserView", sender: nil)
         default:
             break
         }
@@ -314,8 +260,12 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
-            selectedUser = url.URLString.substringFromIndex(userRange.endIndex)
-            performSegueWithIdentifier("toUserView", sender: nil)
+            user = url.URLString.substringFromIndex(userRange.endIndex)
+            getUserIdWithScreenName(user, comp: {
+                self.tweetArray = []
+                self.title = "@\(self.user)のツイート一覧"
+                self.loadTweet()
+            })
         } else {
             Utility.openWebView(url)
             performSegueWithIdentifier("openWebView", sender: nil)
@@ -332,6 +282,34 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     }
     // Tweetのロード
     func load(moreflag: Bool) {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: ユーザーのツイート一覧のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+        let successHandler: (([JSONValue]?) -> Void) = { statuses in
+            guard let tweets = statuses else { return }
+            
+            if tweets.count < 1 {
+                self.maxId = ""
+            } else if tweets.count == 1 {
+                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1]["id_str"].string {
+                    return
+                }
+                self.tweetArray.append(tweets[0])
+                self.maxId = tweets[0]["id_str"].string
+            } else {
+                for i in 0 ..< tweets.count - 1 {
+                    self.tweetArray.append(tweets[i])
+                }
+                self.maxId = tweets[tweets.count - 1]["id_str"].string
+            }
+            self.viewModel.tweetArray = self.tweetArray
+            self.userTimeLine.reloadData()
+        }
+        if !moreflag {
+            self.swifter.getStatusesUserTimelineWithUserID(id_str, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+        } else {
+            self.swifter.getStatusesUserTimelineWithUserID(id_str, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+        }
     }
     // Tweetをロードする
     func loadTweet() {
@@ -344,5 +322,18 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         if swifter != nil {
             load(true)
         }
+    }
+    // screen_nameからUserIDを取得する
+    func getUserIdWithScreenName(user_name: String, comp: (()->())? = nil) {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+
+        self.swifter.getUsersShowWithScreenName(user_name, includeEntities: false, success: {
+            statuses in
+            guard let userInfo = statuses else { return }
+            self.id_str = userInfo["id_str"]?.string!
+            comp!()
+            }, failure: failureHandler)
     }
 }

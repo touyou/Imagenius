@@ -49,7 +49,7 @@ class TweetVarViewCell: SWTableViewCell {
             let matchRange = match.rangeAtIndex(1)
             let mentionString = text.substringWithRange(matchRange)
             let user = mentionString.substringFromIndex(mentionString.startIndex.advancedBy(1))
-            let linkURLString = NSString(format: "https://twitter.com/%@", user)
+            let linkURLString = NSString(format: "account:%@", user)
             label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
         }
     }

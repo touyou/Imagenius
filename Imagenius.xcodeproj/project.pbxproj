@@ -16,6 +16,8 @@
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
 		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46312B211CB6505F009183D9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B201CB6505F009183D9 /* UserViewController.swift */; };
+		46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B221CB653B6009183D9 /* UserViewModel.swift */; };
 		464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEB1C7973C1006100DB /* Default-568h@2x.png */; };
 		464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEC1C7973C1006100DB /* Default-667h@2x.png */; };
 		464A7EF01C7973C1006100DB /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EED1C7973C1006100DB /* Default-736h@3x.png */; };
@@ -162,6 +164,8 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46312B201CB6505F009183D9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewController.swift; path = ViewControllers/MainView/UserViewController.swift; sourceTree = "<group>"; };
+		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ViewModels/MainView/UserViewModel.swift; sourceTree = "<group>"; };
 		464A7EEB1C7973C1006100DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		464A7EEC1C7973C1006100DB /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		464A7EED1C7973C1006100DB /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
@@ -549,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				468722F21CB4E15300DEF2DB /* MainViewModel.swift */,
+				46312B221CB653B6009183D9 /* UserViewModel.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -608,6 +613,7 @@
 				468722C01CB260C400DEF2DB /* PreViewController.swift */,
 				468722C11CB260C400DEF2DB /* ReplyViewController.swift */,
 				468722C21CB260C400DEF2DB /* TimeLineViewController.swift */,
+				46312B201CB6505F009183D9 /* UserViewController.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -953,6 +959,7 @@
 				468722C61CB260C400DEF2DB /* PreViewController.swift in Sources */,
 				468722C51CB260C400DEF2DB /* MainViewController.swift in Sources */,
 				468722E31CB4C5A500DEF2DB /* TiqavImageViewModel.swift in Sources */,
+				46312B211CB6505F009183D9 /* UserViewController.swift in Sources */,
 				460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */,
 				468722BA1CB2607C00DEF2DB /* SettingTableViewController.swift in Sources */,
 				468722C31CB260C400DEF2DB /* GIFViewController.swift in Sources */,
@@ -962,6 +969,7 @@
 				468722CC1CB260F400DEF2DB /* TiqavImageViewController.swift in Sources */,
 				468722E91CB4E0C100DEF2DB /* TiqavImageViewCell.swift in Sources */,
 				468722C41CB260C400DEF2DB /* ImagePreViewController.swift in Sources */,
+				46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */,
 				468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1055,7 +1063,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -1093,7 +1101,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1116,7 +1124,7 @@
 				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1144,7 +1152,7 @@
 				);
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
