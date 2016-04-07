@@ -155,18 +155,18 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     // TableView関連-------------------------------------------------------------
     // SWTableViewCell関連
     // 右のボタン
-    func rightButtons(favorited: Bool, retweeted: Bool) -> NSArray {
+    func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
         if favorited {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: (UIImage(named: "like-action")!)))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!, text: String(f_num)))
         } else {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!, text: String(f_num)))
         }
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "reply-action_0")!))
         if retweeted {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!, text: String(r_num)))
         } else {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(r_num)))
         }
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
         return rightUtilityButtons
@@ -179,9 +179,11 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         return leftUtilityButtons
     }
     // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
-    func addUtilityButtonWithColor(color : UIColor, icon : UIImage) -> UIButton {
+    func addUtilityButtonWithColor(color : UIColor, icon : UIImage, text: String? = nil) -> UIButton {
         let button:UIButton = UIButton(type: UIButtonType.Custom)
         button.backgroundColor = color
+        button.tintColor = UIColor.whiteColor()
+        button.setTitle(text, forState: .Normal)
         button.setImage(icon, forState: .Normal)
         return button
     }
@@ -208,6 +210,11 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             // reply
             replyID = tweet["id_str"].string
             replyStr = "@\(tweet["user"]["screen_name"].string!) "
+            if tweet["entities"]["user_mentions"].array?.count != 0 {
+                for u in tweet["entities"]["user_mentions"].array! {
+                    replyStr?.appendContentsOf("@\(u["screen_name"].string!) ")
+                }
+            }
             performSegueWithIdentifier("toTweetView", sender: nil)
             break
         case 2:

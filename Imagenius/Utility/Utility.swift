@@ -110,4 +110,12 @@ class Utility {
     class func encodeURL(text: String) -> NSURL! {
         return NSURL(string: text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!
     }
+    
+    class func strong<T>(obj: T?) throws -> T {
+        guard let obj = obj else {
+            throw "deallocated"
+        }
+        return obj
+    }
 }
+extension String: ErrorType {}

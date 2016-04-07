@@ -17,6 +17,7 @@ class GIFViewController: UIViewController {
     var videoPlayer: AVPlayer!
     var layer: AVPlayerLayer!
     var avAsset: AVAsset!
+    var audioSession: AVAudioSession!
     var url: NSURL!
     
     override func viewDidLoad() {
@@ -25,6 +26,8 @@ class GIFViewController: UIViewController {
         avAsset = AVAsset(URL: url)
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
+        audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(AVAudioSessionCategoryAmbient)
         // ループにする
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GIFViewController.playerItemDidReachEnd(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer.currentItem)
         

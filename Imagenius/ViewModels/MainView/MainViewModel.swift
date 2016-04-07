@@ -18,9 +18,11 @@ class MainViewModel: NSObject, UITableViewDataSource {
     final var tweetArray = [JSONValue]()
     final private var viewController: MainViewController!
     final private let model = MainModel()
+    var audioSession: AVAudioSession!
     
     override init() {
         super.init()
+        audioSession = AVAudioSession.sharedInstance()
     }
     
     func setViewController(vc: MainViewController) {
@@ -41,6 +43,8 @@ class MainViewModel: NSObject, UITableViewDataSource {
         let tweet = tweetArray[indexPath.row]
         let favorited = tweet["favorited"].bool!
         let retweeted = tweet["retweeted"].bool!
+        let f_num = tweet["favorite_count"].integer!
+        let r_num = tweet["retweet_count"].integer!
         
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
         cell.tweetLabel.delegate = viewController
@@ -53,7 +57,7 @@ class MainViewModel: NSObject, UITableViewDataSource {
         if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
             viewController.loadMore()
         }
-        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted) as [AnyObject]
+        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, f_num: f_num, r_num: r_num) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
         cell.delegate = viewController
         cell.layoutIfNeeded()
@@ -84,7 +88,10 @@ class MainViewModel: NSObject, UITableViewDataSource {
                             alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .Default, handler: { (action) -> Void in
                                 self.viewController.avPlayerViewController = AVPlayerViewController()
                                 self.viewController.avPlayerViewController.player = AVPlayer(URL: NSURL(string: videoInfo["url"].string!)!)
-                                self.viewController.presentViewController(self.viewController.avPlayerViewController, animated: true, completion: nil)
+                                self.viewController.presentViewController(self.viewController.avPlayerViewController, animated: true, completion: {
+                                    try! self.audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
+                                    self.viewController.avPlayerViewController.player?.play()
+                                })
                             }))
                         }
                     }
