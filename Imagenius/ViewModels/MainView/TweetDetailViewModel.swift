@@ -1,8 +1,8 @@
 //
-//  UserViewModel.swift
+//  TweetDetailViewModel.swift
 //  Imagenius
 //
-//  Created by 藤井陽介 on 2016/04/07.
+//  Created by 藤井陽介 on 2016/04/08.
 //  Copyright © 2016年 touyou. All rights reserved.
 //
 
@@ -13,10 +13,9 @@ import SwifteriOS
 import AVKit
 import AVFoundation
 
-class UserViewModel: NSObject, UITableViewDataSource {
-    
-    final var tweetArray = [JSONValue]()
-    final private var viewController: UserViewController!
+class TweetDetailViewModel: NSObject, UITableViewDataSource {
+    final var tweetArray = [[Dictionary<String, JSONValue>]]()
+    final private var viewController: TweetDetailViewController!
     var audioSession: AVAudioSession!
     
     override init() {
@@ -24,38 +23,42 @@ class UserViewModel: NSObject, UITableViewDataSource {
         audioSession = AVAudioSession.sharedInstance()
     }
     
-    func setViewController(vc: UserViewController) {
+    func setViewController(vc: TweetDetailViewController) {
         viewController = vc
     }
-    func setTweetArray(array: [JSONValue]) {
+    func setTweetArray(array: [[Dictionary<String, JSONValue>]]) {
         tweetArray = array
     }
     
     // MARK: - TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return tweetArray.count
     }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweetArray[section].count
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tweetArray.count <= indexPath.row || indexPath.row < 0 {
+        if tweetArray[indexPath.section].count <= indexPath.row || indexPath.row < 0 {
             return UITableViewCell()
         }
-        let tweet = tweetArray[indexPath.row]
-        let favorited = tweet["favorited"].bool!
-        let retweeted = tweet["retweeted"].bool!
-        let f_num = tweet["favorite_count"].integer!
-        let r_num = tweet["retweet_count"].integer!
         
-        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
+        let tweet = tweetArray[indexPath.section][indexPath.row]
+        let favorited = tweet["favorited"]!.bool!
+        let retweeted = tweet["retweeted"]!.bool!
+        let f_num = tweet["favorite_count"]!.integer!
+        let r_num = tweet["retweet_count"]!.integer!
+        
+        let cell: TweetByDictViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetByDictViewCell
         cell.tweetLabel.delegate = viewController
         cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
         
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         cell.tweetImgView.addGestureRecognizer(tapGesture)
-        cell.tweetImgView.tag = indexPath.row
+        cell.tweetImgView.tag = indexPath.row + 10000 * indexPath.section
         
-        if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
-            viewController.loadMore()
-        }
+//        if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
+//            viewController.loadMore()
+//        }
         cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, f_num: f_num, r_num: r_num) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
         cell.delegate = viewController
@@ -66,18 +69,26 @@ class UserViewModel: NSObject, UITableViewDataSource {
     // imageViewがタップされたら画像のURLを開く
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
-            let rowNum = theView.tag
-            if tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string == nil {}
-            switch tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string! {
+            let rowNum: Int!
+            let secNum: Int!
+            if theView.tag >= 10000 {
+                rowNum = theView.tag - 10000
+                secNum = 1
+            } else {
+                rowNum = theView.tag
+                secNum = 0
+            }
+            if tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["type"].string == nil {}
+            switch tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["type"].string! {
             case "photo":
                 let tempData = NSMutableArray()
-                for data in tweetArray[rowNum]["extended_entities"]["media"].array! {
+                for data in tweetArray[secNum][rowNum]["extended_entities"]!["media"].array! {
                     tempData.addObject(NSData(contentsOfURL: NSURL(string: data["media_url"].string!)!)!)
                 }
                 viewController.imageData = tempData
                 viewController.performSegueWithIdentifier("toPreView", sender: nil)
             case "video":
-                if let videoArray = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"].array {
+                if let videoArray = tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["video_info"]["variants"].array {
                     let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
@@ -103,17 +114,17 @@ class UserViewModel: NSObject, UITableViewDataSource {
                     viewController.presentViewController(alertController, animated: true, completion: nil)
                 }
             case "animated_gif":
-                // print(tweetArray[rowNum]["extended_entities"])
-                if let videoURL = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"][0]["url"].string {
+                if let videoURL = tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["video_info"]["variants"][0]["url"].string {
                     viewController.gifURL = NSURL(string: videoURL)
                     viewController.performSegueWithIdentifier("toGifView", sender: nil)
                 }
             default:
-                if let tweetURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
+                if let tweetURL = tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["url"].string {
                     Utility.openWebView(NSURL(string: tweetURL)!)
                     viewController.performSegueWithIdentifier("openWebView", sender: nil)
                 }
             }
         }
     }
+
 }

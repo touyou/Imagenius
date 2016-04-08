@@ -34,6 +34,7 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     var accounts = [ACAccount]()
     var imageData: NSMutableArray?
     var gifURL: NSURL!
+    var selectedId: String!
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -54,8 +55,6 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(UserViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         userTimeLine.addSubview(refreshControl)
-        saveData.setObject(false, forKey: Settings.Saveword.changed)
-        saveData.setObject(false, forKey: Settings.Saveword.changed2)
         
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             performSegueWithIdentifier("showInfo", sender: nil)
@@ -104,6 +103,9 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         } else if segue.identifier == "toGifView" {
             let gifView = segue.destinationViewController as! GIFViewController
             gifView.url = self.gifURL
+        } else if segue.identifier == "toTweetDetailView" {
+            let tweetView = segue.destinationViewController as! TweetDetailViewController
+            tweetView.viewId = self.selectedId
         }
     }
     
@@ -239,9 +241,8 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         let tweet = tweetArray[cellIndexPath.row]
         switch index {
         case 0:
-            let url = NSURL(string: "https://twitter.com/"+tweet["user"]["screen_name"].string!+"/status/"+tweet["id_str"].string!)!
-            Utility.openWebView(url)
-            performSegueWithIdentifier("openWebView", sender: nil)
+            selectedId = tweet["id_str"].string!
+            performSegueWithIdentifier("toTweetDetailView", sender: nil)
             break
         default:
             break
