@@ -92,11 +92,14 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate, DZNEmpty
         } else if segue.identifier == "toGifView" {
             let gifView = segue.destinationViewController as! GIFViewController
             gifView.url = self.gifURL
+            self.gifURL = nil
         } else if segue.identifier == "toUserView" {
             let userView = segue.destinationViewController as! UserViewController
             userView.user = self.selectedUser
+            self.selectedUser = nil
             if self.selectedId != nil {
                 userView.id_str = self.selectedId
+                self.selectedId = nil
             }
         }
     }

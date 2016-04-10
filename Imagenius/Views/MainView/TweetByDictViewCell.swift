@@ -21,6 +21,7 @@ class TweetByDictViewCell: SWTableViewCell {
     @IBOutlet var tweetSubView: UIView!
     @IBOutlet var subViewHeight: NSLayoutConstraint!
     @IBOutlet var imageCountLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
     
     // TableViewCellが生成された時------------------------------------------------
     override func awakeFromNib() {
@@ -87,6 +88,8 @@ class TweetByDictViewCell: SWTableViewCell {
         self.userImgView.clipsToBounds = true
         self.userImgView.layer.borderColor = Settings.Colors.selectedColor.CGColor
         self.userImgView.layer.borderWidth = 0.19
+        
+        self.timeLabel.text = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet["created_at"]!.string!))
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet["extended_entities"] else {

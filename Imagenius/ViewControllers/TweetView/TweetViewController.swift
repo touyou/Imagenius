@@ -27,6 +27,8 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     @IBOutlet var tweetImageView: UIImageView!
     @IBOutlet var scvBackGround: UIScrollView!
     @IBOutlet var tweetImageHeight: NSLayoutConstraint!
+    @IBOutlet var galleryButton: UIButton!
+    @IBOutlet var cameraButton: UIButton!
     // Google Ads関連
     @IBOutlet var bannerView: GADBannerView!
     
@@ -40,6 +42,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     var swifter:Swifter!
     var account: ACAccount?
     var accounts = [ACAccount]()
+    var media_ids = [String]()
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -92,6 +95,63 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
                 }
             }
             .subscribe {}
+            .addDisposableTo(disposeBag)
+        
+        // カメラのとか
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        
+        cameraButton.rx_tap
+            .flatMapLatest { [weak self] _ in
+                return UIImagePickerController.rx_createWithParent(self) { picker in
+                    picker.sourceType = .Camera
+                    picker.allowsEditing = false
+                    }
+                    .flatMap { $0.rx_didFinishPickingMediaWithInfo }
+                    .take(1)
+            }
+            .map { info in
+                return info[UIImagePickerControllerOriginalImage] as? UIImage
+            }
+            .subscribe({ image in
+                self.tweetImageHeight.constant = 110
+                self.tweetImage = image.element!
+                self.tweetImageView.image = self.tweetImage
+                self.tweetImageData = UIImagePNGRepresentation(self.tweetImage!)
+                self.swifter.postMedia(self.tweetImageData!, success: { status in
+                    guard let media = status else { return }
+                    if self.media_ids.count < 4 {
+                        self.media_ids.append(media["media_id_string"]!.string!)
+                    }
+                })
+            })
+            .addDisposableTo(disposeBag)
+        
+        galleryButton.rx_tap
+            .flatMapLatest { [weak self] _ in
+                return UIImagePickerController.rx_createWithParent(self) { picker in
+                    picker.sourceType = .PhotoLibrary
+                    picker.allowsEditing = false
+                    }
+                    .flatMap {
+                        $0.rx_didFinishPickingMediaWithInfo
+                    }
+                    .take(1)
+            }
+            .map { info in
+                return info[UIImagePickerControllerOriginalImage] as? UIImage
+            }
+            .subscribe({ image in
+                self.tweetImageHeight.constant = 110
+                self.tweetImage = image.element!
+                self.tweetImageView.image = self.tweetImage
+                self.tweetImageData = UIImagePNGRepresentation(self.tweetImage!)
+                self.swifter.postMedia(self.tweetImageData!, success: { status in
+                    guard let media = status else { return }
+                    if self.media_ids.count < 4 {
+                        self.media_ids.append(media["media_id_string"]!.string!)
+                    }
+                })
+            })
             .addDisposableTo(disposeBag)
         
         // Google Ads関連
@@ -167,6 +227,10 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     }
     // ツイート処理
     @IBAction func tweetButton() {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: ツイートに失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+        
         // ここに140字以上の処理を書く
         tweetText = tweetTextView.text
         if (tweetText!.characters.count > MAX_WORD) {
@@ -178,17 +242,20 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
             return
         }
         if (tweetText == nil || tweetText == "") && tweetImageData != nil {
-            swifter.postStatusUpdate("", media: tweetImageData!)
-            dismissViewControllerAnimated(true, completion: nil)
+            swifter.postStatusUpdate("", media: tweetImageData!, success: { status in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }, failure: failureHandler)
             return
         }
         if tweetImageData == nil {
-            swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID)
-            dismissViewControllerAnimated(true, completion: nil)
+            swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID, success: { status in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                }, failure: failureHandler)
             return
         }
-        swifter.postStatusUpdate(tweetText!, media: tweetImageData!, inReplyToStatusID: replyID)
-        dismissViewControllerAnimated(true, completion: nil)
+        swifter.postStatusUpdate(tweetText!, media: tweetImageData!, inReplyToStatusID: replyID, success: { status in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            }, failure: failureHandler)
     }
     
     
@@ -222,5 +289,61 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
         tweetImage = image
         tweetImageView.image = tweetImage
         tweetImageData = data
+        swifter.postMedia(data, success: { status in
+            guard let media = status else { return }
+            if self.media_ids.count < 4 {
+                self.media_ids.append(media["media_id_string"]!.string!)
+            }
+            })
+    }
+}
+
+func dismissViewController(viewController: UIViewController, animated: Bool) {
+    if viewController.isBeingDismissed() || viewController.isBeingPresented() {
+        dispatch_async(dispatch_get_main_queue()) {
+            dismissViewController(viewController, animated: animated)
+        }
+        
+        return
+    }
+    
+    if viewController.presentingViewController != nil {
+        viewController.dismissViewControllerAnimated(animated, completion: nil)
+    }
+}
+
+extension UIImagePickerController {
+    static func rx_createWithParent(parent: UIViewController?, animated: Bool = true, configureImagePicker: (UIImagePickerController) throws -> () = { x in }) -> Observable<UIImagePickerController> {
+        return Observable.create { [weak parent] observer in
+            let imagePicker = UIImagePickerController()
+            let dismissDisposable = imagePicker
+                .rx_didCancel
+                .subscribeNext({ [weak imagePicker] in
+                    guard let imagePicker = imagePicker else {
+                        return
+                    }
+                    dismissViewController(imagePicker, animated: animated)
+                    })
+            
+            do {
+                try configureImagePicker(imagePicker)
+            }
+            catch let error {
+                observer.on(.Error(error))
+                return NopDisposable.instance
+            }
+            
+            guard let parent = parent else {
+                observer.on(.Completed)
+                return NopDisposable.instance
+            }
+            
+            parent.presentViewController(imagePicker, animated: animated, completion: nil)
+            observer.on(.Next(imagePicker))
+            
+            return CompositeDisposable(dismissDisposable, AnonymousDisposable {
+                dismissViewController(imagePicker, animated: animated)
+                })
+        }
     }
 }

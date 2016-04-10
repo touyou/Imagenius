@@ -42,6 +42,8 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        userTimeLine.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        
         userTimeLine.estimatedRowHeight = 200
         userTimeLine.rowHeight = UITableViewAutomaticDimension
         userTimeLine.emptyDataSetDelegate = self
@@ -103,9 +105,11 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         } else if segue.identifier == "toGifView" {
             let gifView = segue.destinationViewController as! GIFViewController
             gifView.url = self.gifURL
+            self.gifURL = nil
         } else if segue.identifier == "toTweetDetailView" {
             let tweetView = segue.destinationViewController as! TweetDetailViewController
             tweetView.viewId = self.selectedId
+            self.selectedId = nil
         }
     }
     

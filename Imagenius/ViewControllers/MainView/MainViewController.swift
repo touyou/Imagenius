@@ -40,6 +40,8 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        timelineTableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        
         timelineTableView.estimatedRowHeight = 200
         timelineTableView.rowHeight = UITableViewAutomaticDimension
         timelineTableView.emptyDataSetDelegate = self
@@ -139,15 +141,19 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         } else if segue.identifier == "toGifView" {
             let gifView = segue.destinationViewController as! GIFViewController
             gifView.url = self.gifURL
+            self.gifURL = nil
         } else if segue.identifier == "toUserView" {
             let userView = segue.destinationViewController as! UserViewController
             userView.user = self.selectedUser
+            self.selectedUser = nil
             if self.selectedId != nil {
                 userView.id_str = self.selectedId
+                self.selectedId = nil
             }
         } else if segue.identifier == "toTweetDetailView" {
             let tweetView = segue.destinationViewController as! TweetDetailViewController
             tweetView.viewId = self.selectedId
+            self.selectedId = nil
         }
     }
     

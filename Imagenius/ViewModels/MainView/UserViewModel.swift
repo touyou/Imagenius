@@ -45,7 +45,7 @@ class UserViewModel: NSObject, UITableViewDataSource {
         let f_num = tweet["favorite_count"].integer!
         let r_num = tweet["retweet_count"].integer!
         
-        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetVarViewCell
+        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as! TweetVarViewCell
         cell.tweetLabel.delegate = viewController
         cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
         
