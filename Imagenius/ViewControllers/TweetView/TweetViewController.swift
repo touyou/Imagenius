@@ -127,12 +127,15 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                 return info[UIImagePickerControllerOriginalImage] as? UIImage
             }
             .subscribe({ image in
-                self.tweetImageHeight.constant = 110
+                let failureHandler: ((NSError) -> Void) = { error in
+                    Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
+                }
                 let im = image.element!
                 let data = UIImagePNGRepresentation(im!)!
                 self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
                     if self.gifFlag && self.media_ids.count < 4 {
+                        self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im!)
                         self.media_ids.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
@@ -141,7 +144,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                         alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
                         self.presentViewController(alertController, animated: true, completion: nil)
                     }
-                })
+                }, failure: failureHandler)
             })
             .addDisposableTo(disposeBag)
         
@@ -160,12 +163,15 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                 return info[UIImagePickerControllerOriginalImage] as? UIImage
             }
             .subscribe({ image in
-                self.tweetImageHeight.constant = 110
+                let failureHandler: ((NSError) -> Void) = { error in
+                    Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
+                }
                 let im = image.element!
                 let data = UIImagePNGRepresentation(im!)!
                 self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
                     if self.gifFlag && self.media_ids.count < 4 {
+                        self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im!)
                         self.media_ids.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
@@ -174,7 +180,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                         alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
                         self.presentViewController(alertController, animated: true, completion: nil)
                     }
-                })
+                }, failure: failureHandler)
             })
             .addDisposableTo(disposeBag)
         
@@ -346,17 +352,21 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
     }
     // ツイートに添付する画像
     func changeImage(image: UIImage, data: NSData, isGIF: Bool) {
-        tweetImageHeight.constant = 110
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
+        }
         swifter.postMedia(data, success: { status in
             guard let media = status else { return }
             if isGIF && self.gifFlag && self.media_ids.count == 0 {
                 // GIFが貼り付けられる場合
+                self.tweetImageHeight.constant = 110
                 self.tweetImage.append(image)
                 self.media_ids.append(media["media_id_string"]!.string!)
                 self.gifFlag = false
                 self.imageCollectionView.reloadData()
             } else if !isGIF && self.gifFlag && self.media_ids.count < 4 {
                 // 画像が貼り付けられる場合
+                self.tweetImageHeight.constant = 110
                 self.tweetImage.append(image)
                 self.media_ids.append(media["media_id_string"]!.string!)
                 self.imageCollectionView.reloadData()
@@ -365,7 +375,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                 alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
-            })
+            }, failure: failureHandler)
     }
 }
 
