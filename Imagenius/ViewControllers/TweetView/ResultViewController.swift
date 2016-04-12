@@ -45,7 +45,8 @@ class ResultViewController: UIViewController, UIScrollViewDelegate {
     // OKボタンのとき
     @IBAction func pushOK() {
         dismissViewControllerAnimated(true, completion: {
-            self.delegate.changeImage(self.image!, data: self.data!)
+            // GIFかどうかの判断はSDWebImageのコードを参考に
+            self.delegate.changeImage(self.image!, data: self.data!, isGIF: self.data!.isGIF())
         })
     }
     // Cancelボタンのとき
@@ -89,5 +90,12 @@ class ResultViewController: UIViewController, UIScrollViewDelegate {
         zoomRect.origin.y = center.y - zoomRect.size.height / 2.0
         
         return zoomRect
+    }
+}
+
+extension NSData {
+    func isGIF() -> Bool {
+        let bytes = UnsafePointer<Int8>(self.bytes)
+        return self.length >= 6 && (strncmp(bytes, "GIF87a", 6) == 0 || strncmp(bytes, "GIF89a", 6) == 0)
     }
 }

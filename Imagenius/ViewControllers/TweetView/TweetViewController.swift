@@ -13,12 +13,13 @@ import GoogleMobileAds
 import RxSwift
 import RxCocoa
 import SDWebImage
+import KTCenterFlowLayout
 
 protocol TweetViewControllerDelegate {
-    func changeImage(image: UIImage, data: NSData)
+    func changeImage(image: UIImage, data: NSData, isGIF: Bool)
 }
 
-class TweetViewController: UIViewController, TweetViewControllerDelegate {
+class TweetViewController: UIViewController, TweetViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var placeHolderLabel: UILabel!
     @IBOutlet var tweetTextView: UITextView!
@@ -26,9 +27,12 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     @IBOutlet var accountImage: UIButton!
     @IBOutlet var tweetImageView: UIImageView!
     @IBOutlet var scvBackGround: UIScrollView!
+    @IBOutlet var tweetContentView: UIView!
     @IBOutlet var tweetImageHeight: NSLayoutConstraint!
     @IBOutlet var galleryButton: UIButton!
     @IBOutlet var cameraButton: UIButton!
+    @IBOutlet var twBtn: UIButton!
+    @IBOutlet var imageCollectionView: UICollectionView!
     // Google Ads関連
     @IBOutlet var bannerView: GADBannerView!
     
@@ -36,13 +40,13 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     var tweetText: String?
     var replyStr: String?
     var replyID: String?
-    var tweetImage: UIImage?
-    var tweetImageData: NSData?
+    var tweetImage = [UIImage]()
     var accountImg: UIImage?
     var swifter:Swifter!
     var account: ACAccount?
     var accounts = [ACAccount]()
     var media_ids = [String]()
+    var gifFlag = true
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -76,6 +80,16 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
         }
         searchField.placeholder = "画像を検索する"
         tweetImageHeight.constant = 0
+        
+        let flowLayout = KTCenterFlowLayout()
+        flowLayout.scrollDirection = .Horizontal
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.itemSize = CGSizeMake(110, 110)
+        imageCollectionView.collectionViewLayout = flowLayout
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
+        imageCollectionView.backgroundColor = UIColor.whiteColor()
         
         // RxSwiftで文字数を監視
         tweetTextView.rx_text
@@ -114,13 +128,18 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
             }
             .subscribe({ image in
                 self.tweetImageHeight.constant = 110
-                self.tweetImage = image.element!
-                self.tweetImageView.image = self.tweetImage
-                self.tweetImageData = UIImagePNGRepresentation(self.tweetImage!)
-                self.swifter.postMedia(self.tweetImageData!, success: { status in
+                let im = image.element!
+                let data = UIImagePNGRepresentation(im!)!
+                self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
-                    if self.media_ids.count < 4 {
+                    if self.gifFlag && self.media_ids.count < 4 {
+                        self.tweetImage.append(im!)
                         self.media_ids.append(media["media_id_string"]!.string!)
+                        self.imageCollectionView.reloadData()
+                    } else {
+                        let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     }
                 })
             })
@@ -142,13 +161,18 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
             }
             .subscribe({ image in
                 self.tweetImageHeight.constant = 110
-                self.tweetImage = image.element!
-                self.tweetImageView.image = self.tweetImage
-                self.tweetImageData = UIImagePNGRepresentation(self.tweetImage!)
-                self.swifter.postMedia(self.tweetImageData!, success: { status in
+                let im = image.element!
+                let data = UIImagePNGRepresentation(im!)!
+                self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
-                    if self.media_ids.count < 4 {
+                    if self.gifFlag && self.media_ids.count < 4 {
+                        self.tweetImage.append(im!)
                         self.media_ids.append(media["media_id_string"]!.string!)
+                        self.imageCollectionView.reloadData()
+                    } else {
+                        let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     }
                 })
             })
@@ -176,6 +200,11 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
         self.view.layoutIfNeeded()
     }
     
+    override func viewDidLayoutSubviews() {
+        self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, 1000.0)
+        self.scvBackGround.flashScrollIndicators()
+    }
+    
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
@@ -195,7 +224,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     // 投稿せずに終了
     @IBAction func cancelButton() {
         tweetText = tweetTextView.text
-        if (tweetText == nil || tweetText == "") && tweetImage == nil {
+        if (tweetText == nil || tweetText == "") && tweetImage.count == 0 {
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {
             let alertController = UIAlertController(title: "編集内容が破棄されます。", message: "よろしいですか？", preferredStyle: .Alert)
@@ -227,7 +256,11 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
     // ツイート処理
     @IBAction func tweetButton() {
         let failureHandler: ((NSError) -> Void) = { error in
+            self.twBtn.enabled = true
             Utility.simpleAlert("Error: ツイートに失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+        let successHandler: ((Dictionary<String, JSONValue>?) -> Void) = { status in
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
         
         // ここに140字以上の処理を書く
@@ -236,27 +269,49 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
             Utility.simpleAlert("140字を超えています。", presentView: self)
             return
         }
-        if (tweetText == nil || tweetText == "") && tweetImage == nil {
+        if (tweetText == nil || tweetText == "") && media_ids.count == 0 {
             Utility.simpleAlert("画像かテキストを入力してください。", presentView: self)
             return
         }
-        if (tweetText == nil || tweetText == "") && tweetImageData != nil {
-            swifter.postStatusUpdate("", media: tweetImageData!, success: { status in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }, failure: failureHandler)
+        
+        twBtn.enabled = false
+        
+        if (tweetText == nil || tweetText == "") && media_ids.count != 0 {
+            swifter.postStatusUpdate("", media_ids: media_ids, success: successHandler, failure: failureHandler)
             return
         }
-        if tweetImageData == nil {
-            swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID, success: { status in
-                self.dismissViewControllerAnimated(true, completion: nil)
-                }, failure: failureHandler)
+        if media_ids.count == 0 {
+            swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
             return
         }
-        swifter.postStatusUpdate(tweetText!, media: tweetImageData!, inReplyToStatusID: replyID, success: { status in
-            self.dismissViewControllerAnimated(true, completion: nil)
-            }, failure: failureHandler)
+        swifter.postStatusUpdate(tweetText!, media_ids: media_ids, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
     }
     
+    // MARK: - CollectionView
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return media_ids.count
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as! TiqavImageViewCell
+        cell.imageView.image = tweetImage[indexPath.row]
+        return cell
+    }
+    func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
+            action in
+            self.tweetImage.removeAtIndex(indexPath.row)
+            self.media_ids.removeAtIndex(indexPath.row)
+            if self.media_ids.count == 0 {
+                self.tweetImageHeight.constant = 0
+                self.gifFlag = true
+            } else {
+                self.imageCollectionView.reloadData()
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "いいえ", style: .Cancel, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
     // キーボード関係の処理---------------------------------------------------------
     // returnでキーボードを閉じる
@@ -283,15 +338,25 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
         }, failure: failureHandler)
     }
     // ツイートに添付する画像
-    func changeImage(image: UIImage, data: NSData) {
+    func changeImage(image: UIImage, data: NSData, isGIF: Bool) {
         tweetImageHeight.constant = 110
-        tweetImage = image
-        tweetImageView.image = tweetImage
-        tweetImageData = data
         swifter.postMedia(data, success: { status in
             guard let media = status else { return }
-            if self.media_ids.count < 4 {
+            if isGIF && self.gifFlag && self.media_ids.count == 0 {
+                // GIFが貼り付けられる場合
+                self.tweetImage.append(image)
                 self.media_ids.append(media["media_id_string"]!.string!)
+                self.gifFlag = false
+                self.imageCollectionView.reloadData()
+            } else if !isGIF && self.gifFlag && self.media_ids.count < 4 {
+                // 画像が貼り付けられる場合
+                self.tweetImage.append(image)
+                self.media_ids.append(media["media_id_string"]!.string!)
+                self.imageCollectionView.reloadData()
+            } else {
+                let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
             })
     }
