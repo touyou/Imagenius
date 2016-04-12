@@ -130,13 +130,13 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                 let failureHandler: ((NSError) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
-                let im = image.element!
-                let data = UIImagePNGRepresentation(im!)!
+                let im = Utility.resizeImage(image.element!!, size: CGSizeMake(1024, 1024))
+                let data = UIImagePNGRepresentation(im)!
                 self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
                     if self.gifFlag && self.media_ids.count < 4 {
                         self.tweetImageHeight.constant = 110
-                        self.tweetImage.append(im!)
+                        self.tweetImage.append(im)
                         self.media_ids.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
                     } else {
@@ -166,13 +166,13 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                 let failureHandler: ((NSError) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
-                let im = image.element!
-                let data = UIImagePNGRepresentation(im!)!
+                let im = Utility.resizeImage(image.element!!, size: CGSizeMake(1024, 1024))
+                let data = UIImagePNGRepresentation(im)!
                 self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
                     if self.gifFlag && self.media_ids.count < 4 {
                         self.tweetImageHeight.constant = 110
-                        self.tweetImage.append(im!)
+                        self.tweetImage.append(im)
                         self.media_ids.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
                     } else {
