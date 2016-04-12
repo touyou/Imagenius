@@ -80,7 +80,6 @@ class SettingTableViewController: UITableViewController, MFMailComposeViewContro
                 TwitterUtil.loginTwitter(self, success: { (ac) -> () in
                     self.account = ac
                     self.swifter = Swifter(account: self.account!)
-                    self.saveData.setObject(true, forKey: Settings.Saveword.changed)
                 })
             case 1:
                 performSegueWithIdentifier("showInfo", sender: nil)

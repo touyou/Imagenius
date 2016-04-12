@@ -213,7 +213,6 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate {
         TwitterUtil.loginTwitter(self, success: { (ac) -> () in
             self.account = ac
             self.swifter = Swifter(account: self.account!)
-            self.saveData.setObject(true, forKey: Settings.Saveword.changed)
             self.changeAccountImage()
         })
     }

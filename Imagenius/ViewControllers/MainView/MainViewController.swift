@@ -75,47 +75,21 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             }
         }
         
+        saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.New,NSKeyValueObservingOptions.Old], context: nil)
+        
         viewModel.setViewController(self)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if saveData.objectForKey(Settings.Saveword.changed) != nil {
-            if saveData.objectForKey(Settings.Saveword.changed) as! Bool {
-                let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-                accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-                    if granted {
-                        self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                        if self.accounts.count != 0 {
-                            self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                            self.swifter = Swifter(account: self.account!)
-                            self.tweetArray = []
-                            self.saveData.setObject(false, forKey: Settings.Saveword.changed)
-                            self.saveData.setObject(true, forKey: Settings.Saveword.changed2)
-                            self.loadTweet()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if saveData.objectForKey(Settings.Saveword.changed2) != nil {
-            if saveData.objectForKey(Settings.Saveword.changed2) as! Bool {
-                let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-                accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
-                    if granted {
-                        self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
-                        if self.accounts.count != 0 {
-                            self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
-                            self.swifter = Swifter(account: self.account!)
-                            self.tweetArray = []
-                            self.saveData.setObject(false, forKey: Settings.Saveword.changed2)
-                            self.loadTweet()
-                        }
-                    }
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+            if granted {
+                self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                if self.accounts.count != 0 {
+                    self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                    self.swifter = Swifter(account: self.account!)
+                    self.tweetArray = []
+                    self.loadTweet()
                 }
             }
         }
