@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     @IBOutlet var imageCollectionView: UICollectionView!
     
     // View Model
@@ -49,6 +49,7 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
         imageCollectionView.delegate = self
         imageCollectionView.emptyDataSetDelegate = self
         imageCollectionView.emptyDataSetSource = self
+        imageCollectionView.backgroundColor = UIColor.whiteColor()
         
         // データをロード
         viewModel.load(searchWord)
@@ -60,6 +61,19 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
                 self.imageCollectionView.reloadData()
             })
             .addDisposableTo(disposeBag)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
+    
+    func changeOrient(notification: NSNotification) {
+        // AutoLayout対応のためセル調整
+        imageSize = (self.view.frame.width) / 4
+        let flowLayout = KTCenterFlowLayout()
+        flowLayout.scrollDirection = .Vertical
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
+        imageCollectionView.collectionViewLayout = flowLayout
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -111,6 +125,9 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, DZNE
             self.title = "\(self.searchWord)の検索結果"
             self.performSegueWithIdentifier("toResultView", sender: nil)
         })
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(imageSize, imageSize)
     }
     // DZNEmptyDataSetの設定
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

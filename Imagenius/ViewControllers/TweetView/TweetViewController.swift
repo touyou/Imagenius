@@ -197,11 +197,18 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
         
         searchField.text = ""
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TweetViewController.changeOrient(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
         self.view.layoutIfNeeded()
     }
     
     override func viewDidLayoutSubviews() {
-        self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, 1000.0)
+        self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height + 200.0)
+        self.scvBackGround.flashScrollIndicators()
+    }
+    
+    func changeOrient(notification: NSNotification) {
+        self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height + 200.0)
         self.scvBackGround.flashScrollIndicators()
     }
     

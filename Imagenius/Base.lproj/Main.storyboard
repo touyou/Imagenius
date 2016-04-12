@@ -962,12 +962,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="shy-Rk-k8z">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="shy-Rk-k8z">
                                                     <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="shy-Rk-k8z" secondAttribute="trailing" constant="-8" id="C6q-00-vOX"/>
+                                            <constraint firstItem="shy-Rk-k8z" firstAttribute="leading" secondItem="wkG-hv-O5j" secondAttribute="leadingMargin" constant="-8" id="FSC-Gm-VZr"/>
+                                            <constraint firstItem="shy-Rk-k8z" firstAttribute="top" secondItem="wkG-hv-O5j" secondAttribute="topMargin" constant="-8" id="YZu-hY-NFF"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="shy-Rk-k8z" secondAttribute="bottom" constant="-8" id="gn7-vR-1tq"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="shy-Rk-k8z" id="jSb-qX-2tI"/>
                                         </connections>
@@ -1118,7 +1124,7 @@
                                     <constraint firstAttribute="height" constant="50" id="EgZ-te-D26"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="始める">
+                                <state key="normal" title="ログインして始める">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
