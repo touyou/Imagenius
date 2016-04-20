@@ -32,6 +32,7 @@
 		464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */; };
 		464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80491C799BE6006100DB /* SWTableViewCell.framework */; };
 		464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80601C79EFCD006100DB /* SwifteriOS.framework */; };
+		464B0D4D1CC787A80042198F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 464B0D4C1CC787A80042198F /* FXBlurView.m */; };
 		467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549D11C969C2C00FB3747 /* RegExCategories.framework */; };
 		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
 		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
@@ -192,6 +193,8 @@
 		464A80481C799BE6006100DB /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		464A80491C799BE6006100DB /* SWTableViewCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWTableViewCell.framework; path = "Pods/../build/Debug-iphoneos/SWTableViewCell.framework"; sourceTree = "<group>"; };
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
+		464B0D4B1CC787A80042198F /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		464B0D4C1CC787A80042198F /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		467549E71C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 				4603CC241C7DE062005DF397 /* Settings.bundle */,
 				4689DFF21CA55E1F006B48FF /* Imagenius-Bridging-Header.h */,
 				4689DFEF1CA55DEE006B48FF /* Imagenius-Bridging-Header.h */,
+				464B0D4B1CC787A80042198F /* FXBlurView.h */,
+				464B0D4C1CC787A80042198F /* FXBlurView.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -770,7 +775,7 @@
 				TargetAttributes = {
 					460B4A341C6B5CF60089CC7E = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = Q8H8J4PUJC;
+						DevelopmentTeam = B4S4333JDW;
 					};
 					460B4A481C6B5CF60089CC7E = {
 						CreatedOnToolsVersion = 7.2;
@@ -984,6 +989,7 @@
 				468722D21CB2611400DEF2DB /* TweetVarViewCell.swift in Sources */,
 				468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */,
 				468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */,
+				464B0D4D1CC787A80042198F /* FXBlurView.m in Sources */,
 				46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */,
 				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
 				46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */,
@@ -1176,7 +1182,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8bcf3651-90ba-4bc7-bc45-11834e86008e";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1190,7 +1196,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yosuke Fujii (B4S4333JDW)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1204,7 +1210,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1484df58-9ab8-441f-a3e7-1d0506f60fdc";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

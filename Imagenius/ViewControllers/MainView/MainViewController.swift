@@ -56,8 +56,8 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         timelineTableView.addSubview(refreshControl)
-        saveData.setObject(false, forKey: Settings.Saveword.changed)
-        saveData.setObject(false, forKey: Settings.Saveword.changed2)
+        
+        saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.New,NSKeyValueObservingOptions.Old], context: nil)
         
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             performSegueWithIdentifier("showInfo", sender: nil)
@@ -74,8 +74,6 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
                 }
             }
         }
-        
-        saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.New,NSKeyValueObservingOptions.Old], context: nil)
         
         viewModel.setViewController(self)
     }

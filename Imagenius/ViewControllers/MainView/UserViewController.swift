@@ -15,11 +15,18 @@ import SWTableViewCell
 import AVKit
 import AVFoundation
 import SDWebImage
+import RxCocoa
+import RxSwift
 
 class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
     @IBOutlet var userTimeLine: UITableView!
+    @IBOutlet var avatarImage: UIImageView!
+    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var userIDLabel: UILabel!
+    @IBOutlet var userDescription: TTTAttributedLabel!
+    @IBOutlet var followButton: UIButton!
     
-    var user: String!
+    var user: String!   // screen_name
     var id_str: String!
     
     var viewModel = UserViewModel()
@@ -38,6 +45,8 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    // Rx
+    final private let disposeBag = DisposeBag()
     
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
@@ -57,6 +66,12 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(UserViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         userTimeLine.addSubview(refreshControl)
+        
+        userIDLabel.text = "@\(self.user)"
+        // ボタン周り
+        followButton.layer.cornerRadius = 5.0
+        followButton.layer.borderWidth = 1.0
+        followButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
         
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             performSegueWithIdentifier("showInfo", sender: nil)
@@ -138,6 +153,22 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     @IBAction func pushTweet() {
         self.replyStr = "@\(user) "
         performSegueWithIdentifier("toTweetView", sender: nil)
+    }
+    func unfollow() {
+        self.swifter.postDestroyFriendshipWithID(self.id_str, success: { user in
+            self.followButton.setTitle("フォローする", forState: .Normal)
+            self.followButton.rx_tap.subscribe({ event in
+                self.follow()
+            }).addDisposableTo(self.disposeBag)
+        })
+    }
+    func follow() {
+        self.swifter.postCreateFriendshipWithID(self.id_str, success: { user in
+            self.followButton.setTitle("フォロー解除", forState: .Normal)
+            self.followButton.rx_tap.subscribe({ event in
+                self.unfollow()
+            }).addDisposableTo(self.disposeBag)
+        })
     }
     
     // TableView関連-------------------------------------------------------------
@@ -292,6 +323,7 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             getUserIdWithScreenName(user, comp: {
                 self.tweetArray = []
                 self.title = "@\(self.user)のツイート一覧"
+                self.userIDLabel.text = "@\(self.user)"
                 self.loadTweet()
             })
         } else {
@@ -330,6 +362,41 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
                 }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
+            
+            // headerの設定
+            if tweets.count >= 1 {
+                let userInfo = tweets[0]["user"]
+                
+                self.avatarImage.sd_setImageWithURL(NSURL(string: userInfo["profile_image_url_https"].string!), placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
+                self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.width * 0.5
+                self.avatarImage.clipsToBounds = true
+                self.avatarImage.layer.borderColor = Settings.Colors.selectedColor.CGColor
+                self.avatarImage.layer.borderWidth = 0.19
+                
+                self.userNameLabel.text = userInfo["name"].string!
+                self.userDescription.text = userInfo["description"].string!
+                if userInfo["following"].bool != nil {
+                    self.followButton.hidden = false
+                    if userInfo["following"].bool! {
+                        self.followButton.setTitle("フォロー解除", forState: .Normal)
+                        self.followButton.rx_tap.subscribe({ event in
+                            self.unfollow()
+                        }).addDisposableTo(self.disposeBag)
+                    } else if userInfo["follow_request_sent"].bool! {
+                        self.followButton.setTitle("フォロー許可待ち", forState: .Normal)
+                        self.followButton.enabled = false
+                    } else {
+                        self.followButton.setTitle("フォローする", forState: .Normal)
+                        self.followButton.rx_tap.subscribe({ event in
+                            self.follow()
+                        }).addDisposableTo(self.disposeBag)
+                    }
+                } else {
+                    self.followButton.enabled = false
+                    self.followButton.hidden = true
+                }
+            }
+            
             self.viewModel.tweetArray = self.tweetArray
             self.userTimeLine.reloadData()
         }
