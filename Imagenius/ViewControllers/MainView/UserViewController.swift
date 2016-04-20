@@ -25,6 +25,8 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     @IBOutlet var userIDLabel: UILabel!
     @IBOutlet var userDescription: TTTAttributedLabel!
     @IBOutlet var followButton: UIButton!
+    @IBOutlet var unfollowButton: UIButton!
+    @IBOutlet var followBtnLength: NSLayoutConstraint!
     
     var user: String!   // screen_name
     var id_str: String!
@@ -72,6 +74,13 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         followButton.layer.cornerRadius = 5.0
         followButton.layer.borderWidth = 1.0
         followButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
+        unfollowButton.layer.cornerRadius = 5.0
+        unfollowButton.layer.borderWidth = 1.0
+        unfollowButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
+        followButton.hidden = true
+        unfollowButton.hidden = true
+        followButton.rx_tap.subscribe({event in self.follow()}).addDisposableTo(disposeBag)
+        unfollowButton.rx_tap.subscribe({event in self.unfollow()}).addDisposableTo(disposeBag)
         
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             performSegueWithIdentifier("showInfo", sender: nil)
@@ -156,18 +165,16 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     }
     func unfollow() {
         self.swifter.postDestroyFriendshipWithID(self.id_str, success: { user in
-            self.followButton.setTitle("フォローする", forState: .Normal)
-            self.followButton.rx_tap.subscribe({ event in
-                self.follow()
-            }).addDisposableTo(self.disposeBag)
+            self.unfollowButton.hidden = true
+            self.followButton.hidden = false
+            self.followBtnLength.constant = 100
         })
     }
     func follow() {
         self.swifter.postCreateFriendshipWithID(self.id_str, success: { user in
-            self.followButton.setTitle("フォロー解除", forState: .Normal)
-            self.followButton.rx_tap.subscribe({ event in
-                self.unfollow()
-            }).addDisposableTo(self.disposeBag)
+            self.unfollowButton.hidden = false
+            self.followBtnLength.constant = 0
+            self.followButton.hidden = true
         })
     }
     
@@ -376,24 +383,28 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
                 self.userNameLabel.text = userInfo["name"].string!
                 self.userDescription.text = userInfo["description"].string!
                 if userInfo["following"].bool != nil {
-                    self.followButton.hidden = false
                     if userInfo["following"].bool! {
-                        self.followButton.setTitle("フォロー解除", forState: .Normal)
-                        self.followButton.rx_tap.subscribe({ event in
-                            self.unfollow()
-                        }).addDisposableTo(self.disposeBag)
+                        self.followButton.hidden = true
+                        self.followBtnLength.constant = 0
+                        self.unfollowButton.hidden = false
                     } else if userInfo["follow_request_sent"].bool! {
                         self.followButton.setTitle("フォロー許可待ち", forState: .Normal)
                         self.followButton.enabled = false
+                        self.followBtnLength.constant = 100
+                        self.unfollowButton.hidden = true
+                        self.followButton.hidden = false
                     } else {
-                        self.followButton.setTitle("フォローする", forState: .Normal)
-                        self.followButton.rx_tap.subscribe({ event in
-                            self.follow()
-                        }).addDisposableTo(self.disposeBag)
+                        self.followButton.hidden = false
+                        self.followBtnLength.constant = 100
+                        self.unfollowButton.hidden = true
                     }
                 } else {
-                    self.followButton.enabled = false
                     self.followButton.hidden = true
+                    self.unfollowButton.hidden = true
+                }
+                if self.id_str == self.account?.username {
+                    self.followButton.hidden = true
+                    self.unfollowButton.hidden = true
                 }
             }
             
