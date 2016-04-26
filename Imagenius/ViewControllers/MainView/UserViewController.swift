@@ -402,7 +402,7 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
                     self.followButton.hidden = true
                     self.unfollowButton.hidden = true
                 }
-                if self.id_str == self.account?.username {
+                if self.user == self.account?.username! {
                     self.followButton.hidden = true
                     self.unfollowButton.hidden = true
                 }
