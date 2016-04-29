@@ -152,7 +152,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
             .flatMapLatest { [weak self] _ in
                 return UIImagePickerController.rx_createWithParent(self) { picker in
                     picker.sourceType = .PhotoLibrary
-                    picker.allowsEditing = false
+                    picker.allowsEditing = true
                     }
                     .flatMap {
                         $0.rx_didFinishPickingMediaWithInfo
@@ -160,7 +160,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
                     .take(1)
             }
             .map { info in
-                return info[UIImagePickerControllerOriginalImage] as? UIImage
+                return info[UIImagePickerControllerEditedImage] as? UIImage
             }
             .subscribe({ image in
                 let failureHandler: ((NSError) -> Void) = { error in
