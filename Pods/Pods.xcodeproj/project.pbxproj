@@ -1681,6 +1681,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>2CB732CF6415D9CEAAFBC9A42535F781</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleMobileAds.framework</string>
+			<key>path</key>
+			<string>GoogleMobileAdsSdkiOS-7.8.0/GoogleMobileAds.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2D7CB23A521B6CD1C502D4A5C5D86E09</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2988,7 +3001,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>AC667E7A1FC0C48011201E3078C23915</string>
+				<string>ED770CA2C7F9BADD894D438B6D86F28D</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -5109,19 +5122,6 @@
 			<string>CombineLatest+CollectionType.swift</string>
 			<key>path</key>
 			<string>RxSwift/Observables/Implementations/CombineLatest+CollectionType.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>78F5B1C5D270654A53BC4A861B2DA847</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleMobileAds.framework</string>
-			<key>path</key>
-			<string>GoogleMobileAdsSdkiOS-7.7.1/GoogleMobileAds.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -7618,19 +7618,6 @@
 			<string>C6AA72A044ECC8750875916CD11DECDF</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>AC667E7A1FC0C48011201E3078C23915</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>78F5B1C5D270654A53BC4A861B2DA847</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>AC86F4FF4C396FABEBA443FE581E1675</key>
 		<dict>
@@ -10388,6 +10375,19 @@
 			<string>148A2FCC4F33FB5D905082BCB26E415A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>ED770CA2C7F9BADD894D438B6D86F28D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2CB732CF6415D9CEAAFBC9A42535F781</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>EDA8E964F9F4F279252553F2B496CDBF</key>
 		<dict>

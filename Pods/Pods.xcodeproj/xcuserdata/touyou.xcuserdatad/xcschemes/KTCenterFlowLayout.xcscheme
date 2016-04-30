@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D5C7FE23601D045830B0D65B'
+               BlueprintIdentifier = '3311F0C89BC0802B39F161F2'
                BlueprintName = 'KTCenterFlowLayout'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'KTCenterFlowLayout.framework'>

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'ED22C6677A1209AF9624CD66'
+               BlueprintIdentifier = '6E3E8E883858A95288D701DF'
                BlueprintName = 'Pods-Imagenius'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Imagenius.framework'>
