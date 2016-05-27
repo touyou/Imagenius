@@ -10,6 +10,5 @@
 #define Imagenius_Bridging_Header_h
 
 #import <RegExCategories/RegExCategories.h>
-#import "FXBlurView.h"
 
 #endif /* Imagenius_Bridging_Header_h */

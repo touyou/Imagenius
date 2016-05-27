@@ -38,6 +38,7 @@ class TiqavImageViewModel: NSObject, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! TiqavImageViewCell
         let url = urls[indexPath.row]
+        cell.imageView.contentMode = .ScaleAspectFill
         cell.imageView.sd_setImageWithURL(url, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
         return cell
     }

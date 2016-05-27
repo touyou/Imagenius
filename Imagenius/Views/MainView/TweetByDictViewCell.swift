@@ -107,6 +107,7 @@ class TweetByDictViewCell: SWTableViewCell {
         let tweetImgPath:String = tweet["extended_entities"]!["media"][0]["media_url"].string!
         let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
         
+        self.tweetImgView.contentMode = .ScaleAspectFill
         self.tweetImgView.sd_setImageWithURL(tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
         
         switch tweet["extended_entities"]!["media"][0]["type"].string! {

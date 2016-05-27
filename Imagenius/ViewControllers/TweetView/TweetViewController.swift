@@ -306,6 +306,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as! TiqavImageViewCell
+        cell.imageView.contentMode = .ScaleAspectFill
         cell.imageView.image = tweetImage[indexPath.row]
         return cell
     }
