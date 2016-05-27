@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */; };
 		4603CC251C7DE062005DF397 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC241C7DE062005DF397 /* Settings.bundle */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
 		460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3C1C6B5CF60089CC7E /* Main.storyboard */; };
@@ -35,8 +34,6 @@
 		464B0D4D1CC787A80042198F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 464B0D4C1CC787A80042198F /* FXBlurView.m */; };
 		467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549D11C969C2C00FB3747 /* RegExCategories.framework */; };
 		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
-		468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683828F1C7581A6001DC810 /* Alamofire.framework */; };
-		468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468382901C7581A6001DC810 /* SwiftyJSON.framework */; };
 		468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687225F1CB25F4B00DEF2DB /* Icon-40.png */; };
 		468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722601CB25F4B00DEF2DB /* Icon-40@2x.png */; };
 		468722751CB25F4B00DEF2DB /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722611CB25F4B00DEF2DB /* Icon-40@3x.png */; };
@@ -98,6 +95,9 @@
 		468722EF1CB4E10700DEF2DB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722ED1CB4E10700DEF2DB /* Utility.swift */; };
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
+		5872E156ADCE7072379B81D5 /* Pods_ImageniusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */; };
+		DC5DA969D2F9DC1E413C2F9D /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */; };
+		FD6847A9DF4F64C86CCB9838 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +143,13 @@
 			remoteGlobalIDString = 8B300C471944AECB00993175;
 			remoteInfo = SwifterDemoMac;
 		};
+		46E540C11CF848570062D71B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 464A80241C7997DE006100DB /* Swifter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F6B4D5751C7BAC4500E06514;
+			remoteInfo = SwifterTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -159,7 +166,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
+		21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41700656B67CD601270B36AD /* Pods-ImageniusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.release.xcconfig"; sourceTree = "<group>"; };
 		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,8 +207,6 @@
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		467549E71C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		467549E81C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		4683828F1C7581A6001DC810 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		468382901C7581A6001DC810 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		4687225F1CB25F4B00DEF2DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40.png"; path = "Resources/icon/Icon-40.png"; sourceTree = "<group>"; };
 		468722601CB25F4B00DEF2DB /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40@2x.png"; path = "Resources/icon/Icon-40@2x.png"; sourceTree = "<group>"; };
 		468722611CB25F4B00DEF2DB /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40@3x.png"; path = "Resources/icon/Icon-40@3x.png"; sourceTree = "<group>"; };
@@ -275,8 +281,13 @@
 		469F18C01CAAAB9600C015EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
-		60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
-		8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
+		517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		69A1B06A5DED017BC9DD4957 /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
+		A2E9D717CBFABC890431789E /* Pods-ImageniusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,9 +300,7 @@
 				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
 				464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */,
 				464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */,
-				468382911C7581A6001DC810 /* Alamofire.framework in Frameworks */,
-				468382921C7581A6001DC810 /* SwiftyJSON.framework in Frameworks */,
-				25E5C64EB4ABE34FFB3D1360 /* Pods_Imagenius.framework in Frameworks */,
+				FD6847A9DF4F64C86CCB9838 /* Pods_Imagenius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +308,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5872E156ADCE7072379B81D5 /* Pods_ImageniusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,12 +316,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5DA969D2F9DC1E413C2F9D /* Pods_ImageniusUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28CC4083F3FE7D3924413D0E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */,
+				69A1B06A5DED017BC9DD4957 /* Pods-Imagenius.release.xcconfig */,
+				A2E9D717CBFABC890431789E /* Pods-ImageniusTests.debug.xcconfig */,
+				41700656B67CD601270B36AD /* Pods-ImageniusTests.release.xcconfig */,
+				517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */,
+				583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4603CC231C7DE04D005DF397 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,14 +352,12 @@
 			isa = PBXGroup;
 			children = (
 				4603CC231C7DE04D005DF397 /* Supporting Files */,
-				4683828F1C7581A6001DC810 /* Alamofire.framework */,
-				468382901C7581A6001DC810 /* SwiftyJSON.framework */,
 				460B4A371C6B5CF60089CC7E /* Imagenius */,
 				460B4A4C1C6B5CF60089CC7E /* ImageniusTests */,
 				460B4A571C6B5CF60089CC7E /* ImageniusUITests */,
 				460B4A361C6B5CF60089CC7E /* Products */,
-				CA5CFC7A612E4DAD618FD845 /* Pods */,
 				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
+				28CC4083F3FE7D3924413D0E /* Pods */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -496,6 +518,7 @@
 				464A802E1C7997DE006100DB /* SwifteriOS.framework */,
 				464A80301C7997DE006100DB /* SwifterMac.framework */,
 				464A80321C7997DE006100DB /* SwifterDemoMac.app */,
+				46E540C21CF848570062D71B /* SwifterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -665,15 +688,6 @@
 			name = TweetView;
 			sourceTree = "<group>";
 		};
-		CA5CFC7A612E4DAD618FD845 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */,
-				60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,7 +711,9 @@
 				464A80491C799BE6006100DB /* SWTableViewCell.framework */,
 				464A80441C799AAC006100DB /* SwifteriOS.framework */,
 				464A80241C7997DE006100DB /* Swifter.xcodeproj */,
-				8B57AFC83C8F076CF3F5473A /* Pods_Imagenius.framework */,
+				BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */,
+				21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */,
+				F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -709,14 +725,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A5D1C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "Imagenius" */;
 			buildPhases = (
-				4F0F1E317B970F9DFBD2323D /* Check Pods Manifest.lock */,
+				EE844EA5BA1964B5C0123FA4 /* 📦 Check Pods Manifest.lock */,
 				460B4A311C6B5CF60089CC7E /* Sources */,
 				460B4A321C6B5CF60089CC7E /* Frameworks */,
 				460B4A331C6B5CF60089CC7E /* Resources */,
 				468382931C7581B0001DC810 /* ShellScript */,
-				83A35A83565AB35DBF827A2A /* Embed Pods Frameworks */,
-				8DB6F376014DE0C43C1E6F35 /* Copy Pods Resources */,
 				469373501C7A013A00BE1506 /* CopyFiles */,
+				D82E47D78A55C03D69B782B9 /* 📦 Embed Pods Frameworks */,
+				949AACDD25C16DCD83621814 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -731,9 +747,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A601C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "ImageniusTests" */;
 			buildPhases = (
+				166517B1BBE285A252E3FCBB /* 📦 Check Pods Manifest.lock */,
 				460B4A451C6B5CF60089CC7E /* Sources */,
 				460B4A461C6B5CF60089CC7E /* Frameworks */,
 				460B4A471C6B5CF60089CC7E /* Resources */,
+				5D39E9E702989521904E4844 /* 📦 Embed Pods Frameworks */,
+				6978C43641DA73E4B883D686 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -749,9 +768,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A631C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "ImageniusUITests" */;
 			buildPhases = (
+				CBDC7564BE2772E14CEEAEB5 /* 📦 Check Pods Manifest.lock */,
 				460B4A501C6B5CF60089CC7E /* Sources */,
 				460B4A511C6B5CF60089CC7E /* Frameworks */,
 				460B4A521C6B5CF60089CC7E /* Resources */,
+				04ADA1772D9DD27D57DB26D7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -843,6 +864,13 @@
 			remoteRef = 464A80311C7997DE006100DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		46E540C21CF848570062D71B /* SwifterTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwifterTests.xctest;
+			remoteRef = 46E540C11CF848570062D71B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -917,29 +945,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		468382931C7581B0001DC810 /* ShellScript */ = {
+		04ADA1772D9DD27D57DB26D7 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\nAPP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
-		4F0F1E317B970F9DFBD2323D /* Check Pods Manifest.lock */ = {
+		166517B1BBE285A252E3FCBB /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -947,14 +975,87 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		83A35A83565AB35DBF827A2A /* Embed Pods Frameworks */ = {
+		468382931C7581B0001DC810 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"";
+		};
+		5D39E9E702989521904E4844 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6978C43641DA73E4B883D686 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		949AACDD25C16DCD83621814 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBDC7564BE2772E14CEEAEB5 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D82E47D78A55C03D69B782B9 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -962,19 +1063,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DB6F376014DE0C43C1E6F35 /* Copy Pods Resources */ = {
+		EE844EA5BA1964B5C0123FA4 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1164,7 +1265,7 @@
 		};
 		460B4A5E1C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EAE5EF5AB2E17BBA9F8CE0A /* Pods-Imagenius.debug.xcconfig */;
+			baseConfigurationReference = 4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1192,7 +1293,7 @@
 		};
 		460B4A5F1C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60D1E95AD0E3581DEAAF872E /* Pods-Imagenius.release.xcconfig */;
+			baseConfigurationReference = 69A1B06A5DED017BC9DD4957 /* Pods-Imagenius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1219,6 +1320,7 @@
 		};
 		460B4A611C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2E9D717CBFABC890431789E /* Pods-ImageniusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ImageniusTests/Info.plist;
@@ -1232,6 +1334,7 @@
 		};
 		460B4A621C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41700656B67CD601270B36AD /* Pods-ImageniusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ImageniusTests/Info.plist;
@@ -1244,6 +1347,7 @@
 		};
 		460B4A641C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ImageniusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1256,6 +1360,7 @@
 		};
 		460B4A651C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ImageniusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

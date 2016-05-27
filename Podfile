@@ -11,6 +11,8 @@ target 'Imagenius' do
     pod 'KTCenterFlowLayout'
     pod 'RegExCategories', '~> 1.0'
     pod 'SDWebImage'
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxBlocking'

@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rf3-jV-h5m">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rf3-jV-h5m">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1299,13 +1299,13 @@
         <image name="use_white-1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2qG-yx-SFg"/>
-        <segue reference="mLu-x9-W3H"/>
-        <segue reference="q4p-k7-n0W"/>
         <segue reference="hPE-w5-f9m"/>
-        <segue reference="Bba-3S-2Fz"/>
-        <segue reference="21d-lg-iCt"/>
-        <segue reference="Veg-Gf-dZD"/>
-        <segue reference="7c0-L8-Ix4"/>
+        <segue reference="q4p-k7-n0W"/>
+        <segue reference="cmZ-K3-mrb"/>
+        <segue reference="31d-tK-pgU"/>
+        <segue reference="xHW-s2-PT9"/>
+        <segue reference="OI5-fk-Xfo"/>
+        <segue reference="yNR-T6-EMa"/>
+        <segue reference="wIT-dD-RK3"/>
     </inferredMetricsTieBreakers>
 </document>
