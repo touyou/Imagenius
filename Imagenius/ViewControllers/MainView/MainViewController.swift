@@ -16,7 +16,7 @@ import AVKit
 import AVFoundation
 import SDWebImage
 
-class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
+class MainViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var timelineTableView: UITableView!
     
     var viewModel = MainViewModel()
@@ -78,6 +78,7 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         viewModel.setViewController(self)
     }
     
+    // アカウントが切り替わった時点でページをリロードしている
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
@@ -93,12 +94,14 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         }
     }
     
+    // メモリーがいっぱいになったらSDWebImageのキャッシュを削除
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
     
+    // 各Viewへ移り変わるときに渡す値
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toTweetView" {
             let tweetView = segue.destinationViewController as! TweetViewController
@@ -129,12 +132,13 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         }
     }
     
+    // ステータスバーを細く
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
     
     
-    // ボタン関連-----------------------------------------------------------------
+    // ボタン関連---------------------------------------------------------------
     @IBAction func pushTweet() {
         performSegueWithIdentifier("toTweetView", sender: nil)
     }
@@ -144,7 +148,49 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     }
     
     
-    // TableView関連-------------------------------------------------------------
+    // TableView関連------------------------------------------------------------
+    // UITableViewDelegateが無いので空
+    
+    // Utility------------------------------------------------------------------
+    // refresh処理
+    func refresh() {
+        self.tweetArray = []
+        loadTweet()
+        self.refreshControl.endRefreshing()
+    }
+    // Tweetのロード
+    func load(moreflag: Bool) {
+    }
+    // Tweetをロードする
+    func loadTweet() {
+        if swifter != nil {
+            load(false)
+        }
+    }
+    // さらに下を読み込む
+    func loadMore() {
+        if swifter != nil {
+            load(true)
+        }
+    }
+}
+
+extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    // DZNEmptyDataSetの設定
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "表示できるツイートがありません。"
+        let font = UIFont.systemFontOfSize(20)
+        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        return NSAttributedString(string: "リロードする")
+    }
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        loadTweet()
+    }
+}
+
+extension MainViewController: SWTableViewCellDelegate {
     // SWTableViewCell関連
     // 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
@@ -280,22 +326,9 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             break
         }
     }
-    
-    
-    // DZNEmptyDataSetの設定
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "表示できるツイートがありません。"
-        let font = UIFont.systemFontOfSize(20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
-    }
-    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        return NSAttributedString(string: "リロードする")
-    }
-    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-        loadTweet()
-    }
-    
-    
+}
+
+extension MainViewController: TTTAttributedLabelDelegate {
     // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
@@ -304,30 +337,6 @@ class MainViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
         } else {
             Utility.openWebView(url)
             performSegueWithIdentifier("openWebView", sender: nil)
-        }
-    }
-    
-    
-    // Utility------------------------------------------------------------------
-    // refresh処理
-    func refresh() {
-        self.tweetArray = []
-        loadTweet()
-        self.refreshControl.endRefreshing()
-    }
-    // Tweetのロード
-    func load(moreflag: Bool) {
-    }
-    // Tweetをロードする
-    func loadTweet() {
-        if swifter != nil {
-            load(false)
-        }
-    }
-    // さらに下を読み込む
-    func loadMore() {
-        if swifter != nil {
-            load(true)
         }
     }
 }

@@ -56,9 +56,6 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
         cell.tweetImgView.addGestureRecognizer(tapGesture)
         cell.tweetImgView.tag = indexPath.row + 10000 * indexPath.section
         
-//        if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
-//            viewController.loadMore()
-//        }
         cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, f_num: f_num, r_num: r_num) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
         cell.delegate = viewController

@@ -81,12 +81,12 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
         searchField.placeholder = "画像を検索する"
         tweetImageHeight.constant = 0
         
-        let flowLayout = KTCenterFlowLayout()
-        flowLayout.scrollDirection = .Horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.minimumLineSpacing = 10
-        flowLayout.itemSize = CGSizeMake(110, 110)
-        imageCollectionView.collectionViewLayout = flowLayout
+//        let flowLayout = KTCenterFlowLayout()
+//        flowLayout.scrollDirection = .Horizontal
+//        flowLayout.minimumInteritemSpacing = 10
+//        flowLayout.minimumLineSpacing = 10
+//        flowLayout.itemSize = CGSizeMake(110, 110)
+//        imageCollectionView.collectionViewLayout = flowLayout
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.backgroundColor = UIColor.whiteColor()

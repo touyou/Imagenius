@@ -16,7 +16,7 @@ import AVKit
 import AVFoundation
 import SDWebImage
 
-class TweetDetailViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
+class TweetDetailViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var timelineTableView: UITableView!
     
     var viewId: String!
@@ -144,6 +144,69 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate, DZNEmpty
     
     
     // TableView関連-------------------------------------------------------------
+    // 無し
+    
+    // Utility------------------------------------------------------------------
+    // refresh処理
+    func refresh() {
+        self.tweetArray = [[],[],[]]
+        loadTweet()
+        self.refreshControl.endRefreshing()
+    }
+    // Tweetのロード
+    func load(moreflag: Bool) {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: ツイートのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+        var successHandler: ((Dictionary<String, JSONValue>?) -> Void)!
+        successHandler = { status in
+            guard let tweet = status else { return }
+            self.tweetArray[0].insert(tweet, atIndex: 0)
+            
+            if let next_id = tweet["in_reply_to_status_id_str"]!.string {
+                self.swifter.getStatusesShowWithID(next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
+            } else {
+                self.viewModel.setTweetArray(self.tweetArray)
+                self.timelineTableView.reloadData()
+            }
+        }
+        swifter.getStatusesShowWithID(viewId, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: {
+            status in
+            guard let tweet = status else { return }
+            self.tweetArray[1].append(tweet)
+            
+            if let next_id = tweet["in_reply_to_status_id_str"]!.string {
+                self.swifter.getStatusesShowWithID(next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
+            } else {
+                self.viewModel.setTweetArray(self.tweetArray)
+                self.timelineTableView.reloadData()
+            }
+            }, failure: failureHandler)
+    }
+    // Tweetをロードする
+    func loadTweet() {
+        if swifter != nil {
+            load(false)
+        }
+    }
+}
+
+extension TweetDetailViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    // DZNEmptyDataSetの設定
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "表示できるツイートがありません。"
+        let font = UIFont.systemFontOfSize(20)
+        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        return NSAttributedString(string: "リロードする")
+    }
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        loadTweet()
+    }
+}
+
+extension TweetDetailViewController: SWTableViewCellDelegate {
     // SWTableViewCell関連
     // 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
@@ -279,22 +342,9 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate, DZNEmpty
             break
         }
     }
-    
-    
-    // DZNEmptyDataSetの設定
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "表示できるツイートがありません。"
-        let font = UIFont.systemFontOfSize(20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
-    }
-    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        return NSAttributedString(string: "リロードする")
-    }
-    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-        loadTweet()
-    }
-    
-    
+}
+
+extension TweetDetailViewController: TTTAttributedLabelDelegate {
     // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
@@ -305,54 +355,4 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate, DZNEmpty
             performSegueWithIdentifier("openWebView", sender: nil)
         }
     }
-    
-    // Utility------------------------------------------------------------------
-    // refresh処理
-    func refresh() {
-        self.tweetArray = [[],[],[]]
-        loadTweet()
-        self.refreshControl.endRefreshing()
-    }
-    // Tweetのロード
-    func load(moreflag: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert("Error: ツイートのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
-        }
-        var successHandler: ((Dictionary<String, JSONValue>?) -> Void)!
-        successHandler = { status in
-            guard let tweet = status else { return }
-            self.tweetArray[0].insert(tweet, atIndex: 0)
-            
-            if let next_id = tweet["in_reply_to_status_id_str"]!.string {
-                self.swifter.getStatusesShowWithID(next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
-            } else {
-                self.viewModel.setTweetArray(self.tweetArray)
-                self.timelineTableView.reloadData()
-            }
-        }
-        swifter.getStatusesShowWithID(viewId, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: {
-            status in
-            guard let tweet = status else { return }
-            self.tweetArray[1].append(tweet)
-            
-            if let next_id = tweet["in_reply_to_status_id_str"]!.string {
-                self.swifter.getStatusesShowWithID(next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
-            } else {
-                self.viewModel.setTweetArray(self.tweetArray)
-                self.timelineTableView.reloadData()
-            }
-            }, failure: failureHandler)
-    }
-    // Tweetをロードする
-    func loadTweet() {
-        if swifter != nil {
-            load(false)
-        }
-    }
-//    // さらに下を読み込む
-//    func loadMore() {
-//        if swifter != nil {
-//            load(true)
-//        }
-//    }
 }

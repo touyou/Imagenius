@@ -18,7 +18,7 @@ import SDWebImage
 import RxCocoa
 import RxSwift
 
-class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SWTableViewCellDelegate, TTTAttributedLabelDelegate {
+class UserViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var userTimeLine: UITableView!
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var userNameLabel: UILabel!
@@ -179,6 +179,128 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
     }
     
     // TableView関連-------------------------------------------------------------
+    // 無し
+    
+    // Utility------------------------------------------------------------------
+    // refresh処理
+    func refresh() {
+        self.tweetArray = []
+        loadTweet()
+        self.refreshControl.endRefreshing()
+    }
+    // Tweetのロード
+    func load(moreflag: Bool) {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: ユーザーのツイート一覧のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+        let successHandler: (([JSONValue]?) -> Void) = { statuses in
+            guard let tweets = statuses else { return }
+            
+            if tweets.count < 1 {
+                self.maxId = ""
+            } else if tweets.count == 1 {
+                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1]["id_str"].string {
+                    return
+                }
+                self.tweetArray.append(tweets[0])
+                self.maxId = tweets[0]["id_str"].string
+            } else {
+                for i in 0 ..< tweets.count - 1 {
+                    self.tweetArray.append(tweets[i])
+                }
+                self.maxId = tweets[tweets.count - 1]["id_str"].string
+            }
+            
+            // headerの設定
+            if tweets.count >= 1 {
+                let userInfo = tweets[0]["user"]
+                
+                self.avatarImage.sd_setImageWithURL(NSURL(string: userInfo["profile_image_url_https"].string!), placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
+                self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.width * 0.5
+                self.avatarImage.clipsToBounds = true
+                self.avatarImage.layer.borderColor = Settings.Colors.selectedColor.CGColor
+                self.avatarImage.layer.borderWidth = 0.19
+                
+                self.userNameLabel.text = userInfo["name"].string!
+                self.userDescription.text = userInfo["description"].string!
+                if userInfo["following"].bool != nil {
+                    if userInfo["following"].bool! {
+                        self.followButton.hidden = true
+                        self.followBtnLength.constant = 0
+                        self.unfollowButton.hidden = false
+                    } else if userInfo["follow_request_sent"].bool! {
+                        self.followButton.setTitle("フォロー許可待ち", forState: .Normal)
+                        self.followButton.enabled = false
+                        self.followBtnLength.constant = 100
+                        self.unfollowButton.hidden = true
+                        self.followButton.hidden = false
+                    } else {
+                        self.followButton.hidden = false
+                        self.followBtnLength.constant = 100
+                        self.unfollowButton.hidden = true
+                    }
+                } else {
+                    self.followButton.hidden = true
+                    self.unfollowButton.hidden = true
+                }
+                if self.user == self.account?.username! {
+                    self.followButton.hidden = true
+                    self.unfollowButton.hidden = true
+                }
+            }
+            
+            self.viewModel.tweetArray = self.tweetArray
+            self.userTimeLine.reloadData()
+        }
+        if !moreflag {
+            self.swifter.getStatusesUserTimelineWithUserID(id_str, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+        } else {
+            self.swifter.getStatusesUserTimelineWithUserID(id_str, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+        }
+    }
+    // Tweetをロードする
+    func loadTweet() {
+        if swifter != nil {
+            load(false)
+        }
+    }
+    // さらに下を読み込む
+    func loadMore() {
+        if swifter != nil {
+            load(true)
+        }
+    }
+    // screen_nameからUserIDを取得する
+    func getUserIdWithScreenName(user_name: String, comp: (()->())? = nil) {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
+        }
+
+        self.swifter.getUsersShowWithScreenName(user_name, includeEntities: false, success: {
+            statuses in
+            guard let userInfo = statuses else { return }
+            self.id_str = userInfo["id_str"]?.string!
+            comp!()
+            }, failure: failureHandler)
+    }
+}
+
+extension UserViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    // DZNEmptyDataSetの設定
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "表示できるツイートがありません。"
+        let font = UIFont.systemFontOfSize(20)
+        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+    }
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        return NSAttributedString(string: "リロードする")
+    }
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        loadTweet()
+    }
+}
+
+extension UserViewController: SWTableViewCellDelegate {
     // SWTableViewCell関連
     // 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
@@ -307,22 +429,9 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             break
         }
     }
-    
-    
-    // DZNEmptyDataSetの設定
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "表示できるツイートがありません。"
-        let font = UIFont.systemFontOfSize(20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
-    }
-    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        return NSAttributedString(string: "リロードする")
-    }
-    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-        loadTweet()
-    }
-    
-    
+}
+
+extension UserViewController: TTTAttributedLabelDelegate {
     // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
@@ -337,109 +446,5 @@ class UserViewController: UIViewController, UITableViewDelegate, DZNEmptyDataSet
             Utility.openWebView(url)
             performSegueWithIdentifier("openWebView", sender: nil)
         }
-    }
-    
-    
-    // Utility------------------------------------------------------------------
-    // refresh処理
-    func refresh() {
-        self.tweetArray = []
-        loadTweet()
-        self.refreshControl.endRefreshing()
-    }
-    // Tweetのロード
-    func load(moreflag: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert("Error: ユーザーのツイート一覧のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
-        }
-        let successHandler: (([JSONValue]?) -> Void) = { statuses in
-            guard let tweets = statuses else { return }
-            
-            if tweets.count < 1 {
-                self.maxId = ""
-            } else if tweets.count == 1 {
-                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1]["id_str"].string {
-                    return
-                }
-                self.tweetArray.append(tweets[0])
-                self.maxId = tweets[0]["id_str"].string
-            } else {
-                for i in 0 ..< tweets.count - 1 {
-                    self.tweetArray.append(tweets[i])
-                }
-                self.maxId = tweets[tweets.count - 1]["id_str"].string
-            }
-            
-            // headerの設定
-            if tweets.count >= 1 {
-                let userInfo = tweets[0]["user"]
-                
-                self.avatarImage.sd_setImageWithURL(NSURL(string: userInfo["profile_image_url_https"].string!), placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
-                self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.width * 0.5
-                self.avatarImage.clipsToBounds = true
-                self.avatarImage.layer.borderColor = Settings.Colors.selectedColor.CGColor
-                self.avatarImage.layer.borderWidth = 0.19
-                
-                self.userNameLabel.text = userInfo["name"].string!
-                self.userDescription.text = userInfo["description"].string!
-                if userInfo["following"].bool != nil {
-                    if userInfo["following"].bool! {
-                        self.followButton.hidden = true
-                        self.followBtnLength.constant = 0
-                        self.unfollowButton.hidden = false
-                    } else if userInfo["follow_request_sent"].bool! {
-                        self.followButton.setTitle("フォロー許可待ち", forState: .Normal)
-                        self.followButton.enabled = false
-                        self.followBtnLength.constant = 100
-                        self.unfollowButton.hidden = true
-                        self.followButton.hidden = false
-                    } else {
-                        self.followButton.hidden = false
-                        self.followBtnLength.constant = 100
-                        self.unfollowButton.hidden = true
-                    }
-                } else {
-                    self.followButton.hidden = true
-                    self.unfollowButton.hidden = true
-                }
-                if self.user == self.account?.username! {
-                    self.followButton.hidden = true
-                    self.unfollowButton.hidden = true
-                }
-            }
-            
-            self.viewModel.tweetArray = self.tweetArray
-            self.userTimeLine.reloadData()
-        }
-        if !moreflag {
-            self.swifter.getStatusesUserTimelineWithUserID(id_str, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
-        } else {
-            self.swifter.getStatusesUserTimelineWithUserID(id_str, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
-        }
-    }
-    // Tweetをロードする
-    func loadTweet() {
-        if swifter != nil {
-            load(false)
-        }
-    }
-    // さらに下を読み込む
-    func loadMore() {
-        if swifter != nil {
-            load(true)
-        }
-    }
-    // screen_nameからUserIDを取得する
-    func getUserIdWithScreenName(user_name: String, comp: (()->())? = nil) {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
-        }
-
-        self.swifter.getUsersShowWithScreenName(user_name, includeEntities: false, success: {
-            statuses in
-            guard let userInfo = statuses else { return }
-            self.id_str = userInfo["id_str"]?.string!
-            comp!()
-            }, failure: failureHandler)
     }
 }

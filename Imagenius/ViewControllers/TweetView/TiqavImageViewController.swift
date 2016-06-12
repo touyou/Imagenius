@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet var imageCollectionView: UICollectionView!
     
     // View Model
@@ -129,6 +129,9 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(imageSize, imageSize)
     }
+}
+
+extension TiqavImageViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     // DZNEmptyDataSetの設定
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "該当する画像が見つかりませんでした。"
