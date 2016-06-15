@@ -98,16 +98,23 @@ class TweetVarViewCell: SWTableViewCell {
             return
         }
         
+        // 画像の枚数
         let imageCount = tweetMedia.count
+        // 画像の高さを設定する
         subViewHeight.constant = tweetHeight
+        // 角丸にする
         tweetSubView.layer.cornerRadius = tweetSubView.frame.width * 0.017
         tweetSubView.clipsToBounds = true
+        // 周りに線を入れる
         tweetSubView.layer.borderColor = Settings.Colors.selectedColor.CGColor
         tweetSubView.layer.borderWidth = 0.19
+        // 一枚目のURLからNSURLをつくる
+        // とりあえず一枚目だけツイート画面でプレビューする
         let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
         let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
-        
+        // 画像を表示するモード(Storyboardで設定するのと同じ)
         self.tweetImgView.contentMode = .ScaleAspectFill
+        // 画像を設定(SDWebImageを使っているので、使わない場合はUIImageにダウンロードすればいい)
         self.tweetImgView.sd_setImageWithURL(tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
         
         switch tweet["extended_entities"]["media"][0]["type"].string! {
