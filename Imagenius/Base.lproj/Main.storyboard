@@ -958,7 +958,7 @@
                     <navigationItem key="navigationItem" title="Imagenius" id="oHD-cH-Ohk">
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="6rl-V7-teF">
                             <connections>
-                                <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="hPE-w5-f9m"/>
+                                <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" customClass="RightShowSegue" customModule="Imagenius" customModuleProvider="target" id="hPE-w5-f9m"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -1302,10 +1302,10 @@
         <segue reference="31d-tK-pgU"/>
         <segue reference="2qG-yx-SFg"/>
         <segue reference="wIT-dD-RK3"/>
-        <segue reference="yNR-T6-EMa"/>
-        <segue reference="xHW-s2-PT9"/>
         <segue reference="OI5-fk-Xfo"/>
-        <segue reference="q4p-k7-n0W"/>
+        <segue reference="xHW-s2-PT9"/>
+        <segue reference="yNR-T6-EMa"/>
         <segue reference="hPE-w5-f9m"/>
+        <segue reference="q4p-k7-n0W"/>
     </inferredMetricsTieBreakers>
 </document>

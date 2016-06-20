@@ -95,6 +95,8 @@
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
 		46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAE8531D0EFC990020BD82 /* TweetStruct.swift */; };
+		46C9EB971D14C85A00A598BB /* RightShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9EB961D14C85A00A598BB /* RightShowSegue.swift */; };
+		46C9EB9E1D14CB0800A598BB /* RightShowSegueUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9EB9D1D14CB0800A598BB /* RightShowSegueUnwind.swift */; };
 		5872E156ADCE7072379B81D5 /* Pods_ImageniusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */; };
 		DC5DA969D2F9DC1E413C2F9D /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */; };
 		FD6847A9DF4F64C86CCB9838 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */; };
@@ -280,6 +282,8 @@
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
 		46BAE8531D0EFC990020BD82 /* TweetStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetStruct.swift; path = Utility/TweetStruct.swift; sourceTree = "<group>"; };
+		46C9EB961D14C85A00A598BB /* RightShowSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightShowSegue.swift; sourceTree = "<group>"; };
+		46C9EB9D1D14CB0800A598BB /* RightShowSegueUnwind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightShowSegueUnwind.swift; sourceTree = "<group>"; };
 		4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
 		517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -449,6 +453,8 @@
 				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
 				460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */,
 				4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */,
+				46C9EB961D14C85A00A598BB /* RightShowSegue.swift */,
+				46C9EB9D1D14CB0800A598BB /* RightShowSegueUnwind.swift */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -1099,11 +1105,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46C9EB9E1D14CB0800A598BB /* RightShowSegueUnwind.swift in Sources */,
 				46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */,
 				468722D11CB2611400DEF2DB /* AVPlayerView.swift in Sources */,
 				468722BC1CB2609100DEF2DB /* WebViewController.swift in Sources */,
 				468722D21CB2611400DEF2DB /* TweetVarViewCell.swift in Sources */,
 				468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */,
+				46C9EB971D14C85A00A598BB /* RightShowSegue.swift in Sources */,
 				468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */,
 				46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */,
 				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
