@@ -19,14 +19,38 @@ import RxCocoa
 import RxSwift
 
 class UserViewController: UIViewController, UITableViewDelegate {
-    @IBOutlet var userTimeLine: UITableView!
-    @IBOutlet var avatarImage: UIImageView!
-    @IBOutlet var userNameLabel: UILabel!
-    @IBOutlet var userIDLabel: UILabel!
-    @IBOutlet var userDescription: TTTAttributedLabel!
-    @IBOutlet var followButton: UIButton!
-    @IBOutlet var unfollowButton: UIButton!
-    @IBOutlet var followBtnLength: NSLayoutConstraint!
+    @IBOutlet weak var userTimeLine: UITableView! {
+        didSet {
+            userTimeLine.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+            userTimeLine.estimatedRowHeight = 200
+            userTimeLine.rowHeight = UITableViewAutomaticDimension
+            userTimeLine.emptyDataSetDelegate = self
+            userTimeLine.emptyDataSetSource = self
+            userTimeLine.dataSource = viewModel
+            // cellを選択不可に
+            userTimeLine.allowsSelection = false
+            userTimeLine.tableFooterView = UIView()
+        }
+    }
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userIDLabel: UILabel!
+    @IBOutlet weak var userDescription: TTTAttributedLabel!
+    @IBOutlet weak var followButton: UIButton! {
+        didSet {
+            followButton.layer.cornerRadius = 5.0
+            followButton.layer.borderWidth = 1.0
+            followButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
+        }
+    }
+    @IBOutlet weak var unfollowButton: UIButton! {
+        didSet {
+            unfollowButton.layer.cornerRadius = 5.0
+            unfollowButton.layer.borderWidth = 1.0
+            unfollowButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
+        }
+    }
+    @IBOutlet weak var followBtnLength: NSLayoutConstraint!
     
     var user: String!   // screen_name
     var id_str: String!
@@ -38,7 +62,11 @@ class UserViewController: UIViewController, UITableViewDelegate {
     var maxId: String!
     var replyID: String?
     var replyStr: String?
-    var refreshControl: UIRefreshControl!
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(UserViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
     var account: ACAccount?
     var accounts = [ACAccount]()
     var imageData: NSMutableArray?
@@ -53,30 +81,12 @@ class UserViewController: UIViewController, UITableViewDelegate {
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        userTimeLine.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
-        userTimeLine.estimatedRowHeight = 200
-        userTimeLine.rowHeight = UITableViewAutomaticDimension
-        userTimeLine.emptyDataSetDelegate = self
-        userTimeLine.emptyDataSetSource = self
-        userTimeLine.dataSource = viewModel
-        // cellを選択不可に
-        userTimeLine.allowsSelection = false
-        userTimeLine.tableFooterView = UIView()
         
         // 引っ張ってロードするやつ
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(UserViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         userTimeLine.addSubview(refreshControl)
         
         userIDLabel.text = "@\(self.user)"
         // ボタン周り
-        followButton.layer.cornerRadius = 5.0
-        followButton.layer.borderWidth = 1.0
-        followButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
-        unfollowButton.layer.cornerRadius = 5.0
-        unfollowButton.layer.borderWidth = 1.0
-        unfollowButton.layer.borderColor = Settings.Colors.twitterColor.CGColor
         followButton.hidden = true
         unfollowButton.hidden = true
         followButton.rx_tap.subscribe({event in self.follow()}).addDisposableTo(disposeBag)
@@ -199,14 +209,14 @@ class UserViewController: UIViewController, UITableViewDelegate {
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
-                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1]["id_str"].string {
+                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1].id_str ?? "" {
                     return
                 }
-                self.tweetArray.append(tweets[0])
+                self.tweetArray.append(Tweet(tweet: tweets[0]))
                 self.maxId = tweets[0]["id_str"].string
             } else {
                 for i in 0 ..< tweets.count - 1 {
-                    self.tweetArray.append(tweets[i])
+                    self.tweetArray.append(Tweet(tweet: tweets[i]))
                 }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
@@ -341,26 +351,26 @@ extension UserViewController: SWTableViewCellDelegate {
         switch index {
         case 0:
             // fav
-            if tweet["favorited"].bool! {
-                swifter.postDestroyFavoriteWithID(tweet["id_str"].string!, success: {
+            if tweet.favorited ?? false {
+                swifter.postDestroyFavoriteWithID(tweet.id_str ?? "", success: {
                     statuses in
                     (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["favorite_count"].integer! - 1)", forState: .Normal)
+                    (cell.rightUtilityButtons[0] as! UIButton).setTitle("\((tweet.favorite_count ?? 1) - 1)", forState: .Normal)
                 })
                 break
             }
-            swifter.postCreateFavoriteWithID(tweet["id_str"].string!, success: {
+            swifter.postCreateFavoriteWithID(tweet.id_str ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.favColor
-                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["favorite_count"].integer! + 1)", forState: .Normal)
+                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\((tweet.favorite_count ?? 0) + 1)", forState: .Normal)
             })
             break
         case 1:
             // reply
-            replyID = tweet["id_str"].string
-            replyStr = "@\(tweet["user"]["screen_name"].string!) "
-            if tweet["entities"]["user_mentions"].array?.count != 0 {
-                for u in tweet["entities"]["user_mentions"].array! {
+            replyID = tweet.id_str ?? ""
+            replyStr = "\(tweet.screen_name ?? "@") "
+            if (tweet.user_mentions ?? []).count != 0 {
+                for u in tweet.user_mentions! {
                     replyStr?.appendContentsOf("@\(u["screen_name"].string!) ")
                 }
             }
@@ -368,14 +378,14 @@ extension UserViewController: SWTableViewCellDelegate {
             break
         case 2:
             // retweet
-            if tweet["retweeted"].bool! {
+            if tweet.retweeted ?? false {
                 // (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
                 break
             }
-            swifter.postStatusRetweetWithID(tweet["id_str"].string!, success: {
+            swifter.postStatusRetweetWithID(tweet.id_str ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.retweetColor
-                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["retweet_count"].integer! + 1)", forState: .Normal)
+                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\((tweet.retweet_count ?? 0) + 1)", forState: .Normal)
             })
             break
         case 3:
@@ -387,7 +397,7 @@ extension UserViewController: SWTableViewCellDelegate {
                 self.tweetArray = []
                 self.loadTweet()
             }
-            let screen_name = tweet["user"]["screen_name"].string!
+            let screen_name = tweet.screen_name_noat ?? ""
             let alertController = UIAlertController(title: "ブロック・通報", message: "@\(screen_name)を", preferredStyle: .ActionSheet)
             alertController.addAction(UIAlertAction(title: "ブロックする", style: .Default, handler: {(action)->Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .Alert)
@@ -422,7 +432,7 @@ extension UserViewController: SWTableViewCellDelegate {
         let tweet = tweetArray[cellIndexPath.row]
         switch index {
         case 0:
-            selectedId = tweet["id_str"].string!
+            selectedId = tweet.id_str ?? ""
             performSegueWithIdentifier("toTweetDetailView", sender: nil)
             break
         default:

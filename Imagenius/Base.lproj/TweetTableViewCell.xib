@@ -89,7 +89,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="fn2-om-Ab9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" identifier="UserLabelTop" id="1M6-BY-PIa"/>
-                    <constraint firstItem="8jY-J2-yWU" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-8" identifier="TweetSubViewBottom" id="6GF-1y-Hkw"/>
+                    <constraint firstItem="8jY-J2-yWU" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-8" identifier="TweetSubViewBottom" id="6GF-1y-Hkw"/>
                     <constraint firstItem="fn2-om-Ab9" firstAttribute="leading" secondItem="2jQ-En-YDS" secondAttribute="trailing" constant="6" identifier="UserLabelLeading" id="B4h-Zz-qGq"/>
                     <constraint firstItem="2jQ-En-YDS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" identifier="UserImgViewTop" id="GmP-wL-NKI"/>
                     <constraint firstItem="8jY-J2-yWU" firstAttribute="leading" secondItem="2jQ-En-YDS" secondAttribute="trailing" constant="8" identifier="TweetSubViewLeading" id="HNB-KF-fte"/>

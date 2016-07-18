@@ -34,6 +34,10 @@ struct Tweet {
     var is_myself: Bool = false
     var is_retweet: Bool = false
     
+    init(tweet: JSONValue) {
+        self.init(tweet: tweet, myself: "")
+    }
+    
     init(tweet: JSONValue, myself: String) {
         if let retweet = tweet["retweeted_status"].object {
             is_retweet = true
@@ -64,15 +68,15 @@ struct Tweet {
         user_mentions = tweet["entities"]!["user_mentions"].array
         
         // 添付ファイル情報
-        guard let tweetMedia = tweet["extended_entities"]!["media"].array else {
+        guard let tweetMedia = tweet["extended_entities"] else {
             return
         }
         tweet_images = []
-        for path in tweetMedia {
+        for path in tweetMedia["media"].array ?? [] {
             tweet_images?.append(NSURL(string: path["media_url"].string!)!)
         }
         entities_type = tweetMedia[0]["type"].string
-        extended_entities = tweetMedia
+        extended_entities = tweetMedia["media"].array
     }
     
     private mutating func judgeAccount(myself: String) {

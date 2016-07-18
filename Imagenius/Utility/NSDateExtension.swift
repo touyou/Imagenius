@@ -47,5 +47,5 @@ func dateTimeFromTwitterDate(date: String) -> NSDate {
     inputDateFormatter.locale = locale
     inputDateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
     let resDate = inputDateFormatter.dateFromString(date)
-    return resDate!
+    return resDate ?? NSDate()
 }
