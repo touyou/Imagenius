@@ -327,8 +327,8 @@ extension MainViewController: SWTableViewCellDelegate {
             performSegueWithIdentifier("toTweetDetailView", sender: nil)
             break
         case 1:
-            selectedUser = tweet.screen_name_noat
-            selectedId = tweet.id_str
+            selectedUser = tweet.screen_name_noat ?? ""
+            selectedId = tweet.user_id ?? ""
             performSegueWithIdentifier("toUserView", sender: nil)
         default:
             break

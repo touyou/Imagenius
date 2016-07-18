@@ -16,14 +16,26 @@ import AVKit
 import AVFoundation
 import SDWebImage
 
-class TweetDetailViewController: UIViewController, UITableViewDelegate {
-    @IBOutlet var timelineTableView: UITableView!
+final class TweetDetailViewController: UIViewController, UITableViewDelegate {
+    @IBOutlet weak var timelineTableView: UITableView! {
+        didSet {
+            timelineTableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+            timelineTableView.estimatedRowHeight = 200
+            timelineTableView.rowHeight = UITableViewAutomaticDimension
+            timelineTableView.emptyDataSetDelegate = self
+            timelineTableView.emptyDataSetSource = self
+            timelineTableView.dataSource = viewModel
+            // cellを選択不可に
+            timelineTableView.allowsSelection = false
+            timelineTableView.tableFooterView = UIView()
+        }
+    }
     
     var viewId: String!
     
     var viewModel = TweetDetailViewModel()
     var avPlayerViewController: AVPlayerViewController!
-    var tweetArray: [[Dictionary<String, JSONValue>]] = [[],[],[]]
+    var tweetArray: [[Tweet]] = [[],[],[]]
     var swifter: Swifter!
     var maxId: String!
     var replyID: String?
@@ -35,6 +47,7 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
     var gifURL: NSURL!
     var selectedUser: String!
     var selectedId: String!
+    var myself: String!
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -42,15 +55,6 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
     // UIViewControllerの設定----------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        timelineTableView.estimatedRowHeight = 200
-        timelineTableView.rowHeight = UITableViewAutomaticDimension
-        timelineTableView.emptyDataSetDelegate = self
-        timelineTableView.emptyDataSetSource = self
-        timelineTableView.dataSource = viewModel
-        // cellを選択不可に
-        timelineTableView.allowsSelection = false
-        timelineTableView.tableFooterView = UIView()
-        
         
         // 引っ張ってロードするやつ
         refreshControl = UIRefreshControl()
@@ -69,6 +73,7 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
                     if self.accounts.count != 0 {
                         self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
                         self.swifter = Swifter(account: self.account!)
+                        self.myself = self.account?.username
                         self.loadTweet()
                     }
                 }
@@ -89,6 +94,7 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
                     self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
                     self.swifter = Swifter(account: self.account!)
                     self.tweetArray = [[],[],[]]
+                    self.myself = self.account?.username
                     self.loadTweet()
                 }
             }
@@ -130,9 +136,9 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
     @IBAction func pushTweet() {
         self.replyID = self.viewId
         if tweetArray[1].count != 0 {
-            self.replyStr = "@\(tweetArray[1][0]["user"]!["screen_name"].string!) "
-            if tweetArray[1][0]["entities"]!["user_mentions"].array?.count != 0 {
-                for u in tweetArray[1][0]["entities"]!["user_mentions"].array! {
+            self.replyStr = "@\(tweetArray[1][0].screen_name_noat) "
+            if (tweetArray[1][0].user_mentions ?? []).count != 0 {
+                for u in tweetArray[1][0].user_mentions! {
                     if u["screen_name"].string! != self.account?.username {
                         replyStr?.appendContentsOf("@\(u["screen_name"].string!) ")
                     }
@@ -161,7 +167,10 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
         var successHandler: ((Dictionary<String, JSONValue>?) -> Void)!
         successHandler = { status in
             guard let tweet = status else { return }
-            self.tweetArray[0].insert(tweet, atIndex: 0)
+            var tw = Tweet()
+            tw.setTweet(tweet)
+            tw.judgeAccount(self.myself)
+            self.tweetArray[0].insert(tw, atIndex: 0)
             
             if let next_id = tweet["in_reply_to_status_id_str"]!.string {
                 self.swifter.getStatusesShowWithID(next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
@@ -173,7 +182,10 @@ class TweetDetailViewController: UIViewController, UITableViewDelegate {
         swifter.getStatusesShowWithID(viewId, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: {
             status in
             guard let tweet = status else { return }
-            self.tweetArray[1].append(tweet)
+            var tw = Tweet()
+            tw.setTweet(tweet)
+            tw.judgeAccount(self.myself)
+            self.tweetArray[1].append(tw)
             
             if let next_id = tweet["in_reply_to_status_id_str"]!.string {
                 self.swifter.getStatusesShowWithID(next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
@@ -248,26 +260,26 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
         switch index {
         case 0:
             // fav
-            if tweet["favorited"]!.bool! {
-                swifter.postDestroyFavoriteWithID(tweet["id_str"]!.string!, success: {
+            if tweet.favorited ?? false {
+                swifter.postDestroyFavoriteWithID(tweet.id_str ?? "", success: {
                     statuses in
                     (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["favorite_count"]!.integer! - 1)", forState: .Normal)
+                    (cell.rightUtilityButtons[0] as! UIButton).setTitle("\((tweet.favorite_count ?? 1) - 1)", forState: .Normal)
                 })
                 break
             }
-            swifter.postCreateFavoriteWithID(tweet["id_str"]!.string!, success: {
+            swifter.postCreateFavoriteWithID(tweet.id_str ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[0] as! UIButton).backgroundColor = Settings.Colors.favColor
-                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["favorite_count"]!.integer! + 1)", forState: .Normal)
+                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\((tweet.favorite_count ?? 0) + 1)", forState: .Normal)
             })
             break
         case 1:
             // reply
-            replyID = tweet["id_str"]!.string
-            replyStr = "@\(tweet["user"]!["screen_name"].string!) "
-            if tweet["entities"]!["user_mentions"].array?.count != 0 {
-                for u in tweet["entities"]!["user_mentions"].array! {
+            replyID = tweet.id_str ?? ""
+            replyStr = "@\(tweet.screen_name_noat ?? "") "
+            if (tweet.user_mentions ?? []).count != 0 {
+                for u in tweet.user_mentions! {
                     if u["screen_name"].string! != self.account?.username {
                         replyStr?.appendContentsOf("@\(u["screen_name"].string!) ")
                     }
@@ -277,14 +289,14 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
             break
         case 2:
             // retweet
-            if tweet["retweeted"]!.bool! {
+            if tweet.retweeted ?? false {
                 // (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
                 break
             }
-            swifter.postStatusRetweetWithID(tweet["id_str"]!.string!, success: {
+            swifter.postStatusRetweetWithID(tweet.id_str ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.retweetColor
-                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\(tweet["retweet_count"]!.integer! + 1)", forState: .Normal)
+                (cell.rightUtilityButtons[0] as! UIButton).setTitle("\((tweet.retweet_count ?? 0) + 1)", forState: .Normal)
             })
             break
         case 3:
@@ -296,7 +308,7 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
                 self.tweetArray = []
                 self.loadTweet()
             }
-            let screen_name = tweet["user"]!["screen_name"].string!
+            let screen_name = tweet.screen_name_noat ?? ""
             let alertController = UIAlertController(title: "ブロック・通報", message: "@\(screen_name)を", preferredStyle: .ActionSheet)
             alertController.addAction(UIAlertAction(title: "ブロックする", style: .Default, handler: {(action)->Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .Alert)
@@ -331,12 +343,12 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
         let tweet = tweetArray[cellIndexPath.section][cellIndexPath.row]
         switch index {
         case 0:
-            viewId = tweet["id_str"]!.string!
+            viewId = tweet.id_str ?? ""
             refresh()
             break
         case 1:
-            selectedUser = tweet["user"]!["screen_name"].string!
-            selectedId = tweet["user"]!["id_str"].string!
+            selectedUser = tweet.screen_name_noat ?? ""
+            selectedId = tweet.user_id ?? ""
             performSegueWithIdentifier("toUserView", sender: nil)
         default:
             break

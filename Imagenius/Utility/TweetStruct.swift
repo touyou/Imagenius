@@ -16,6 +16,7 @@ struct Tweet {
     var screen_name_noat: String?
     var user_name: String?
     var user_image: NSURL?
+    var user_id: String?
     
     var text: String?
     var created_at: String?
@@ -34,6 +35,9 @@ struct Tweet {
     var is_myself: Bool = false
     var is_retweet: Bool = false
     
+    init() {
+    }
+    
     init(tweet: JSONValue) {
         self.init(tweet: tweet, myself: "")
     }
@@ -48,7 +52,7 @@ struct Tweet {
         judgeAccount(myself)
     }
     
-    private mutating func setTweet(tweet: Dictionary<String, JSONValue>) {
+    internal mutating func setTweet(tweet: Dictionary<String, JSONValue>) {
         let user = tweet["user"]!
         
         // ユーザー情報
@@ -56,6 +60,7 @@ struct Tweet {
         screen_name = "@\(screen_name_noat ?? "")"
         user_name = user["name"].string
         user_image = NSURL(string: user["profile_image_url_https"].string!)
+        user_id = user["id_str"].string
         
         // ツイート情報
         text = tweet["text"]?.string
@@ -79,7 +84,7 @@ struct Tweet {
         extended_entities = tweetMedia["media"].array
     }
     
-    private mutating func judgeAccount(myself: String) {
+    internal mutating func judgeAccount(myself: String) {
         if let screen = screen_name {
             if screen == "@\(myself)" {
                 is_myself = true

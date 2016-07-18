@@ -22,7 +22,6 @@
 		46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B251CB69C1E009183D9 /* SettingBannerCell.swift */; };
 		46312B281CB74B8C009183D9 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */; };
 		46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */; };
-		46312B2C1CB7C6C3009183D9 /* TweetByDictViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B2B1CB7C6C3009183D9 /* TweetByDictViewCell.swift */; };
 		4634CB4B1CBA5FEB00E9E834 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */; };
 		4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */; };
 		464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEB1C7973C1006100DB /* Default-568h@2x.png */; };
@@ -188,7 +187,6 @@
 		46312B251CB69C1E009183D9 /* SettingBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingBannerCell.swift; path = Views/SettingView/SettingBannerCell.swift; sourceTree = "<group>"; };
 		46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetDetailViewController.swift; path = ViewControllers/MainView/TweetDetailViewController.swift; sourceTree = "<group>"; };
 		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetDetailViewModel.swift; path = ViewModels/MainView/TweetDetailViewModel.swift; sourceTree = "<group>"; };
-		46312B2B1CB7C6C3009183D9 /* TweetByDictViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetByDictViewCell.swift; path = Views/MainView/TweetByDictViewCell.swift; sourceTree = "<group>"; };
 		4634CB4A1CBA5FEB00E9E834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TweetTableViewCell.xib; sourceTree = "<group>"; };
 		4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateExtension.swift; path = Utility/NSDateExtension.swift; sourceTree = "<group>"; };
 		464A7EEB1C7973C1006100DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -656,7 +654,6 @@
 			children = (
 				468722CF1CB2611400DEF2DB /* AVPlayerView.swift */,
 				468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */,
-				46312B2B1CB7C6C3009183D9 /* TweetByDictViewCell.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -1131,7 +1128,6 @@
 				468722C41CB260C400DEF2DB /* ImagePreViewController.swift in Sources */,
 				46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */,
 				468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */,
-				46312B2C1CB7C6C3009183D9 /* TweetByDictViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

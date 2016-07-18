@@ -14,7 +14,7 @@ import AVKit
 import AVFoundation
 
 class TweetDetailViewModel: NSObject, UITableViewDataSource {
-    final var tweetArray = [[Dictionary<String, JSONValue>]]()
+    final var tweetArray = [[Tweet]]()
     final private var viewController: TweetDetailViewController!
     var audioSession: AVAudioSession!
     
@@ -26,7 +26,7 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
     func setViewController(vc: TweetDetailViewController) {
         viewController = vc
     }
-    func setTweetArray(array: [[Dictionary<String, JSONValue>]]) {
+    func setTweetArray(array: [[Tweet]]) {
         tweetArray = array
     }
     
@@ -43,12 +43,12 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
         }
         
         let tweet = tweetArray[indexPath.section][indexPath.row]
-        let favorited = tweet["favorited"]!.bool!
-        let retweeted = tweet["retweeted"]!.bool!
-        let f_num = tweet["favorite_count"]!.integer!
-        let r_num = tweet["retweet_count"]!.integer!
+        let favorited = tweet.favorited ?? false
+        let retweeted = tweet.retweeted ?? false
+        let f_num = tweet.favorite_count ?? 0
+        let r_num = tweet.retweet_count ?? 0
         
-        let cell: TweetByDictViewCell = tableView.dequeueReusableCellWithIdentifier("TweetCellPrototype") as! TweetByDictViewCell
+        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as! TweetVarViewCell
         cell.tweetLabel.delegate = viewController
         cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
         
@@ -75,17 +75,19 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
                 rowNum = theView.tag
                 secNum = 0
             }
-            if tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["type"].string == nil {}
-            switch tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["type"].string! {
+            guard let type = tweetArray[secNum][rowNum].entities_type else {
+                return
+            }
+            switch type {
             case "photo":
                 let tempData = NSMutableArray()
-                for data in tweetArray[secNum][rowNum]["extended_entities"]!["media"].array! {
-                    tempData.addObject(NSData(contentsOfURL: NSURL(string: data["media_url"].string!)!)!)
+                for data in tweetArray[secNum][rowNum].tweet_images! {
+                    tempData.addObject(NSData(contentsOfURL: data)!)
                 }
                 viewController.imageData = tempData
                 viewController.performSegueWithIdentifier("toPreView", sender: nil)
             case "video":
-                if let videoArray = tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["video_info"]["variants"].array {
+                if let videoArray = tweetArray[secNum][rowNum].extended_entities![0]["video_info"]["variants"].array {
                     let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
@@ -111,12 +113,12 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
                     viewController.presentViewController(alertController, animated: true, completion: nil)
                 }
             case "animated_gif":
-                if let videoURL = tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["video_info"]["variants"][0]["url"].string {
+                if let videoURL = tweetArray[secNum][rowNum].extended_entities![0]["video_info"]["variants"][0]["url"].string {
                     viewController.gifURL = NSURL(string: videoURL)
                     viewController.performSegueWithIdentifier("toGifView", sender: nil)
                 }
             default:
-                if let tweetURL = tweetArray[secNum][rowNum]["extended_entities"]!["media"][0]["url"].string {
+                if let tweetURL = tweetArray[secNum][rowNum].extended_entities![0]["url"].string {
                     Utility.openWebView(NSURL(string: tweetURL)!)
                     viewController.performSegueWithIdentifier("openWebView", sender: nil)
                 }
