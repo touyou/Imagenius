@@ -33,7 +33,7 @@ class UserViewController: UIViewController, UITableViewDelegate {
     
     var viewModel = UserViewModel()
     var avPlayerViewController: AVPlayerViewController!
-    var tweetArray: [JSONValue] = []
+    var tweetArray: [Tweet] = []
     var swifter: Swifter!
     var maxId: String!
     var replyID: String?

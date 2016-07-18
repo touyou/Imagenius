@@ -67,13 +67,13 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func changeOrient(notification: NSNotification) {
         // AutoLayout対応のためセル調整
-        imageSize = (self.view.frame.width) / 4
-        let flowLayout = KTCenterFlowLayout()
-        flowLayout.scrollDirection = .Vertical
-        flowLayout.minimumInteritemSpacing = 0
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
-        imageCollectionView.collectionViewLayout = flowLayout
+//        imageSize = (self.view.frame.width) / 4
+//        let flowLayout = KTCenterFlowLayout()
+//        flowLayout.scrollDirection = .Vertical
+//        flowLayout.minimumInteritemSpacing = 0
+//        flowLayout.minimumLineSpacing = 0
+//        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
+//        imageCollectionView.collectionViewLayout = flowLayout
     }
     
     override func viewDidDisappear(animated: Bool) {

@@ -26,8 +26,10 @@ class TweetVarViewCell: SWTableViewCell {
     // TableViewCellが生成された時------------------------------------------------
     override func awakeFromNib() {
         super.awakeFromNib()
+        // URL検知するように設定
         self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         self.tweetLabel.extendsLinkTouchArea = false
+        // リンク
         self.tweetLabel.linkAttributes = [
             kCTForegroundColorAttributeName: Settings.Colors.twitterColor,
             NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
@@ -69,18 +71,14 @@ class TweetVarViewCell: SWTableViewCell {
     }
     
     // 要素の設定-----------------------------------------------------------------
-    func setOutlet(tweet: JSONValue, tweetHeight: CGFloat) {
-        let userInfo = tweet["user"]
-        
-        self.tweetLabel.text = Utility.convertSpecialCharacters(tweet["text"].string!)
+    func setOutlet(tweet: Tweet, tweetHeight: CGFloat) {
+        self.tweetLabel.text = Utility.convertSpecialCharacters(tweet.text ?? "")
         self.highrightHashtagsInLabel(tweetLabel)
         self.highrightMentionsInLabel(tweetLabel)
         
-        self.userLabel.text = userInfo["name"].string
-        let userID = userInfo["screen_name"].string!
-        self.userIDLabel.text = "@\(userID)"
-        let userImgPath:String = userInfo["profile_image_url_https"].string!
-        let userImgURL:NSURL = NSURL(string: userImgPath)!
+        self.userLabel.text = tweet.user_name ?? ""
+        self.userIDLabel.text = tweet.screen_name ?? "@"
+        let userImgURL:NSURL = tweet.user_image ?? NSURL()
         
         self.userImgView.sd_setImageWithURL(userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.RetryFailed)
         
@@ -89,12 +87,12 @@ class TweetVarViewCell: SWTableViewCell {
         self.userImgView.layer.borderColor = Settings.Colors.selectedColor.CGColor
         self.userImgView.layer.borderWidth = 0.19
         
-        self.timeLabel.text = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet["created_at"].string!))
+        self.timeLabel.text = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet.created_at ?? ""))
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
-        guard let tweetMedia = tweet["extended_entities"]["media"].array else {
+        guard let tweetMedia = tweet.extended_entities else {
             subViewHeight.constant = 0
-            self.layoutIfNeeded()
+            self.updateConstraintsIfNeeded()
             return
         }
         
@@ -110,14 +108,13 @@ class TweetVarViewCell: SWTableViewCell {
         tweetSubView.layer.borderWidth = 0.19
         // 一枚目のURLからNSURLをつくる
         // とりあえず一枚目だけツイート画面でプレビューする
-        let tweetImgPath:String = tweet["extended_entities"]["media"][0]["media_url"].string!
-        let tweetImgURL:NSURL = NSURL(string: tweetImgPath)!
+        let tweetImgURL:NSURL = tweet.tweet_images![0]
         // 画像を表示するモード(Storyboardで設定するのと同じ)
         self.tweetImgView.contentMode = .ScaleAspectFill
         // 画像を設定(SDWebImageを使っているので、使わない場合はUIImageにダウンロードすればいい)
         self.tweetImgView.sd_setImageWithURL(tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
         
-        switch tweet["extended_entities"]["media"][0]["type"].string! {
+        switch tweet.entities_type ?? "" {
         case "photo":
             imageCountLabel.text = "\(imageCount)枚の写真"
         case "video":
@@ -127,6 +124,6 @@ class TweetVarViewCell: SWTableViewCell {
         default:
             imageCountLabel.text = ""
         }
-        self.layoutIfNeeded()
+        self.updateConstraintsIfNeeded()
     }
 }

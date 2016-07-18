@@ -94,7 +94,7 @@ class TweetByDictViewCell: SWTableViewCell {
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet["extended_entities"] else {
             subViewHeight.constant = 0
-            self.layoutIfNeeded()
+            self.updateConstraintsIfNeeded()
             return
         }
         
@@ -120,7 +120,7 @@ class TweetByDictViewCell: SWTableViewCell {
         default:
             imageCountLabel.text = ""
         }
-        self.layoutIfNeeded()
+        self.updateConstraintsIfNeeded()
     }
 
 }

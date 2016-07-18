@@ -21,14 +21,14 @@ class TimeLineViewController: MainViewController {
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
-                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1]["id_str"].string {
+                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1].id_str ?? "" {
                     return
                 }
-                self.tweetArray.append(tweets[0])
+                self.tweetArray.append(Tweet(tweet: tweets[0], myself: self.myself))
                 self.maxId = tweets[0]["id_str"].string
             } else {
                 for i in 0 ..< tweets.count - 1 {
-                    self.tweetArray.append(tweets[i])
+                    self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
                 }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string
             }

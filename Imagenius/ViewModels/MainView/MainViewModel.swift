@@ -15,7 +15,7 @@ import AVFoundation
 
 class MainViewModel: NSObject, UITableViewDataSource {
     
-    final var tweetArray = [JSONValue]()
+    final var tweetArray = [Tweet]()
     final private var viewController: MainViewController!
     final private let model = MainModel()
     var audioSession: AVAudioSession!
@@ -28,7 +28,7 @@ class MainViewModel: NSObject, UITableViewDataSource {
     func setViewController(vc: MainViewController) {
         viewController = vc
     }
-    func setTweetArray(array: [JSONValue]) {
+    func setTweetArray(array: [Tweet]) {
         tweetArray = array
     }
     
@@ -41,10 +41,10 @@ class MainViewModel: NSObject, UITableViewDataSource {
             return UITableViewCell()
         }
         let tweet = tweetArray[indexPath.row]
-        let favorited = tweet["favorited"].bool!
-        let retweeted = tweet["retweeted"].bool!
-        let f_num = tweet["favorite_count"].integer!
-        let r_num = tweet["retweet_count"].integer!
+        let favorited = tweet.favorited ?? false
+        let retweeted = tweet.retweeted ?? false
+        let f_num = tweet.favorite_count ?? 0
+        let r_num = tweet.retweet_count ?? 0
         
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as! TweetVarViewCell
         cell.tweetLabel.delegate = viewController
@@ -68,17 +68,19 @@ class MainViewModel: NSObject, UITableViewDataSource {
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
-            if tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string == nil {}
-            switch tweetArray[rowNum]["extended_entities"]["media"][0]["type"].string! {
+            guard let type = tweetArray[rowNum].entities_type else {
+                return
+            }
+            switch type {
             case "photo":
                 let tempData = NSMutableArray()
-                for data in tweetArray[rowNum]["extended_entities"]["media"].array! {
-                    tempData.addObject(NSData(contentsOfURL: NSURL(string: data["media_url"].string!)!)!)
+                for data in (tweetArray[rowNum].tweet_images ?? []) {
+                    tempData.addObject(NSData(contentsOfURL: data)!)
                 }
                 viewController.imageData = tempData
                 viewController.performSegueWithIdentifier("toPreView", sender: nil)
             case "video":
-                if let videoArray = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"].array {
+                if let videoArray = tweetArray[rowNum].extended_entities![0]["video_info"]["variants"].array {
                     let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
@@ -105,12 +107,12 @@ class MainViewModel: NSObject, UITableViewDataSource {
                 }
             case "animated_gif":
                 // print(tweetArray[rowNum]["extended_entities"])
-                if let videoURL = tweetArray[rowNum]["extended_entities"]["media"][0]["video_info"]["variants"][0]["url"].string {
+                if let videoURL = tweetArray[rowNum].extended_entities![0]["video_info"]["variants"][0]["url"].string {
                     viewController.gifURL = NSURL(string: videoURL)
                     viewController.performSegueWithIdentifier("toGifView", sender: nil)
                 }
             default:
-                if let tweetURL = tweetArray[rowNum]["extended_entities"]["media"][0]["url"].string {
+                if let tweetURL = tweetArray[rowNum].extended_entities![0]["url"].string {
                     Utility.openWebView(NSURL(string: tweetURL)!)
                     viewController.performSegueWithIdentifier("openWebView", sender: nil)
                 }
