@@ -12,9 +12,9 @@ final class InfoViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+
     var image: NSData!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

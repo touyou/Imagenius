@@ -9,10 +9,10 @@
 import UIKit
 
 final class InfoPageViewController: UIPageViewController {
-    
+
     var pageData: NSMutableArray!
     var currentIndex: Int!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         pageData = NSMutableArray()
@@ -20,19 +20,19 @@ final class InfoPageViewController: UIPageViewController {
         pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_1")!)!)
         pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_2")!)!)
         pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_3")!)!)
-        
+
         self.delegate = self
-        
+
         let startViewController: InfoViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
         let viewControllers = [startViewController]
         self.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
-        
+
         self.dataSource = self
         self.view.gestureRecognizers = self.gestureRecognizers
-        
+
         self.view.backgroundColor = Settings.Colors.mainColor
     }
-    
+
     // MARK: - Utility
     func indexOfViewController(viewController: InfoViewController) -> Int {
         if let dataObject: AnyObject = viewController.image {
@@ -45,8 +45,8 @@ final class InfoPageViewController: UIPageViewController {
         if self.pageData.count == 0 || index >= self.pageData.count {
             return nil
         }
-        let infoViewController = storyboard.instantiateViewControllerWithIdentifier("InfoViewController") as! InfoViewController
-        infoViewController.image = self.pageData[index] as! NSData
+        let infoViewController = storyboard.instantiateViewControllerWithIdentifier("InfoViewController") as? InfoViewController ?? InfoViewController()
+        infoViewController.image = self.pageData[index] as? NSData ?? NSData()
         return infoViewController
     }
 }
@@ -54,7 +54,7 @@ final class InfoPageViewController: UIPageViewController {
 // MARK: - pageViewController関連
 extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! InfoViewController)
+        var index = self.indexOfViewController(viewController as? InfoViewController ?? InfoViewController())
         if index == 0 || index == NSNotFound {
             return nil
         }
@@ -62,7 +62,7 @@ extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewContro
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController as! InfoViewController)
+        var index = self.indexOfViewController(viewController as? InfoViewController ?? InfoViewController())
         if index == self.pageData.count - 1 || index == NSNotFound {
             return nil
         }

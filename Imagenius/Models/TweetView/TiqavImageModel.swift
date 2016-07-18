@@ -14,13 +14,13 @@ import SwiftyJSON
 
 class TiqavImageModel: NSObject {
     final let urls = Variable([NSURL]())
-    
-    private let api_key = "AIzaSyCecfACGPjcjQ7G397MXT__F1Ks5-sl0PA"
-    private let cs_id = "009645097602719053319:kgqwkrkiiew"
-    
+
+    private let apiKey = "AIzaSyCecfACGPjcjQ7G397MXT__F1Ks5-sl0PA"
+    private let csId = "009645097602719053319:kgqwkrkiiew"
+
     final func request(searchWord: String) {
 //        let text = "http://api.tiqav.com/search.json?q="+searchWord
-        let text = "https://www.googleapis.com/customsearch/v1?key=\(api_key)&cx=\(cs_id)&searchType=image&q=\(searchWord)"
+        let text = "https://www.googleapis.com/customsearch/v1?key=\(apiKey)&cx=\(csId)&searchType=image&q=\(searchWord)"
         Alamofire.request(.GET, Utility.encodeURL(text), parameters: nil).responseJSON(completionHandler: {
             response in
             guard let object = response.result.value else {

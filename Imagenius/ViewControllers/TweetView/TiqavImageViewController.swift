@@ -15,24 +15,24 @@ import SDWebImage
 
 final class TiqavImageViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    
+
     // View Model
     final private let viewModel = TiqavImageViewModel()
     // Rx
     final private let disposeBag = DisposeBag()
     // UserDefaults
-    final private let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
+    final private let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+
     var searchWord: String = ""
     var selectedImage: UIImage?
     var selectedData: NSData?
     var imageSize: CGFloat!
     var delegate: TweetViewControllerDelegate!
-    
+
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // AutoLayout対応のためセル調整
         imageSize = (self.view.frame.width) / 4
 //        let flowLayout = KTCenterFlowLayout()
@@ -41,19 +41,19 @@ final class TiqavImageViewController: UIViewController {
 //        flowLayout.minimumLineSpacing = 0
 //        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
 //        imageCollectionView.collectionViewLayout = flowLayout
-        
+
         self.title = "\(searchWord)の検索結果"
-        
+
         // DataSourceとDelegateの設定
         imageCollectionView.dataSource = viewModel
         imageCollectionView.delegate = self
         imageCollectionView.emptyDataSetDelegate = self
         imageCollectionView.emptyDataSetSource = self
         imageCollectionView.backgroundColor = UIColor.whiteColor()
-        
+
         // データをロード
         viewModel.load(searchWord)
-        
+
         // bind
         viewModel.dataUpdated
             .driveNext({
@@ -61,10 +61,10 @@ final class TiqavImageViewController: UIViewController {
                 self.imageCollectionView.reloadData()
             })
             .addDisposableTo(disposeBag)
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
-    
+
     func changeOrient(notification: NSNotification) {
         // AutoLayout対応のためセル調整
 //        imageSize = (self.view.frame.width) / 4
@@ -75,33 +75,33 @@ final class TiqavImageViewController: UIViewController {
 //        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
 //        imageCollectionView.collectionViewLayout = flowLayout
     }
-    
+
     override func viewDidDisappear(animated: Bool) {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
-    
+
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toResultView" {
-            let resultView = segue.destinationViewController as! ResultViewController
+            let resultView = segue.destinationViewController as? ResultViewController ?? ResultViewController()
             resultView.image = self.selectedImage
             resultView.data = self.selectedData
             resultView.delegate = self.delegate
         }
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
-    
+
+
     // MARK: - ボタン関連
     // MARK: キャンセルのボタン
     @IBAction func cancelButton() {

@@ -10,16 +10,16 @@ import UIKit
 import AVFoundation
 
 final class AVPlayerView: UIView {
-    
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
-    override class func layerClass() -> AnyClass{
+
+    override class func layerClass() -> AnyClass {
         return AVPlayerLayer.self
     }
 }

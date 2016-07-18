@@ -35,23 +35,23 @@ final class TweetViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     // Google Ads関連
     @IBOutlet weak var bannerView: GADBannerView!
-    
-    var MAX_WORD: Int = 140
+
+    var MAXWORD: Int = 140
     var tweetText: String?
     var replyStr: String?
     var replyID: String?
     var tweetImage = [UIImage]()
     var accountImg: UIImage?
-    var swifter:Swifter!
+    var swifter: Swifter!
     var account: ACAccount?
     var accounts = [ACAccount]()
-    var media_ids = [String]()
+    var mediaIds = [String]()
     var gifFlag = true
-    
+
     let accountStore = ACAccountStore()
-    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let disposeBag = DisposeBag()
-    
+
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +65,9 @@ final class TweetViewController: UIViewController {
             let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
             accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
                 if granted {
-                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
                         self.swifter = Swifter(account: self.account!)
                         self.changeAccountImage()
                     }
@@ -80,7 +80,7 @@ final class TweetViewController: UIViewController {
         }
         searchField.placeholder = "画像を検索する"
         tweetImageHeight.constant = 0
-        
+
 //        let flowLayout = KTCenterFlowLayout()
 //        flowLayout.scrollDirection = .Horizontal
 //        flowLayout.minimumInteritemSpacing = 10
@@ -90,7 +90,7 @@ final class TweetViewController: UIViewController {
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.backgroundColor = UIColor.whiteColor()
-        
+
         // RxSwiftで文字数を監視
         tweetTextView.rx_text
             .map { "\($0.characters.count)" }
@@ -100,7 +100,7 @@ final class TweetViewController: UIViewController {
             .map {
                 if $0.characters.count == 0 {
                     self.placeHolderLabel.text = "何をつぶやく？"
-                } else if $0.characters.count > self.MAX_WORD {
+                } else if $0.characters.count > self.MAXWORD {
                     self.placeHolderLabel.text = nil
                     self.countLabel.textColor = Settings.Colors.mainColor
                 } else {
@@ -110,10 +110,10 @@ final class TweetViewController: UIViewController {
             }
             .subscribe {}
             .addDisposableTo(disposeBag)
-        
+
         // カメラのとか
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
-        
+
         cameraButton.rx_tap
             .flatMapLatest { [weak self] _ in
                 return UIImagePickerController.rx_createWithParent(self) { picker in
@@ -130,14 +130,14 @@ final class TweetViewController: UIViewController {
                 let failureHandler: ((NSError) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
-                let im = Utility.resizeImage(image.element!!, size: CGSizeMake(1024, 1024))
+                let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
                 let data = UIImagePNGRepresentation(im)!
                 self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
-                    if self.gifFlag && self.media_ids.count < 4 {
+                    if self.gifFlag && self.mediaIds.count < 4 {
                         self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im)
-                        self.media_ids.append(media["media_id_string"]!.string!)
+                        self.mediaIds.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
                     } else {
                         let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
@@ -147,7 +147,7 @@ final class TweetViewController: UIViewController {
                 }, failure: failureHandler)
             })
             .addDisposableTo(disposeBag)
-        
+
         galleryButton.rx_tap
             .flatMapLatest { [weak self] _ in
                 return UIImagePickerController.rx_createWithParent(self) { picker in
@@ -166,14 +166,14 @@ final class TweetViewController: UIViewController {
                 let failureHandler: ((NSError) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
-                let im = Utility.resizeImage(image.element!!, size: CGSizeMake(1024, 1024))
+                let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
                 let data = UIImagePNGRepresentation(im)!
                 self.swifter.postMedia(data, success: { status in
                     guard let media = status else { return }
-                    if self.gifFlag && self.media_ids.count < 4 {
+                    if self.gifFlag && self.mediaIds.count < 4 {
                         self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im)
-                        self.media_ids.append(media["media_id_string"]!.string!)
+                        self.mediaIds.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
                     } else {
                         let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
@@ -183,7 +183,7 @@ final class TweetViewController: UIViewController {
                 }, failure: failureHandler)
             })
             .addDisposableTo(disposeBag)
-        
+
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
         // for test
@@ -193,46 +193,46 @@ final class TweetViewController: UIViewController {
         self.bannerView.rootViewController = self
         self.bannerView.loadRequest(GADRequest())
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if accountImg == nil {
             self.accountImage.setTitle("login", forState: .Normal)
         }
-        
+
         searchField.text = ""
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TweetViewController.changeOrient(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        
+
         self.view.layoutIfNeeded()
     }
-    
+
     override func viewDidLayoutSubviews() {
         self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height + 200.0)
         self.scvBackGround.flashScrollIndicators()
     }
-    
+
     func changeOrient(notification: NSNotification) {
         self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height + 200.0)
         self.scvBackGround.flashScrollIndicators()
     }
-    
+
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toImageView" {
-            let navViewCtrl: UINavigationController = segue.destinationViewController as! UINavigationController
-            let tiqavViewCtrl: TiqavImageViewController = navViewCtrl.viewControllers[0] as! TiqavImageViewController
+            let navViewCtrl: UINavigationController = segue.destinationViewController as? UINavigationController ?? UINavigationController()
+            let tiqavViewCtrl: TiqavImageViewController = navViewCtrl.viewControllers[0] as? TiqavImageViewController ?? TiqavImageViewController()
             tiqavViewCtrl.searchWord = searchField.text!
             tiqavViewCtrl.delegate = self
         }
     }
-    
+
     // MARK: - ボタン関係
     // MARK: 投稿せずに終了
     @IBAction func cancelButton() {
@@ -275,38 +275,38 @@ final class TweetViewController: UIViewController {
         let successHandler: ((Dictionary<String, JSONValue>?) -> Void) = { status in
             self.dismissViewControllerAnimated(true, completion: nil)
         }
-        
+
         // ここに140字以上の処理を書く
         tweetText = tweetTextView.text
-        if (tweetText!.characters.count > MAX_WORD) {
+        if tweetText!.characters.count > MAXWORD {
             Utility.simpleAlert("140字を超えています。", presentView: self)
             return
         }
-        if (tweetText == nil || tweetText == "") && media_ids.count == 0 {
+        if (tweetText == nil || tweetText == "") && mediaIds.count == 0 {
             Utility.simpleAlert("画像かテキストを入力してください。", presentView: self)
             return
         }
-        
+
         twBtn.enabled = false
-        
-        if (tweetText == nil || tweetText == "") && media_ids.count != 0 {
-            swifter.postStatusUpdate("", media_ids: media_ids, success: successHandler, failure: failureHandler)
+
+        if (tweetText == nil || tweetText == "") && mediaIds.count != 0 {
+            swifter.postStatusUpdate("", media_ids: mediaIds, success: successHandler, failure: failureHandler)
             return
         }
-        if media_ids.count == 0 {
+        if mediaIds.count == 0 {
             swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
             return
         }
-        swifter.postStatusUpdate(tweetText!, media_ids: media_ids, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
+        swifter.postStatusUpdate(tweetText!, media_ids: mediaIds, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
     }
-    
+
     // MARK: - キーボード関係の処理
     // MARK: returnでキーボードを閉じる
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         view.endEditing(true)
         return true
     }
-    
+
     // MARK: - Utility
     // MARK: ツイートに添付する画像
     func changeImage(image: UIImage, data: NSData, isGIF: Bool) {
@@ -315,18 +315,18 @@ final class TweetViewController: UIViewController {
         }
         swifter.postMedia(data, success: { status in
             guard let media = status else { return }
-            if isGIF && self.gifFlag && self.media_ids.count == 0 {
+            if isGIF && self.gifFlag && self.mediaIds.count == 0 {
                 // GIFが貼り付けられる場合
                 self.tweetImageHeight.constant = 110
                 self.tweetImage.append(image)
-                self.media_ids.append(media["media_id_string"]!.string!)
+                self.mediaIds.append(media["media_id_string"]!.string!)
                 self.gifFlag = false
                 self.imageCollectionView.reloadData()
-            } else if !isGIF && self.gifFlag && self.media_ids.count < 4 {
+            } else if !isGIF && self.gifFlag && self.mediaIds.count < 4 {
                 // 画像が貼り付けられる場合
                 self.tweetImageHeight.constant = 110
                 self.tweetImage.append(image)
-                self.media_ids.append(media["media_id_string"]!.string!)
+                self.mediaIds.append(media["media_id_string"]!.string!)
                 self.imageCollectionView.reloadData()
             } else {
                 let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
@@ -340,10 +340,10 @@ final class TweetViewController: UIViewController {
 // MARK: - CollectionView
 extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return media_ids.count
+        return mediaIds.count
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as! TiqavImageViewCell
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
         cell.imageView.contentMode = .ScaleAspectFill
         cell.imageView.image = tweetImage[indexPath.row]
         return cell
@@ -353,8 +353,8 @@ extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSou
         alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
             action in
             self.tweetImage.removeAtIndex(indexPath.row)
-            self.media_ids.removeAtIndex(indexPath.row)
-            if self.media_ids.count == 0 {
+            self.mediaIds.removeAtIndex(indexPath.row)
+            if self.mediaIds.count == 0 {
                 self.tweetImageHeight.constant = 0
                 self.gifFlag = true
             } else {
@@ -393,17 +393,17 @@ func dismissViewController(viewController: UIViewController, animated: Bool) {
         dispatch_async(dispatch_get_main_queue()) {
             dismissViewController(viewController, animated: animated)
         }
-        
+
         return
     }
-    
+
     if viewController.presentingViewController != nil {
         viewController.dismissViewControllerAnimated(animated, completion: nil)
     }
 }
 
 extension UIImagePickerController {
-    static func rx_createWithParent(parent: UIViewController?, animated: Bool = true, configureImagePicker: (UIImagePickerController) throws -> () = { x in }) -> Observable<UIImagePickerController> {
+    static func rx_createWithParent(parent: UIViewController?, animated: Bool = true, configureImagePicker: (UIImagePickerController) throws -> () = { variable in }) -> Observable<UIImagePickerController> {
         return Observable.create { [weak parent] observer in
             let imagePicker = UIImagePickerController()
             let dismissDisposable = imagePicker
@@ -414,23 +414,22 @@ extension UIImagePickerController {
                     }
                     dismissViewController(imagePicker, animated: animated)
                     })
-            
+
             do {
                 try configureImagePicker(imagePicker)
-            }
-            catch let error {
+            } catch let error {
                 observer.on(.Error(error))
                 return NopDisposable.instance
             }
-            
+
             guard let parent = parent else {
                 observer.on(.Completed)
                 return NopDisposable.instance
             }
-            
+
             parent.presentViewController(imagePicker, animated: animated, completion: nil)
             observer.on(.Next(imagePicker))
-            
+
             return CompositeDisposable(dismissDisposable, AnonymousDisposable {
                 dismissViewController(imagePicker, animated: animated)
                 })

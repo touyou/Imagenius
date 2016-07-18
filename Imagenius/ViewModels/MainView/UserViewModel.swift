@@ -14,40 +14,40 @@ import AVKit
 import AVFoundation
 
 final class UserViewModel: NSObject {
-    
+
     final var tweetArray = [Tweet]()
     final private var viewController: UserViewController!
     var audioSession: AVAudioSession!
-    
+
     override init() {
         super.init()
         audioSession = AVAudioSession.sharedInstance()
     }
-    
-    func setViewController(vc: UserViewController) {
-        viewController = vc
+
+    func setViewController(viewController: UserViewController) {
+        self.viewController = viewController
     }
     func setTweetArray(array: [Tweet]) {
         tweetArray = array
     }
-    
+
     // MARK: imageViewがタップされたら画像のURLを開く
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
-            guard let type = tweetArray[rowNum].entities_type else {
+            guard let type = tweetArray[rowNum].entitiesType else {
                 return
             }
             switch type {
             case "photo":
                 let tempData = NSMutableArray()
-                for data in tweetArray[rowNum].tweet_images ?? [] {
+                for data in tweetArray[rowNum].tweetImages ?? [] {
                     tempData.addObject(NSData(contentsOfURL: data)!)
                 }
                 viewController.imageData = tempData
                 viewController.performSegueWithIdentifier("toPreView", sender: nil)
             case "video":
-                if let videoArray = tweetArray[rowNum].extended_entities![0]["video_info"]["variants"].array {
+                if let videoArray = tweetArray[rowNum].extendedEntities![0]["video_info"]["variants"].array {
                     let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
@@ -62,7 +62,7 @@ final class UserViewModel: NSObject {
                             }))
                         }
                     }
-                    
+
                     // キャンセルボタンは何もせずにアクションシートを閉じる
                     let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                     alertController.addAction(CanceledAction)
@@ -74,12 +74,12 @@ final class UserViewModel: NSObject {
                 }
             case "animated_gif":
                 // print(tweetArray[rowNum]["extended_entities"])
-                if let videoURL = tweetArray[rowNum].extended_entities![0]["video_info"]["variants"][0]["url"].string {
+                if let videoURL = tweetArray[rowNum].extendedEntities![0]["video_info"]["variants"][0]["url"].string {
                     viewController.gifURL = NSURL(string: videoURL)
                     viewController.performSegueWithIdentifier("toGifView", sender: nil)
                 }
             default:
-                if let tweetURL = tweetArray[rowNum].extended_entities![0]["url"].string {
+                if let tweetURL = tweetArray[rowNum].extendedEntities![0]["url"].string {
                     Utility.openWebView(NSURL(string: tweetURL)!)
                     viewController.performSegueWithIdentifier("openWebView", sender: nil)
                 }
@@ -100,21 +100,21 @@ extension UserViewModel: UITableViewDataSource {
         let tweet = tweetArray[indexPath.row]
         let favorited = tweet.favorited ?? false
         let retweeted = tweet.retweeted ?? false
-        let f_num = tweet.favorite_count ?? 0
-        let r_num = tweet.retweet_count ?? 0
-        
-        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as! TweetVarViewCell
+        let f_num = tweet.favoriteCount ?? 0
+        let r_num = tweet.retweetCount ?? 0
+
+        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as? TweetVarViewCell ?? TweetVarViewCell()
         cell.tweetLabel.delegate = viewController
         cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
-        
+
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         cell.tweetImgView.addGestureRecognizer(tapGesture)
         cell.tweetImgView.tag = indexPath.row
-        
+
         if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
             viewController.loadMore()
         }
-        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, f_num: f_num, r_num: r_num) as [AnyObject]
+        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, favoriteCount: f_num, retweetCount: r_num) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
         cell.delegate = viewController
         cell.layoutIfNeeded()

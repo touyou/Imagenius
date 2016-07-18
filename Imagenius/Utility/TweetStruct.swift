@@ -12,82 +12,82 @@ import Foundation
 import SwifteriOS
 
 struct Tweet {
-    var screen_name: String?
-    var screen_name_noat: String?
-    var user_name: String?
-    var user_image: NSURL?
-    var user_id: String?
-    
+    var screenName: String?
+    var screenNameNoat: String?
+    var userName: String?
+    var userImage: NSURL?
+    var userId: String?
+
     var text: String?
-    var created_at: String?
-    var tweet_images: [NSURL]?
-    var entities_type: String?
-    var extended_entities: [JSONValue]?
-    
+    var createdAt: String?
+    var tweetImages: [NSURL]?
+    var entitiesType: String?
+    var extendedEntities: [JSONValue]?
+
     var favorited: Bool?
     var retweeted: Bool?
-    var favorite_count: Int?
-    var retweet_count: Int?
-    
-    var id_str: String?
-    var user_mentions: [JSONValue]?
-    
-    var is_myself: Bool = false
-    var is_retweet: Bool = false
-    
+    var favoriteCount: Int?
+    var retweetCount: Int?
+
+    var idStr: String?
+    var userMentions: [JSONValue]?
+
+    var isMyself: Bool = false
+    var isRetweet: Bool = false
+
     init() {
     }
-    
+
     init(tweet: JSONValue) {
         self.init(tweet: tweet, myself: "")
     }
-    
+
     init(tweet: JSONValue, myself: String) {
         if let retweet = tweet["retweeted_status"].object {
-            is_retweet = true
+            isRetweet = true
             setTweet(retweet)
         } else {
             setTweet(tweet.object!)
         }
         judgeAccount(myself)
     }
-    
+
     internal mutating func setTweet(tweet: Dictionary<String, JSONValue>) {
         let user = tweet["user"]!
-        
+
         // ユーザー情報
-        screen_name_noat = user["screen_name"].string
-        screen_name = "@\(screen_name_noat ?? "")"
-        user_name = user["name"].string
-        user_image = NSURL(string: user["profile_image_url_https"].string!)
-        user_id = user["id_str"].string
-        
+        screenNameNoat = user["screen_name"].string
+        screenName = "@\(screenNameNoat ?? "")"
+        userName = user["name"].string
+        userImage = NSURL(string: user["profile_image_url_https"].string!)
+        userId = user["id_str"].string
+
         // ツイート情報
         text = tweet["text"]?.string
-        created_at = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet["created_at"]!.string!))
+        createdAt = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet["created_at"]!.string!))
         favorited = tweet["favorited"]?.bool
-        favorite_count = tweet["favorite_count"]?.integer
+        favoriteCount = tweet["favorite_count"]?.integer
         retweeted = tweet["retweeted"]?.bool
-        retweet_count = tweet["retweet_count"]?.integer
-        id_str = tweet["id_str"]?.string
-        user_mentions = tweet["entities"]!["user_mentions"].array
-        
+        retweetCount = tweet["retweet_count"]?.integer
+        idStr = tweet["id_str"]?.string
+        userMentions = tweet["entities"]!["user_mentions"].array
+
         // 添付ファイル情報
         guard let tweetMedia = tweet["extended_entities"] else {
             return
         }
-        tweet_images = []
+        tweetImages = []
         for path in tweetMedia["media"].array ?? [] {
-            tweet_images?.append(NSURL(string: path["media_url"].string!)!)
+            tweetImages?.append(NSURL(string: path["media_url"].string!)!)
         }
-        entities_type = tweetMedia[0]["type"].string
-        extended_entities = tweetMedia["media"].array
+        entitiesType = tweetMedia[0]["type"].string
+        extendedEntities = tweetMedia["media"].array
     }
-    
+
     internal mutating func judgeAccount(myself: String) {
-        if let screen = screen_name {
+        if let screen = screenName {
             if screen == "@\(myself)" {
-                is_myself = true
+                isMyself = true
             }
         }
     }

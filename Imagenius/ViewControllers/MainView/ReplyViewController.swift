@@ -17,17 +17,17 @@ final class ReplyViewController: MainViewController {
         }
         let successHandler: (([JSONValue]?) -> Void) = { statuses in
             guard let tweets = statuses else { return }
-            
+
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
-                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1].id_str ?? "" {
+                if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1].idStr ?? "" {
                     return
                 }
                 self.tweetArray.append(Tweet(tweet: tweets[0], myself: self.myself))
                 self.maxId = tweets[0]["id_str"].string
             } else {
-                for i in 0 ..< tweets.count - 1{
+                for i in 0 ..< tweets.count - 1 {
                     self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
                 }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string

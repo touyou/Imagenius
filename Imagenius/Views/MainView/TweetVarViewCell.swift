@@ -22,7 +22,7 @@ final class TweetVarViewCell: SWTableViewCell {
     @IBOutlet weak var subViewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageCountLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    
+
     // MARK: - TableViewCellが生成された時
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,11 +37,11 @@ final class TweetVarViewCell: SWTableViewCell {
         subViewHeight.constant = 0
         self.tweetImgView.userInteractionEnabled = true
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-    
+
     // MARK: - TTTAttributedLabel関連
     // MARK: mention link
     func highrightMentionsInLabel(label: TTTAttributedLabel) {
@@ -69,37 +69,37 @@ final class TweetVarViewCell: SWTableViewCell {
             label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
         }
     }
-    
+
     // MARK: - 要素の設定
     func setOutlet(tweet: Tweet, tweetHeight: CGFloat) {
-        if tweet.is_retweet {
+        if tweet.isRetweet {
             // なにかいい案があれば
         }
-        
+
         self.tweetLabel.text = Utility.convertSpecialCharacters(tweet.text ?? "")
         self.highrightHashtagsInLabel(tweetLabel)
         self.highrightMentionsInLabel(tweetLabel)
-        
-        self.userLabel.text = tweet.user_name ?? ""
-        self.userIDLabel.text = tweet.screen_name ?? "@"
-        let userImgURL:NSURL = tweet.user_image ?? NSURL()
-        
+
+        self.userLabel.text = tweet.userName ?? ""
+        self.userIDLabel.text = tweet.screenName ?? "@"
+        let userImgURL: NSURL = tweet.userImage ?? NSURL()
+
         self.userImgView.sd_setImageWithURL(userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.RetryFailed)
-        
+
         self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
         self.userImgView.clipsToBounds = true
         self.userImgView.layer.borderColor = Settings.Colors.selectedColor.CGColor
         self.userImgView.layer.borderWidth = 0.19
-        
-        self.timeLabel.text = tweet.created_at!
-        
+
+        self.timeLabel.text = tweet.createdAt!
+
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
-        guard let tweetMedia = tweet.extended_entities else {
+        guard let tweetMedia = tweet.extendedEntities else {
             subViewHeight.constant = 0
             self.updateConstraintsIfNeeded()
             return
         }
-        
+
         // 画像の枚数
         let imageCount = tweetMedia.count
         // 画像の高さを設定する
@@ -112,13 +112,13 @@ final class TweetVarViewCell: SWTableViewCell {
         tweetSubView.layer.borderWidth = 0.19
         // 一枚目のURLからNSURLをつくる
         // とりあえず一枚目だけツイート画面でプレビューする
-        let tweetImgURL:NSURL = tweet.tweet_images![0]
+        let tweetImgURL: NSURL = tweet.tweetImages![0]
         // 画像を表示するモード(Storyboardで設定するのと同じ)
         self.tweetImgView.contentMode = .ScaleAspectFill
         // 画像を設定(SDWebImageを使っているので、使わない場合はUIImageにダウンロードすればいい)
         self.tweetImgView.sd_setImageWithURL(tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
-        
-        switch tweet.entities_type ?? "" {
+
+        switch tweet.entitiesType ?? "" {
         case "photo":
             imageCountLabel.text = "\(imageCount)枚の写真"
         case "video":

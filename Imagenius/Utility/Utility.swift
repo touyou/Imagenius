@@ -21,7 +21,7 @@ final class Utility {
     }
     // MARK: Safariで開く
     class func openWebView(url: NSURL) {
-        let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         saveData.setObject(url.absoluteString, forKey: Settings.Saveword.url)
     }
     // MARK: share
@@ -37,43 +37,43 @@ final class Utility {
         activityVC.excludedActivityTypes = excludedActivityTypes
         // iPad用
         activityVC.popoverPresentationController?.sourceView = presentView.view
-        activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
+        activityVC.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
         presentView.presentViewController(activityVC, animated: true, completion: nil)
     }
-    
+
     // MARK: - 画像処理
     // MARK: 画像をあらかじめクロップしておく
-    class func cropThumbnailImage(image :UIImage, w:Int, h:Int) -> UIImage {
-        let origRef    = image.CGImage;
+    class func cropThumbnailImage(image: UIImage, width: Int, height: Int) -> UIImage {
+        let origRef    = image.CGImage
         let origWidth  = Int(CGImageGetWidth(origRef))
         let origHeight = Int(CGImageGetHeight(origRef))
-        var resizeWidth:Int = 0, resizeHeight:Int = 0
-        
-        if (origWidth < origHeight) {
-            resizeWidth = w
+        var resizeWidth: Int = 0, resizeHeight: Int = 0
+
+        if origWidth < origHeight {
+            resizeWidth = width
             resizeHeight = origHeight * resizeWidth / origWidth
         } else {
-            resizeHeight = h
+            resizeHeight = height
             resizeWidth = origWidth * resizeHeight / origHeight
         }
-        
+
         let resizeSize = CGSizeMake(CGFloat(resizeWidth), CGFloat(resizeHeight))
         UIGraphicsBeginImageContext(resizeSize)
-        
+
         image.drawInRect(CGRectMake(0, 0, CGFloat(resizeWidth), CGFloat(resizeHeight)))
-        
+
         let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         // 切り抜き処理
-        
+
         let cropRect  = CGRectMake(
-            CGFloat((resizeWidth - w) / 2),
-            CGFloat((resizeHeight - h) / 2),
-            CGFloat(w), CGFloat(h))
+            CGFloat((resizeWidth - width) / 2),
+            CGFloat((resizeHeight - height) / 2),
+            CGFloat(width), CGFloat(height))
         let cropRef   = CGImageCreateWithImageInRect(resizeImage.CGImage, cropRect)
         let cropImage = UIImage(CGImage: cropRef!)
-        
+
         return cropImage
     }
     // MARK: 画像のリサイズ
@@ -88,7 +88,7 @@ final class Utility {
         UIGraphicsEndImageContext()
         return resizedImage
     }
-    
+
     // MARK: - その他
     // MARK: HTML特殊文字を変換する
     // https://gist.github.com/mikesteele/70ae98d04fdc35cb1d5f
@@ -100,7 +100,7 @@ final class Utility {
             "&gt;": ">",
             "&quot;": "\"",
             "&apos;": "'"
-        ];
+        ]
         for (escaped_char, unescaped_char) in char_dictionary {
             newString = newString.stringByReplacingOccurrencesOfString(escaped_char, withString: unescaped_char, options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
         }
@@ -110,7 +110,7 @@ final class Utility {
     class func encodeURL(text: String) -> NSURL! {
         return NSURL(string: text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!
     }
-    
+
     class func strong<T>(obj: T?) throws -> T {
         guard let obj = obj else {
             throw "deallocated"

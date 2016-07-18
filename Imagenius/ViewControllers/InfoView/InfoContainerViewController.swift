@@ -16,8 +16,8 @@ final class InfoContainerViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
+    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+
     @IBAction func loginButton() {
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac)->() in

@@ -11,13 +11,13 @@ import UIKit
 final class ResultViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var preScrollView: UIScrollView!
-    
+
     var image: UIImage?
     var data: NSData?
     var delegate: TweetViewControllerDelegate!
-    
-    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
+
+    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +29,18 @@ final class ResultViewController: UIViewController {
         self.preScrollView.delegate = self
         self.preScrollView.minimumZoomScale = 1
         self.preScrollView.maximumZoomScale = 4
-        
+
         let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.doubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
         self.imageView.userInteractionEnabled = true
         self.imageView.addGestureRecognizer(doubleTapGesture)
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
-    
+
+
     // MARK: - ボタン関連
     // MARK: OKボタンのとき
     @IBAction func pushOK() {
@@ -62,7 +62,7 @@ final class ResultViewController: UIViewController {
         activityVC.excludedActivityTypes = excludedActivityTypes
         // iPad用
         activityVC.popoverPresentationController?.sourceView = self.view
-        activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
+        activityVC.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
         self.presentViewController(activityVC, animated: true, completion: nil)
     }
 }
@@ -74,23 +74,23 @@ extension ResultViewController: UIScrollViewDelegate {
     }
     // MARK: ダブルタップ
     func doubleTap(gesture: UITapGestureRecognizer) -> Void {
-        if (self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale) {
-            let newScale:CGFloat = self.preScrollView.zoomScale * 3
-            let zoomRect:CGRect = self.zoomRectForScale(newScale, center: gesture.locationInView(gesture.view))
+        if self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale {
+            let newScale: CGFloat = self.preScrollView.zoomScale * 3
+            let zoomRect: CGRect = self.zoomRectForScale(newScale, center: gesture.locationInView(gesture.view))
             self.preScrollView.zoomToRect(zoomRect, animated: true)
         } else {
             self.preScrollView.setZoomScale(1.0, animated: true)
         }
     }
     // MARK: 領域
-    func zoomRectForScale(scale:CGFloat, center: CGPoint) -> CGRect{
+    func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect: CGRect = CGRect()
         zoomRect.size.height = self.preScrollView.bounds.size.height / scale
         zoomRect.size.width = self.preScrollView.bounds.size.width / scale
-        
+
         zoomRect.origin.x = center.x - zoomRect.size.width / 2.0
         zoomRect.origin.y = center.y - zoomRect.size.height / 2.0
-        
+
         return zoomRect
     }
 }

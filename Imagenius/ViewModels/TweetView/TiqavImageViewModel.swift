@@ -12,19 +12,19 @@ import RxCocoa
 import SDWebImage
 
 final class TiqavImageViewModel: NSObject {
-    
+
     // ViewModel
     final private var model = TiqavImageModel()
     // ImageURLs
     final var urls = [NSURL]()
     // Rx
     final private(set) var dataUpdated: Driver<[NSURL]> = Driver.never()
-    
+
     override init() {
         super.init()
         dataUpdated = model.urls.asDriver()
     }
-    
+
     func load(word: String) {
         model.request(word)
     }
@@ -39,7 +39,7 @@ extension TiqavImageViewModel: UICollectionViewDataSource {
     }
     // MARK: 入れるもの
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! TiqavImageViewCell
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
         let url = urls[indexPath.row]
         cell.imageView.contentMode = .ScaleAspectFill
         cell.imageView.sd_setImageWithURL(url, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)

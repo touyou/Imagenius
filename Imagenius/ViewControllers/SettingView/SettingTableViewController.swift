@@ -16,15 +16,15 @@ import GoogleMobileAds
 final class SettingTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     // Google Ads関連
     @IBOutlet weak var bannerView: GADBannerView!
-    
-    var swifter:Swifter!
+
+    var swifter: Swifter!
     var account: ACAccount?
     var accounts = [ACAccount]()
-    
+
     let accountStore = ACAccountStore()
-    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelection = false
@@ -37,15 +37,15 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
             let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
             accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
                 if granted {
-                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as! [ACAccount]
+                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as! Int]
+                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
                         self.swifter = Swifter(account: self.account!)
                     }
                 }
             }
         }
-        
+
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
         // for test
@@ -55,11 +55,11 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         self.bannerView.rootViewController = self
         self.bannerView.loadRequest(GADRequest())
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
+
     // MARK: - tableView関連
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return labelTexts.count
@@ -84,7 +84,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
             case 1:
                 performSegueWithIdentifier("showInfo", sender: nil)
             default:
-                break;
+                break
             }
         case 1:
             switch indexPath.row {
@@ -93,7 +93,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 Utility.shareSome(NSURL(string: "https://itunes.apple.com/us/app/imagenius/id1089595726?l=ja&ls=1&mt=8")!, text: "Imagenius", presentView: self)
             case 1:
                 // App Store画面へ
-                let itunesURL:String = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1089595726"
+                let itunesURL: String = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1089595726"
                 let url = NSURL(string: itunesURL)
                 UIApplication.sharedApplication().openURL(url!)
             default:
@@ -126,7 +126,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+
     // MARK: - mailView関連
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)

@@ -12,14 +12,14 @@ import WebKit
 final class WebViewController: UIViewController {
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
-    
+
     var reloadButton: UIBarButtonItem!
     var stopButton: UIBarButtonItem!
     var webView: WKWebView!
     var url: NSURL = NSURL(string: "https://twitter.com")!
-    
-    let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
+
+    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,11 +27,11 @@ final class WebViewController: UIViewController {
         self.webView.addObserver(self, forKeyPath: "loading", options: NSKeyValueObservingOptions.New, context: nil)
         self.webView.addObserver(self, forKeyPath: "canGoBack", options: NSKeyValueObservingOptions.New, context: nil)
         self.webView.addObserver(self, forKeyPath: "canGoForward", options: NSKeyValueObservingOptions.New, context: nil)
-        
+
         if saveData.objectForKey(Settings.Saveword.url) != nil {
-            url = NSURL(string: saveData.objectForKey(Settings.Saveword.url) as! String)!
+            url = NSURL(string: saveData.objectForKey(Settings.Saveword.url) as? String ?? "")!
         }
-        
+
         let request = NSURLRequest(URL: url)
         self.webView.loadRequest(request)
         reloadButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(WebViewController.didTapReloadButton(_:)))
@@ -73,11 +73,11 @@ final class WebViewController: UIViewController {
             self.forwardButton.enabled = self.webView.canGoForward
         }
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
+
     // MARK: - ボタン関連
     @IBAction func didTapBackButton() {
         self.webView.goBack()
