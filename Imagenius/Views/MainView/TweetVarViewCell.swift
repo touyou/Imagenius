@@ -12,18 +12,18 @@ import TTTAttributedLabel
 import SWTableViewCell
 import SDWebImage
 
-class TweetVarViewCell: SWTableViewCell {
-    @IBOutlet var tweetLabel: TTTAttributedLabel!
-    @IBOutlet var userIDLabel: UILabel!
-    @IBOutlet var userLabel: UILabel!
-    @IBOutlet var userImgView: UIImageView!
-    @IBOutlet var tweetImgView: UIImageView!
-    @IBOutlet var tweetSubView: UIView!
-    @IBOutlet var subViewHeight: NSLayoutConstraint!
-    @IBOutlet var imageCountLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
+final class TweetVarViewCell: SWTableViewCell {
+    @IBOutlet weak var tweetLabel: TTTAttributedLabel!
+    @IBOutlet weak var userIDLabel: UILabel!
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var userImgView: UIImageView!
+    @IBOutlet weak var tweetImgView: UIImageView!
+    @IBOutlet weak var tweetSubView: UIView!
+    @IBOutlet weak var subViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var imageCountLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
-    // TableViewCellが生成された時------------------------------------------------
+    // MARK: - TableViewCellが生成された時
     override func awakeFromNib() {
         super.awakeFromNib()
         // URL検知するように設定
@@ -42,8 +42,8 @@ class TweetVarViewCell: SWTableViewCell {
         super.layoutSubviews()
     }
     
-    // TTTAttributedLabel関連----------------------------------------------------
-    // mention link
+    // MARK: - TTTAttributedLabel関連
+    // MARK: mention link
     func highrightMentionsInLabel(label: TTTAttributedLabel) {
         let text: NSString = label.text!
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
@@ -56,7 +56,7 @@ class TweetVarViewCell: SWTableViewCell {
             label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
         }
     }
-    // hashtag link
+    // MARK: hashtag link
     func highrightHashtagsInLabel(label: TTTAttributedLabel) {
         let text: NSString = label.text!
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
@@ -70,8 +70,12 @@ class TweetVarViewCell: SWTableViewCell {
         }
     }
     
-    // 要素の設定-----------------------------------------------------------------
+    // MARK: - 要素の設定
     func setOutlet(tweet: Tweet, tweetHeight: CGFloat) {
+        if tweet.is_retweet {
+            // なにかいい案があれば
+        }
+        
         self.tweetLabel.text = Utility.convertSpecialCharacters(tweet.text ?? "")
         self.highrightHashtagsInLabel(tweetLabel)
         self.highrightMentionsInLabel(tweetLabel)
@@ -87,7 +91,7 @@ class TweetVarViewCell: SWTableViewCell {
         self.userImgView.layer.borderColor = Settings.Colors.selectedColor.CGColor
         self.userImgView.layer.borderWidth = 0.19
         
-        self.timeLabel.text = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet.created_at ?? ""))
+        self.timeLabel.text = tweet.created_at!
         
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet.extended_entities else {

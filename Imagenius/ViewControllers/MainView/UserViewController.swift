@@ -18,7 +18,7 @@ import SDWebImage
 import RxCocoa
 import RxSwift
 
-class UserViewController: UIViewController, UITableViewDelegate {
+final class UserViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var userTimeLine: UITableView! {
         didSet {
             userTimeLine.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
@@ -75,10 +75,10 @@ class UserViewController: UIViewController, UITableViewDelegate {
     
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    // Rx
+    // MARK: Rx
     final private let disposeBag = DisposeBag()
     
-    // UIViewControllerの設定----------------------------------------------------
+    // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -168,7 +168,7 @@ class UserViewController: UIViewController, UITableViewDelegate {
         return UIStatusBarStyle.LightContent
     }
     
-    // ボタン関連-----------------------------------------------------------------
+    // MARK: - ボタン関連
     @IBAction func pushTweet() {
         self.replyStr = "@\(user) "
         performSegueWithIdentifier("toTweetView", sender: nil)
@@ -188,17 +188,17 @@ class UserViewController: UIViewController, UITableViewDelegate {
         })
     }
     
-    // TableView関連-------------------------------------------------------------
+    // MARK: - TableView関連
     // 無し
     
-    // Utility------------------------------------------------------------------
-    // refresh処理
+    // MARK: - Utility
+    // MARK: refresh処理
     func refresh() {
         self.tweetArray = []
         loadTweet()
         self.refreshControl.endRefreshing()
     }
-    // Tweetのロード
+    // MARK: Tweetのロード
     func load(moreflag: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: ユーザーのツイート一覧のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
@@ -268,19 +268,19 @@ class UserViewController: UIViewController, UITableViewDelegate {
             self.swifter.getStatusesUserTimelineWithUserID(id_str, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
         }
     }
-    // Tweetをロードする
+    // MARK: Tweetをロードする
     func loadTweet() {
         if swifter != nil {
             load(false)
         }
     }
-    // さらに下を読み込む
+    // MARK: さらに下を読み込む
     func loadMore() {
         if swifter != nil {
             load(true)
         }
     }
-    // screen_nameからUserIDを取得する
+    // MARK: screen_nameからUserIDを取得する
     func getUserIdWithScreenName(user_name: String, comp: (()->())? = nil) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
@@ -295,8 +295,8 @@ class UserViewController: UIViewController, UITableViewDelegate {
     }
 }
 
+// MARK: - DZNEmptyDataSetの設定
 extension UserViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
-    // DZNEmptyDataSetの設定
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFontOfSize(20)
@@ -310,9 +310,9 @@ extension UserViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
 }
 
+// MARK: - SWTableViewCell関連
 extension UserViewController: SWTableViewCellDelegate {
-    // SWTableViewCell関連
-    // 右のボタン
+    // MARK: 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
         if favorited {
@@ -329,13 +329,13 @@ extension UserViewController: SWTableViewCellDelegate {
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
         return rightUtilityButtons
     }
-    // 左のボタン
+    // MARK: 左のボタン
     func leftButtons() -> NSArray {
         let leftUtilityButtons: NSMutableArray = NSMutableArray()
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
         return leftUtilityButtons
     }
-    // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
+    // MARK: ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
     func addUtilityButtonWithColor(color : UIColor, icon : UIImage, text: String? = nil) -> UIButton {
         let button:UIButton = UIButton(type: UIButtonType.Custom)
         button.backgroundColor = color
@@ -344,7 +344,7 @@ extension UserViewController: SWTableViewCellDelegate {
         button.setImage(icon, forState: .Normal)
         return button
     }
-    // 右スライドした時のボタンの挙動
+    // MARK: 右スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.userTimeLine.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
@@ -426,7 +426,7 @@ extension UserViewController: SWTableViewCellDelegate {
             break
         }
     }
-    // 左スライドした時のボタンの挙動
+    // MARK: 左スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.userTimeLine.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
@@ -441,8 +441,8 @@ extension UserViewController: SWTableViewCellDelegate {
     }
 }
 
+// MARK: - TTTAttributedLabelDelegate
 extension UserViewController: TTTAttributedLabelDelegate {
-    // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
             user = url.URLString.substringFromIndex(userRange.endIndex)

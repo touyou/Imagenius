@@ -10,7 +10,7 @@ import UIKit
 import Accounts
 import SwifteriOS
 
-class InfoContainerViewController: UIViewController {
+final class InfoContainerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

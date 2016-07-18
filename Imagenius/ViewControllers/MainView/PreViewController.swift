@@ -8,10 +8,10 @@
 
 import UIKit
 
-class PreViewController: UIViewController, UIScrollViewDelegate {
+final class PreViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var preImageView: UIImageView!
-    @IBOutlet var preScrollView: UIScrollView!
+    @IBOutlet weak var preImageView: UIImageView!
+    @IBOutlet weak var preScrollView: UIScrollView!
     var imageData: NSData!
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class PreViewController: UIViewController, UIScrollViewDelegate {
         return preImageView
     }
     
-    // ダブルタップ
+    // MARK: ダブルタップ
     func doubleTap(gesture: UITapGestureRecognizer) -> Void {
         if (self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale) {
             let newScale:CGFloat = self.preScrollView.zoomScale * 3
@@ -46,7 +46,7 @@ class PreViewController: UIViewController, UIScrollViewDelegate {
             self.preScrollView.setZoomScale(1.0, animated: true)
         }
     }
-    // 領域
+    // MARK: 領域
     func zoomRectForScale(scale:CGFloat, center: CGPoint) -> CGRect{
         var zoomRect: CGRect = CGRect()
         zoomRect.size.height = self.preScrollView.bounds.size.height / scale

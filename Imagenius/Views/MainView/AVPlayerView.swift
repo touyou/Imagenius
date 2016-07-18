@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class AVPlayerView: UIView {
+final class AVPlayerView: UIView {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!

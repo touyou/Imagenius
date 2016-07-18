@@ -56,7 +56,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
-    // UIViewControllerの設定----------------------------------------------------
+    // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,7 +85,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         viewModel.setViewController(self)
     }
     
-    // アカウントが切り替わった時点でページをリロードしている
+    // MARK: アカウントが切り替わった時点でページをリロードしている
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
@@ -102,14 +102,14 @@ class MainViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    // メモリーがいっぱいになったらSDWebImageのキャッシュを削除
+    // MARK: メモリーがいっぱいになったらSDWebImageのキャッシュを削除
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
     
-    // 各Viewへ移り変わるときに渡す値
+    // MARK: 各Viewへ移り変わるときに渡す値
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toTweetView" {
             let tweetView = segue.destinationViewController as! TweetViewController
@@ -140,13 +140,13 @@ class MainViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    // ステータスバーを細く
+    // MARK: ステータスバーを細く
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
     
     
-    // ボタン関連---------------------------------------------------------------
+    // MARK: - ボタン関連
     @IBAction func pushTweet() {
         performSegueWithIdentifier("toTweetView", sender: nil)
     }
@@ -156,26 +156,26 @@ class MainViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    // TableView関連------------------------------------------------------------
+    // MARK - TableView関連
     // UITableViewDelegateが無いので空
     
-    // Utility------------------------------------------------------------------
-    // refresh処理
+    // MARK: - Utility
+    // MARK: refresh処理
     func refresh() {
         self.tweetArray = []
         loadTweet()
         self.refreshControl.endRefreshing()
     }
-    // Tweetのロード
+    // MARK: Tweetのロード
     func load(moreflag: Bool) {
     }
-    // Tweetをロードする
+    // MARK: Tweetをロードする
     func loadTweet() {
         if swifter != nil {
             load(false)
         }
     }
-    // さらに下を読み込む
+    // MARK: さらに下を読み込む
     func loadMore() {
         if swifter != nil {
             load(true)
@@ -183,8 +183,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     }
 }
 
+// MARK: - DZNEmptyDataSetの設定
 extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
-    // DZNEmptyDataSetの設定
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFontOfSize(20)
@@ -198,9 +198,9 @@ extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
 }
 
+// MARK: - SWTableViewCell関連
 extension MainViewController: SWTableViewCellDelegate {
-    // SWTableViewCell関連
-    // 右のボタン
+    // MARK: 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
         if favorited {
@@ -217,14 +217,14 @@ extension MainViewController: SWTableViewCellDelegate {
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
         return rightUtilityButtons
     }
-    // 左のボタン
+    // MARK: 左のボタン
     func leftButtons() -> NSArray {
         let leftUtilityButtons: NSMutableArray = NSMutableArray()
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.userColor, icon: UIImage(named: "use_white")!))
         return leftUtilityButtons
     }
-    // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
+    // MARK: ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
     func addUtilityButtonWithColor(color : UIColor, icon : UIImage, text: String? = nil) -> UIButton {
         let button:UIButton = UIButton(type: UIButtonType.Custom)
         button.backgroundColor = color
@@ -233,7 +233,7 @@ extension MainViewController: SWTableViewCellDelegate {
         button.setImage(icon, forState: .Normal)
         return button
     }
-    // 右スライドした時のボタンの挙動
+    // MARK: 右スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
@@ -317,7 +317,7 @@ extension MainViewController: SWTableViewCellDelegate {
             break
         }
     }
-    // 左スライドした時のボタンの挙動
+    // MARK: 左スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.row]
@@ -336,8 +336,8 @@ extension MainViewController: SWTableViewCellDelegate {
     }
 }
 
+// MARK: - TTTAttributedLabelDelegate
 extension MainViewController: TTTAttributedLabelDelegate {
-    // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
             selectedUser = url.URLString.substringFromIndex(userRange.endIndex)

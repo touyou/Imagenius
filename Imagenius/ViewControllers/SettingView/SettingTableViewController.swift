@@ -13,9 +13,9 @@ import MessageUI
 import GoogleMobileAds
 
 
-class SettingTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
+final class SettingTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     // Google Ads関連
-    @IBOutlet var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var swifter:Swifter!
     var account: ACAccount?
@@ -60,7 +60,7 @@ class SettingTableViewController: UITableViewController, MFMailComposeViewContro
         return UIStatusBarStyle.LightContent
     }
     
-    // tableView関連
+    // MARK: - tableView関連
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return labelTexts.count
     }
@@ -127,7 +127,7 @@ class SettingTableViewController: UITableViewController, MFMailComposeViewContro
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    // mailView関連
+    // MARK: - mailView関連
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

@@ -13,8 +13,8 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    @IBOutlet var imageCollectionView: UICollectionView!
+final class TiqavImageViewController: UIViewController {
+    @IBOutlet weak var imageCollectionView: UICollectionView!
     
     // View Model
     final private let viewModel = TiqavImageViewModel()
@@ -29,7 +29,7 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICo
     var imageSize: CGFloat!
     var delegate: TweetViewControllerDelegate!
     
-    // UIViewControllerの設定----------------------------------------------------
+    // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,15 +102,16 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     
-    // ボタン関連-----------------------------------------------------------------
-    // キャンセルのボタン
+    // MARK: - ボタン関連
+    // MARK: キャンセルのボタン
     @IBAction func cancelButton() {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    // CollectionViewまわりの設定-------------------------------------------------
-    // 画像を選択したら
+}
+
+// MARK: - CollectionViewまわりの設定
+extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    // MARK: 画像を選択したら
     func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         SDWebImageDownloader.sharedDownloader().downloadImageWithURL(viewModel.urls[indexPath.row], options: SDWebImageDownloaderOptions.UseNSURLCache, progress: {
             (a: Int, b: Int) -> Void in
@@ -118,12 +119,12 @@ class TiqavImageViewController: UIViewController, UICollectionViewDelegate, UICo
             self.imageCollectionView.allowsSelection = false
             self.title = "loading..."
             }, completed: {
-            (a: UIImage!, b: NSData!, c: NSError!, d: Bool!) -> Void in
-            self.selectedImage = a
-            self.selectedData = b
-            self.imageCollectionView.allowsSelection = true
-            self.title = "\(self.searchWord)の検索結果"
-            self.performSegueWithIdentifier("toResultView", sender: nil)
+                (a: UIImage!, b: NSData!, c: NSError!, d: Bool!) -> Void in
+                self.selectedImage = a
+                self.selectedData = b
+                self.imageCollectionView.allowsSelection = true
+                self.title = "\(self.searchWord)の検索結果"
+                self.performSegueWithIdentifier("toResultView", sender: nil)
         })
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

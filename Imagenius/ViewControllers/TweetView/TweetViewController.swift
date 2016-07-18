@@ -19,22 +19,22 @@ protocol TweetViewControllerDelegate {
     func changeImage(image: UIImage, data: NSData, isGIF: Bool)
 }
 
-class TweetViewController: UIViewController, TweetViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    @IBOutlet var countLabel: UILabel!
-    @IBOutlet var placeHolderLabel: UILabel!
-    @IBOutlet var tweetTextView: UITextView!
-    @IBOutlet var searchField: UITextField!
-    @IBOutlet var accountImage: UIButton!
-    @IBOutlet var tweetImageView: UIImageView!
-    @IBOutlet var scvBackGround: UIScrollView!
-    @IBOutlet var tweetContentView: UIView!
-    @IBOutlet var tweetImageHeight: NSLayoutConstraint!
-    @IBOutlet var galleryButton: UIButton!
-    @IBOutlet var cameraButton: UIButton!
-    @IBOutlet var twBtn: UIButton!
-    @IBOutlet var imageCollectionView: UICollectionView!
+final class TweetViewController: UIViewController {
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var placeHolderLabel: UILabel!
+    @IBOutlet weak var tweetTextView: UITextView!
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var accountImage: UIButton!
+    @IBOutlet weak var tweetImageView: UIImageView!
+    @IBOutlet weak var scvBackGround: UIScrollView!
+    @IBOutlet weak var tweetContentView: UIView!
+    @IBOutlet weak var tweetImageHeight: NSLayoutConstraint!
+    @IBOutlet weak var galleryButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var twBtn: UIButton!
+    @IBOutlet weak var imageCollectionView: UICollectionView!
     // Google Ads関連
-    @IBOutlet var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var MAX_WORD: Int = 140
     var tweetText: String?
@@ -52,7 +52,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let disposeBag = DisposeBag()
     
-    // UIViewControllerの設定----------------------------------------------------
+    // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         if saveData.objectForKey(Settings.Saveword.twitter) == nil {
@@ -233,8 +233,8 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
         }
     }
     
-    // ボタン関係-----------------------------------------------------------------
-    // 投稿せずに終了
+    // MARK: - ボタン関係
+    // MARK: 投稿せずに終了
     @IBAction func cancelButton() {
         tweetText = tweetTextView.text
         if (tweetText == nil || tweetText == "") && tweetImage.count == 0 {
@@ -249,7 +249,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
             self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
-    // アカウントを切り替える
+    // MARK: アカウントを切り替える
     @IBAction func accountButton() {
         // アカウントの切り替え
         TwitterUtil.loginTwitter(self, success: { (ac) -> () in
@@ -258,7 +258,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
             self.changeAccountImage()
         })
     }
-    // 画像検索へ
+    // MARK: 画像検索へ
     @IBAction func searchButton() {
         if searchField.text != "" {
             performSegueWithIdentifier("toImageView", sender: nil)
@@ -266,7 +266,7 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
             Utility.simpleAlert("検索ワードを入力してください。", presentView: self)
         }
     }
-    // ツイート処理
+    // MARK: ツイート処理
     @IBAction func tweetButton() {
         let failureHandler: ((NSError) -> Void) = { error in
             self.twBtn.enabled = true
@@ -300,58 +300,15 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
         swifter.postStatusUpdate(tweetText!, media_ids: media_ids, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
     }
     
-    // MARK: - CollectionView
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return media_ids.count
-    }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as! TiqavImageViewCell
-        cell.imageView.contentMode = .ScaleAspectFill
-        cell.imageView.image = tweetImage[indexPath.row]
-        return cell
-    }
-    func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
-            action in
-            self.tweetImage.removeAtIndex(indexPath.row)
-            self.media_ids.removeAtIndex(indexPath.row)
-            if self.media_ids.count == 0 {
-                self.tweetImageHeight.constant = 0
-                self.gifFlag = true
-            } else {
-                self.imageCollectionView.reloadData()
-            }
-        }))
-        alertController.addAction(UIAlertAction(title: "いいえ", style: .Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    // キーボード関係の処理---------------------------------------------------------
-    // returnでキーボードを閉じる
+    // MARK: - キーボード関係の処理
+    // MARK: returnでキーボードを閉じる
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         view.endEditing(true)
         return true
     }
     
-    // Utility------------------------------------------------------------------
-    // アカウントの画像を切替える
-    func changeAccountImage() {
-        let failureHandler: ((NSError) -> Void) = { error in
-            Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
-        }
-        swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
-            if let userDict = user {
-                if let userImage = userDict["profile_image_url_https"] {
-                    self.accountImg = Utility.resizeImage(UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!, size: CGSize(width: 50, height: 50))
-                    self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
-                    self.accountImage.clipsToBounds = true
-                    self.accountImage.setImage(self.accountImg, forState: .Normal)
-                }
-            }
-        }, failure: failureHandler)
-    }
-    // ツイートに添付する画像
+    // MARK: - Utility
+    // MARK: ツイートに添付する画像
     func changeImage(image: UIImage, data: NSData, isGIF: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
@@ -380,6 +337,57 @@ class TweetViewController: UIViewController, TweetViewControllerDelegate, UIColl
     }
 }
 
+// MARK: - CollectionView
+extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return media_ids.count
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as! TiqavImageViewCell
+        cell.imageView.contentMode = .ScaleAspectFill
+        cell.imageView.image = tweetImage[indexPath.row]
+        return cell
+    }
+    func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
+            action in
+            self.tweetImage.removeAtIndex(indexPath.row)
+            self.media_ids.removeAtIndex(indexPath.row)
+            if self.media_ids.count == 0 {
+                self.tweetImageHeight.constant = 0
+                self.gifFlag = true
+            } else {
+                self.imageCollectionView.reloadData()
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "いいえ", style: .Cancel, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - TweetViewControllerDelegate
+extension TweetViewController: TweetViewControllerDelegate {
+    // MARK: アカウントの画像を切替える
+    func changeAccountImage() {
+        let failureHandler: ((NSError) -> Void) = { error in
+            Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
+        }
+        swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
+            if let userDict = user {
+                if let userImage = userDict["profile_image_url_https"] {
+                    self.accountImg = Utility.resizeImage(UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!, size: CGSize(width: 50, height: 50))
+                    self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
+                    self.accountImage.clipsToBounds = true
+                    self.accountImage.setImage(self.accountImg, forState: .Normal)
+                }
+            }
+            }, failure: failureHandler)
+    }
+}
+
+
+// MARK: - RxのImagePicker設定
 func dismissViewController(viewController: UIViewController, animated: Bool) {
     if viewController.isBeingDismissed() || viewController.isBeingPresented() {
         dispatch_async(dispatch_get_main_queue()) {

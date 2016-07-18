@@ -13,7 +13,7 @@ import SwifteriOS
 import AVKit
 import AVFoundation
 
-class TweetDetailViewModel: NSObject, UITableViewDataSource {
+final class TweetDetailViewModel: NSObject {
     final var tweetArray = [[Tweet]]()
     final private var viewController: TweetDetailViewController!
     var audioSession: AVAudioSession!
@@ -30,40 +30,7 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
         tweetArray = array
     }
     
-    // MARK: - TableView
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return tweetArray.count
-    }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweetArray[section].count
-    }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tweetArray[indexPath.section].count <= indexPath.row || indexPath.row < 0 {
-            return UITableViewCell()
-        }
-        
-        let tweet = tweetArray[indexPath.section][indexPath.row]
-        let favorited = tweet.favorited ?? false
-        let retweeted = tweet.retweeted ?? false
-        let f_num = tweet.favorite_count ?? 0
-        let r_num = tweet.retweet_count ?? 0
-        
-        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as! TweetVarViewCell
-        cell.tweetLabel.delegate = viewController
-        cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
-        
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
-        cell.tweetImgView.addGestureRecognizer(tapGesture)
-        cell.tweetImgView.tag = indexPath.row + 10000 * indexPath.section
-        
-        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, f_num: f_num, r_num: r_num) as [AnyObject]
-        cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
-        cell.delegate = viewController
-        cell.layoutIfNeeded()
-        return cell
-    }
-    
-    // imageViewがタップされたら画像のURLを開く
+    // MARK: imageViewがタップされたら画像のURLを開く
     func tapped(sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum: Int!
@@ -125,5 +92,39 @@ class TweetDetailViewModel: NSObject, UITableViewDataSource {
             }
         }
     }
+}
 
+// MARK: - TableView
+extension TweetDetailViewModel: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return tweetArray.count
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweetArray[section].count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if tweetArray[indexPath.section].count <= indexPath.row || indexPath.row < 0 {
+            return UITableViewCell()
+        }
+        
+        let tweet = tweetArray[indexPath.section][indexPath.row]
+        let favorited = tweet.favorited ?? false
+        let retweeted = tweet.retweeted ?? false
+        let f_num = tweet.favorite_count ?? 0
+        let r_num = tweet.retweet_count ?? 0
+        
+        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as! TweetVarViewCell
+        cell.tweetLabel.delegate = viewController
+        cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
+        
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
+        cell.tweetImgView.addGestureRecognizer(tapGesture)
+        cell.tweetImgView.tag = indexPath.row + 10000 * indexPath.section
+        
+        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, f_num: f_num, r_num: r_num) as [AnyObject]
+        cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
+        cell.delegate = viewController
+        cell.layoutIfNeeded()
+        return cell
+    }
 }

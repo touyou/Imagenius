@@ -9,9 +9,9 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
-    @IBOutlet var backButton: UIBarButtonItem!
-    @IBOutlet var forwardButton: UIBarButtonItem!
+final class WebViewController: UIViewController {
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var forwardButton: UIBarButtonItem!
     
     var reloadButton: UIBarButtonItem!
     var stopButton: UIBarButtonItem!
@@ -38,7 +38,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         stopButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(WebViewController.didTapStopButton(_:)))
         self.navigationItem.rightBarButtonItem = reloadButton
     }
-    // WKWebViewの設定
+    // MARK: WKWebViewの設定
     override func loadView() {
         super.loadView()
         self.webView = WKWebView()
@@ -56,7 +56,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         self.webView.removeObserver(self, forKeyPath: "canGoBack")
         self.webView.removeObserver(self, forKeyPath: "canGoForward")
     }
-    // 状態に応じて
+    // MARK: 状態に応じて
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "title" {
             self.title = self.webView.title
@@ -78,7 +78,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         return UIStatusBarStyle.LightContent
     }
     
-    // ボタン関連-----------------------------------------------------------------
+    // MARK: - ボタン関連
     @IBAction func didTapBackButton() {
         self.webView.goBack()
     }
@@ -95,8 +95,10 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     internal func didTapStopButton(sender: AnyObject) {
         self.webView.stopLoading()
     }
-    
-    // WKWebView関連-------------------------------------------------------------
+}
+
+// MARK: - WKWebView関連
+extension WebViewController:  WKNavigationDelegate, WKUIDelegate {
     func webView(webView: WKWebView, createWebViewWithConfiguration configuration: WKWebViewConfiguration, forNavigationAction navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil {
             webView.loadRequest(navigationAction.request)

@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 
-class GIFViewController: UIViewController {
+final class GIFViewController: UIViewController {
     // TwitterのGIFはmp4ファイルなので動画の再生をループさせてGIFっぽく見せる
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     
     var playerItem: AVPlayerItem!
     var videoPlayer: AVPlayer!

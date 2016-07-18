@@ -8,10 +8,10 @@
 
 import UIKit
 
-class InfoViewController: UIViewController {
+final class InfoViewController: UIViewController {
 
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     var image: NSData!
     

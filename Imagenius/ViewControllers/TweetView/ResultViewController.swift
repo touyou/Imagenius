@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ResultViewController: UIViewController, UIScrollViewDelegate {
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var preScrollView: UIScrollView!
+final class ResultViewController: UIViewController {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var preScrollView: UIScrollView!
     
     var image: UIImage?
     var data: NSData?
@@ -18,7 +18,7 @@ class ResultViewController: UIViewController, UIScrollViewDelegate {
     
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
-    // UIViewControllerの設定----------------------------------------------------
+    // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         if image == nil {
@@ -41,19 +41,19 @@ class ResultViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    // ボタン関連-----------------------------------------------------------------
-    // OKボタンのとき
+    // MARK: - ボタン関連
+    // MARK: OKボタンのとき
     @IBAction func pushOK() {
         dismissViewControllerAnimated(true, completion: {
             // GIFかどうかの判断はSDWebImageのコードを参考に
             self.delegate.changeImage(self.image!, data: self.data!, isGIF: self.data!.isGIF())
         })
     }
-    // Cancelボタンのとき
+    // MARK: Cancelボタンのとき
     @IBAction func pushCancel() {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
-    // Shareボタン
+    // MARK: Shareボタン
     @IBAction func shareImage() {
         let activityItems: [AnyObject]!
         activityItems = [image!]
@@ -65,12 +65,14 @@ class ResultViewController: UIViewController, UIScrollViewDelegate {
         activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
         self.presentViewController(activityVC, animated: true, completion: nil)
     }
-    
-    // 画像を拡大縮小できるためのいろいろ
+}
+
+extension ResultViewController: UIScrollViewDelegate {
+    // MARK: 画像を拡大縮小できるためのいろいろ
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    // ダブルタップ
+    // MARK: ダブルタップ
     func doubleTap(gesture: UITapGestureRecognizer) -> Void {
         if (self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale) {
             let newScale:CGFloat = self.preScrollView.zoomScale * 3
@@ -80,7 +82,7 @@ class ResultViewController: UIViewController, UIScrollViewDelegate {
             self.preScrollView.setZoomScale(1.0, animated: true)
         }
     }
-    // 領域
+    // MARK: 領域
     func zoomRectForScale(scale:CGFloat, center: CGPoint) -> CGRect{
         var zoomRect: CGRect = CGRect()
         zoomRect.size.height = self.preScrollView.bounds.size.height / scale

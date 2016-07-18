@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+final class ImagePreViewController: UIPageViewController {
 
-    @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet weak var pageControl: UIPageControl!
     var pageData: NSMutableArray!
     
     override func viewDidLoad() {
@@ -31,8 +31,41 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+   
+    // MARK: 画像をシェアする
+    @IBAction func shareImage() {
+        let image = UIImage(data: self.pageData[pageControl.currentPage] as! NSData)
+        let activityItems: [AnyObject]!
+        activityItems = [image!]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let excludedActivityTypes = [UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo]
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        // iPad用
+        activityVC.popoverPresentationController?.sourceView = self.view
+        activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
+        self.presentViewController(activityVC, animated: true, completion: nil)
+    }
     
-    // pageViewController関連----------------------------------------------------
+    // MARK: - Utility
+    func indexOfViewController(viewController: PreViewController) -> Int {
+        if let dataObject: AnyObject = viewController.imageData {
+            return self.pageData.indexOfObject(dataObject)
+        } else {
+            return NSNotFound
+        }
+    }
+    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> PreViewController? {
+        if self.pageData.count == 0 || index >= self.pageData.count {
+            return nil
+        }
+        let preViewController = storyboard.instantiateViewControllerWithIdentifier("PreViewController") as! PreViewController
+        preViewController.imageData = self.pageData[index] as! NSData
+        return preViewController
+    }
+}
+
+// MARK: - pageViewController関連
+extension ImagePreViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         var index = self.indexOfViewController(viewController as! PreViewController)
         if index == 0 || index == NSNotFound {
@@ -49,7 +82,7 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
         index += 1
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
-    // 向きはPortrait限定なので常に表示されるページは一個
+    // MARK: 向きはPortrait限定なので常に表示されるページは一個
     func pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
         let currentViewController = self.viewControllers![0]
         let viewControllers = [currentViewController]
@@ -57,41 +90,10 @@ class ImagePreViewController: UIPageViewController, UIPageViewControllerDataSour
         self.doubleSided = false
         return .Min
     }
-    // 現在地
+    // MARK: 現在地
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let viewController = pageViewController.viewControllers?.first as? PreViewController {
             self.pageControl.currentPage = indexOfViewController(viewController)
         }
-    }
-   
-    // 画像をシェアする
-    @IBAction func shareImage() {
-        let image = UIImage(data: self.pageData[pageControl.currentPage] as! NSData)
-        let activityItems: [AnyObject]!
-        activityItems = [image!]
-        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        let excludedActivityTypes = [UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo]
-        activityVC.excludedActivityTypes = excludedActivityTypes
-        // iPad用
-        activityVC.popoverPresentationController?.sourceView = self.view
-        activityVC.popoverPresentationController?.sourceRect = CGRectMake(0.0, 0.0, 20.0, 20.0)
-        self.presentViewController(activityVC, animated: true, completion: nil)
-    }
-    
-    // Utility------------------------------------------------------------------
-    func indexOfViewController(viewController: PreViewController) -> Int {
-        if let dataObject: AnyObject = viewController.imageData {
-            return self.pageData.indexOfObject(dataObject)
-        } else {
-            return NSNotFound
-        }
-    }
-    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> PreViewController? {
-        if self.pageData.count == 0 || index >= self.pageData.count {
-            return nil
-        }
-        let preViewController = storyboard.instantiateViewControllerWithIdentifier("PreViewController") as! PreViewController
-        preViewController.imageData = self.pageData[index] as! NSData
-        return preViewController
     }
 }

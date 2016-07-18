@@ -11,8 +11,8 @@ import UIKit
 import Accounts
 import SwifteriOS
 
-class TwitterUtil {
-    // login
+final class TwitterUtil {
+    // MARK: login
     class func loginTwitter(present: UIViewController, success: ((ACAccount?) -> ())? = nil) {
         let accountStore = ACAccountStore()
         var accounts = [ACAccount]()
@@ -31,7 +31,7 @@ class TwitterUtil {
         }
     }
     
-    // Twitterアカウントの切り替え
+    // MARK: Twitterアカウントの切り替え
     class func showAndSelectTwitterAccountWithSelectionSheets(accounts: [ACAccount], present: UIViewController, success: ((ACAccount?)->())? = nil) {
         // アクションシートの設定
         let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .ActionSheet)
@@ -65,7 +65,7 @@ class TwitterUtil {
         present.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    // 画像がツイートに含まれているか？
+    // MARK: 画像がツイートに含まれているか？
     class func isContainMedia(tweet: JSONValue) -> Bool {
         if tweet["extended_entities"].object != nil {
             return true

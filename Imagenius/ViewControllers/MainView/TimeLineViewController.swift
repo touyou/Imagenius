@@ -10,7 +10,7 @@ import UIKit
 import SwifteriOS
 import Accounts
 
-class TimeLineViewController: MainViewController {
+final class TimeLineViewController: MainViewController {
     override func load(moreflag: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: タイムラインのロードに失敗しました。インターネット環境を確認してください。", presentView: self)

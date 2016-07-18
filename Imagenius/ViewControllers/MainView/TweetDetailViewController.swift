@@ -52,7 +52,7 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     let accountStore = ACAccountStore()
     let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
-    // UIViewControllerの設定----------------------------------------------------
+    // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -132,7 +132,7 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    // ボタン関連-----------------------------------------------------------------
+    // MARK: - ボタン関連
     @IBAction func pushTweet() {
         self.replyID = self.viewId
         if tweetArray[1].count != 0 {
@@ -149,17 +149,17 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    // TableView関連-------------------------------------------------------------
+    // MARK: - TableView関連
     // 無し
     
-    // Utility------------------------------------------------------------------
-    // refresh処理
+    // MARK: - Utility
+    // MARK: refresh処理
     func refresh() {
         self.tweetArray = [[],[],[]]
         loadTweet()
         self.refreshControl.endRefreshing()
     }
-    // Tweetのロード
+    // MARK: Tweetのロード
     func load(moreflag: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: ツイートのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
@@ -195,7 +195,7 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
             }
             }, failure: failureHandler)
     }
-    // Tweetをロードする
+    // MARK: Tweetをロードする
     func loadTweet() {
         if swifter != nil {
             load(false)
@@ -203,8 +203,8 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     }
 }
 
+// MARK: - DZNEmptyDataSetの設定
 extension TweetDetailViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
-    // DZNEmptyDataSetの設定
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFontOfSize(20)
@@ -218,9 +218,9 @@ extension TweetDetailViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSou
     }
 }
 
+// MARK: - SWTableViewCell関連
 extension TweetDetailViewController: SWTableViewCellDelegate {
-    // SWTableViewCell関連
-    // 右のボタン
+    // MARK: 右のボタン
     func rightButtons(favorited: Bool, retweeted: Bool, f_num: Int, r_num: Int) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
         if favorited {
@@ -237,14 +237,14 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
         return rightUtilityButtons
     }
-    // 左のボタン
+    // MARK: 左のボタン
     func leftButtons() -> NSArray {
         let leftUtilityButtons: NSMutableArray = NSMutableArray()
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "TwitterLogo_white_1")!))
         leftUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.userColor, icon: UIImage(named: "use_white")!))
         return leftUtilityButtons
     }
-    // ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
+    // MARK: ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
     func addUtilityButtonWithColor(color : UIColor, icon : UIImage, text: String? = nil) -> UIButton {
         let button:UIButton = UIButton(type: UIButtonType.Custom)
         button.backgroundColor = color
@@ -253,7 +253,7 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
         button.setImage(icon, forState: .Normal)
         return button
     }
-    // 右スライドした時のボタンの挙動
+    // MARK: 右スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.section][cellIndexPath.row]
@@ -337,7 +337,7 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
             break
         }
     }
-    // 左スライドした時のボタンの挙動
+    // MARK: 左スライドした時のボタンの挙動
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         let cellIndexPath: NSIndexPath = self.timelineTableView.indexPathForCell(cell)!
         let tweet = tweetArray[cellIndexPath.section][cellIndexPath.row]
@@ -356,8 +356,8 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
     }
 }
 
+// MARK: - TTTAttributedLabelDelegate
 extension TweetDetailViewController: TTTAttributedLabelDelegate {
-    // TTTAttributedLabelDelegate
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         if let userRange = url.URLString.rangeOfString("account:") {
             selectedUser = url.URLString.substringFromIndex(userRange.endIndex)

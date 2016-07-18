@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+final class InfoPageViewController: UIPageViewController {
     
     var pageData: NSMutableArray!
     var currentIndex: Int!
@@ -33,7 +33,26 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.view.backgroundColor = Settings.Colors.mainColor
     }
     
-    // pageViewController関連----------------------------------------------------
+    // MARK: - Utility
+    func indexOfViewController(viewController: InfoViewController) -> Int {
+        if let dataObject: AnyObject = viewController.image {
+            return self.pageData.indexOfObject(dataObject)
+        } else {
+            return NSNotFound
+        }
+    }
+    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> InfoViewController? {
+        if self.pageData.count == 0 || index >= self.pageData.count {
+            return nil
+        }
+        let infoViewController = storyboard.instantiateViewControllerWithIdentifier("InfoViewController") as! InfoViewController
+        infoViewController.image = self.pageData[index] as! NSData
+        return infoViewController
+    }
+}
+
+// MARK: - pageViewController関連
+extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         var index = self.indexOfViewController(viewController as! InfoViewController)
         if index == 0 || index == NSNotFound {
@@ -50,7 +69,7 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
         index += 1
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
-    // 向きはPortrait限定なので常に表示されるページは一個
+    // MARK: 向きはPortrait限定なので常に表示されるページは一個
     func pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
         let currentViewController = self.viewControllers![0]
         let viewControllers = [currentViewController]
@@ -58,7 +77,7 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.doubleSided = false
         return .Min
     }
-    // 現在地
+    // MARK: 現在地
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let viewController = pageViewController.viewControllers?.first as? InfoViewController {
             currentIndex = indexOfViewController(viewController)
@@ -69,22 +88,5 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
     }
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 3
-    }
-    
-    // Utility------------------------------------------------------------------
-    func indexOfViewController(viewController: InfoViewController) -> Int {
-        if let dataObject: AnyObject = viewController.image {
-            return self.pageData.indexOfObject(dataObject)
-        } else {
-            return NSNotFound
-        }
-    }
-    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> InfoViewController? {
-        if self.pageData.count == 0 || index >= self.pageData.count {
-            return nil
-        }
-        let infoViewController = storyboard.instantiateViewControllerWithIdentifier("InfoViewController") as! InfoViewController
-        infoViewController.image = self.pageData[index] as! NSData
-        return infoViewController
     }
 }

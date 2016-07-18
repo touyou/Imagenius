@@ -9,9 +9,9 @@
 import UIKit
 import GoogleMobileAds
 
-class SettingBannerCell: UITableViewCell {
+final class SettingBannerCell: UITableViewCell {
     // Google Ads関連
-    @IBOutlet var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

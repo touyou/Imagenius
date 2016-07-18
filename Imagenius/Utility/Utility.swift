@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 import Accounts
 
-class Utility {
-    // UI関連--------------------------------------------------------------------
-    // 単純なアラートをつくる関数
+final class Utility {
+    // MARK: - UI関連
+    // MARK: 単純なアラートをつくる関数
     class func simpleAlert(titleString: String, presentView: UIViewController) {
         let alertController = UIAlertController(title: titleString, message: nil, preferredStyle: .Alert)
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         presentView.presentViewController(alertController, animated: true, completion: nil)
     }
-    // Safariで開く
+    // MARK: Safariで開く
     class func openWebView(url: NSURL) {
         let saveData:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         saveData.setObject(url.absoluteString, forKey: Settings.Saveword.url)
     }
-    // share
+    // MARK: share
     class func shareSome(url: NSURL, text: String? = nil, presentView: UIViewController) {
         let activityItems: [AnyObject]!
         if text != nil {
@@ -41,8 +41,8 @@ class Utility {
         presentView.presentViewController(activityVC, animated: true, completion: nil)
     }
     
-    // 画像処理------------------------------------------------------------------
-    // 画像をあらかじめクロップしておく
+    // MARK: - 画像処理
+    // MARK: 画像をあらかじめクロップしておく
     class func cropThumbnailImage(image :UIImage, w:Int, h:Int) -> UIImage {
         let origRef    = image.CGImage;
         let origWidth  = Int(CGImageGetWidth(origRef))
@@ -76,7 +76,7 @@ class Utility {
         
         return cropImage
     }
-    // 画像のリサイズ
+    // MARK: 画像のリサイズ
     class func resizeImage(image: UIImage, size: CGSize) -> UIImage {
         let widthRatio = size.width / image.size.width
         let heightRatio = size.height / image.size.height
@@ -89,8 +89,8 @@ class Utility {
         return resizedImage
     }
     
-    // その他--------------------------------------------------------------------
-    // HTML特殊文字を変換する
+    // MARK: - その他
+    // MARK: HTML特殊文字を変換する
     // https://gist.github.com/mikesteele/70ae98d04fdc35cb1d5f
     class func convertSpecialCharacters(string: String) -> String {
         var newString = string
@@ -106,7 +106,7 @@ class Utility {
         }
         return newString
     }
-    // 日本語を含む検索語でAPIを叩くため
+    // MARK: 日本語を含む検索語でAPIを叩くため
     class func encodeURL(text: String) -> NSURL! {
         return NSURL(string: text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!
     }
