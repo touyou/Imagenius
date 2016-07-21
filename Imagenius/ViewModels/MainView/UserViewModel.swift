@@ -98,10 +98,6 @@ extension UserViewModel: UITableViewDataSource {
             return UITableViewCell()
         }
         let tweet = tweetArray[indexPath.row]
-        let favorited = tweet.favorited ?? false
-        let retweeted = tweet.retweeted ?? false
-        let f_num = tweet.favoriteCount ?? 0
-        let r_num = tweet.retweetCount ?? 0
 
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as? TweetVarViewCell ?? TweetVarViewCell()
         cell.tweetLabel.delegate = viewController
@@ -114,7 +110,7 @@ extension UserViewModel: UITableViewDataSource {
         if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
             viewController.loadMore()
         }
-        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, favoriteCount: f_num, retweetCount: r_num) as [AnyObject]
+        cell.rightUtilityButtons = viewController.rightButtons(tweet) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
         cell.delegate = viewController
         cell.layoutIfNeeded()

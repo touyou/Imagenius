@@ -1187,13 +1187,13 @@
         <image name="use_white-1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hPE-w5-f9m"/>
-        <segue reference="q4p-k7-n0W"/>
-        <segue reference="OI5-fk-Xfo"/>
+        <segue reference="31d-tK-pgU"/>
         <segue reference="2qG-yx-SFg"/>
         <segue reference="wIT-dD-RK3"/>
-        <segue reference="31d-tK-pgU"/>
-        <segue reference="xHW-s2-PT9"/>
+        <segue reference="OI5-fk-Xfo"/>
         <segue reference="yNR-T6-EMa"/>
+        <segue reference="gMF-E4-iH0"/>
+        <segue reference="hPE-w5-f9m"/>
+        <segue reference="guU-kt-TjK"/>
     </inferredMetricsTieBreakers>
 </document>

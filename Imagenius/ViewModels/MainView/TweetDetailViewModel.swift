@@ -108,10 +108,6 @@ extension TweetDetailViewModel: UITableViewDataSource {
         }
 
         let tweet = tweetArray[indexPath.section][indexPath.row]
-        let favorited = tweet.favorited ?? false
-        let retweeted = tweet.retweeted ?? false
-        let f_num = tweet.favoriteCount ?? 0
-        let r_num = tweet.retweetCount ?? 0
 
         let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as? TweetVarViewCell ?? TweetVarViewCell()
         cell.tweetLabel.delegate = viewController
@@ -121,7 +117,7 @@ extension TweetDetailViewModel: UITableViewDataSource {
         cell.tweetImgView.addGestureRecognizer(tapGesture)
         cell.tweetImgView.tag = indexPath.row + 10000 * indexPath.section
 
-        cell.rightUtilityButtons = viewController.rightButtons(favorited, retweeted: retweeted, favoriteCount: f_num, retweetCount: r_num) as [AnyObject]
+        cell.rightUtilityButtons = viewController.rightButtons(tweet) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]
         cell.delegate = viewController
         cell.layoutIfNeeded()

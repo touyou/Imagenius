@@ -221,20 +221,24 @@ extension TweetDetailViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSou
 // MARK: - SWTableViewCell関連
 extension TweetDetailViewController: SWTableViewCellDelegate {
     // MARK: 右のボタン
-    func rightButtons(favorited: Bool, retweeted: Bool, favoriteCount: Int, retweetCount: Int) -> NSArray {
+    func rightButtons(tweet: Tweet) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
-        if favorited {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!, text: String(favoriteCount)))
+        if tweet.favorited ?? false {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount ?? 0)))
         } else {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!, text: String(favoriteCount)))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount ?? 0)))
         }
         rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "reply-action_0")!))
-        if retweeted {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!, text: String(retweetCount)))
+        if tweet.retweeted ?? false {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
         } else {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(retweetCount)))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
         }
-        rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
+        if tweet.isMyself {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
+        } else {
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
+        }
         return rightUtilityButtons
     }
     // MARK: 左のボタン
@@ -300,6 +304,25 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
             })
             break
         case 3:
+            // ツイートの削除
+            if tweet.isMyself {
+                let failureHandler: ((NSError) -> Void) = { error in
+                    Utility.simpleAlert("Error: ツイートの削除に失敗しました。インターネット環境を確認してください。", presentView: self)
+                }
+                let successHandler: ((user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
+                    self.tweetArray = []
+                    self.loadTweet()
+                }
+                let alertController = UIAlertController(title: "ツイートの削除", message: "このツイートを削除しますか？", preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+                    self.swifter.postStatusesDestroyWithID(tweet.idStr ?? "", success: successHandler, failure: failureHandler)
+                }))
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                presentViewController(alertController, animated: true, completion: nil)
+                
+                break
+            }
+            
             // block or spam
             let failureHandler: ((NSError) -> Void) = { error in
                 Utility.simpleAlert("Error: ブロック・通報を完了できませんでした。インターネット環境を確認してください。", presentView: self)
