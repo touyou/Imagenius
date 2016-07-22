@@ -15,8 +15,6 @@
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
 		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		462958601CB934760099E929 /* camera_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4629585E1CB934760099E929 /* camera_button.png */; };
-		462958611CB934760099E929 /* gallery_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4629585F1CB934760099E929 /* gallery_button.png */; };
 		46312B211CB6505F009183D9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B201CB6505F009183D9 /* UserViewController.swift */; };
 		46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B221CB653B6009183D9 /* UserViewModel.swift */; };
 		46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B251CB69C1E009183D9 /* SettingBannerCell.swift */; };
@@ -24,13 +22,6 @@
 		46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */; };
 		4634CB4B1CBA5FEB00E9E834 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */; };
 		4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */; };
-		464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEB1C7973C1006100DB /* Default-568h@2x.png */; };
-		464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EEC1C7973C1006100DB /* Default-667h@2x.png */; };
-		464A7EF01C7973C1006100DB /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464A7EED1C7973C1006100DB /* Default-736h@3x.png */; };
-		464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */; };
-		464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80491C799BE6006100DB /* SWTableViewCell.framework */; };
-		464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464A80601C79EFCD006100DB /* SwifteriOS.framework */; };
-		467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549D11C969C2C00FB3747 /* RegExCategories.framework */; };
 		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
 		468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687225F1CB25F4B00DEF2DB /* Icon-40.png */; };
 		468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722601CB25F4B00DEF2DB /* Icon-40@2x.png */; };
@@ -52,23 +43,6 @@
 		468722841CB25F4B00DEF2DB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722701CB25F4B00DEF2DB /* Icon@2x.png */; };
 		468722851CB25F4B00DEF2DB /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722711CB25F4B00DEF2DB /* iTunesArtwork.png */; };
 		468722861CB25F4B00DEF2DB /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722721CB25F4B00DEF2DB /* iTunesArtwork@2x.png */; };
-		4687228D1CB25F8300DEF2DB /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687228B1CB25F8300DEF2DB /* reply.png */; };
-		4687228E1CB25F8300DEF2DB /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687228C1CB25F8300DEF2DB /* timeline.png */; };
-		468722911CB25F9B00DEF2DB /* imagenius-logo_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687228F1CB25F9B00DEF2DB /* imagenius-logo_new.png */; };
-		468722921CB25F9B00DEF2DB /* imagenius-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722901CB25F9B00DEF2DB /* imagenius-logo.png */; };
-		4687229F1CB25FC500DEF2DB /* cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722931CB25FC500DEF2DB /* cancel_button.png */; };
-		468722A01CB25FC500DEF2DB /* caution.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722941CB25FC500DEF2DB /* caution.png */; };
-		468722A11CB25FC500DEF2DB /* like-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722951CB25FC500DEF2DB /* like-action.png */; };
-		468722A21CB25FC500DEF2DB /* reply-action_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722961CB25FC500DEF2DB /* reply-action_0.png */; };
-		468722A31CB25FC500DEF2DB /* retweet-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722971CB25FC500DEF2DB /* retweet-action.png */; };
-		468722A41CB25FC500DEF2DB /* search_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722981CB25FC500DEF2DB /* search_button.png */; };
-		468722A51CB25FC500DEF2DB /* setting_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722991CB25FC500DEF2DB /* setting_icon.png */; };
-		468722A61CB25FC500DEF2DB /* toolbar_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687229A1CB25FC500DEF2DB /* toolbar_back.png */; };
-		468722A71CB25FC500DEF2DB /* toolbar_forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687229B1CB25FC500DEF2DB /* toolbar_forward.png */; };
-		468722A81CB25FC500DEF2DB /* tweet_button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687229C1CB25FC500DEF2DB /* tweet_button_1.png */; };
-		468722A91CB25FC500DEF2DB /* TwitterLogo_white_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687229D1CB25FC500DEF2DB /* TwitterLogo_white_1.png */; };
-		468722AA1CB25FC500DEF2DB /* use_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687229E1CB25FC500DEF2DB /* use_white.png */; };
-		468722AC1CB25FD100DEF2DB /* user_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722AB1CB25FD100DEF2DB /* user_empty.png */; };
 		468722B61CB2606600DEF2DB /* InfoContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722B31CB2606600DEF2DB /* InfoContainerViewController.swift */; };
 		468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722B41CB2606600DEF2DB /* InfoPageViewController.swift */; };
 		468722B81CB2606600DEF2DB /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722B51CB2606600DEF2DB /* InfoViewController.swift */; };
@@ -94,9 +68,9 @@
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
 		46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAE8531D0EFC990020BD82 /* TweetStruct.swift */; };
-		5872E156ADCE7072379B81D5 /* Pods_ImageniusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */; };
-		DC5DA969D2F9DC1E413C2F9D /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */; };
-		FD6847A9DF4F64C86CCB9838 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */; };
+		6D150516CB520FB8A08CEC7B /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */; };
+		A5CDCF6DEE9B451C5541A566 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */; };
+		EB43257460028B86CFB1D29F /* Pods_ImageniusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC28F86431E22963699D968C /* Pods_ImageniusTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,8 +139,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		41700656B67CD601270B36AD /* Pods-ImageniusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.release.xcconfig"; sourceTree = "<group>"; };
+		2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,8 +153,6 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4629585E1CB934760099E929 /* camera_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button.png; sourceTree = "<group>"; };
-		4629585F1CB934760099E929 /* gallery_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_button.png; sourceTree = "<group>"; };
 		46312B201CB6505F009183D9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewController.swift; path = ViewControllers/MainView/UserViewController.swift; sourceTree = "<group>"; };
 		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ViewModels/MainView/UserViewModel.swift; sourceTree = "<group>"; };
 		46312B251CB69C1E009183D9 /* SettingBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingBannerCell.swift; path = Views/SettingView/SettingBannerCell.swift; sourceTree = "<group>"; };
@@ -189,9 +160,7 @@
 		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetDetailViewModel.swift; path = ViewModels/MainView/TweetDetailViewModel.swift; sourceTree = "<group>"; };
 		4634CB4A1CBA5FEB00E9E834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TweetTableViewCell.xib; sourceTree = "<group>"; };
 		4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateExtension.swift; path = Utility/NSDateExtension.swift; sourceTree = "<group>"; };
-		464A7EEB1C7973C1006100DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		464A7EEC1C7973C1006100DB /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
-		464A7EED1C7973C1006100DB /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		463FE90D1D41AB4900F6245E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/RxCocoa/RxCocoa.framework"; sourceTree = "<group>"; };
 		464A80241C7997DE006100DB /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
 		464A80441C799AAC006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../Swifter/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
 		464A80461C799BE6006100DB /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "Pods/../build/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
@@ -223,23 +192,6 @@
 		468722701CB25F4B00DEF2DB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/icon/Icon@2x.png"; sourceTree = "<group>"; };
 		468722711CB25F4B00DEF2DB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/icon/iTunesArtwork.png; sourceTree = "<group>"; };
 		468722721CB25F4B00DEF2DB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/icon/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		4687228B1CB25F8300DEF2DB /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reply.png; path = Resources/tab_bar/reply.png; sourceTree = "<group>"; };
-		4687228C1CB25F8300DEF2DB /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timeline.png; path = Resources/tab_bar/timeline.png; sourceTree = "<group>"; };
-		4687228F1CB25F9B00DEF2DB /* imagenius-logo_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "imagenius-logo_new.png"; path = "Resources/logo/imagenius-logo_new.png"; sourceTree = "<group>"; };
-		468722901CB25F9B00DEF2DB /* imagenius-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "imagenius-logo.png"; path = "Resources/logo/imagenius-logo.png"; sourceTree = "<group>"; };
-		468722931CB25FC500DEF2DB /* cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cancel_button.png; path = Resources/button/cancel_button.png; sourceTree = "<group>"; };
-		468722941CB25FC500DEF2DB /* caution.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = caution.png; path = Resources/button/caution.png; sourceTree = "<group>"; };
-		468722951CB25FC500DEF2DB /* like-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-action.png"; path = "Resources/button/like-action.png"; sourceTree = "<group>"; };
-		468722961CB25FC500DEF2DB /* reply-action_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reply-action_0.png"; path = "Resources/button/reply-action_0.png"; sourceTree = "<group>"; };
-		468722971CB25FC500DEF2DB /* retweet-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "retweet-action.png"; path = "Resources/button/retweet-action.png"; sourceTree = "<group>"; };
-		468722981CB25FC500DEF2DB /* search_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_button.png; path = Resources/button/search_button.png; sourceTree = "<group>"; };
-		468722991CB25FC500DEF2DB /* setting_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setting_icon.png; path = Resources/button/setting_icon.png; sourceTree = "<group>"; };
-		4687229A1CB25FC500DEF2DB /* toolbar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbar_back.png; path = Resources/button/toolbar_back.png; sourceTree = "<group>"; };
-		4687229B1CB25FC500DEF2DB /* toolbar_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbar_forward.png; path = Resources/button/toolbar_forward.png; sourceTree = "<group>"; };
-		4687229C1CB25FC500DEF2DB /* tweet_button_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tweet_button_1.png; path = Resources/button/tweet_button_1.png; sourceTree = "<group>"; };
-		4687229D1CB25FC500DEF2DB /* TwitterLogo_white_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwitterLogo_white_1.png; path = Resources/button/TwitterLogo_white_1.png; sourceTree = "<group>"; };
-		4687229E1CB25FC500DEF2DB /* use_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = use_white.png; path = Resources/button/use_white.png; sourceTree = "<group>"; };
-		468722AB1CB25FD100DEF2DB /* user_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_empty.png; path = Resources/user_empty.png; sourceTree = "<group>"; };
 		468722B31CB2606600DEF2DB /* InfoContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoContainerViewController.swift; path = ViewControllers/InfoView/InfoContainerViewController.swift; sourceTree = "<group>"; };
 		468722B41CB2606600DEF2DB /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPageViewController.swift; path = ViewControllers/InfoView/InfoPageViewController.swift; sourceTree = "<group>"; };
 		468722B51CB2606600DEF2DB /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = ViewControllers/InfoView/InfoViewController.swift; sourceTree = "<group>"; };
@@ -278,13 +230,14 @@
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
 		46BAE8531D0EFC990020BD82 /* TweetStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetStruct.swift; path = Utility/TweetStruct.swift; sourceTree = "<group>"; };
-		4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
-		517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
-		69A1B06A5DED017BC9DD4957 /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
-		A2E9D717CBFABC890431789E /* Pods-ImageniusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4647FCCCD981A5F574E76B3 /* Pods-Imagenius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.release.xcconfig"; sourceTree = "<group>"; };
+		C5437ACF577CA5C938C1B281 /* Pods-Imagenius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagenius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius.debug.xcconfig"; sourceTree = "<group>"; };
+		D2DF4F2C3E3D79D00AC702CB /* Pods-ImageniusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.release.xcconfig"; sourceTree = "<group>"; };
+		EC28F86431E22963699D968C /* Pods_ImageniusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5E524AB60407D401F2C742 /* Pods-ImageniusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,11 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */,
-				467549D21C969C2C00FB3747 /* RegExCategories.framework in Frameworks */,
-				464A80611C79EFCD006100DB /* SwifteriOS.framework in Frameworks */,
-				464A804A1C799BE6006100DB /* DZNEmptyDataSet.framework in Frameworks */,
-				464A804D1C799BE6006100DB /* SWTableViewCell.framework in Frameworks */,
-				FD6847A9DF4F64C86CCB9838 /* Pods_Imagenius.framework in Frameworks */,
+				A5CDCF6DEE9B451C5541A566 /* Pods_Imagenius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5872E156ADCE7072379B81D5 /* Pods_ImageniusTests.framework in Frameworks */,
+				EB43257460028B86CFB1D29F /* Pods_ImageniusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,22 +262,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC5DA969D2F9DC1E413C2F9D /* Pods_ImageniusUITests.framework in Frameworks */,
+				6D150516CB520FB8A08CEC7B /* Pods_ImageniusUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		28CC4083F3FE7D3924413D0E /* Pods */ = {
+		1E17EA4ADBF4CAB9B900269C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */,
-				69A1B06A5DED017BC9DD4957 /* Pods-Imagenius.release.xcconfig */,
-				A2E9D717CBFABC890431789E /* Pods-ImageniusTests.debug.xcconfig */,
-				41700656B67CD601270B36AD /* Pods-ImageniusTests.release.xcconfig */,
-				517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */,
-				583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */,
+				C5437ACF577CA5C938C1B281 /* Pods-Imagenius.debug.xcconfig */,
+				C4647FCCCD981A5F574E76B3 /* Pods-Imagenius.release.xcconfig */,
+				C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */,
+				D2DF4F2C3E3D79D00AC702CB /* Pods-ImageniusTests.release.xcconfig */,
+				ED5E524AB60407D401F2C742 /* Pods-ImageniusUITests.debug.xcconfig */,
+				93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -352,7 +301,7 @@
 				460B4A571C6B5CF60089CC7E /* ImageniusUITests */,
 				460B4A361C6B5CF60089CC7E /* Products */,
 				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
-				28CC4083F3FE7D3924413D0E /* Pods */,
+				1E17EA4ADBF4CAB9B900269C /* Pods */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -400,45 +349,6 @@
 				460B4A5A1C6B5CF60089CC7E /* Info.plist */,
 			);
 			path = ImageniusUITests;
-			sourceTree = "<group>";
-		};
-		461B7F391C89253000419759 /* logo */ = {
-			isa = PBXGroup;
-			children = (
-				4687228F1CB25F9B00DEF2DB /* imagenius-logo_new.png */,
-				468722901CB25F9B00DEF2DB /* imagenius-logo.png */,
-			);
-			name = logo;
-			sourceTree = "<group>";
-		};
-		461B7F3E1C89256B00419759 /* button */ = {
-			isa = PBXGroup;
-			children = (
-				4629585E1CB934760099E929 /* camera_button.png */,
-				4629585F1CB934760099E929 /* gallery_button.png */,
-				468722931CB25FC500DEF2DB /* cancel_button.png */,
-				468722941CB25FC500DEF2DB /* caution.png */,
-				468722951CB25FC500DEF2DB /* like-action.png */,
-				468722961CB25FC500DEF2DB /* reply-action_0.png */,
-				468722971CB25FC500DEF2DB /* retweet-action.png */,
-				468722981CB25FC500DEF2DB /* search_button.png */,
-				468722991CB25FC500DEF2DB /* setting_icon.png */,
-				4687229A1CB25FC500DEF2DB /* toolbar_back.png */,
-				4687229B1CB25FC500DEF2DB /* toolbar_forward.png */,
-				4687229C1CB25FC500DEF2DB /* tweet_button_1.png */,
-				4687229D1CB25FC500DEF2DB /* TwitterLogo_white_1.png */,
-				4687229E1CB25FC500DEF2DB /* use_white.png */,
-			);
-			name = button;
-			sourceTree = "<group>";
-		};
-		461B7F3F1C89259300419759 /* tab bar */ = {
-			isa = PBXGroup;
-			children = (
-				4687228B1CB25F8300DEF2DB /* reply.png */,
-				4687228C1CB25F8300DEF2DB /* timeline.png */,
-			);
-			name = "tab bar";
 			sourceTree = "<group>";
 		};
 		461B7F401C8926BD00419759 /* StoryBoard */ = {
@@ -496,16 +406,6 @@
 			name = icon;
 			sourceTree = "<group>";
 		};
-		464A7EEA1C7973C1006100DB /* Defaults-master */ = {
-			isa = PBXGroup;
-			children = (
-				464A7EEB1C7973C1006100DB /* Default-568h@2x.png */,
-				464A7EEC1C7973C1006100DB /* Default-667h@2x.png */,
-				464A7EED1C7973C1006100DB /* Default-736h@3x.png */,
-			);
-			path = "Defaults-master";
-			sourceTree = "<group>";
-		};
 		464A80251C7997DE006100DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,11 +438,6 @@
 			isa = PBXGroup;
 			children = (
 				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
-				468722AB1CB25FD100DEF2DB /* user_empty.png */,
-				464A7EEA1C7973C1006100DB /* Defaults-master */,
-				461B7F3E1C89256B00419759 /* button */,
-				461B7F391C89253000419759 /* logo */,
-				461B7F3F1C89259300419759 /* tab bar */,
 				464A7E811C78299F006100DB /* icon */,
 			);
 			name = Resources;
@@ -686,6 +581,7 @@
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				463FE90D1D41AB4900F6245E /* RxCocoa.framework */,
 				469F18D51CAABA7A00C015EF /* SDWebImage.framework */,
 				469F18C21CAAACC800C015EF /* XCTest.framework */,
 				469F18C01CAAAB9600C015EF /* MapKit.framework */,
@@ -706,9 +602,9 @@
 				464A80491C799BE6006100DB /* SWTableViewCell.framework */,
 				464A80441C799AAC006100DB /* SwifteriOS.framework */,
 				464A80241C7997DE006100DB /* Swifter.xcodeproj */,
-				BA854DDFDFFE27D203BD4179 /* Pods_Imagenius.framework */,
-				21F88D30EDB3DF3F3921A32F /* Pods_ImageniusTests.framework */,
-				F9B27381884CBAA99B55A906 /* Pods_ImageniusUITests.framework */,
+				2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */,
+				EC28F86431E22963699D968C /* Pods_ImageniusTests.framework */,
+				99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -720,15 +616,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A5D1C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "Imagenius" */;
 			buildPhases = (
-				EE844EA5BA1964B5C0123FA4 /* 📦 Check Pods Manifest.lock */,
+				F3CABA5D4A38F45AAB8A87B9 /* [CP] Check Pods Manifest.lock */,
 				460B4A311C6B5CF60089CC7E /* Sources */,
 				460B4A321C6B5CF60089CC7E /* Frameworks */,
 				460B4A331C6B5CF60089CC7E /* Resources */,
 				468382931C7581B0001DC810 /* ShellScript */,
 				469373501C7A013A00BE1506 /* CopyFiles */,
-				D82E47D78A55C03D69B782B9 /* 📦 Embed Pods Frameworks */,
-				949AACDD25C16DCD83621814 /* 📦 Copy Pods Resources */,
-				C78D700E82A5E23EF0D8934F /* Embed Pods Frameworks */,
+				FFABCCE0854F0DCB8FBFE4B8 /* [CP] Embed Pods Frameworks */,
+				6EFD19B44B9670C0E4B28CAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -743,12 +638,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A601C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "ImageniusTests" */;
 			buildPhases = (
-				166517B1BBE285A252E3FCBB /* 📦 Check Pods Manifest.lock */,
+				530C08B0CB464618D9F6FA57 /* [CP] Check Pods Manifest.lock */,
 				460B4A451C6B5CF60089CC7E /* Sources */,
 				460B4A461C6B5CF60089CC7E /* Frameworks */,
 				460B4A471C6B5CF60089CC7E /* Resources */,
-				5D39E9E702989521904E4844 /* 📦 Embed Pods Frameworks */,
-				6978C43641DA73E4B883D686 /* 📦 Copy Pods Resources */,
+				7D428ED71CBA882622A4A7F8 /* [CP] Embed Pods Frameworks */,
+				64D5818721142A7FAFF8DE3C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -764,11 +659,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 460B4A631C6B5CF60089CC7E /* Build configuration list for PBXNativeTarget "ImageniusUITests" */;
 			buildPhases = (
-				CBDC7564BE2772E14CEEAEB5 /* 📦 Check Pods Manifest.lock */,
+				144A6C2BE47F51D57AD0BD14 /* [CP] Check Pods Manifest.lock */,
 				460B4A501C6B5CF60089CC7E /* Sources */,
 				460B4A511C6B5CF60089CC7E /* Frameworks */,
 				460B4A521C6B5CF60089CC7E /* Resources */,
-				04ADA1772D9DD27D57DB26D7 /* 📦 Copy Pods Resources */,
+				D1CC401216FA26084C3E35C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -875,52 +770,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				4687227B1CB25F4B00DEF2DB /* Icon-76.png in Resources */,
-				468722A01CB25FC500DEF2DB /* caution.png in Resources */,
-				4687228D1CB25F8300DEF2DB /* reply.png in Resources */,
 				468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */,
-				464A7EEF1C7973C1006100DB /* Default-667h@2x.png in Resources */,
 				468722751CB25F4B00DEF2DB /* Icon-40@3x.png in Resources */,
 				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
 				4687227C1CB25F4B00DEF2DB /* Icon-76@2x.png in Resources */,
 				4687227D1CB25F4B00DEF2DB /* Icon-83.5@2x.png in Resources */,
-				468722911CB25F9B00DEF2DB /* imagenius-logo_new.png in Resources */,
-				468722A11CB25FC500DEF2DB /* like-action.png in Resources */,
-				468722A81CB25FC500DEF2DB /* tweet_button_1.png in Resources */,
-				468722A51CB25FC500DEF2DB /* setting_icon.png in Resources */,
 				4634CB4B1CBA5FEB00E9E834 /* TweetTableViewCell.xib in Resources */,
 				468722791CB25F4B00DEF2DB /* Icon-72.png in Resources */,
 				468722821CB25F4B00DEF2DB /* Icon-Small@3x.png in Resources */,
 				468722861CB25F4B00DEF2DB /* iTunesArtwork@2x.png in Resources */,
-				468722AA1CB25FC500DEF2DB /* use_white.png in Resources */,
 				468722831CB25F4B00DEF2DB /* Icon.png in Resources */,
 				468722771CB25F4B00DEF2DB /* Icon-60@2x.png in Resources */,
 				468722851CB25F4B00DEF2DB /* iTunesArtwork.png in Resources */,
-				468722A91CB25FC500DEF2DB /* TwitterLogo_white_1.png in Resources */,
 				468722801CB25F4B00DEF2DB /* Icon-Small.png in Resources */,
 				4687227F1CB25F4B00DEF2DB /* Icon-Small-50@2x.png in Resources */,
-				4687229F1CB25FC500DEF2DB /* cancel_button.png in Resources */,
-				464A7EEE1C7973C1006100DB /* Default-568h@2x.png in Resources */,
 				4687227E1CB25F4B00DEF2DB /* Icon-Small-50.png in Resources */,
-				468722921CB25F9B00DEF2DB /* imagenius-logo.png in Resources */,
 				468722781CB25F4B00DEF2DB /* Icon-60@3x.png in Resources */,
 				468722841CB25F4B00DEF2DB /* Icon@2x.png in Resources */,
 				468722811CB25F4B00DEF2DB /* Icon-Small@2x.png in Resources */,
 				468722761CB25F4B00DEF2DB /* Icon-60.png in Resources */,
-				468722A31CB25FC500DEF2DB /* retweet-action.png in Resources */,
 				460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */,
-				468722A41CB25FC500DEF2DB /* search_button.png in Resources */,
-				468722A71CB25FC500DEF2DB /* toolbar_forward.png in Resources */,
 				4687227A1CB25F4B00DEF2DB /* Icon-72@2x.png in Resources */,
 				460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */,
-				4687228E1CB25F8300DEF2DB /* timeline.png in Resources */,
-				468722A61CB25FC500DEF2DB /* toolbar_back.png in Resources */,
-				468722AC1CB25FD100DEF2DB /* user_empty.png in Resources */,
-				468722A21CB25FC500DEF2DB /* reply-action_0.png in Resources */,
 				4603CC251C7DE062005DF397 /* Settings.bundle in Resources */,
-				462958611CB934760099E929 /* gallery_button.png in Resources */,
-				464A7EF01C7973C1006100DB /* Default-736h@3x.png in Resources */,
 				468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */,
-				462958601CB934760099E929 /* camera_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,29 +814,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04ADA1772D9DD27D57DB26D7 /* 📦 Copy Pods Resources */ = {
+		144A6C2BE47F51D57AD0BD14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		166517B1BBE285A252E3FCBB /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -984,29 +842,29 @@
 			shellPath = /bin/sh;
 			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		5D39E9E702989521904E4844 /* 📦 Embed Pods Frameworks */ = {
+		530C08B0CB464618D9F6FA57 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6978C43641DA73E4B883D686 /* 📦 Copy Pods Resources */ = {
+		64D5818721142A7FAFF8DE3C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1014,14 +872,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		949AACDD25C16DCD83621814 /* 📦 Copy Pods Resources */ = {
+		6EFD19B44B9670C0E4B28CAE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,29 +887,44 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C78D700E82A5E23EF0D8934F /* Embed Pods Frameworks */ = {
+		7D428ED71CBA882622A4A7F8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CBDC7564BE2772E14CEEAEB5 /* 📦 Check Pods Manifest.lock */ = {
+		D1CC401216FA26084C3E35C7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3CABA5D4A38F45AAB8A87B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,34 +932,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D82E47D78A55C03D69B782B9 /* 📦 Embed Pods Frameworks */ = {
+		FFABCCE0854F0DCB8FBFE4B8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE844EA5BA1964B5C0123FA4 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1275,7 +1133,7 @@
 		};
 		460B4A5E1C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A7D601B968F6EF246766249 /* Pods-Imagenius.debug.xcconfig */;
+			baseConfigurationReference = C5437ACF577CA5C938C1B281 /* Pods-Imagenius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1303,7 +1161,7 @@
 		};
 		460B4A5F1C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69A1B06A5DED017BC9DD4957 /* Pods-Imagenius.release.xcconfig */;
+			baseConfigurationReference = C4647FCCCD981A5F574E76B3 /* Pods-Imagenius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1330,7 +1188,7 @@
 		};
 		460B4A611C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2E9D717CBFABC890431789E /* Pods-ImageniusTests.debug.xcconfig */;
+			baseConfigurationReference = C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ImageniusTests/Info.plist;
@@ -1344,7 +1202,7 @@
 		};
 		460B4A621C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41700656B67CD601270B36AD /* Pods-ImageniusTests.release.xcconfig */;
+			baseConfigurationReference = D2DF4F2C3E3D79D00AC702CB /* Pods-ImageniusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ImageniusTests/Info.plist;
@@ -1357,7 +1215,7 @@
 		};
 		460B4A641C6B5CF60089CC7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 517AB20D6758C7867809463A /* Pods-ImageniusUITests.debug.xcconfig */;
+			baseConfigurationReference = ED5E524AB60407D401F2C742 /* Pods-ImageniusUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ImageniusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1370,7 +1228,7 @@
 		};
 		460B4A651C6B5CF60089CC7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 583CAF9649FBC3ADF5F58B33 /* Pods-ImageniusUITests.release.xcconfig */;
+			baseConfigurationReference = 93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ImageniusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

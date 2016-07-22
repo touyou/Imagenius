@@ -77,9 +77,10 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         case 0:
             switch indexPath.row {
             case 0:// login処理
-                TwitterUtil.loginTwitter(self, success: { (ac) -> () in
+                TwitterUtil.loginTwitter(self, success: { [unowned self] (ac) -> () in
                     self.account = ac
                     self.swifter = Swifter(account: self.account!)
+                    self.navigationController?.popViewControllerAnimated(true)
                 })
             case 1:
                 performSegueWithIdentifier("showInfo", sender: nil)
