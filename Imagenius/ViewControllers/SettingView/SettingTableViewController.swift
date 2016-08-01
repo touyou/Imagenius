@@ -23,7 +23,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
 
     let accountStore = ACAccountStore()
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
+    let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方", "お気に入り画像を確認する"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +84,8 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 })
             case 1:
                 performSegueWithIdentifier("showInfo", sender: nil)
+            case 2:
+                performSegueWithIdentifier("openFavoriteImage", sender: nil)
             default:
                 break
             }

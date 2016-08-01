@@ -34,7 +34,7 @@ final class TiqavImageViewController: UIViewController {
         super.viewDidLoad()
 
         // AutoLayout対応のためセル調整
-//        imageSize = (self.view.frame.width) / 4
+        imageSize = (self.view.frame.width) / 4
 //        let flowLayout = KTCenterFlowLayout()
 //        flowLayout.scrollDirection = .Vertical
 //        flowLayout.minimumInteritemSpacing = 0
@@ -67,7 +67,7 @@ final class TiqavImageViewController: UIViewController {
 
     func changeOrient(notification: NSNotification) {
         // AutoLayout対応のためセル調整
-//        imageSize = (self.view.frame.width) / 4
+        imageSize = (self.view.frame.width) / 4
 //        let flowLayout = KTCenterFlowLayout()
 //        flowLayout.scrollDirection = .Vertical
 //        flowLayout.minimumInteritemSpacing = 0

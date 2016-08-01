@@ -230,6 +230,10 @@ final class TweetViewController: UIViewController {
             let tiqavViewCtrl: TiqavImageViewController = navViewCtrl.viewControllers[0] as? TiqavImageViewController ?? TiqavImageViewController()
             tiqavViewCtrl.searchWord = searchField.text!
             tiqavViewCtrl.delegate = self
+        } else if segue.identifier == "openFavoriteImage" {
+            let navViewCtrl: UINavigationController = segue.destinationViewController as? UINavigationController ?? UINavigationController()
+            let favViewCtrl = navViewCtrl.viewControllers[0] as? FavoriteImageViewController ?? FavoriteImageViewController()
+            favViewCtrl.delegate = self
         }
     }
 
@@ -298,6 +302,10 @@ final class TweetViewController: UIViewController {
             return
         }
         swifter.postStatusUpdate(tweetText!, media_ids: mediaIds, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
+    }
+    
+    @IBAction func favoriteButton() {
+        performSegueWithIdentifier("openFavoriteImage", sender: nil)
     }
 
     // MARK: - キーボード関係の処理

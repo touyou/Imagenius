@@ -68,6 +68,10 @@
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
 		46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAE8531D0EFC990020BD82 /* TweetStruct.swift */; };
+		46BF12021D4F518600FFF5DD /* FavoriteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12011D4F518500FFF5DD /* FavoriteImage.swift */; };
+		46BF12091D4F57A700FFF5DD /* FavoriteImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */; };
+		46BF120B1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */; };
+		46BF120D1D4F7AE500FFF5DD /* FavoriteResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */; };
 		6D150516CB520FB8A08CEC7B /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */; };
 		A5CDCF6DEE9B451C5541A566 /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */; };
 		EB43257460028B86CFB1D29F /* Pods_ImageniusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC28F86431E22963699D968C /* Pods_ImageniusTests.framework */; };
@@ -230,6 +234,10 @@
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
 		46BAE8531D0EFC990020BD82 /* TweetStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetStruct.swift; path = Utility/TweetStruct.swift; sourceTree = "<group>"; };
+		46BF12011D4F518500FFF5DD /* FavoriteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImage.swift; path = Utility/FavoriteImage.swift; sourceTree = "<group>"; };
+		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImageViewController.swift; path = ViewControllers/TweetView/FavoriteImageViewController.swift; sourceTree = "<group>"; };
+		46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImageViewCell.swift; path = Views/TweetView/FavoriteImageViewCell.swift; sourceTree = "<group>"; };
+		46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteResultViewController.swift; path = ViewControllers/TweetView/FavoriteResultViewController.swift; sourceTree = "<group>"; };
 		93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -450,6 +458,7 @@
 				468722ED1CB4E10700DEF2DB /* Utility.swift */,
 				4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */,
 				46BAE8531D0EFC990020BD82 /* TweetStruct.swift */,
+				46BF12011D4F518500FFF5DD /* FavoriteImage.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -540,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */,
+				46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */,
 			);
 			name = TweetView;
 			sourceTree = "<group>";
@@ -574,6 +584,8 @@
 				468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */,
 				468722CA1CB260F400DEF2DB /* ResultViewController.swift */,
 				468722CB1CB260F400DEF2DB /* TweetViewController.swift */,
+				46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */,
+				46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */,
 			);
 			name = TweetView;
 			sourceTree = "<group>";
@@ -961,9 +973,12 @@
 				468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */,
 				468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */,
 				46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */,
+				46BF120D1D4F7AE500FFF5DD /* FavoriteResultViewController.swift in Sources */,
 				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
 				46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */,
 				468722EE1CB4E10700DEF2DB /* TwitterUtil.swift in Sources */,
+				46BF120B1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift in Sources */,
+				46BF12021D4F518600FFF5DD /* FavoriteImage.swift in Sources */,
 				468722B61CB2606600DEF2DB /* InfoContainerViewController.swift in Sources */,
 				468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */,
 				46312B281CB74B8C009183D9 /* TweetDetailViewController.swift in Sources */,
@@ -971,6 +986,7 @@
 				468722C81CB260C400DEF2DB /* TimeLineViewController.swift in Sources */,
 				468722CD1CB260F400DEF2DB /* ResultViewController.swift in Sources */,
 				468722EF1CB4E10700DEF2DB /* Utility.swift in Sources */,
+				46BF12091D4F57A700FFF5DD /* FavoriteImageViewController.swift in Sources */,
 				468722C61CB260C400DEF2DB /* PreViewController.swift in Sources */,
 				468722C51CB260C400DEF2DB /* MainViewController.swift in Sources */,
 				468722E31CB4C5A500DEF2DB /* TiqavImageViewModel.swift in Sources */,

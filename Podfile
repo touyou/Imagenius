@@ -13,6 +13,7 @@ target 'Imagenius' do
     pod 'SDWebImage'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'RealmSwift'
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxBlocking'

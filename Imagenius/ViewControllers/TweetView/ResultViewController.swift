@@ -65,6 +65,24 @@ final class ResultViewController: UIViewController {
         activityVC.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
         self.presentViewController(activityVC, animated: true, completion: nil)
     }
+    // MARK: お気に入りボタン
+    @IBAction func favoriteImageBtn() {
+        var message: String = "この画像をお気に入り登録しますか？"
+        
+        if self.data!.isGIF() {
+            message = "GIFはお気に入り登録すると通常の画像に変換されます。よろしいですか？"
+        }
+        
+        let alertController = UIAlertController(title: "お気に入り登録", message: message, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            let favoriteImage = FavoriteImage.create()
+            favoriteImage.image = self.image
+            favoriteImage.save()
+            Utility.simpleAlert("登録しました。", presentView: self)
+        }))
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 }
 
 extension ResultViewController: UIScrollViewDelegate {
