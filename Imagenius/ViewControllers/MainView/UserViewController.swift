@@ -72,6 +72,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     var imageData: NSMutableArray?
     var gifURL: NSURL!
     var selectedId: String!
+    var myself: String!
 
     let accountStore = ACAccountStore()
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -103,7 +104,9 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                         self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
                         self.swifter = Swifter(account: self.account!)
                         self.title = "@\(self.user)のツイート一覧"
-
+                        
+                        self.myself = self.account?.username
+                        
                         if self.idStr == nil {
                             self.getUserIdWithScreenName(self.user, comp: {
                                 self.loadTweet()
@@ -212,11 +215,11 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                 if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1].idStr ?? "" {
                     return
                 }
-                self.tweetArray.append(Tweet(tweet: tweets[0]))
+                self.tweetArray.append(Tweet(tweet: tweets[0], myself: self.myself))
                 self.maxId = tweets[0]["id_str"].string
             } else {
                 for i in 0 ..< tweets.count - 1 {
-                    self.tweetArray.append(Tweet(tweet: tweets[i]))
+                    self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
                 }
                 self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
@@ -327,7 +330,7 @@ extension UserViewController: SWTableViewCellDelegate {
             rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
         }
         if tweet.isMyself {
-            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
+            rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "trash")!))
         } else {
             rightUtilityButtons.addObject(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
         }
