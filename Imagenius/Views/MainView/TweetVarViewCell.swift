@@ -96,6 +96,7 @@ final class TweetVarViewCell: SWTableViewCell {
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet.extendedEntities else {
             subViewHeight.constant = 0
+            tweetSubView.hidden = true
             self.updateConstraintsIfNeeded()
             return
         }
@@ -105,6 +106,7 @@ final class TweetVarViewCell: SWTableViewCell {
         // 画像の高さを設定する
         subViewHeight.constant = tweetHeight
         // 角丸にする
+        tweetSubView.hidden = false
         tweetSubView.layer.cornerRadius = tweetSubView.frame.width * 0.017
         tweetSubView.clipsToBounds = true
         // 周りに線を入れる

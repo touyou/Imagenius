@@ -80,7 +80,7 @@ struct Tweet {
         for path in tweetMedia["media"].array ?? [] {
             tweetImages?.append(NSURL(string: path["media_url"].string!)!)
         }
-        entitiesType = tweetMedia[0]["type"].string
+        entitiesType = tweetMedia["media"][0]["type"].string
         extendedEntities = tweetMedia["media"].array
     }
 
