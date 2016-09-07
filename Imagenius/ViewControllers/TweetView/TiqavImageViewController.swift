@@ -17,15 +17,15 @@ final class TiqavImageViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
 
     // View Model
-    final private let viewModel = TiqavImageViewModel()
+    final fileprivate let viewModel = TiqavImageViewModel()
     // Rx
-    final private let disposeBag = DisposeBag()
+    final fileprivate let disposeBag = DisposeBag()
     // UserDefaults
-    final private let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    final fileprivate let saveData: UserDefaults = UserDefaults.standard
 
     var searchWord: String = ""
     var selectedImage: UIImage?
-    var selectedData: NSData?
+    var selectedData: Data?
     var imageSize: CGFloat!
     var delegate: TweetViewControllerDelegate!
 
@@ -49,7 +49,7 @@ final class TiqavImageViewController: UIViewController {
         imageCollectionView.delegate = self
         imageCollectionView.emptyDataSetDelegate = self
         imageCollectionView.emptyDataSetSource = self
-        imageCollectionView.backgroundColor = UIColor.whiteColor()
+        imageCollectionView.backgroundColor = UIColor.white
 
         // データをロード
         viewModel.load(searchWord)
@@ -62,10 +62,10 @@ final class TiqavImageViewController: UIViewController {
             })
             .addDisposableTo(disposeBag)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
-    func changeOrient(notification: NSNotification) {
+    func changeOrient(_ notification: Notification) {
         // AutoLayout対応のためセル調整
         imageSize = (self.view.frame.width) / 4
 //        let flowLayout = KTCenterFlowLayout()
@@ -76,7 +76,7 @@ final class TiqavImageViewController: UIViewController {
 //        imageCollectionView.collectionViewLayout = flowLayout
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
@@ -88,55 +88,55 @@ final class TiqavImageViewController: UIViewController {
         imageCache.clearDisk()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toResultView" {
-            let resultView = segue.destinationViewController as? ResultViewController ?? ResultViewController()
+            let resultView = segue.destination as? ResultViewController ?? ResultViewController()
             resultView.image = self.selectedImage
             resultView.data = self.selectedData
             resultView.delegate = self.delegate
         }
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
 
     // MARK: - ボタン関連
     // MARK: キャンセルのボタン
     @IBAction func cancelButton() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - CollectionViewまわりの設定
 extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: 画像を選択したら
-    func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        SDWebImageDownloader.sharedDownloader().downloadImageWithURL(viewModel.urls[indexPath.row], options: SDWebImageDownloaderOptions.UseNSURLCache, progress: {
+    func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[(indexPath as NSIndexPath).row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: {
             (a: Int, b: Int) -> Void in
             // 何回もクリックされるのを防ぐ
             self.imageCollectionView.allowsSelection = false
             self.title = "loading..."
             }, completed: {
-                (a: UIImage!, b: NSData!, c: NSError!, d: Bool!) -> Void in
+                (a: UIImage!, b: Data!, c: NSError!, d: Bool!) -> Void in
                 self.selectedImage = a
                 self.selectedData = b
                 self.imageCollectionView.allowsSelection = true
                 self.title = "\(self.searchWord)の検索結果"
-                self.performSegueWithIdentifier("toResultView", sender: nil)
+                self.performSegue(withIdentifier: "toResultView", sender: nil)
         })
     }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(imageSize, imageSize)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: imageSize, height: imageSize)
     }
 }
 
 extension TiqavImageViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     // DZNEmptyDataSetの設定
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "該当する画像が見つかりませんでした。"
-        let font = UIFont.systemFontOfSize(20)
+        let font = UIFont.systemFont(ofSize: 20)
         return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
     }
 }

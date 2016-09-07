@@ -16,8 +16,8 @@ import AVFoundation
 final class MainViewModel: NSObject {
 
     final var tweetArray = [Tweet]()
-    final private var viewController: MainViewController!
-    final private let model = MainModel()
+    final fileprivate var viewController: MainViewController!
+    final fileprivate let model = MainModel()
     var audioSession: AVAudioSession!
 
     override init() {
@@ -25,15 +25,15 @@ final class MainViewModel: NSObject {
         audioSession = AVAudioSession.sharedInstance()
     }
 
-    func setViewController(viewController: MainViewController) {
+    func setViewController(_ viewController: MainViewController) {
         self.viewController = viewController
     }
-    func setTweetArray(array: [Tweet]) {
+    func setTweetArray(_ array: [Tweet]) {
         tweetArray = array
     }
 
     // imageViewがタップされたら画像のURLを開く
-    func tapped(sender: UITapGestureRecognizer) {
+    func tapped(_ sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
             guard let type = tweetArray[rowNum].entitiesType else {
@@ -43,20 +43,20 @@ final class MainViewModel: NSObject {
             case "photo":
                 let tempData = NSMutableArray()
                 for data in (tweetArray[rowNum].tweetImages ?? []) {
-                    tempData.addObject(NSData(contentsOfURL: data)!)
+                    tempData.add(try! Data(contentsOf: data as URL))
                 }
                 viewController.imageData = tempData
-                viewController.performSegueWithIdentifier("toPreView", sender: nil)
+                viewController.performSegue(withIdentifier: "toPreView", sender: nil)
             case "video":
                 if let videoArray = tweetArray[rowNum].extendedEntities![0]["video_info"]["variants"].array {
-                    let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .ActionSheet)
+                    let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .actionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
                         if videoInfo["bitrate"].integer != nil {
-                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .Default, handler: { (action) -> Void in
+                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .default, handler: { (action) -> Void in
                                 self.viewController.avPlayerViewController = AVPlayerViewController()
-                                self.viewController.avPlayerViewController.player = AVPlayer(URL: NSURL(string: videoInfo["url"].string!)!)
-                                self.viewController.presentViewController(self.viewController.avPlayerViewController, animated: true, completion: {
+                                self.viewController.avPlayerViewController.player = AVPlayer(url: URL(string: videoInfo["url"].string!)!)
+                                self.viewController.present(self.viewController.avPlayerViewController, animated: true, completion: {
                                     try! self.audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
                                     self.viewController.avPlayerViewController.player?.play()
                                 })
@@ -65,24 +65,24 @@ final class MainViewModel: NSObject {
                     }
 
                     // キャンセルボタンは何もせずにアクションシートを閉じる
-                    let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                    let CanceledAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                     alertController.addAction(CanceledAction)
                     // iPad用
                     alertController.popoverPresentationController?.sourceView = viewController.view
                     alertController.popoverPresentationController?.sourceRect = theView.frame
                     // アクションシート表示
-                    viewController.presentViewController(alertController, animated: true, completion: nil)
+                    viewController.present(alertController, animated: true, completion: nil)
                 }
             case "animated_gif":
                 // print(tweetArray[rowNum]["extended_entities"])
                 if let videoURL = tweetArray[rowNum].extendedEntities![0]["video_info"]["variants"][0]["url"].string {
-                    viewController.gifURL = NSURL(string: videoURL)
-                    viewController.performSegueWithIdentifier("toGifView", sender: nil)
+                    viewController.gifURL = URL(string: videoURL)
+                    viewController.performSegue(withIdentifier: "toGifView", sender: nil)
                 }
             default:
                 if let tweetURL = tweetArray[rowNum].extendedEntities![0]["url"].string {
-                    Utility.openWebView(NSURL(string: tweetURL)!)
-                    viewController.performSegueWithIdentifier("openWebView", sender: nil)
+                    Utility.openWebView(URL(string: tweetURL)!)
+                    viewController.performSegue(withIdentifier: "openWebView", sender: nil)
                 }
             }
         }
@@ -91,24 +91,24 @@ final class MainViewModel: NSObject {
 
 // MARK: - TableView
 extension MainViewModel: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweetArray.count
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tweetArray.count <= indexPath.row || indexPath.row < 0 {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tweetArray.count <= (indexPath as NSIndexPath).row || (indexPath as NSIndexPath).row < 0 {
             return UITableViewCell()
         }
-        let tweet = tweetArray[indexPath.row]
+        let tweet = tweetArray[(indexPath as NSIndexPath).row]
 
-        let cell: TweetVarViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as? TweetVarViewCell ?? TweetVarViewCell()
+        let cell: TweetVarViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TweetVarViewCell ?? TweetVarViewCell()
         cell.tweetLabel.delegate = viewController
         cell.setOutlet(tweet, tweetHeight: viewController.view.bounds.width / 1.8)
 
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         cell.tweetImgView.addGestureRecognizer(tapGesture)
-        cell.tweetImgView.tag = indexPath.row
+        cell.tweetImgView.tag = (indexPath as NSIndexPath).row
 
-        if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
+        if (self.tweetArray.count - 1) == (indexPath as NSIndexPath).row && viewController.maxId != "" {
             viewController.loadMore()
         }
         cell.rightUtilityButtons = viewController.rightButtons(tweet) as [AnyObject]

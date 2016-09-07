@@ -17,7 +17,7 @@ final class SettingBannerCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func setBanner(viewController: SettingTableViewController) {
+    func setBanner(_ viewController: SettingTableViewController) {
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
         // for test
@@ -25,6 +25,6 @@ final class SettingBannerCell: UITableViewCell {
         // for sale
         self.bannerView.adUnitID = "ca-app-pub-2853999389157478/5283774064"
         self.bannerView.rootViewController = viewController
-        self.bannerView.loadRequest(GADRequest())
+        self.bannerView.load(GADRequest())
     }
 }

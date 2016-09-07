@@ -11,7 +11,7 @@ import SwifteriOS
 import Accounts
 
 final class ReplyViewController: MainViewController {
-    override func load(moreflag: Bool) {
+    override func load(_ moreflag: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: リプライ通知のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }

@@ -27,15 +27,15 @@ final class TweetVarViewCell: SWTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // URL検知するように設定
-        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
         self.tweetLabel.extendsLinkTouchArea = false
         // リンク
         self.tweetLabel.linkAttributes = [
-            kCTForegroundColorAttributeName: Settings.Colors.twitterColor,
-            NSUnderlineStyleAttributeName: NSNumber(long: NSUnderlineStyle.StyleNone.rawValue)
+            kCTForegroundColorAttributeName as AnyHashable: Settings.Colors.twitterColor,
+            NSUnderlineStyleAttributeName: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
         ]
         subViewHeight.constant = 0
-        self.tweetImgView.userInteractionEnabled = true
+        self.tweetImgView.isUserInteractionEnabled = true
     }
 
     override func layoutSubviews() {
@@ -44,34 +44,34 @@ final class TweetVarViewCell: SWTableViewCell {
 
     // MARK: - TTTAttributedLabel関連
     // MARK: mention link
-    func highrightMentionsInLabel(label: TTTAttributedLabel) {
-        let text: NSString = label.text!
+    func highrightMentionsInLabel(_ label: TTTAttributedLabel) {
+        let text: NSString = label.text! as NSString
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
-        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
+        let matches = mentionExpression!.matches(in: label.text!, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
-            let matchRange = match.rangeAtIndex(1)
-            let mentionString = text.substringWithRange(matchRange)
-            let user = mentionString.substringFromIndex(mentionString.startIndex.advancedBy(1))
+            let matchRange = match.rangeAt(1)
+            let mentionString = text.substring(with: matchRange)
+            let user = mentionString.substring(from: mentionString.characters.index(mentionString.startIndex, offsetBy: 1))
             let linkURLString = NSString(format: "account:%@", user)
-            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
+            label.addLink(to: URL(string: linkURLString as String), with: matchRange)
         }
     }
     // MARK: hashtag link
-    func highrightHashtagsInLabel(label: TTTAttributedLabel) {
-        let text: NSString = label.text!
+    func highrightHashtagsInLabel(_ label: TTTAttributedLabel) {
+        let text: NSString = label.text! as NSString
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
-        let matches = mentionExpression!.matchesInString(label.text!, options: [], range: NSMakeRange(0, text.length))
+        let matches = mentionExpression!.matches(in: label.text!, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
-            let matchRange = match.rangeAtIndex(0)
-            let hashtagString = text.substringWithRange(matchRange)
-            let word = hashtagString.substringFromIndex(hashtagString.startIndex.advancedBy(1))
-            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
-            label.addLinkToURL(NSURL(string: linkURLString as String), withRange: matchRange)
+            let matchRange = match.rangeAt(0)
+            let hashtagString = text.substring(with: matchRange)
+            let word = hashtagString.substring(from: hashtagString.characters.index(hashtagString.startIndex, offsetBy: 1))
+            let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+            label.addLink(to: URL(string: linkURLString as String), with: matchRange)
         }
     }
 
     // MARK: - 要素の設定
-    func setOutlet(tweet: Tweet, tweetHeight: CGFloat) {
+    func setOutlet(_ tweet: Tweet, tweetHeight: CGFloat) {
         if tweet.isRetweet {
             // なにかいい案があれば
         }
@@ -82,13 +82,13 @@ final class TweetVarViewCell: SWTableViewCell {
 
         self.userLabel.text = tweet.userName ?? ""
         self.userIDLabel.text = tweet.screenName ?? "@"
-        let userImgURL: NSURL = tweet.userImage ?? NSURL()
+        let userImgURL: URL = tweet.userImage as URL? ?? URL()
 
-        self.userImgView.sd_setImageWithURL(userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.RetryFailed)
+        self.userImgView.sd_setImage(with: userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.retryFailed)
 
         self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
         self.userImgView.clipsToBounds = true
-        self.userImgView.layer.borderColor = Settings.Colors.selectedColor.CGColor
+        self.userImgView.layer.borderColor = Settings.Colors.selectedColor.cgColor
         self.userImgView.layer.borderWidth = 0.19
 
         self.timeLabel.text = tweet.createdAt!
@@ -96,7 +96,7 @@ final class TweetVarViewCell: SWTableViewCell {
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet.extendedEntities else {
             subViewHeight.constant = 0
-            tweetSubView.hidden = true
+            tweetSubView.isHidden = true
             self.updateConstraintsIfNeeded()
             return
         }
@@ -106,19 +106,19 @@ final class TweetVarViewCell: SWTableViewCell {
         // 画像の高さを設定する
         subViewHeight.constant = tweetHeight
         // 角丸にする
-        tweetSubView.hidden = false
+        tweetSubView.isHidden = false
         tweetSubView.layer.cornerRadius = tweetSubView.frame.width * 0.017
         tweetSubView.clipsToBounds = true
         // 周りに線を入れる
-        tweetSubView.layer.borderColor = Settings.Colors.selectedColor.CGColor
+        tweetSubView.layer.borderColor = Settings.Colors.selectedColor.cgColor
         tweetSubView.layer.borderWidth = 0.19
         // 一枚目のURLからNSURLをつくる
         // とりあえず一枚目だけツイート画面でプレビューする
-        let tweetImgURL: NSURL = tweet.tweetImages![0]
+        let tweetImgURL: URL = tweet.tweetImages![0] as URL
         // 画像を表示するモード(Storyboardで設定するのと同じ)
-        self.tweetImgView.contentMode = .ScaleAspectFill
+        self.tweetImgView.contentMode = .scaleAspectFill
         // 画像を設定(SDWebImageを使っているので、使わない場合はUIImageにダウンロードすればいい)
-        self.tweetImgView.sd_setImageWithURL(tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
+        self.tweetImgView.sd_setImage(with: tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
 
         switch tweet.entitiesType ?? "" {
         case "photo":

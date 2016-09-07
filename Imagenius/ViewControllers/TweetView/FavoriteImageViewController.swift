@@ -23,35 +23,35 @@ final class FavoriteImageViewController: UIViewController {
         imageCollectionView.delegate = self
         imageCollectionView.emptyDataSetSource = self
         imageCollectionView.emptyDataSetDelegate = self
-        imageCollectionView.backgroundColor = UIColor.whiteColor()
+        imageCollectionView.backgroundColor = UIColor.white
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         collectionData = FavoriteImage.loadAll()
         imageCollectionView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPreview" {
-            let viewCtrl = segue.destinationViewController as? FavoriteResultViewController ?? FavoriteResultViewController()
+            let viewCtrl = segue.destination as? FavoriteResultViewController ?? FavoriteResultViewController()
             viewCtrl.delegate = self.delegate
             viewCtrl.selectedItem = self.selectedItem
         }
     }
     
     @IBAction func cancelButton() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func galleryBtn() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
-            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             imagePicker.delegate = self
             imagePicker.allowsEditing = true
-            presentViewController(imagePicker, animated: true, completion: nil)
+            present(imagePicker, animated: true, completion: nil)
         }
     }
 }
@@ -59,35 +59,35 @@ final class FavoriteImageViewController: UIViewController {
 
 extension FavoriteImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionData.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: FavoriteImageViewCell = imageCollectionView.dequeueReusableCellWithReuseIdentifier("fImageCell", forIndexPath: indexPath) as? FavoriteImageViewCell ?? FavoriteImageViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: FavoriteImageViewCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "fImageCell", for: indexPath) as? FavoriteImageViewCell ?? FavoriteImageViewCell()
         
-        cell.imageView.contentMode = .ScaleAspectFill
-        cell.imageView.image = collectionData[indexPath.row].image
+        cell.imageView.contentMode = .scaleAspectFill
+        cell.imageView.image = collectionData[(indexPath as NSIndexPath).row].image
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        selectedItem = collectionData[indexPath.row]
-        performSegueWithIdentifier("showPreview", sender: nil)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedItem = collectionData[(indexPath as NSIndexPath).row]
+        performSegue(withIdentifier: "showPreview", sender: nil)
     }
 }
 
 extension FavoriteImageViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "お気に入りの画像を保存してください。"
-        let font = UIFont.systemFontOfSize(20)
+        let font = UIFont.systemFont(ofSize: 20)
         return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
     }
 }
 
 extension FavoriteImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let favoriteImage = FavoriteImage.create()
             favoriteImage.image = pickedImage
@@ -96,10 +96,10 @@ extension FavoriteImageViewController: UIImagePickerControllerDelegate, UINaviga
         
         collectionData = FavoriteImage.loadAll()
         imageCollectionView.reloadData()
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

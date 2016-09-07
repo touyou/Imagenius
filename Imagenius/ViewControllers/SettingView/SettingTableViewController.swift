@@ -22,24 +22,24 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
     var accounts = [ACAccount]()
 
     let accountStore = ACAccountStore()
-    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: UserDefaults = UserDefaults.standard
     let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方", "お気に入り画像を確認する"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelection = false
-        if saveData.objectForKey(Settings.Saveword.twitter) == nil {
+        if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac) -> () in
                 self.account = ac
                 self.swifter = Swifter(account: self.account!)
             })
         } else {
-            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
                 if granted {
-                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as? [ACAccount] ?? []
+                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
+                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
                         self.swifter = Swifter(account: self.account!)
                     }
                 }
@@ -53,57 +53,57 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         // for sale
         self.bannerView.adUnitID = "ca-app-pub-2853999389157478/5283774064"
         self.bannerView.rootViewController = self
-        self.bannerView.loadRequest(GADRequest())
+        self.bannerView.load(GADRequest())
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
     // MARK: - tableView関連
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return labelTexts.count
     }
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return labelTexts[section].count
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("settingButton")! as UITableViewCell
-        cell.textLabel!.text = labelTexts[indexPath.section][indexPath.row] as? String
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingButton")! as UITableViewCell
+        cell.textLabel!.text = labelTexts[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row] as? String
         return cell
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:// login処理
                 TwitterUtil.loginTwitter(self, success: { [unowned self] (ac) -> () in
                     self.account = ac
                     self.swifter = Swifter(account: self.account!)
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popViewController(animated: true)
                 })
             case 1:
-                performSegueWithIdentifier("showInfo", sender: nil)
+                performSegue(withIdentifier: "showInfo", sender: nil)
             case 2:
-                performSegueWithIdentifier("openFavoriteImage", sender: nil)
+                performSegue(withIdentifier: "openFavoriteImage", sender: nil)
             default:
                 break
             }
         case 1:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 // 友達に教える
-                Utility.shareSome(NSURL(string: "https://itunes.apple.com/us/app/imagenius/id1089595726?l=ja&ls=1&mt=8")!, text: "Imagenius", presentView: self)
+                Utility.shareSome(URL(string: "https://itunes.apple.com/us/app/imagenius/id1089595726?l=ja&ls=1&mt=8")!, text: "Imagenius", presentView: self)
             case 1:
                 // App Store画面へ
                 let itunesURL: String = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1089595726"
-                let url = NSURL(string: itunesURL)
-                UIApplication.sharedApplication().openURL(url!)
+                let url = URL(string: itunesURL)
+                UIApplication.shared.openURL(url!)
             default:
                 break
             }
         case 2:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 // メール送信
                 if !MFMailComposeViewController.canSendMail() {
@@ -112,26 +112,26 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 }
                 let mailViewController = MFMailComposeViewController()
                 let toRecipients = ["touyou.dev@gmail.com"]
-                mailViewController.navigationBar.tintColor = UIColor.whiteColor()
+                mailViewController.navigationBar.tintColor = UIColor.white
                 mailViewController.mailComposeDelegate = self
                 mailViewController.setToRecipients(toRecipients)
                 mailViewController.setMessageBody("", isHTML: false)
-                self.presentViewController(mailViewController, animated: true, completion: nil)
+                self.present(mailViewController, animated: true, completion: nil)
             case 1:
                 // twitter利用規約へ
-                Utility.openWebView(NSURL(string: "https://twitter.com/tos")!)
-                performSegueWithIdentifier("openWebView", sender: nil)
+                Utility.openWebView(URL(string: "https://twitter.com/tos")!)
+                performSegue(withIdentifier: "openWebView", sender: nil)
             default:
                 break
             }
         default:
             break
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - mailView関連
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

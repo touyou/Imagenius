@@ -7,29 +7,29 @@
 //
 
 import UIKit
-extension NSDate {
-    func yearsFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: date, toDate: self, options: []).year
+extension Date {
+    func yearsFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: date, to: self, options: []).year!
     }
-    func monthsFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Month, fromDate: date, toDate: self, options: []).month
+    func monthsFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.month, from: date, to: self, options: []).month!
     }
-    func weeksFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
+    func weeksFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.weekOfYear, from: date, to: self, options: []).weekOfYear!
     }
-    func daysFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Day, fromDate: date, toDate: self, options: []).day
+    func daysFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.day, from: date, to: self, options: []).day!
     }
-    func hoursFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: date, toDate: self, options: []).hour
+    func hoursFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: date, to: self, options: []).hour!
     }
-    func minutesFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Minute, fromDate: date, toDate: self, options: []).minute
+    func minutesFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.minute, from: date, to: self, options: []).minute!
     }
-    func secondsFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Second, fromDate: date, toDate: self, options: []).second
+    func secondsFrom(_ date: Date) -> Int {
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.second, from: date, to: self, options: []).second!
     }
-    func offsetFrom(date: NSDate) -> String {
+    func offsetFrom(_ date: Date) -> String {
         if yearsFrom(date)   > 0 { return "\(yearsFrom(date))年前"   }
         if monthsFrom(date)  > 0 { return "\(monthsFrom(date))ヶ月前"  }
         if weeksFrom(date)   > 0 { return "\(weeksFrom(date))週間前"   }
@@ -41,11 +41,11 @@ extension NSDate {
     }
 }
 
-func dateTimeFromTwitterDate(date: String) -> NSDate {
-    let inputDateFormatter = NSDateFormatter()
-    let locale = NSLocale(localeIdentifier: "en_US")
+func dateTimeFromTwitterDate(_ date: String) -> Date {
+    let inputDateFormatter = DateFormatter()
+    let locale = Locale(identifier: "en_US")
     inputDateFormatter.locale = locale
     inputDateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
-    let resDate = inputDateFormatter.dateFromString(date)
-    return resDate ?? NSDate()
+    let resDate = inputDateFormatter.date(from: date)
+    return resDate ?? Date()
 }

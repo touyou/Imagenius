@@ -14,18 +14,18 @@ import SDWebImage
 final class TiqavImageViewModel: NSObject {
 
     // ViewModel
-    final private var model = TiqavImageModel()
+    final fileprivate var model = TiqavImageModel()
     // ImageURLs
-    final var urls = [NSURL]()
+    final var urls = [URL]()
     // Rx
-    final private(set) var dataUpdated: Driver<[NSURL]> = Driver.never()
+    final fileprivate(set) var dataUpdated: Driver<[URL]> = Driver.never()
 
     override init() {
         super.init()
         dataUpdated = model.urls.asDriver()
     }
 
-    func load(word: String) {
+    func load(_ word: String) {
         model.request(word)
     }
 
@@ -34,15 +34,15 @@ final class TiqavImageViewModel: NSObject {
 // MARK: - CollectionView
 extension TiqavImageViewModel: UICollectionViewDataSource {
     // MARK: 画像の数
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return urls.count
     }
     // MARK: 入れるもの
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
-        let url = urls[indexPath.row]
-        cell.imageView.contentMode = .ScaleAspectFill
-        cell.imageView.sd_setImageWithURL(url, placeholderImage: nil, options: SDWebImageOptions.RetryFailed)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
+        let url = urls[(indexPath as NSIndexPath).row]
+        cell.imageView.contentMode = .scaleAspectFill
+        cell.imageView.sd_setImage(with: url, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
         return cell
     }
 }

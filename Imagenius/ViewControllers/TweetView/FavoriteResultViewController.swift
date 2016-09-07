@@ -19,30 +19,30 @@ final class FavoriteResultViewController: UIViewController {
         super.viewDidLoad()
         
         if delegate == nil {
-            doneBtn.enabled = false
+            doneBtn.isEnabled = false
         }
         
         previewImageView.image = selectedItem.image
     }
     
     @IBAction func cancelBtn() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deleteBtn() {
-        let actionCtrl = UIAlertController(title: "お気に入りからの削除", message: "削除しますか？", preferredStyle: .Alert)
-        actionCtrl.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        actionCtrl.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+        let actionCtrl = UIAlertController(title: "お気に入りからの削除", message: "削除しますか？", preferredStyle: .alert)
+        actionCtrl.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionCtrl.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             self.selectedItem.delete()
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }))
-        presentViewController(actionCtrl, animated: true, completion: nil)
+        present(actionCtrl, animated: true, completion: nil)
     }
     
     @IBAction func pushDoneBtn() {
         if let del = delegate {
-            dismissViewControllerAnimated(true, completion: {
-                del.changeImage(self.selectedItem.image ?? UIImage(), data: self.selectedItem.imageData ?? NSData(), isGIF: false)
+            dismiss(animated: true, completion: {
+                del.changeImage(self.selectedItem.image ?? UIImage(), data: self.selectedItem.imageData ?? Data(), isGIF: false)
             })
         }
     }

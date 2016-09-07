@@ -16,17 +16,17 @@ final class InfoContainerViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: UserDefaults = UserDefaults.standard
 
     @IBAction func loginButton() {
-        if saveData.objectForKey(Settings.Saveword.twitter) == nil {
+        if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac)->() in
-                self.saveData.setObject(true, forKey: Settings.Saveword.changed)
+                self.saveData.set(true, forKey: Settings.Saveword.changed)
                 // 元のViewに移行
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             })
         } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

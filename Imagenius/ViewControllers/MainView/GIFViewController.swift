@@ -18,18 +18,18 @@ final class GIFViewController: UIViewController {
     var layer: AVPlayerLayer!
     var avAsset: AVAsset!
     var audioSession: AVAudioSession!
-    var url: NSURL!
+    var url: URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // 初期化
-        avAsset = AVAsset(URL: url)
+        avAsset = AVAsset(url: url)
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
         audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setCategory(AVAudioSessionCategoryAmbient)
         // ループにする
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GIFViewController.playerItemDidReachEnd(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(GIFViewController.playerItemDidReachEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.videoPlayer.currentItem)
 
         videoPlayer.play()
 
@@ -38,7 +38,7 @@ final class GIFViewController: UIViewController {
         self.contentView.addGestureRecognizer(tapGesture)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         let videoPlayerView = AVPlayerView(frame: self.contentView.bounds)
@@ -48,24 +48,24 @@ final class GIFViewController: UIViewController {
         self.contentView.layer.addSublayer(layer)
 
         // 端末の向きがかわったらNotificationを呼ばす設定.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GIFViewController.onOrientationChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GIFViewController.onOrientationChange(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         videoPlayer.pause()
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
-    func playerItemDidReachEnd(notification: NSNotification) {
-        self.videoPlayer.seekToTime(kCMTimeZero)
+    func playerItemDidReachEnd(_ notification: Notification) {
+        self.videoPlayer.seek(to: kCMTimeZero)
         self.videoPlayer.play()
     }
 
-    func onOrientationChange(notification: NSNotification) {
+    func onOrientationChange(_ notification: Notification) {
         layer.removeFromSuperlayer()
         let videoPlayerView = AVPlayerView(frame: self.contentView.bounds)
         layer = videoPlayerView.layer as? AVPlayerLayer ?? AVPlayerLayer()
@@ -74,7 +74,7 @@ final class GIFViewController: UIViewController {
         self.contentView.layer.addSublayer(layer)
     }
 
-    func tapped(sender: UITapGestureRecognizer) {
+    func tapped(_ sender: UITapGestureRecognizer) {
         if self.videoPlayer.rate != 0.0 {
             self.videoPlayer.pause()
         } else {

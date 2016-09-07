@@ -17,15 +17,15 @@ final class InfoPageViewController: UIPageViewController {
         super.viewDidLoad()
         pageData = NSMutableArray()
         currentIndex = 0
-        pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_1")!)!)
-        pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_2")!)!)
-        pageData.addObject(UIImagePNGRepresentation(UIImage(named: "info_3")!)!)
+        pageData.add(UIImagePNGRepresentation(UIImage(named: "info_1")!)!)
+        pageData.add(UIImagePNGRepresentation(UIImage(named: "info_2")!)!)
+        pageData.add(UIImagePNGRepresentation(UIImage(named: "info_3")!)!)
 
         self.delegate = self
 
         let startViewController: InfoViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
         let viewControllers = [startViewController]
-        self.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
+        self.setViewControllers(viewControllers, direction: .forward, animated: false, completion: {done in })
 
         self.dataSource = self
         self.view.gestureRecognizers = self.gestureRecognizers
@@ -34,26 +34,26 @@ final class InfoPageViewController: UIPageViewController {
     }
 
     // MARK: - Utility
-    func indexOfViewController(viewController: InfoViewController) -> Int {
+    func indexOfViewController(_ viewController: InfoViewController) -> Int {
         if let dataObject: AnyObject = viewController.image {
-            return self.pageData.indexOfObject(dataObject)
+            return self.pageData.index(of: dataObject)
         } else {
             return NSNotFound
         }
     }
-    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> InfoViewController? {
+    func viewControllerAtIndex(_ index: Int, storyboard: UIStoryboard) -> InfoViewController? {
         if self.pageData.count == 0 || index >= self.pageData.count {
             return nil
         }
-        let infoViewController = storyboard.instantiateViewControllerWithIdentifier("InfoViewController") as? InfoViewController ?? InfoViewController()
-        infoViewController.image = self.pageData[index] as? NSData ?? NSData()
+        let infoViewController = storyboard.instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController ?? InfoViewController()
+        infoViewController.image = self.pageData[index] as? Data as NSData?? ?? Data()
         return infoViewController
     }
 }
 
 // MARK: - pageViewController関連
 extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         var index = self.indexOfViewController(viewController as? InfoViewController ?? InfoViewController())
         if index == 0 || index == NSNotFound {
             return nil
@@ -61,7 +61,7 @@ extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewContro
         index -= 1
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         var index = self.indexOfViewController(viewController as? InfoViewController ?? InfoViewController())
         if index == self.pageData.count - 1 || index == NSNotFound {
             return nil
@@ -70,23 +70,23 @@ extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewContro
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     // MARK: 向きはPortrait限定なので常に表示されるページは一個
-    func pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
+    func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
         let currentViewController = self.viewControllers![0]
         let viewControllers = [currentViewController]
-        self.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
-        self.doubleSided = false
-        return .Min
+        self.setViewControllers(viewControllers, direction: .forward, animated: true, completion: {done in })
+        self.isDoubleSided = false
+        return .min
     }
     // MARK: 現在地
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let viewController = pageViewController.viewControllers?.first as? InfoViewController {
             currentIndex = indexOfViewController(viewController)
         }
     }
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return currentIndex
     }
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return 3
     }
 }

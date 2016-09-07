@@ -15,13 +15,13 @@ struct Tweet {
     var screenName: String?
     var screenNameNoat: String?
     var userName: String?
-    var userImage: NSURL?
+    var userImage: URL?
     var userId: String?
-    var userBackgroundImage: NSURL?
+    var userBackgroundImage: URL?
 
     var text: String?
     var createdAt: String?
-    var tweetImages: [NSURL]?
+    var tweetImages: [URL]?
     var entitiesType: String?
     var extendedEntities: [JSONValue]?
 
@@ -53,20 +53,20 @@ struct Tweet {
         judgeAccount(myself)
     }
 
-    internal mutating func setTweet(tweet: Dictionary<String, JSONValue>) {
+    internal mutating func setTweet(_ tweet: Dictionary<String, JSONValue>) {
         let user = tweet["user"]!
 
         // ユーザー情報
         screenNameNoat = user["screen_name"].string
         screenName = "@\(screenNameNoat ?? "")"
         userName = user["name"].string
-        userImage = NSURL(string: user["profile_image_url_https"].string!)
+        userImage = URL(string: user["profile_image_url_https"].string!)
         userId = user["id_str"].string
-        userBackgroundImage = NSURL(string: user["profile_background_image_url"].string ?? "")
+        userBackgroundImage = URL(string: user["profile_background_image_url"].string ?? "")
 
         // ツイート情報
         text = tweet["text"]?.string
-        createdAt = NSDate().offsetFrom(dateTimeFromTwitterDate(tweet["created_at"]!.string!))
+        createdAt = Date().offsetFrom(dateTimeFromTwitterDate(tweet["created_at"]!.string!))
         favorited = tweet["favorited"]?.bool
         favoriteCount = tweet["favorite_count"]?.integer
         retweeted = tweet["retweeted"]?.bool
@@ -80,13 +80,13 @@ struct Tweet {
         }
         tweetImages = []
         for path in tweetMedia["media"].array ?? [] {
-            tweetImages?.append(NSURL(string: path["media_url"].string!)!)
+            tweetImages?.append(URL(string: path["media_url"].string!)!)
         }
         entitiesType = tweetMedia["media"][0]["type"].string
         extendedEntities = tweetMedia["media"].array
     }
 
-    internal mutating func judgeAccount(myself: String) {
+    internal mutating func judgeAccount(_ myself: String) {
         if let screen = screenName {
             if screen == "@\(myself)" {
                 isMyself = true

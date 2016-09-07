@@ -19,7 +19,7 @@ final class AVPlayerView: UIView {
         super.init(frame: frame)
     }
 
-    override class func layerClass() -> AnyClass {
+    override class var layerClass : AnyClass {
         return AVPlayerLayer.self
     }
 }

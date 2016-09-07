@@ -13,10 +13,10 @@ final class ResultViewController: UIViewController {
     @IBOutlet weak var preScrollView: UIScrollView!
 
     var image: UIImage?
-    var data: NSData?
+    var data: Data?
     var delegate: TweetViewControllerDelegate!
 
-    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: UserDefaults = UserDefaults.standard
 
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
@@ -32,38 +32,38 @@ final class ResultViewController: UIViewController {
 
         let doubleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.doubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
-        self.imageView.userInteractionEnabled = true
+        self.imageView.isUserInteractionEnabled = true
         self.imageView.addGestureRecognizer(doubleTapGesture)
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
 
     // MARK: - ボタン関連
     // MARK: OKボタンのとき
     @IBAction func pushOK() {
-        dismissViewControllerAnimated(true, completion: {
+        dismiss(animated: true, completion: {
             // GIFかどうかの判断はSDWebImageのコードを参考に
             self.delegate.changeImage(self.image!, data: self.data!, isGIF: self.data!.isGIF())
         })
     }
     // MARK: Cancelボタンのとき
     @IBAction func pushCancel() {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     // MARK: Shareボタン
     @IBAction func shareImage() {
         let activityItems: [AnyObject]!
         activityItems = [image!]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        let excludedActivityTypes = [UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo]
+        let excludedActivityTypes = [UIActivityType.postToTwitter, UIActivityType.postToWeibo, UIActivityType.postToTencentWeibo]
         activityVC.excludedActivityTypes = excludedActivityTypes
         // iPad用
         activityVC.popoverPresentationController?.sourceView = self.view
         activityVC.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
-        self.presentViewController(activityVC, animated: true, completion: nil)
+        self.present(activityVC, animated: true, completion: nil)
     }
     // MARK: お気に入りボタン
     @IBAction func favoriteImageBtn() {
@@ -73,35 +73,35 @@ final class ResultViewController: UIViewController {
             message = "GIFはお気に入り登録すると通常の画像に変換されます。よろしいですか？"
         }
         
-        let alertController = UIAlertController(title: "お気に入り登録", message: message, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+        let alertController = UIAlertController(title: "お気に入り登録", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             let favoriteImage = FavoriteImage.create()
             favoriteImage.image = self.image
             favoriteImage.save()
             Utility.simpleAlert("登録しました。", presentView: self)
         }))
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
 extension ResultViewController: UIScrollViewDelegate {
     // MARK: 画像を拡大縮小できるためのいろいろ
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     // MARK: ダブルタップ
-    func doubleTap(gesture: UITapGestureRecognizer) -> Void {
+    func doubleTap(_ gesture: UITapGestureRecognizer) -> Void {
         if self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale {
             let newScale: CGFloat = self.preScrollView.zoomScale * 3
-            let zoomRect: CGRect = self.zoomRectForScale(newScale, center: gesture.locationInView(gesture.view))
-            self.preScrollView.zoomToRect(zoomRect, animated: true)
+            let zoomRect: CGRect = self.zoomRectForScale(newScale, center: gesture.location(in: gesture.view))
+            self.preScrollView.zoom(to: zoomRect, animated: true)
         } else {
             self.preScrollView.setZoomScale(1.0, animated: true)
         }
     }
     // MARK: 領域
-    func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
+    func zoomRectForScale(_ scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect: CGRect = CGRect()
         zoomRect.size.height = self.preScrollView.bounds.size.height / scale
         zoomRect.size.width = self.preScrollView.bounds.size.width / scale
@@ -113,9 +113,9 @@ extension ResultViewController: UIScrollViewDelegate {
     }
 }
 
-extension NSData {
+extension Data {
     func isGIF() -> Bool {
-        let bytes = UnsafePointer<Int8>(self.bytes)
-        return self.length >= 6 && (strncmp(bytes, "GIF87a", 6) == 0 || strncmp(bytes, "GIF89a", 6) == 0)
+        let bytes = (self as NSData).bytes.bindMemory(to: Int8.self, capacity: self.count)
+        return self.count >= 6 && (strncmp(bytes, "GIF87a", 6) == 0 || strncmp(bytes, "GIF89a", 6) == 0)
     }
 }

@@ -16,17 +16,17 @@ final class TimeLineViewController: MainViewController {
     var listIDs = [String]()
     var selectedMode: Int = 0
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         loadList()
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
             if granted {
-                self.accounts = self.accountStore.accountsWithAccountType(accountType) as? [ACAccount] ?? []
+                self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                 if self.accounts.count != 0 {
-                    self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
+                    self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
                     self.swifter = Swifter(account: self.account!)
                     self.myself = self.account?.username
                     if !self.reloadingFlag {
@@ -68,7 +68,7 @@ final class TimeLineViewController: MainViewController {
 
     }
     
-    override func load(moreflag: Bool) {
+    override func load(_ moreflag: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: タイムラインのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
@@ -116,10 +116,10 @@ final class TimeLineViewController: MainViewController {
     }
     
     @IBAction func pushModeBtn() {
-        let alertController = UIAlertController(title: "タイムライン切り替え", message: nil, preferredStyle: .ActionSheet)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        let alertController = UIAlertController(title: "タイムライン切り替え", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         for mode in modeList {
-            alertController.addAction(UIAlertAction(title: mode, style: .Default, handler: {(action) -> Void in
+            alertController.addAction(UIAlertAction(title: mode, style: .default, handler: {(action) -> Void in
                 self.modeBtn.title = mode
                 self.tweetArray = []
                 self.loadTweet()
@@ -129,6 +129,6 @@ final class TimeLineViewController: MainViewController {
         alertController.popoverPresentationController?.sourceView = self.view
         alertController.popoverPresentationController?.sourceRect = modeBtn.accessibilityFrame
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

@@ -16,7 +16,7 @@ import SDWebImage
 import KTCenterFlowLayout
 
 protocol TweetViewControllerDelegate {
-    func changeImage(image: UIImage, data: NSData, isGIF: Bool)
+    func changeImage(_ image: UIImage, data: Data, isGIF: Bool)
 }
 
 final class TweetViewController: UIViewController {
@@ -49,25 +49,25 @@ final class TweetViewController: UIViewController {
     var gifFlag = true
 
     let accountStore = ACAccountStore()
-    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: UserDefaults = UserDefaults.standard
     let disposeBag = DisposeBag()
 
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
-        if saveData.objectForKey(Settings.Saveword.twitter) == nil {
+        if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             TwitterUtil.loginTwitter(self, success: { (ac) -> () in
                 self.account = ac
                 self.swifter = Swifter(account: self.account!)
                 self.changeAccountImage()
             })
         } else {
-            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
                 if granted {
-                    self.accounts = self.accountStore.accountsWithAccountType(accountType) as? [ACAccount] ?? []
+                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
+                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
                         self.swifter = Swifter(account: self.account!)
                         self.changeAccountImage()
                     }
@@ -89,7 +89,7 @@ final class TweetViewController: UIViewController {
 //        imageCollectionView.collectionViewLayout = flowLayout
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
-        imageCollectionView.backgroundColor = UIColor.whiteColor()
+        imageCollectionView.backgroundColor = UIColor.white
 
         // RxSwiftで文字数を監視
         tweetTextView.rx_text
@@ -112,12 +112,12 @@ final class TweetViewController: UIViewController {
             .addDisposableTo(disposeBag)
 
         // カメラのとか
-        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
 
         cameraButton.rx_tap
             .flatMapLatest { [weak self] _ in
                 return UIImagePickerController.rx_createWithParent(self) { picker in
-                    picker.sourceType = .Camera
+                    picker.sourceType = .camera
                     picker.allowsEditing = false
                     }
                     .flatMap { $0.rx_didFinishPickingMediaWithInfo }
@@ -140,9 +140,9 @@ final class TweetViewController: UIViewController {
                         self.mediaIds.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
                     } else {
-                        let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-                        self.presentViewController(alertController, animated: true, completion: nil)
+                        let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alertController, animated: true, completion: nil)
                     }
                 }, failure: failureHandler)
             })
@@ -151,7 +151,7 @@ final class TweetViewController: UIViewController {
         galleryButton.rx_tap
             .flatMapLatest { [weak self] _ in
                 return UIImagePickerController.rx_createWithParent(self) { picker in
-                    picker.sourceType = .PhotoLibrary
+                    picker.sourceType = .photoLibrary
                     picker.allowsEditing = true
                     }
                     .flatMap {
@@ -176,9 +176,9 @@ final class TweetViewController: UIViewController {
                         self.mediaIds.append(media["media_id_string"]!.string!)
                         self.imageCollectionView.reloadData()
                     } else {
-                        let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-                        self.presentViewController(alertController, animated: true, completion: nil)
+                        let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alertController, animated: true, completion: nil)
                     }
                 }, failure: failureHandler)
             })
@@ -191,30 +191,30 @@ final class TweetViewController: UIViewController {
         // for sale
         self.bannerView.adUnitID = "ca-app-pub-2853999389157478/5283774064"
         self.bannerView.rootViewController = self
-        self.bannerView.loadRequest(GADRequest())
+        self.bannerView.load(GADRequest())
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         if accountImg == nil {
-            self.accountImage.setTitle("login", forState: .Normal)
+            self.accountImage.setTitle("login", for: UIControlState())
         }
 
         searchField.text = ""
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TweetViewController.changeOrient(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TweetViewController.changeOrient(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
         self.view.layoutIfNeeded()
     }
 
     override func viewDidLayoutSubviews() {
-        self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height + 200.0)
+        self.scvBackGround.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 200.0)
         self.scvBackGround.flashScrollIndicators()
     }
 
-    func changeOrient(notification: NSNotification) {
-        self.scvBackGround.contentSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height + 200.0)
+    func changeOrient(_ notification: Notification) {
+        self.scvBackGround.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 200.0)
         self.scvBackGround.flashScrollIndicators()
     }
 
@@ -224,14 +224,14 @@ final class TweetViewController: UIViewController {
         imageCache.clearDisk()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toImageView" {
-            let navViewCtrl: UINavigationController = segue.destinationViewController as? UINavigationController ?? UINavigationController()
+            let navViewCtrl: UINavigationController = segue.destination as? UINavigationController ?? UINavigationController()
             let tiqavViewCtrl: TiqavImageViewController = navViewCtrl.viewControllers[0] as? TiqavImageViewController ?? TiqavImageViewController()
             tiqavViewCtrl.searchWord = searchField.text!
             tiqavViewCtrl.delegate = self
         } else if segue.identifier == "openFavoriteImage" {
-            let navViewCtrl: UINavigationController = segue.destinationViewController as? UINavigationController ?? UINavigationController()
+            let navViewCtrl: UINavigationController = segue.destination as? UINavigationController ?? UINavigationController()
             let favViewCtrl = navViewCtrl.viewControllers[0] as? FavoriteImageViewController ?? FavoriteImageViewController()
             favViewCtrl.delegate = self
         }
@@ -242,15 +242,15 @@ final class TweetViewController: UIViewController {
     @IBAction func cancelButton() {
         tweetText = tweetTextView.text
         if (tweetText == nil || tweetText == "") && tweetImage.count == 0 {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         } else {
-            let alertController = UIAlertController(title: "編集内容が破棄されます。", message: "よろしいですか？", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
+            let alertController = UIAlertController(title: "編集内容が破棄されます。", message: "よろしいですか？", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: {
                 action in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }))
-            alertController.addAction(UIAlertAction(title: "いいえ", style: .Cancel, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            alertController.addAction(UIAlertAction(title: "いいえ", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     // MARK: アカウントを切り替える
@@ -265,7 +265,7 @@ final class TweetViewController: UIViewController {
     // MARK: 画像検索へ
     @IBAction func searchButton() {
         if searchField.text != "" {
-            performSegueWithIdentifier("toImageView", sender: nil)
+            performSegue(withIdentifier: "toImageView", sender: nil)
         } else {
             Utility.simpleAlert("検索ワードを入力してください。", presentView: self)
         }
@@ -273,11 +273,11 @@ final class TweetViewController: UIViewController {
     // MARK: ツイート処理
     @IBAction func tweetButton() {
         let failureHandler: ((NSError) -> Void) = { error in
-            self.twBtn.enabled = true
+            self.twBtn.isEnabled = true
             Utility.simpleAlert("Error: ツイートに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
         let successHandler: ((Dictionary<String, JSONValue>?) -> Void) = { status in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
 
         // ここに140字以上の処理を書く
@@ -291,7 +291,7 @@ final class TweetViewController: UIViewController {
             return
         }
 
-        twBtn.enabled = false
+        twBtn.isEnabled = false
 
         if (tweetText == nil || tweetText == "") && mediaIds.count != 0 {
             swifter.postStatusUpdate("", media_ids: mediaIds, success: successHandler, failure: failureHandler)
@@ -305,19 +305,19 @@ final class TweetViewController: UIViewController {
     }
     
     @IBAction func favoriteButton() {
-        performSegueWithIdentifier("openFavoriteImage", sender: nil)
+        performSegue(withIdentifier: "openFavoriteImage", sender: nil)
     }
 
     // MARK: - キーボード関係の処理
     // MARK: returnでキーボードを閉じる
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
         view.endEditing(true)
         return true
     }
 
     // MARK: - Utility
     // MARK: ツイートに添付する画像
-    func changeImage(image: UIImage, data: NSData, isGIF: Bool) {
+    func changeImage(_ image: UIImage, data: Data, isGIF: Bool) {
         let failureHandler: ((NSError) -> Void) = { error in
             Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
         }
@@ -337,9 +337,9 @@ final class TweetViewController: UIViewController {
                 self.mediaIds.append(media["media_id_string"]!.string!)
                 self.imageCollectionView.reloadData()
             } else {
-                let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .Alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
+                let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
             }, failure: failureHandler)
     }
@@ -347,21 +347,21 @@ final class TweetViewController: UIViewController {
 
 // MARK: - CollectionView
 extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mediaIds.count
     }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: TiqavImageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("tweetImageCell", forIndexPath: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
-        cell.imageView.contentMode = .ScaleAspectFill
-        cell.imageView.image = tweetImage[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: TiqavImageViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tweetImageCell", for: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
+        cell.imageView.contentMode = .scaleAspectFill
+        cell.imageView.image = tweetImage[(indexPath as NSIndexPath).row]
         return cell
     }
-    func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "はい", style: .Default, handler: {
+    func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: {
             action in
-            self.tweetImage.removeAtIndex(indexPath.row)
-            self.mediaIds.removeAtIndex(indexPath.row)
+            self.tweetImage.remove(at: (indexPath as NSIndexPath).row)
+            self.mediaIds.remove(at: (indexPath as NSIndexPath).row)
             if self.mediaIds.count == 0 {
                 self.tweetImageHeight.constant = 0
                 self.gifFlag = true
@@ -369,8 +369,8 @@ extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 self.imageCollectionView.reloadData()
             }
         }))
-        alertController.addAction(UIAlertAction(title: "いいえ", style: .Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        alertController.addAction(UIAlertAction(title: "いいえ", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -384,10 +384,10 @@ extension TweetViewController: TweetViewControllerDelegate {
         swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
             if let userDict = user {
                 if let userImage = userDict["profile_image_url_https"] {
-                    self.accountImg = Utility.resizeImage(UIImage(data: NSData(contentsOfURL: NSURL(string: userImage.string!)!)!)!, size: CGSize(width: 50, height: 50))
+                    self.accountImg = Utility.resizeImage(UIImage(data: try! Data(contentsOf: URL(string: userImage.string!)!))!, size: CGSize(width: 50, height: 50))
                     self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
                     self.accountImage.clipsToBounds = true
-                    self.accountImage.setImage(self.accountImg, forState: .Normal)
+                    self.accountImage.setImage(self.accountImg, for: UIControlState())
                 }
             }
             }, failure: failureHandler)
@@ -396,9 +396,9 @@ extension TweetViewController: TweetViewControllerDelegate {
 
 
 // MARK: - RxのImagePicker設定
-func dismissViewController(viewController: UIViewController, animated: Bool) {
-    if viewController.isBeingDismissed() || viewController.isBeingPresented() {
-        dispatch_async(dispatch_get_main_queue()) {
+func dismissViewController(_ viewController: UIViewController, animated: Bool) {
+    if viewController.isBeingDismissed || viewController.isBeingPresented {
+        DispatchQueue.main.async {
             dismissViewController(viewController, animated: animated)
         }
 
@@ -406,12 +406,12 @@ func dismissViewController(viewController: UIViewController, animated: Bool) {
     }
 
     if viewController.presentingViewController != nil {
-        viewController.dismissViewControllerAnimated(animated, completion: nil)
+        viewController.dismiss(animated: animated, completion: nil)
     }
 }
 
 extension UIImagePickerController {
-    static func rx_createWithParent(parent: UIViewController?, animated: Bool = true, configureImagePicker: (UIImagePickerController) throws -> () = { variable in }) -> Observable<UIImagePickerController> {
+    static func rx_createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: (UIImagePickerController) throws -> () = { variable in }) -> Observable<UIImagePickerController> {
         return Observable.create { [weak parent] observer in
             let imagePicker = UIImagePickerController()
             let dismissDisposable = imagePicker
@@ -431,12 +431,12 @@ extension UIImagePickerController {
             }
 
             guard let parent = parent else {
-                observer.on(.Completed)
+                observer.on(.completed)
                 return NopDisposable.instance
             }
 
-            parent.presentViewController(imagePicker, animated: animated, completion: nil)
-            observer.on(.Next(imagePicker))
+            parent.present(imagePicker, animated: animated, completion: nil)
+            observer.on(.next(imagePicker))
 
             return CompositeDisposable(dismissDisposable, AnonymousDisposable {
                 dismissViewController(imagePicker, animated: animated)

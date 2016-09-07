@@ -16,26 +16,26 @@ final class WebViewController: UIViewController {
     var reloadButton: UIBarButtonItem!
     var stopButton: UIBarButtonItem!
     var webView: WKWebView!
-    var url: NSURL = NSURL(string: "https://twitter.com")!
+    var url: URL = URL(string: "https://twitter.com")!
 
-    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let saveData: UserDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.webView.addObserver(self, forKeyPath: "title", options: NSKeyValueObservingOptions.New, context: nil)
-        self.webView.addObserver(self, forKeyPath: "loading", options: NSKeyValueObservingOptions.New, context: nil)
-        self.webView.addObserver(self, forKeyPath: "canGoBack", options: NSKeyValueObservingOptions.New, context: nil)
-        self.webView.addObserver(self, forKeyPath: "canGoForward", options: NSKeyValueObservingOptions.New, context: nil)
+        self.webView.addObserver(self, forKeyPath: "title", options: NSKeyValueObservingOptions.new, context: nil)
+        self.webView.addObserver(self, forKeyPath: "loading", options: NSKeyValueObservingOptions.new, context: nil)
+        self.webView.addObserver(self, forKeyPath: "canGoBack", options: NSKeyValueObservingOptions.new, context: nil)
+        self.webView.addObserver(self, forKeyPath: "canGoForward", options: NSKeyValueObservingOptions.new, context: nil)
 
-        if saveData.objectForKey(Settings.Saveword.url) != nil {
-            url = NSURL(string: saveData.objectForKey(Settings.Saveword.url) as? String ?? "")!
+        if saveData.object(forKey: Settings.Saveword.url) != nil {
+            url = URL(string: saveData.object(forKey: Settings.Saveword.url) as? String ?? "")!
         }
 
-        let request = NSURLRequest(URL: url)
-        self.webView.loadRequest(request)
-        reloadButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(WebViewController.didTapReloadButton(_:)))
-        stopButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(WebViewController.didTapStopButton(_:)))
+        let request = URLRequest(url: url)
+        self.webView.load(request)
+        reloadButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(WebViewController.didTapReloadButton(_:)))
+        stopButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(WebViewController.didTapStopButton(_:)))
         self.navigationItem.rightBarButtonItem = reloadButton
     }
     // MARK: WKWebViewの設定
@@ -43,12 +43,12 @@ final class WebViewController: UIViewController {
         super.loadView()
         self.webView = WKWebView()
         self.webView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addConstraints([NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 1.0, constant: 0)])
         self.webView.navigationDelegate = self
-        self.webView.UIDelegate = self
+        self.webView.uiDelegate = self
         self.webView.allowsBackForwardNavigationGestures = true
-        self.view.insertSubview(self.webView, atIndex: 0)
+        self.view.insertSubview(self.webView, at: 0)
     }
     deinit {
         self.webView.removeObserver(self, forKeyPath: "title")
@@ -57,25 +57,25 @@ final class WebViewController: UIViewController {
         self.webView.removeObserver(self, forKeyPath: "canGoForward")
     }
     // MARK: 状態に応じて
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "title" {
             self.title = self.webView.title
         } else if keyPath == "loading" {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView.loading
-            if self.webView.loading {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = self.webView.isLoading
+            if self.webView.isLoading {
                 self.navigationItem.rightBarButtonItem = stopButton
             } else {
                 self.navigationItem.rightBarButtonItem = reloadButton
             }
         } else if keyPath == "canGoBack" {
-            self.backButton.enabled = self.webView.canGoBack
+            self.backButton.isEnabled = self.webView.canGoBack
         } else if keyPath == "canGoForward" {
-            self.forwardButton.enabled = self.webView.canGoForward
+            self.forwardButton.isEnabled = self.webView.canGoForward
         }
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
     // MARK: - ボタン関連
@@ -86,37 +86,37 @@ final class WebViewController: UIViewController {
         self.webView.goForward()
     }
     @IBAction func safariButton() {
-        let url = self.webView.URL
+        let url = self.webView.url
         Utility.shareSome(url!, text: self.webView.title, presentView: self)
     }
-    internal func didTapReloadButton(sender: AnyObject) {
+    internal func didTapReloadButton(_ sender: AnyObject) {
         self.webView.reload()
     }
-    internal func didTapStopButton(sender: AnyObject) {
+    internal func didTapStopButton(_ sender: AnyObject) {
         self.webView.stopLoading()
     }
 }
 
 // MARK: - WKWebView関連
 extension WebViewController:  WKNavigationDelegate, WKUIDelegate {
-    func webView(webView: WKWebView, createWebViewWithConfiguration configuration: WKWebViewConfiguration, forNavigationAction navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil {
-            webView.loadRequest(navigationAction.request)
+            webView.load(navigationAction.request)
         }
         return nil
     }
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        let currentUrl = navigationAction.request.URL
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let currentUrl = navigationAction.request.url
         let urlString = currentUrl?.absoluteString
         if NSRegularExpression.rx("\\/\\/itunes\\.apple\\.com\\/").isMatch(urlString) {
-            UIApplication.sharedApplication().openURL(currentUrl!)
-            decisionHandler(WKNavigationActionPolicy.Cancel)
+            UIApplication.shared.openURL(currentUrl!)
+            decisionHandler(WKNavigationActionPolicy.cancel)
             return
         } else if !NSRegularExpression.rx("^https?:\\/\\/.", ignoreCase: true).isMatch(urlString) {
-            UIApplication.sharedApplication().openURL(currentUrl!)
-            decisionHandler(WKNavigationActionPolicy.Cancel)
+            UIApplication.shared.openURL(currentUrl!)
+            decisionHandler(WKNavigationActionPolicy.cancel)
             return
         }
-        decisionHandler(WKNavigationActionPolicy.Allow)
+        decisionHandler(WKNavigationActionPolicy.allow)
     }
 }

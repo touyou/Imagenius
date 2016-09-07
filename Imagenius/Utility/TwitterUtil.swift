@@ -13,13 +13,13 @@ import SwifteriOS
 
 final class TwitterUtil {
     // MARK: login
-    class func loginTwitter(present: UIViewController, success: ((ACAccount?) -> ())? = nil) {
+    class func loginTwitter(_ present: UIViewController, success: ((ACAccount?) -> ())? = nil) {
         let accountStore = ACAccountStore()
         var accounts = [ACAccount]()
-        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
+        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
             if granted {
-                accounts = accountStore.accountsWithAccountType(accountType) as? [ACAccount] ?? []
+                accounts = accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                 if accounts.count == 0 {
                     Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: present)
                 } else {
@@ -32,19 +32,19 @@ final class TwitterUtil {
     }
 
     // MARK: Twitterアカウントの切り替え
-    class func showAndSelectTwitterAccountWithSelectionSheets(accounts: [ACAccount], present: UIViewController, success: ((ACAccount?)->())? = nil) {
+    class func showAndSelectTwitterAccountWithSelectionSheets(_ accounts: [ACAccount], present: UIViewController, success: ((ACAccount?)->())? = nil) {
         // アクションシートの設定
-        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .ActionSheet)
-        let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
+        let saveData: UserDefaults = UserDefaults.standard
 
         for i in 0 ..< accounts.count {
             let account = accounts[i]
-            alertController.addAction(UIAlertAction(title: account.username, style: .Default, handler: { (action) -> Void in
+            alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (action) -> Void in
                 // 選択したアカウントを返す
                 for j in 0 ..< accounts.count {
                     if account == accounts[j] {
                         print(j)
-                        saveData.setObject(j, forKey: Settings.Saveword.twitter)
+                        saveData.set(j, forKey: Settings.Saveword.twitter)
                         break
                     }
                 }
@@ -54,7 +54,7 @@ final class TwitterUtil {
         }
 
         // キャンセルボタンは何もせずにアクションシートを閉じる
-        let CanceledAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let CanceledAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(CanceledAction)
 
         // iPad用
@@ -62,11 +62,11 @@ final class TwitterUtil {
         alertController.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
 
         // アクションシート表示
-        present.presentViewController(alertController, animated: true, completion: nil)
+        present.present(alertController, animated: true, completion: nil)
     }
 
     // MARK: 画像がツイートに含まれているか？
-    class func isContainMedia(tweet: JSONValue) -> Bool {
+    class func isContainMedia(_ tweet: JSONValue) -> Bool {
         if tweet["extended_entities"].object != nil {
             return true
         }

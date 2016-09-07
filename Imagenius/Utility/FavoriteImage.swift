@@ -15,8 +15,8 @@ import RealmSwift
 class FavoriteImage: Object {
     static let realm = try! Realm()
     
-    dynamic private var id = 0
-    dynamic private var _image: UIImage? = nil
+    dynamic fileprivate var id = 0
+    dynamic fileprivate var _image: UIImage? = nil
     dynamic var image: UIImage? {
         set {
             self._image = newValue
@@ -35,7 +35,7 @@ class FavoriteImage: Object {
             return nil
         }
     }
-    dynamic var imageData: NSData? = nil
+    dynamic var imageData: Data? = nil
     
     // MARK: - Realm用の設定
     override static func primaryKey() -> String? {
