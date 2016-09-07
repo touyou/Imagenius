@@ -73,6 +73,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     var gifURL: NSURL!
     var selectedId: String!
     var myself: String!
+    var reloadingFlag: Bool = false
 
     let accountStore = ACAccountStore()
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -132,8 +133,14 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                 if self.accounts.count != 0 {
                     self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
                     self.swifter = Swifter(account: self.account!)
-                    self.tweetArray = []
-                    self.loadTweet()
+                    self.myself = self.account?.username
+                    if !self.reloadingFlag {
+                        self.tweetArray = []
+                        self.loadTweet()
+                        self.reloadingFlag = true
+                    } else {
+                        self.reloadingFlag = false
+                    }
                 }
             }
         }

@@ -17,6 +17,7 @@ struct Tweet {
     var userName: String?
     var userImage: NSURL?
     var userId: String?
+    var userBackgroundImage: NSURL?
 
     var text: String?
     var createdAt: String?
@@ -61,6 +62,7 @@ struct Tweet {
         userName = user["name"].string
         userImage = NSURL(string: user["profile_image_url_https"].string!)
         userId = user["id_str"].string
+        userBackgroundImage = NSURL(string: user["profile_background_image_url"].string ?? "")
 
         // ツイート情報
         text = tweet["text"]?.string

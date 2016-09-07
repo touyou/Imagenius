@@ -48,6 +48,7 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     var selectedUser: String!
     var selectedId: String!
     var myself: String!
+    var reloadingFlag: Bool = false
 
     let accountStore = ACAccountStore()
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -84,7 +85,7 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
 
         viewModel.setViewController(self)
     }
-
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         accountStore.requestAccessToAccountsWithType(accountType, options: nil) { granted, error in
@@ -93,9 +94,14 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
                 if self.accounts.count != 0 {
                     self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
                     self.swifter = Swifter(account: self.account!)
-                    self.tweetArray = [[], [], []]
                     self.myself = self.account?.username
-                    self.loadTweet()
+                    if !self.reloadingFlag {
+                        self.tweetArray = [[], [], []]
+                        self.loadTweet()
+                        self.reloadingFlag = true
+                    } else {
+                        self.reloadingFlag = false
+                    }
                 }
             }
         }

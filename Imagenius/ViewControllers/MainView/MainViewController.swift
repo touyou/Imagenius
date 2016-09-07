@@ -41,7 +41,11 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var viewModel = MainViewModel()
     var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [Tweet] = []
-    var swifter: Swifter!
+    var swifter: Swifter! {
+        didSet {
+            loginDone()
+        }
+    }
     var maxId: String!
     var replyID: String?
     var replyStr: String?
@@ -52,6 +56,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var selectedUser: String!
     var selectedId: String!
     var myself: String!
+    var reloadingFlag: Bool = false
 
     let accountStore = ACAccountStore()
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -84,7 +89,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
 
         viewModel.setViewController(self)
     }
-
+    
     // MARK: アカウントが切り替わった時点でページをリロードしている
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
@@ -94,9 +99,14 @@ class MainViewController: UIViewController, UITableViewDelegate {
                 if self.accounts.count != 0 {
                     self.account = self.accounts[self.saveData.objectForKey(Settings.Saveword.twitter) as? Int ?? 0]
                     self.swifter = Swifter(account: self.account!)
-                    self.tweetArray = []
                     self.myself = self.account?.username
-                    self.loadTweet()
+                    if !self.reloadingFlag {
+                        self.tweetArray = []
+                        self.loadTweet()
+                        self.reloadingFlag = true
+                    } else {
+                        self.reloadingFlag = false
+                    }
                 }
             }
         }
@@ -155,10 +165,6 @@ class MainViewController: UIViewController, UITableViewDelegate {
         performSegueWithIdentifier("toUserView", sender: nil)
     }
 
-
-    // MARK - TableView関連
-    // UITableViewDelegateが無いので空
-
     // MARK: - Utility
     // MARK: refresh処理
     func refresh() {
@@ -181,6 +187,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
             load(true)
         }
     }
+    func loginDone() {}
 }
 
 // MARK: - DZNEmptyDataSetの設定
