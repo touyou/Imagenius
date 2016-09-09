@@ -56,7 +56,7 @@ final class GIFViewController: UIViewController {
         videoPlayer.pause()
     }
 
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
 

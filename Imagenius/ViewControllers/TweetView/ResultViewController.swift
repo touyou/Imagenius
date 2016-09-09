@@ -36,7 +36,7 @@ final class ResultViewController: UIViewController {
         self.imageView.addGestureRecognizer(doubleTapGesture)
     }
 
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
 

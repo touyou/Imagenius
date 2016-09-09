@@ -74,7 +74,7 @@ final class WebViewController: UIViewController {
         }
     }
 
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
 

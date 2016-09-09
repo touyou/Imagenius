@@ -56,7 +56,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         self.bannerView.load(GADRequest())
     }
 
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
 

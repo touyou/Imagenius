@@ -174,7 +174,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         }
     }
 
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
 
