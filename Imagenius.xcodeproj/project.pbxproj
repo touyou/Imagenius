@@ -67,6 +67,7 @@
 		468722EF1CB4E10700DEF2DB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722ED1CB4E10700DEF2DB /* Utility.swift */; };
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
+		46B50EF11D855CB000F8F09D /* RTSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */; };
 		46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAE8531D0EFC990020BD82 /* TweetStruct.swift */; };
 		46BF12021D4F518600FFF5DD /* FavoriteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12011D4F518500FFF5DD /* FavoriteImage.swift */; };
 		46BF12091D4F57A700FFF5DD /* FavoriteImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */; };
@@ -233,6 +234,7 @@
 		469F18C01CAAAB9600C015EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
+		46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTSettingTableViewController.swift; path = ViewControllers/SettingView/RTSettingTableViewController.swift; sourceTree = "<group>"; };
 		46BAE8531D0EFC990020BD82 /* TweetStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetStruct.swift; path = Utility/TweetStruct.swift; sourceTree = "<group>"; };
 		46BF12011D4F518500FFF5DD /* FavoriteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImage.swift; path = Utility/FavoriteImage.swift; sourceTree = "<group>"; };
 		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImageViewController.swift; path = ViewControllers/TweetView/FavoriteImageViewController.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */,
+				46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */,
 			);
 			name = SettingView;
 			sourceTree = "<group>";
@@ -701,6 +704,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B4S4333JDW;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					460B4A481C6B5CF60089CC7E = {
 						CreatedOnToolsVersion = 7.2;
@@ -986,6 +990,7 @@
 				468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */,
 				46312B281CB74B8C009183D9 /* TweetDetailViewController.swift in Sources */,
 				4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */,
+				46B50EF11D855CB000F8F09D /* RTSettingTableViewController.swift in Sources */,
 				468722C81CB260C400DEF2DB /* TimeLineViewController.swift in Sources */,
 				468722CD1CB260F400DEF2DB /* ResultViewController.swift in Sources */,
 				468722EF1CB4E10700DEF2DB /* Utility.swift in Sources */,
@@ -1163,8 +1168,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yosuke Fujii (87927WRCQ5)";
-				DEVELOPMENT_TEAM = B4S4333JDW;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1177,8 +1182,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "910c03f8-c694-4915-8369-a143220e8b86";
-				PROVISIONING_PROFILE_SPECIFIER = Imagenius_debug;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1195,7 +1200,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yosuke Fujii (B4S4333JDW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1208,7 +1214,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dev.touyou.Imagenius;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dd33159b-e391-4d04-ba51-6fa2b14b1019";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

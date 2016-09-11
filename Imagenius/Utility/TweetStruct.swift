@@ -32,6 +32,7 @@ struct Tweet {
 
     var idStr: String?
     var userMentions: [JSONValue]?
+    var urlStr: String?
 
     var isMyself: Bool = false
     var isRetweet: Bool = false
@@ -73,6 +74,7 @@ struct Tweet {
         retweetCount = tweet["retweet_count"]?.integer
         idStr = tweet["id_str"]?.string
         userMentions = tweet["entities"]!["user_mentions"].array
+        urlStr = "https://twitter.com/\(screenNameNoat)/status/\(idStr)"
 
         // 添付ファイル情報
         guard let tweetMedia = tweet["extended_entities"] else {

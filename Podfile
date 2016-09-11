@@ -11,17 +11,16 @@ target 'Imagenius' do
     pod 'KTCenterFlowLayout'
     pod 'RegExCategories', '~> 1.0'
     pod 'SDWebImage'
-    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift3'
+    pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git'
     pod 'RealmSwift', git: 'git@github.com:realm/realm-cocoa.git', branch: 'master', :submodules => true
-    pod 'RxSwift', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
-    pod 'RxCocoa', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
-    #    pod 'RxBlocking'
-    #    pod 'RxTests'
+    pod 'RxSwift', '~> 3.0.0.alpha.1'
+    pod 'RxCocoa', '~> 3.0.0.alpha.1'
 end
 
 target 'ImageniusTests' do
-
+    pod 'RxBlocking', '~> 3.0.0.alpha.1'
+    pod 'RxTests', '~> 3.0.0.alpha.1'
 end
 
 target 'ImageniusUITests' do

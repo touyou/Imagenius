@@ -33,4 +33,6 @@ enum Settings {
         static let changed2 = "tab_changed"
         static let url = "open_url"
     }
+    // 引用リツイート用
+    static let RTWord = ["", "RT ", "RT: ", "RT> "]
 }

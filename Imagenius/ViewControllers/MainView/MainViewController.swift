@@ -20,7 +20,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var timelineTableView: UITableView! {
         didSet {
             timelineTableView.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-
+            
             timelineTableView.estimatedRowHeight = 200
             timelineTableView.rowHeight = UITableViewAutomaticDimension
             timelineTableView.emptyDataSetDelegate = self
@@ -31,13 +31,13 @@ class MainViewController: UIViewController, UITableViewDelegate {
             timelineTableView.tableFooterView = UIView()
         }
     }
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(MainViewController.refresh), for: UIControlEvents.valueChanged)
         return refreshControl
     }()
-
+    
     var viewModel = MainViewModel()
     var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [Tweet] = []
@@ -57,19 +57,19 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var selectedId: String!
     var myself: String!
     var reloadingFlag: Bool = false
-
+    
     let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard
-
+    
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 引っ張ってロードするやつ
         timelineTableView.addSubview(refreshControl)
-
+        
         saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
-
+        
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
@@ -86,7 +86,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
                 }
             }
         }
-
+        
         viewModel.setViewController(self)
     }
     
@@ -111,14 +111,14 @@ class MainViewController: UIViewController, UITableViewDelegate {
             }
         }
     }
-
+    
     // MARK: メモリーがいっぱいになったらSDWebImageのキャッシュを削除
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
-
+    
     // MARK: 各Viewへ移り変わるときに渡す値
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTweetView" {
@@ -149,13 +149,13 @@ class MainViewController: UIViewController, UITableViewDelegate {
             self.selectedId = nil
         }
     }
-
+    
     // MARK: ステータスバーを細く
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-
-
+    
+    
     // MARK: - ボタン関連
     @IBAction func pushTweet() {
         performSegue(withIdentifier: "toTweetView", sender: nil)
@@ -164,7 +164,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         selectedUser = self.account?.username
         performSegue(withIdentifier: "toUserView", sender: nil)
     }
-
+    
     // MARK: - Utility
     // MARK: refresh処理
     func refresh() {
@@ -280,15 +280,36 @@ extension MainViewController: SWTableViewCellDelegate {
             break
         case 2:
             // retweet
-            if tweet.retweeted ?? false {
-                // (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
-                break
-            }
-            swifter.postStatusRetweetWithID(tweet.idStr ?? "", success: {
-                statuses in
-                (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
-                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
-            })
+            let alertController = UIAlertController(title: "リツイート", message: "リツイートの種類を選択してください。", preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "公式リツイート", style: .default, handler: {(action) -> Void in
+                self.swifter.postStatusRetweetWithID(tweet.idStr ?? "", success: {
+                    statuses in
+                    (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
+                })
+            }))
+            alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(action) -> Void in
+                let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                if appDelegate.rtMode >= Settings.RTWord.count {
+                    switch(appDelegate.rtMode) {
+                    case 4:
+                        self.replyStr = "\"" + tweet.text + "\""
+                    case 5:
+                        self.replyStr = tweet.urlStr
+                    default: break
+                    }
+                } else {
+                    self.replyStr = Settings.RTWord[rtMode] + tweet.text
+                }
+                self.performSegue(withIdentifier: "toTweetView", sender: nil)
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            // iPad用
+            alertController.popoverPresentationController?.sourceView = self.view
+            alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
+            
+            
             break
         case 3:
             // ツイートの削除
@@ -302,7 +323,7 @@ extension MainViewController: SWTableViewCellDelegate {
                 }
                 let alertController = UIAlertController(title: "ツイートの削除", message: "このツイートを削除しますか？", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                   self.swifter.postStatusesDestroyWithID(tweet.idStr ?? "", success: successHandler, failure: failureHandler)
+                    self.swifter.postStatusesDestroyWithID(tweet.idStr ?? "", success: successHandler, failure: failureHandler)
                 }))
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 present(alertController, animated: true, completion: nil)
@@ -337,12 +358,12 @@ extension MainViewController: SWTableViewCellDelegate {
                 self.present(otherAlert, animated: true, completion: nil)
             }))
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
+            
             // iPad用
             alertController.popoverPresentationController?.sourceView = self.view
             alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
-
-            self.present(alertController, animated: true, completion: nil)
+            
+            present(alertController, animated: true, completion: nil)
         default:
             break
         }
