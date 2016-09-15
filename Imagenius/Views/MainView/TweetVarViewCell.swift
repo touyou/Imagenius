@@ -82,7 +82,7 @@ final class TweetVarViewCell: SWTableViewCell {
 
         self.userLabel.text = tweet.userName ?? ""
         self.userIDLabel.text = tweet.screenName ?? "@"
-        let userImgURL: URL = tweet.userImage as URL? ?? URL()
+        let userImgURL: URL = tweet.userImage! as URL
 
         self.userImgView.sd_setImage(with: userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.retryFailed)
 

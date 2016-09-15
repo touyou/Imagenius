@@ -66,7 +66,7 @@ final class TwitterUtil {
     }
 
     // MARK: 画像がツイートに含まれているか？
-    class func isContainMedia(_ tweet: JSONValue) -> Bool {
+    class func isContainMedia(_ tweet: JSON) -> Bool {
         if tweet["extended_entities"].object != nil {
             return true
         }

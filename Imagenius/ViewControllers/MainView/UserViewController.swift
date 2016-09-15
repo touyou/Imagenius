@@ -91,8 +91,8 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         // ボタン周り
         followButton.isHidden = true
         unfollowButton.isHidden = true
-        followButton.rx_tap.subscribe({event in self.follow()}).addDisposableTo(disposeBag)
-        unfollowButton.rx_tap.subscribe({event in self.unfollow()}).addDisposableTo(disposeBag)
+        followButton.rx.tap.subscribe({event in self.follow()}).addDisposableTo(disposeBag)
+        unfollowButton.rx.tap.subscribe({event in self.unfollow()}).addDisposableTo(disposeBag)
 
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
@@ -184,14 +184,14 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     func unfollow() {
-        self.swifter.postDestroyFriendshipWithID(self.idStr, success: { user in
+        self.swifter.unfollowUser(for: .id(self.idStr), success: { user in
             self.unfollowButton.isHidden = true
             self.followButton.isHidden = false
             self.followBtnLength.constant = 100
         })
     }
     func follow() {
-        self.swifter.postCreateFriendshipWithID(self.idStr, success: { user in
+        self.swifter.followUser(for: .id(self.idStr), success: { user in
             self.unfollowButton.isHidden = false
             self.followBtnLength.constant = 0
             self.followButton.isHidden = true
@@ -210,11 +210,11 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     }
     // MARK: Tweetのロード
     func load(_ moreflag: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: ユーザーのツイート一覧のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
-        let successHandler: (([JSONValue]?) -> Void) = { statuses in
-            guard let tweets = statuses else { return }
+        let successHandler: ((JSON) -> Void) = { statuses in
+            guard let tweets = statuses.array else { return }
 
             if tweets.count < 1 {
                 self.maxId = ""
@@ -273,9 +273,9 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             self.userTimeLine.reloadData()
         }
         if !moreflag {
-            self.swifter.getStatusesUserTimelineWithUserID(idStr, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.getTimeline(for: idStr, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
         } else {
-            self.swifter.getStatusesUserTimelineWithUserID(idStr, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.getTimeline(for: idStr, count: 41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
         }
     }
     // MARK: Tweetをロードする
@@ -292,14 +292,14 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     }
     // MARK: screen_nameからUserIDを取得する
     func getUserIdWithScreenName(_ userName: String, comp: (()->())? = nil) {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
         }
 
-        self.swifter.getUsersShowWithScreenName(userName, includeEntities: false, success: {
+        self.swifter.showUser(for: .screenName(userName), includeEntities: false, success: {
             statuses in
-            guard let userInfo = statuses else { return }
-            self.idStr = userInfo["id_str"]?.string!
+//            guard let userInfo = statuses else { return }
+            self.idStr = statuses["id_str"].string!
             comp!()
             }, failure: failureHandler)
     }
@@ -366,14 +366,14 @@ extension UserViewController: SWTableViewCellDelegate {
         case 0:
             // fav
             if tweet.favorited ?? false {
-                swifter.postDestroyFavoriteWithID(tweet.idStr ?? "", success: {
+                swifter.unfavouriteTweet(forID: tweet.idStr ?? "", success: {
                     statuses in
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 1) - 1)", for: UIControlState())
                 })
                 break
             }
-            swifter.postCreateFavoriteWithID(tweet.idStr ?? "", success: {
+            swifter.favouriteTweet(forID: tweet.idStr ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.favColor
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 0) + 1)", for: UIControlState())
@@ -396,7 +396,7 @@ extension UserViewController: SWTableViewCellDelegate {
                 // (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
                 break
             }
-            swifter.postStatusRetweetWithID(tweet.idStr ?? "", success: {
+            swifter.retweetTweet(forID: tweet.idStr ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
@@ -405,16 +405,16 @@ extension UserViewController: SWTableViewCellDelegate {
         case 3:
             // ツイートの削除
             if tweet.isMyself {
-                let failureHandler: ((NSError) -> Void) = { error in
+                let failureHandler: ((Error) -> Void) = { error in
                     Utility.simpleAlert("Error: ツイートの削除に失敗しました。インターネット環境を確認してください。", presentView: self)
                 }
-                let successHandler: ((_ user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
+                let successHandler: ((JSON) -> Void) = { statuses in
                     self.tweetArray = []
                     self.loadTweet()
                 }
                 let alertController = UIAlertController(title: "ツイートの削除", message: "このツイートを削除しますか？", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                    self.swifter.postStatusesDestroyWithID(tweet.idStr ?? "", success: successHandler, failure: failureHandler)
+                    self.swifter.destroyTweet(forID: tweet.idStr ?? "", success: successHandler, failure: failureHandler)
                 }))
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 present(alertController, animated: true, completion: nil)
@@ -423,10 +423,10 @@ extension UserViewController: SWTableViewCellDelegate {
             }
             
             // block or spam
-            let failureHandler: ((NSError) -> Void) = { error in
+            let failureHandler: ((Error) -> Void) = { error in
                 Utility.simpleAlert("Error: ブロック・通報を完了できませんでした。インターネット環境を確認してください。", presentView: self)
             }
-            let successHandler: ((_ user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
+            let successHandler: ((JSON) -> Void) = { statuses in
                 self.tweetArray = []
                 self.loadTweet()
             }
@@ -435,7 +435,7 @@ extension UserViewController: SWTableViewCellDelegate {
             alertController.addAction(UIAlertAction(title: "ブロックする", style: .default, handler: {(action) -> Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .alert)
                 otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
-                    self.swifter.postBlocksCreateWithScreenName(screen_name, includeEntities: true, success: successHandler, failure: failureHandler)
+                    self.swifter.blockUser(for: .screenName(screen_name), includeEntities: true, success: successHandler, failure: failureHandler)
                 }))
                 otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(otherAlert, animated: true, completion: nil)
@@ -443,7 +443,7 @@ extension UserViewController: SWTableViewCellDelegate {
             alertController.addAction(UIAlertAction(title: "通報する", style: .default, handler: {(action) -> Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
                 otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
-                    self.swifter.postUsersReportSpamWithScreenName(screen_name, success: successHandler, failure: failureHandler)
+                    self.swifter.reportSpam(for: .screenName(screen_name), success: successHandler, failure: failureHandler)
                 }))
                 otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(otherAlert, animated: true, completion: nil)
@@ -477,8 +477,8 @@ extension UserViewController: SWTableViewCellDelegate {
 // MARK: - TTTAttributedLabelDelegate
 extension UserViewController: TTTAttributedLabelDelegate {
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-        if let userRange = url.URLString.range(of: "account:") {
-            user = url.URLString.substring(from: userRange.upperBound)
+        if let userRange = url.absoluteString.range(of: "account:") {
+            user = url.absoluteString.substring(from: userRange.upperBound)
             getUserIdWithScreenName(user, comp: {
                 self.tweetArray = []
                 self.title = "@\(self.user)のツイート一覧"

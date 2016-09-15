@@ -12,11 +12,11 @@ import Accounts
 
 final class ReplyViewController: MainViewController {
     override func load(_ moreflag: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: リプライ通知のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
-        let successHandler: (([JSONValue]?) -> Void) = { statuses in
-            guard let tweets = statuses else { return }
+        let successHandler: ((JSON) -> Void) = { statuses in
+            guard let tweets = statuses.array else { return }
 
             if tweets.count < 1 {
                 self.maxId = ""
@@ -36,9 +36,9 @@ final class ReplyViewController: MainViewController {
             self.timelineTableView.reloadData()
         }
         if !moreflag {
-            self.swifter.getStatusesMentionTimelineWithCount(41, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.getMentionsTimlineTweets(count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
         } else {
-            self.swifter.getStatusesMentionTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.getMentionsTimlineTweets(count: 41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
         }
     }
 }

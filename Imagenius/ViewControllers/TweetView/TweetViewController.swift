@@ -92,11 +92,11 @@ final class TweetViewController: UIViewController {
         imageCollectionView.backgroundColor = UIColor.white
 
         // RxSwiftで文字数を監視
-        tweetTextView.rx_text
+        tweetTextView.rx.textInput.text
             .map { "\($0.characters.count)" }
-            .bindTo(countLabel.rx_text)
+            .bindTo(countLabel.rx.text)
             .addDisposableTo(disposeBag)
-        tweetTextView.rx_text
+        tweetTextView.rx.textInput.text
             .map {
                 if $0.characters.count == 0 {
                     self.placeHolderLabel.text = "何をつぶやく？"
@@ -114,26 +114,26 @@ final class TweetViewController: UIViewController {
         // カメラのとか
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
 
-        cameraButton.rx_tap
+        cameraButton.rx.tap
             .flatMapLatest { [weak self] _ in
-                return UIImagePickerController.rx_createWithParent(self) { picker in
+                return Reactive<UIImagePickerController>.createWithParent(self) { picker in
                     picker.sourceType = .camera
                     picker.allowsEditing = false
                     }
-                    .flatMap { $0.rx_didFinishPickingMediaWithInfo }
+                    .flatMap { $0.rx.didFinishPickingMediaWithInfo }
                     .take(1)
             }
             .map { info in
                 return info[UIImagePickerControllerOriginalImage] as? UIImage
             }
             .subscribe({ image in
-                let failureHandler: ((NSError) -> Void) = { error in
+                let failureHandler: ((Error) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
                 let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
                 let data = UIImagePNGRepresentation(im)!
                 self.swifter.postMedia(data, success: { status in
-                    guard let media = status else { return }
+                    guard let media = status.object else { return }
                     if self.gifFlag && self.mediaIds.count < 4 {
                         self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im)
@@ -148,14 +148,14 @@ final class TweetViewController: UIViewController {
             })
             .addDisposableTo(disposeBag)
 
-        galleryButton.rx_tap
+        galleryButton.rx.tap
             .flatMapLatest { [weak self] _ in
-                return UIImagePickerController.rx_createWithParent(self) { picker in
+                return Reactive<UIImagePickerController>.createWithParent(self) { picker in
                     picker.sourceType = .photoLibrary
                     picker.allowsEditing = true
                     }
                     .flatMap {
-                        $0.rx_didFinishPickingMediaWithInfo
+                        $0.rx.didFinishPickingMediaWithInfo
                     }
                     .take(1)
             }
@@ -163,13 +163,13 @@ final class TweetViewController: UIViewController {
                 return info[UIImagePickerControllerEditedImage] as? UIImage
             }
             .subscribe({ image in
-                let failureHandler: ((NSError) -> Void) = { error in
+                let failureHandler: ((Error) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
                 let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
                 let data = UIImagePNGRepresentation(im)!
                 self.swifter.postMedia(data, success: { status in
-                    guard let media = status else { return }
+                    guard let media = status.object else { return }
                     if self.gifFlag && self.mediaIds.count < 4 {
                         self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im)
@@ -272,11 +272,11 @@ final class TweetViewController: UIViewController {
     }
     // MARK: ツイート処理
     @IBAction func tweetButton() {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             self.twBtn.isEnabled = true
             Utility.simpleAlert("Error: ツイートに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
-        let successHandler: ((Dictionary<String, JSONValue>?) -> Void) = { status in
+        let successHandler: ((JSON) -> Void) = { status in
             self.dismiss(animated: true, completion: nil)
         }
 
@@ -294,14 +294,14 @@ final class TweetViewController: UIViewController {
         twBtn.isEnabled = false
 
         if (tweetText == nil || tweetText == "") && mediaIds.count != 0 {
-            swifter.postStatusUpdate("", media_ids: mediaIds, success: successHandler, failure: failureHandler)
+            swifter.postTweet(status: "", media_ids: mediaIds, success: successHandler, failure: failureHandler)
             return
         }
         if mediaIds.count == 0 {
-            swifter.postStatusUpdate(tweetText!, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
+            swifter.postTweet(status: tweetText!, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
             return
         }
-        swifter.postStatusUpdate(tweetText!, media_ids: mediaIds, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
+        swifter.postTweet(status: tweetText!, inReplyToStatusID: replyID, media_ids: mediaIds, success: successHandler, failure: failureHandler)
     }
     
     @IBAction func favoriteButton() {
@@ -318,11 +318,11 @@ final class TweetViewController: UIViewController {
     // MARK: - Utility
     // MARK: ツイートに添付する画像
     func changeImage(_ image: UIImage, data: Data, isGIF: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
         }
         swifter.postMedia(data, success: { status in
-            guard let media = status else { return }
+            guard let media = status.object else { return }
             if isGIF && self.gifFlag && self.mediaIds.count == 0 {
                 // GIFが貼り付けられる場合
                 self.tweetImageHeight.constant = 110
@@ -378,11 +378,11 @@ extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSou
 extension TweetViewController: TweetViewControllerDelegate {
     // MARK: アカウントの画像を切替える
     func changeAccountImage() {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
         }
-        swifter.getUsersShowWithScreenName(account!.username, success: {(user) -> Void in
-            if let userDict = user {
+        swifter.showUser(for: .screenName(account!.username), success: {(user) -> Void in
+            if let userDict = user.object {
                 if let userImage = userDict["profile_image_url_https"] {
                     self.accountImg = Utility.resizeImage(UIImage(data: try! Data(contentsOf: URL(string: userImage.string!)!))!, size: CGSize(width: 50, height: 50))
                     self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
@@ -410,37 +410,37 @@ func dismissViewController(_ viewController: UIViewController, animated: Bool) {
     }
 }
 
-extension UIImagePickerController {
-    static func rx_createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: (UIImagePickerController) throws -> () = { variable in }) -> Observable<UIImagePickerController> {
+extension Reactive where Base: UIImagePickerController {
+    static func createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> () = { x in }) -> Observable<UIImagePickerController> {
         return Observable.create { [weak parent] observer in
             let imagePicker = UIImagePickerController()
-            let dismissDisposable = imagePicker
-                .rx_didCancel
-                .subscribeNext({ [weak imagePicker] in
+            let dismissDisposable = imagePicker.rx
+                .didCancel
+                .subscribe(onNext: { [weak imagePicker] in
                     guard let imagePicker = imagePicker else {
                         return
                     }
                     dismissViewController(imagePicker, animated: animated)
                     })
-
+            
             do {
                 try configureImagePicker(imagePicker)
             } catch let error {
-                observer.on(.Error(error))
-                return NopDisposable.instance
+                observer.on(.error(error))
+                return Disposables.create()
             }
-
+            
             guard let parent = parent else {
                 observer.on(.completed)
-                return NopDisposable.instance
+                return Disposables.create()
             }
-
+            
             parent.present(imagePicker, animated: animated, completion: nil)
             observer.on(.next(imagePicker))
-
-            return CompositeDisposable(dismissDisposable, AnonymousDisposable {
+            
+            return Disposables.create(dismissDisposable, Disposables.create {
                 dismissViewController(imagePicker, animated: animated)
-                })
+            })
         }
     }
 }

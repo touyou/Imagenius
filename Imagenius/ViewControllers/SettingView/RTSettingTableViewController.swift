@@ -48,7 +48,8 @@ class RTSettingTableViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = labelText[indexPath.row]
-        if indexPath.row == AppDelegate.rtMode {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if indexPath.row == appDelegate.rtMode {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -58,7 +59,7 @@ class RTSettingTableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rtMode = indexPath.row
         tableView.reloadData()
     }

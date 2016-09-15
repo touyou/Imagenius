@@ -35,7 +35,7 @@ final class InfoPageViewController: UIPageViewController {
 
     // MARK: - Utility
     func indexOfViewController(_ viewController: InfoViewController) -> Int {
-        if let dataObject: AnyObject = viewController.image {
+        if let dataObject: AnyObject = viewController.image as AnyObject? {
             return self.pageData.index(of: dataObject)
         } else {
             return NSNotFound
@@ -46,7 +46,7 @@ final class InfoPageViewController: UIPageViewController {
             return nil
         }
         let infoViewController = storyboard.instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController ?? InfoViewController()
-        infoViewController.image = self.pageData[index] as? Data as NSData?? ?? Data()
+        infoViewController.image = self.pageData[index] as? Data ?? Data()
         return infoViewController
     }
 }

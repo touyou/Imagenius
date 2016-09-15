@@ -48,7 +48,7 @@ final class ImagePreViewController: UIPageViewController {
 
     // MARK: - Utility
     func indexOfViewController(_ viewController: PreViewController) -> Int {
-        if let dataObject: AnyObject = viewController.imageData {
+        if let dataObject: AnyObject = viewController.imageData as AnyObject? {
             return self.pageData.index(of: dataObject)
         } else {
             return NSNotFound
@@ -59,7 +59,7 @@ final class ImagePreViewController: UIPageViewController {
             return nil
         }
         let preViewController = storyboard.instantiateViewController(withIdentifier: "PreViewController") as? PreViewController ?? PreViewController()
-        preViewController.imageData = self.pageData[index] as? Data as NSData?? ?? Data()
+        preViewController.imageData = self.pageData[index] as? Data
         return preViewController
     }
 }

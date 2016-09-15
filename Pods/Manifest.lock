@@ -28,6 +28,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - Google-Mobile-Ads-SDK (~> 7.0)
   - KTCenterFlowLayout
+  - Realm (from `git@github.com:realm/realm-cocoa.git`, branch `master`)
   - RealmSwift (from `git@github.com:realm/realm-cocoa.git`, branch `master`)
   - RegExCategories (~> 1.0)
   - RxBlocking (~> 3.0.0.alpha.1)
@@ -40,6 +41,10 @@ DEPENDENCIES:
   - TTTAttributedLabel
 
 EXTERNAL SOURCES:
+  Realm:
+    :branch: master
+    :git: git@github.com:realm/realm-cocoa.git
+    :submodules: true
   RealmSwift:
     :branch: master
     :git: git@github.com:realm/realm-cocoa.git
@@ -48,12 +53,16 @@ EXTERNAL SOURCES:
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  Realm:
+    :commit: c508dee7e99411e74370de7dda89461c1688c611
+    :git: git@github.com:realm/realm-cocoa.git
+    :submodules: true
   RealmSwift:
-    :commit: 742e530446e7c3b74abdf902b9109ab8f1086753
+    :commit: c508dee7e99411e74370de7dda89461c1688c611
     :git: git@github.com:realm/realm-cocoa.git
     :submodules: true
   SwiftyJSON:
-    :commit: 46324eb5c8ba6adf6b31b16d3173c194242558de
+    :commit: 21e2e6ba20cc2c0e35162798f0729bb0c4cbe23d
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -61,7 +70,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Google-Mobile-Ads-SDK: c8da9e592fe43d9b47ef86b018cadb71af53f6b3
   KTCenterFlowLayout: 2905970d36c653d9a7736c20bfa0d37dcf797d6b
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
+  Realm: 2948cfa3a05b7acc446abc4c124d443df646c8de
   RealmSwift: 4816c8608630a9a00bba6d726bb30b4bab6dd6bf
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   RxBlocking: 7ef3e27c267d71ec7d69165dafcf3408a23c7507
@@ -73,6 +82,6 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: d7a5ec66217e30031c96a5830960d3b83e55b485
+PODFILE CHECKSUM: cc401a3100022b976d48c0af3eca737592576fe9
 
 COCOAPODS: 1.0.1

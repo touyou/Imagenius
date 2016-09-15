@@ -54,7 +54,7 @@ class FavoriteImage: Object {
     }
     
     static func loadAll() -> [FavoriteImage] {
-        let favImages = realm.objects(FavoriteImage).sorted("id", ascending: false)
+        let favImages = realm.allObjects(ofType: FavoriteImage.self).sorted(onProperty: "id", ascending: false)
         var ret = [FavoriteImage]()
         for favImage in favImages {
             ret.append(favImage)
@@ -63,7 +63,7 @@ class FavoriteImage: Object {
     }
     
     static func lastId() -> Int {
-        if let favImage = realm.objects(FavoriteImage).last {
+        if let favImage = realm.allObjects(ofType: FavoriteImage.self).last {
             return favImage.id + 1
         } else {
             return 1

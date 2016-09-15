@@ -252,14 +252,14 @@ extension MainViewController: SWTableViewCellDelegate {
         case 0:
             // fav
             if tweet.favorited ?? false {
-                swifter.postDestroyFavoriteWithID(tweet.idStr ?? "", success: {
+                swifter.unfavouriteTweet(forID: tweet.idStr ?? "", success: {
                     statuses in
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 1) - 1)", for: UIControlState())
                 })
                 break
             }
-            swifter.postCreateFavoriteWithID(tweet.idStr ?? "", success: {
+            swifter.favouriteTweet(forID: tweet.idStr ?? "", success: {
                 statuses in
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.favColor
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 0) + 1)", for: UIControlState())
@@ -282,24 +282,24 @@ extension MainViewController: SWTableViewCellDelegate {
             // retweet
             let alertController = UIAlertController(title: "リツイート", message: "リツイートの種類を選択してください。", preferredStyle: .actionSheet)
             alertController.addAction(UIAlertAction(title: "公式リツイート", style: .default, handler: {(action) -> Void in
-                self.swifter.postStatusRetweetWithID(tweet.idStr ?? "", success: {
+                self.swifter.retweetTweet(forID: tweet.idStr ?? "", success: {
                     statuses in
                     (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
                 })
             }))
             alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(action) -> Void in
-                let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 if appDelegate.rtMode >= Settings.RTWord.count {
-                    switch(appDelegate.rtMode) {
+                    switch (appDelegate.rtMode) {
                     case 4:
-                        self.replyStr = "\"" + tweet.text + "\""
+                        self.replyStr = "\"" + tweet.text! + "\""
                     case 5:
                         self.replyStr = tweet.urlStr
                     default: break
                     }
                 } else {
-                    self.replyStr = Settings.RTWord[rtMode] + tweet.text
+                    self.replyStr = Settings.RTWord[appDelegate.rtMode] + tweet.text!
                 }
                 self.performSegue(withIdentifier: "toTweetView", sender: nil)
             }))
@@ -314,16 +314,16 @@ extension MainViewController: SWTableViewCellDelegate {
         case 3:
             // ツイートの削除
             if tweet.isMyself {
-                let failureHandler: ((NSError) -> Void) = { error in
+                let failureHandler: ((Error) -> Void) = { error in
                     Utility.simpleAlert("Error: ツイートの削除に失敗しました。インターネット環境を確認してください。", presentView: self)
                 }
-                let successHandler: ((_ user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
+                let successHandler: ((JSON) -> Void) = { statuses in
                     self.tweetArray = []
                     self.loadTweet()
                 }
                 let alertController = UIAlertController(title: "ツイートの削除", message: "このツイートを削除しますか？", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                    self.swifter.postStatusesDestroyWithID(tweet.idStr ?? "", success: successHandler, failure: failureHandler)
+                    self.swifter.destroyTweet(forID: tweet.idStr ?? "", success: successHandler, failure: failureHandler)
                 }))
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 present(alertController, animated: true, completion: nil)
@@ -332,10 +332,10 @@ extension MainViewController: SWTableViewCellDelegate {
             }
             
             // block or spam
-            let failureHandler: ((NSError) -> Void) = { error in
+            let failureHandler: ((Error) -> Void) = { error in
                 Utility.simpleAlert("Error: ブロック・通報を完了できませんでした。インターネット環境を確認してください。", presentView: self)
             }
-            let successHandler: ((_ user: Dictionary<String, JSONValue>?) -> Void) = { statuses in
+            let successHandler: ((JSON) -> Void) = { statuses in
                 self.tweetArray = []
                 self.loadTweet()
             }
@@ -344,7 +344,7 @@ extension MainViewController: SWTableViewCellDelegate {
             alertController.addAction(UIAlertAction(title: "ブロックする", style: .default, handler: {(action) -> Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .alert)
                 otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
-                    self.swifter.postBlocksCreateWithScreenName(screen_name, includeEntities: true, success: successHandler, failure: failureHandler)
+                    self.swifter.blockUser(for: .screenName(screen_name), includeEntities: true, success: successHandler, failure: failureHandler)
                 }))
                 otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(otherAlert, animated: true, completion: nil)
@@ -352,7 +352,7 @@ extension MainViewController: SWTableViewCellDelegate {
             alertController.addAction(UIAlertAction(title: "通報する", style: .default, handler: {(action) -> Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
                 otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
-                    self.swifter.postUsersReportSpamWithScreenName(screen_name, success: successHandler, failure: failureHandler)
+                    self.swifter.reportSpam(for: .screenName(screen_name), success: successHandler, failure: failureHandler)
                 }))
                 otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(otherAlert, animated: true, completion: nil)
@@ -390,8 +390,8 @@ extension MainViewController: SWTableViewCellDelegate {
 // MARK: - TTTAttributedLabelDelegate
 extension MainViewController: TTTAttributedLabelDelegate {
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-        if let userRange = url.URLString.range(of: "account:") {
-            selectedUser = url.URLString.substring(from: userRange.upperBound)
+        if let userRange = url.absoluteString.range(of: "account:") {
+            selectedUser = url.absoluteString.substring(from: userRange.upperBound)
             performSegue(withIdentifier: "toUserView", sender: nil)
         } else {
             Utility.openWebView(url)

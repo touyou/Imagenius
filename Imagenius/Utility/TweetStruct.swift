@@ -23,7 +23,7 @@ struct Tweet {
     var createdAt: String?
     var tweetImages: [URL]?
     var entitiesType: String?
-    var extendedEntities: [JSONValue]?
+    var extendedEntities: [JSON]?
 
     var favorited: Bool?
     var retweeted: Bool?
@@ -31,7 +31,7 @@ struct Tweet {
     var retweetCount: Int?
 
     var idStr: String?
-    var userMentions: [JSONValue]?
+    var userMentions: [JSON]?
     var urlStr: String?
 
     var isMyself: Bool = false
@@ -40,11 +40,11 @@ struct Tweet {
     init() {
     }
 
-    init(tweet: JSONValue) {
+    init(tweet: JSON) {
         self.init(tweet: tweet, myself: "")
     }
 
-    init(tweet: JSONValue, myself: String) {
+    init(tweet: JSON, myself: String) {
         if let retweet = tweet["retweeted_status"].object {
             isRetweet = true
             setTweet(retweet)
@@ -54,7 +54,7 @@ struct Tweet {
         judgeAccount(myself)
     }
 
-    internal mutating func setTweet(_ tweet: Dictionary<String, JSONValue>) {
+    internal mutating func setTweet(_ tweet: Dictionary<String, JSON>) {
         let user = tweet["user"]!
 
         // ユーザー情報

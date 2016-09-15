@@ -1227,6 +1227,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ImageniusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1242,6 +1243,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D2DF4F2C3E3D79D00AC702CB /* Pods-ImageniusTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ImageniusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

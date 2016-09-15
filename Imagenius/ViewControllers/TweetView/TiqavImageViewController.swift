@@ -56,7 +56,7 @@ final class TiqavImageViewController: UIViewController {
 
         // bind
         viewModel.dataUpdated
-            .driveNext({
+            .drive(onNext: {
                 self.viewModel.urls = $0
                 self.imageCollectionView.reloadData()
             })
@@ -119,7 +119,7 @@ extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDe
             self.imageCollectionView.allowsSelection = false
             self.title = "loading..."
             }, completed: {
-                (a: UIImage!, b: Data!, c: NSError!, d: Bool!) -> Void in
+                (a: UIImage?, b: Data?, c: Error?, d: Bool) -> Void in
                 self.selectedImage = a
                 self.selectedData = b
                 self.imageCollectionView.allowsSelection = true

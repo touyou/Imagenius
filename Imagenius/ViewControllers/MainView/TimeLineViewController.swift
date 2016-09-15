@@ -50,11 +50,11 @@ final class TimeLineViewController: MainViewController {
         modeBtn.title = "ホーム"
 
         if swifter != nil {
-            let failureHandler: ((NSError) -> Void) = { error in
+            let failureHandler: ((Error) -> Void) = { error in
                 Utility.simpleAlert("Error: リストのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
             }
-            let successHandler: (([JSONValue]?) -> Void) = { statuses in
-                guard let modes = statuses else { return }
+            let successHandler: ((JSON) -> Void) = { statuses in
+                guard let modes = statuses.array else { return }
                 self.modeList = ["ホーム"]
                 self.listIDs = []
                 self.selectedMode = 0
@@ -63,17 +63,17 @@ final class TimeLineViewController: MainViewController {
                     self.listIDs.append(mode["id_str"].string!)
                 }
             }
-            self.swifter.getListsSubscribedByUserWithScreenName(self.account?.username ?? "", reverse: true, success: successHandler, failure: failureHandler)
+            self.swifter.getSubscribedLists(for: .screenName(self.account?.username ?? ""), reverse: true, success: successHandler, failure: failureHandler)
         }
 
     }
     
     override func load(_ moreflag: Bool) {
-        let failureHandler: ((NSError) -> Void) = { error in
+        let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: タイムラインのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
-        let successHandler: (([JSONValue]?) -> Void) = { statuses in
-            guard let tweets = statuses else { return }
+        let successHandler: ((JSON) -> Void) = { statuses in
+            guard let tweets = statuses.array else { return }
 
             if tweets.count < 1 {
                 self.maxId = ""
@@ -94,9 +94,9 @@ final class TimeLineViewController: MainViewController {
         }
         if modeBtn.title == "ホーム" {
             if !moreflag {
-                self.swifter.getStatusesHomeTimelineWithCount(41, includeEntities: true, success: successHandler, failure: failureHandler)
+                self.swifter.getHomeTimeline(count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
             } else {
-                self.swifter.getStatusesHomeTimelineWithCount(41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
+                self.swifter.getHomeTimeline(count: 41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
             }
         } else {
             var count: Int = 0
@@ -108,9 +108,9 @@ final class TimeLineViewController: MainViewController {
                 count += 1
             }
             if !moreflag {
-                self.swifter.getListsStatusesWithListID(listIDs[selectedMode - 1], ownerScreenName: self.account?.username ?? "", sinceID: nil, maxID: nil, count: 41, includeEntities: true, includeRTs: true, success: successHandler, failure: failureHandler)
+                self.swifter.listTweets(for: .id(listIDs[selectedMode - 1]), sinceID: nil, maxID: nil, count: 41, includeEntities: true, includeRTs: true, success: successHandler, failure: failureHandler)
             } else {
-                self.swifter.getListsStatusesWithListID(listIDs[selectedMode - 1], ownerScreenName: self.account?.username ?? "", sinceID: nil, maxID: self.maxId, count: 41, includeEntities: true, includeRTs: true, success: successHandler, failure: failureHandler)
+                self.swifter.listTweets(for: .id(listIDs[selectedMode - 1]), sinceID: nil, maxID: self.maxId, count: 41, includeEntities: true, includeRTs: true, success: successHandler, failure: failureHandler)
             }
         }
     }
