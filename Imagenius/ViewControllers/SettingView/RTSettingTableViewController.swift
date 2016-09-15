@@ -12,6 +12,9 @@ class RTSettingTableViewController: UITableViewController {
 
     let labelText = ["文章そのまま", "\"RT\"をつける", "\"RT:\"をつける", "\"RT>\"をつける", "\"\"で囲む", "URLのみ引用する"]
     
+    var rtMode = 5
+    let saveData = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelection = false
@@ -20,6 +23,11 @@ class RTSettingTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        if saveData.object(forKey: "rtMode") != nil {
+            rtMode = saveData.object(forKey: "rtMode") as! Int
+        } else {
+            saveData.set(rtMode, forKey: "rtMode")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,8 +56,7 @@ class RTSettingTableViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = labelText[indexPath.row]
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if indexPath.row == appDelegate.rtMode {
+        if indexPath.row == rtMode {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -59,8 +66,8 @@ class RTSettingTableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.rtMode = indexPath.row
+        rtMode = indexPath.row
+        saveData.set(rtMode, forKey: "rtMode")
         tableView.reloadData()
     }
     

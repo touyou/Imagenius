@@ -161,7 +161,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     @IBAction func pushUser() {
-        selectedUser = self.account?.username
+        selectedUser = self.account?.username!
         performSegue(withIdentifier: "toUserView", sender: nil)
     }
     
@@ -289,9 +289,14 @@ extension MainViewController: SWTableViewCellDelegate {
                 })
             }))
             alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(action) -> Void in
-                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                if appDelegate.rtMode >= Settings.RTWord.count {
-                    switch (appDelegate.rtMode) {
+                var rtMode: Int = 5
+                if self.saveData.object(forKey: "rtMode") != nil {
+                    rtMode = self.saveData.object(forKey: "rtMode") as! Int
+                } else {
+                    self.saveData.set(rtMode, forKey: "rtMode")
+                }
+                if rtMode >= Settings.RTWord.count {
+                    switch (rtMode) {
                     case 4:
                         self.replyStr = "\"" + tweet.text! + "\""
                     case 5:
@@ -299,7 +304,7 @@ extension MainViewController: SWTableViewCellDelegate {
                     default: break
                     }
                 } else {
-                    self.replyStr = Settings.RTWord[appDelegate.rtMode] + tweet.text!
+                    self.replyStr = Settings.RTWord[rtMode] + tweet.text!
                 }
                 self.performSegue(withIdentifier: "toTweetView", sender: nil)
             }))
@@ -309,7 +314,7 @@ extension MainViewController: SWTableViewCellDelegate {
             alertController.popoverPresentationController?.sourceView = self.view
             alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
             
-            
+            present(alertController, animated: true, completion: nil)
             break
         case 3:
             // ツイートの削除

@@ -87,7 +87,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         // 引っ張ってロードするやつ
         userTimeLine.addSubview(refreshControl)
 
-        userIDLabel.text = "@\(self.user)"
+        userIDLabel.text = "@\(self.user!)"
         // ボタン周り
         followButton.isHidden = true
         unfollowButton.isHidden = true
@@ -104,7 +104,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                     if self.accounts.count != 0 {
                         self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
                         self.swifter = Swifter(account: self.account!)
-                        self.title = "@\(self.user)のツイート一覧"
+                        self.title = "@\(self.user!)のツイート一覧"
                         
                         self.myself = self.account?.username
                         

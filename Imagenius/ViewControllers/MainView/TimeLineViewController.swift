@@ -70,6 +70,7 @@ final class TimeLineViewController: MainViewController {
     
     override func load(_ moreflag: Bool) {
         let failureHandler: ((Error) -> Void) = { error in
+            print(error)
             Utility.simpleAlert("Error: タイムラインのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
         let successHandler: ((JSON) -> Void) = { statuses in

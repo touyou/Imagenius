@@ -74,7 +74,7 @@ struct Tweet {
         retweetCount = tweet["retweet_count"]?.integer
         idStr = tweet["id_str"]?.string
         userMentions = tweet["entities"]!["user_mentions"].array
-        urlStr = "https://twitter.com/\(screenNameNoat)/status/\(idStr)"
+        urlStr = "https://twitter.com/\(screenNameNoat!)/status/\(idStr!)"
 
         // 添付ファイル情報
         guard let tweetMedia = tweet["extended_entities"] else {

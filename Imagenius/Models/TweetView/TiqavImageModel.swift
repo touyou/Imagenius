@@ -29,7 +29,7 @@ class TiqavImageModel: NSObject {
             let json = SwiftyJSON.JSON(object)
 //            print(json)
             json.forEach({(_, json) in
-                let url = URL(string: "http://img.tiqav.com/" + String(describing: json["id"]) + "." + json["ext"].string!)
+                let url = URL(string: "http://img.tiqav.com/" + json["id"].rawString()! + "." + json["ext"].rawString()!)
                 self.urls.value.append(url!)
             })
 //            if json["items"].array != nil {
