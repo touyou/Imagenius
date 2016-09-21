@@ -13,8 +13,8 @@ target 'Imagenius' do
     pod 'SDWebImage'
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git'
-    pod 'Realm', git: 'git@github.com:realm/realm-cocoa.git', branch: 'master', :submodules => true
-    pod 'RealmSwift', git: 'git@github.com:realm/realm-cocoa.git', branch: 'master', :submodules => true
+    pod 'Realm'
+    pod 'RealmSwift'
     pod 'RxSwift', '~> 3.0.0.alpha.1'
     pod 'RxCocoa', '~> 3.0.0.alpha.1'
 end

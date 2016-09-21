@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>カメラで撮った写真をツイートに添付します。</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>アルバムの写真をツイートに添付したり、Twitter上の画像を保存します。</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ja_JP</string>
 	<key>CFBundleExecutable</key>
@@ -19,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.1</string>
+	<string>2.4.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.2.1.0</string>
+	<string>2.4.0.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,6 +27,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>画像のシェア機能で使用します。</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>日付表示の操作に使用します。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>カメラで撮った写真をツイートに添付します。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>アルバムの写真をツイートに添付したり、Twitter上の画像を保存します。</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -1,6 +1,0 @@
-framework module Pods_Imagenius {
-  umbrella header "Pods-Imagenius-umbrella.h"
-
-  export *
-  module * { export * }
-}

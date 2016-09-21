@@ -392,15 +392,41 @@ extension UserViewController: SWTableViewCellDelegate {
             break
         case 2:
             // retweet
-            if tweet.retweeted ?? false {
-                // (cell.rightUtilityButtons[2] as! UIButton).backgroundColor = Settings.Colors.selectedColor
-                break
-            }
-            swifter.retweetTweet(forID: tweet.idStr ?? "", success: {
-                statuses in
-                (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
-                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
-            })
+            let alertController = UIAlertController(title: "リツイート", message: "リツイートの種類を選択してください。", preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "公式リツイート", style: .default, handler: {(action) -> Void in
+                self.swifter.retweetTweet(forID: tweet.idStr ?? "", success: {
+                    statuses in
+                    (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
+                })
+            }))
+            alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(action) -> Void in
+                var rtMode: Int = 5
+                if self.saveData.object(forKey: "rtMode") != nil {
+                    rtMode = self.saveData.object(forKey: "rtMode") as! Int
+                } else {
+                    self.saveData.set(rtMode, forKey: "rtMode")
+                }
+                if rtMode >= Settings.RTWord.count {
+                    switch (rtMode) {
+                    case 4:
+                        self.replyStr = "\"" + tweet.text! + "\""
+                    case 5:
+                        self.replyStr = tweet.urlStr
+                    default: break
+                    }
+                } else {
+                    self.replyStr = Settings.RTWord[rtMode] + tweet.text!
+                }
+                self.performSegue(withIdentifier: "toTweetView", sender: nil)
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            // iPad用
+            alertController.popoverPresentationController?.sourceView = self.view
+            alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
+            
+            present(alertController, animated: true, completion: nil)
             break
         case 3:
             // ツイートの削除
