@@ -1,21 +1,21 @@
 PODS:
   - Alamofire (4.0.0)
   - DZNEmptyDataSet (1.8.1)
-  - Google-Mobile-Ads-SDK (7.10.1)
+  - Google-Mobile-Ads-SDK (7.11.0)
   - KTCenterFlowLayout (1.3)
-  - Realm (1.0.2):
-    - Realm/Headers (= 1.0.2)
-  - Realm/Headers (1.0.2)
-  - RealmSwift (1.0.2):
-    - Realm (= 1.0.2)
+  - Realm (1.1.0):
+    - Realm/Headers (= 1.1.0)
+  - Realm/Headers (1.1.0)
+  - RealmSwift (1.1.0):
+    - Realm (= 1.1.0)
   - RegExCategories (1.0)
-  - RxBlocking (3.0.0.alpha.1):
-    - RxSwift (~> 3.0.0.alpha.1)
-  - RxCocoa (3.0.0.alpha.1):
-    - RxSwift (~> 3.0.0.alpha.1)
-  - RxSwift (3.0.0.alpha.1)
-  - RxTests (3.0.0.alpha.1):
-    - RxSwift (~> 3.0.0.alpha.1)
+  - RxBlocking (3.0.0-beta.1):
+    - RxSwift (~> 3.0.0-beta.1)
+  - RxCocoa (3.0.0-beta.1):
+    - RxSwift (~> 3.0.0-beta.1)
+  - RxSwift (3.0.0-beta.1)
+  - RxTests (3.0.0-beta.1):
+    - RxSwift (~> 3.0.0-beta.1)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -28,8 +28,8 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - Google-Mobile-Ads-SDK (~> 7.0)
   - KTCenterFlowLayout
-  - Realm (from `git@github.com:realm/realm-cocoa.git`, branch `master`)
-  - RealmSwift (from `git@github.com:realm/realm-cocoa.git`, branch `master`)
+  - Realm
+  - RealmSwift
   - RegExCategories (~> 1.0)
   - RxBlocking (~> 3.0.0.alpha.1)
   - RxCocoa (~> 3.0.0.alpha.1)
@@ -41,47 +41,31 @@ DEPENDENCIES:
   - TTTAttributedLabel
 
 EXTERNAL SOURCES:
-  Realm:
-    :branch: master
-    :git: git@github.com:realm/realm-cocoa.git
-    :submodules: true
-  RealmSwift:
-    :branch: master
-    :git: git@github.com:realm/realm-cocoa.git
-    :submodules: true
   SwiftyJSON:
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
-  Realm:
-    :commit: c508dee7e99411e74370de7dda89461c1688c611
-    :git: git@github.com:realm/realm-cocoa.git
-    :submodules: true
-  RealmSwift:
-    :commit: c508dee7e99411e74370de7dda89461c1688c611
-    :git: git@github.com:realm/realm-cocoa.git
-    :submodules: true
   SwiftyJSON:
-    :commit: 21e2e6ba20cc2c0e35162798f0729bb0c4cbe23d
+    :commit: 73b523a107b798021ca9af74b5f7c20e435c8809
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Google-Mobile-Ads-SDK: c8da9e592fe43d9b47ef86b018cadb71af53f6b3
+  Google-Mobile-Ads-SDK: 0e864ab93ba1ff8afe92e16de0e4e883f581ed33
   KTCenterFlowLayout: 2905970d36c653d9a7736c20bfa0d37dcf797d6b
-  Realm: 2948cfa3a05b7acc446abc4c124d443df646c8de
-  RealmSwift: 4816c8608630a9a00bba6d726bb30b4bab6dd6bf
+  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
+  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
-  RxBlocking: 7ef3e27c267d71ec7d69165dafcf3408a23c7507
-  RxCocoa: 37b3b167eaa14446a315493ef6a188b277942b15
-  RxSwift: 0bccfee1e979c1b72a5d1dffdf96119303b5d111
-  RxTests: c6366958f385debc28202dbe7480f96fa5fef131
+  RxBlocking: 422944880fe63b432c459dc87be7c8178dcf45f3
+  RxCocoa: 8cecf331302b8ae5381bbab1bccba4ede2eae6a8
+  RxSwift: 0823e8d7969c23bfa9ddfb2afa4881e424a1a710
+  RxTests: 819cbca750007349f03cfdb89bc07d412f67ab96
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: cc401a3100022b976d48c0af3eca737592576fe9
+PODFILE CHECKSUM: 2a9b895f668f2982468e810c1dc71b37b90f06b4
 
 COCOAPODS: 1.0.1
