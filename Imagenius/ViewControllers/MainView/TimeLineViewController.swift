@@ -52,6 +52,9 @@ final class TimeLineViewController: MainViewController {
         if swifter != nil {
             let failureHandler: ((Error) -> Void) = { error in
                 Utility.simpleAlert("Error: リストのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
+                self.modeList = ["ホーム"]
+                self.listIDs = []
+                self.selectedMode = 0
             }
             let successHandler: ((JSON) -> Void) = { statuses in
                 guard let modes = statuses.array else { return }
