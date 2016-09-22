@@ -26,7 +26,7 @@ final class FavoriteResultViewController: UIViewController {
     }
     
     @IBAction func cancelBtn() {
-        self.navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deleteBtn() {
@@ -34,7 +34,7 @@ final class FavoriteResultViewController: UIViewController {
         actionCtrl.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         actionCtrl.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             self.selectedItem.delete()
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }))
         present(actionCtrl, animated: true, completion: nil)
     }

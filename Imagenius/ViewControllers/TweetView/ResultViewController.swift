@@ -51,7 +51,7 @@ final class ResultViewController: UIViewController {
     }
     // MARK: Cancelボタンのとき
     @IBAction func pushCancel() {
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
     }
     // MARK: Shareボタン
     @IBAction func shareImage() {
