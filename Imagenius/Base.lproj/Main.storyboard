@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="26P-aR-0ph">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="26P-aR-0ph">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10N-GL-VJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1148" y="1186"/>
+            <point key="canvasLocation" x="-1623" y="2411"/>
         </scene>
         <!--Tweet View Controller-->
         <scene sceneID="roj-uz-swW">
@@ -349,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8B-k9-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1203" y="66"/>
+            <point key="canvasLocation" x="-1081" y="6"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cx8-aM-3Hq">
@@ -365,7 +365,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJx-2I-kKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="66"/>
+            <point key="canvasLocation" x="-87" y="6"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="PdO-ML-Ggr">
@@ -429,7 +429,142 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHE-g6-443" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1192.5" y="1868.6619718309857"/>
+            <point key="canvasLocation" x="-4042" y="1648"/>
+        </scene>
+        <!--リスト-->
+        <scene sceneID="Ijt-zx-PN0">
+            <objects>
+                <navigationController id="2KU-1G-rK7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="リスト" image="timeline" id="Yfw-M4-9hh"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uuk-ag-Fcd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BHT-1Y-1Kj" kind="relationship" relationship="rootViewController" id="5By-jk-aQ4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dga-yq-TgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4783" y="2333"/>
+        </scene>
+        <!--Imagenius-->
+        <scene sceneID="dlJ-ds-MJj">
+            <objects>
+                <viewController id="BHT-1Y-1Kj" customClass="ListAllViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2lG-Qh-dgO"/>
+                        <viewControllerLayoutGuide type="bottom" id="7WE-L5-GyA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vTa-jm-oId">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WT4-he-mre">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="s8Z-Ql-AW2">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s8Z-Ql-AW2" id="eTM-Rs-jYa">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WT4-he-mre" secondAttribute="trailing" id="58g-Ru-W86"/>
+                            <constraint firstItem="WT4-he-mre" firstAttribute="top" secondItem="vTa-jm-oId" secondAttribute="top" id="7OM-up-aox"/>
+                            <constraint firstAttribute="bottom" secondItem="WT4-he-mre" secondAttribute="bottom" id="RAr-08-oCV"/>
+                            <constraint firstItem="WT4-he-mre" firstAttribute="leading" secondItem="vTa-jm-oId" secondAttribute="leading" id="VLH-YI-n6b"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="リスト" image="timeline" id="ueX-A8-eu2"/>
+                    <navigationItem key="navigationItem" title="Imagenius" id="5t1-eS-qDL">
+                        <barButtonItem key="leftBarButtonItem" image="setting_icon" id="Fes-lq-k47">
+                            <connections>
+                                <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="fWd-11-xJG"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="lzL-fe-xAw">
+                                <connections>
+                                    <action selector="pushTweet" destination="BHT-1Y-1Kj" id="aYT-6C-RPy"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="use_white-1" id="TxN-SO-ezP">
+                                <connections>
+                                    <action selector="pushUser" destination="BHT-1Y-1Kj" id="18Y-6y-f1j"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="listTableView" destination="WT4-he-mre" id="DA4-LC-ygD"/>
+                        <segue destination="M1o-Zj-fGm" kind="show" identifier="toUserView" id="c0J-JK-mvf"/>
+                        <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="AkY-Iw-KeN"/>
+                        <segue destination="n81-jd-mW8" kind="show" identifier="watchList" id="4ae-T7-Qfy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A0u-Df-IV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4042.4000000000001" y="2332.9835082458771"/>
+        </scene>
+        <!--リスト-->
+        <scene sceneID="rTq-zB-ePf">
+            <objects>
+                <viewController id="n81-jd-mW8" customClass="WatchListViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FSM-2b-RTD"/>
+                        <viewControllerLayoutGuide type="bottom" id="9vu-18-4dT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bDq-bA-GXG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AOg-A2-dnL">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AOg-A2-dnL" firstAttribute="centerX" secondItem="bDq-bA-GXG" secondAttribute="centerX" id="6MF-Nx-EMi"/>
+                            <constraint firstItem="AOg-A2-dnL" firstAttribute="centerY" secondItem="bDq-bA-GXG" secondAttribute="centerY" id="crW-9X-AfL"/>
+                            <constraint firstItem="AOg-A2-dnL" firstAttribute="leading" secondItem="bDq-bA-GXG" secondAttribute="leading" id="igh-ZE-A9Y"/>
+                            <constraint firstItem="AOg-A2-dnL" firstAttribute="top" secondItem="bDq-bA-GXG" secondAttribute="top" id="wWk-79-WED"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="リスト" image="timeline" id="Y4m-6J-fAr"/>
+                    <navigationItem key="navigationItem" id="5MH-8V-qJY">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="eFM-AA-HRk">
+                                <connections>
+                                    <action selector="pushTweet" destination="n81-jd-mW8" id="jrx-na-T5Q"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="use_white-1" id="m2l-nP-Z9w">
+                                <connections>
+                                    <action selector="pushUser" destination="n81-jd-mW8" id="lvh-MC-iPc"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="timelineTableView" destination="AOg-A2-dnL" id="CIe-RD-Sfw"/>
+                        <segue destination="Ah1-gb-JqM" kind="show" identifier="openWebView" id="2Ct-0D-W2c"/>
+                        <segue destination="8MN-uY-k0b" kind="show" identifier="toTweetDetailView" id="FlQ-fP-BF8"/>
+                        <segue destination="M1o-Zj-fGm" kind="show" identifier="toUserView" id="dhb-IP-X2z"/>
+                        <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="03G-jc-txb"/>
+                        <segue destination="Mo0-hY-THK" kind="show" identifier="toGifView" id="yFm-hm-O88"/>
+                        <segue destination="sk6-zJ-xoB" kind="show" identifier="toPreView" id="36j-Fe-vB9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdH-aR-qcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3330" y="2333"/>
         </scene>
         <!--設定-->
         <scene sceneID="yob-g6-xlp">
@@ -482,7 +617,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-hu-nFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="4519"/>
+            <point key="canvasLocation" x="-5674" y="3005"/>
         </scene>
         <!--設定-->
         <scene sceneID="vbV-cT-cme">
@@ -513,7 +648,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNQ-M4-cbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-308" y="4864"/>
+            <point key="canvasLocation" x="-4783" y="3005"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="qwF-iL-A2a">
@@ -562,7 +697,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auy-zc-Tfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-198" y="2199"/>
+            <point key="canvasLocation" x="-2506" y="1648"/>
         </scene>
         <!--Image Pre View Controller-->
         <scene sceneID="YBK-Pj-afE">
@@ -572,7 +707,7 @@
                     <navigationItem key="navigationItem" id="9m3-NS-PKr">
                         <nil key="title"/>
                         <pageControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" id="VeU-2A-phd">
-                            <rect key="frame" x="20" y="3.5" width="524" height="37"/>
+                            <rect key="frame" x="8" y="4" width="315" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="currentPageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </pageControl>
@@ -588,7 +723,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUK-ih-sO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="2412"/>
+            <point key="canvasLocation" x="-767" y="2411"/>
         </scene>
         <!--Pre View Controller-->
         <scene sceneID="Z8W-jf-eio">
@@ -631,7 +766,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPA-lx-I1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824" y="2412"/>
+            <point key="canvasLocation" x="105" y="2410"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="Vwu-JM-YlT">
@@ -684,7 +819,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wyv-r0-AS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="4751"/>
+            <point key="canvasLocation" x="-2506" y="2411"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="ghw-bT-1gv">
@@ -760,7 +895,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="DHA-ah-07z" firstAttribute="top" secondItem="ckF-l0-gIN" secondAttribute="bottom" constant="8" id="4sD-dP-Gz6"/>
                                     <constraint firstItem="zjR-Jg-rVe" firstAttribute="top" secondItem="4tY-A5-SdE" secondAttribute="bottom" constant="3" id="7fM-7y-nqi"/>
                                     <constraint firstAttribute="bottom" secondItem="DHA-ah-07z" secondAttribute="bottom" id="94z-Gg-oY4"/>
                                     <constraint firstItem="ckF-l0-gIN" firstAttribute="leading" secondItem="Eoj-S3-5c4" secondAttribute="leading" constant="25" id="9ZF-rN-gP0"/>
@@ -775,6 +909,7 @@
                                     <constraint firstItem="DHA-ah-07z" firstAttribute="leading" secondItem="Eoj-S3-5c4" secondAttribute="leading" id="eRJ-u0-Mzc"/>
                                     <constraint firstItem="4tY-A5-SdE" firstAttribute="top" secondItem="Eoj-S3-5c4" secondAttribute="top" constant="28" id="gBs-Bv-mZo"/>
                                     <constraint firstItem="a31-tJ-E27" firstAttribute="centerX" secondItem="Eoj-S3-5c4" secondAttribute="centerX" id="jF2-uz-YDs"/>
+                                    <constraint firstItem="DHA-ah-07z" firstAttribute="top" secondItem="ckF-l0-gIN" secondAttribute="bottom" constant="8" id="kec-iQ-pqs"/>
                                     <constraint firstItem="mPD-Lj-JsZ" firstAttribute="top" secondItem="Eoj-S3-5c4" secondAttribute="top" constant="28" id="lKL-vX-EQc"/>
                                     <constraint firstAttribute="trailing" secondItem="ckF-l0-gIN" secondAttribute="trailing" constant="25" id="vcH-88-OdX"/>
                                 </constraints>
@@ -815,7 +950,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvV-pX-OmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-181" y="-190"/>
+            <point key="canvasLocation" x="-2506" y="894"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="f1t-Rp-0f9">
@@ -846,20 +981,13 @@
                             <constraint firstItem="BNP-VV-Jor" firstAttribute="centerX" secondItem="502-dl-gfV" secondAttribute="centerX" id="cJu-TX-DqN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="タイムライン" image="timeline" id="50E-ll-6yH"/>
+                    <tabBarItem key="tabBarItem" title="タイムライン" image="home" id="50E-ll-6yH"/>
                     <navigationItem key="navigationItem" title="Imagenius" id="oHD-cH-Ohk">
-                        <leftBarButtonItems>
-                            <barButtonItem image="setting_icon" id="6rl-V7-teF">
-                                <connections>
-                                    <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="hPE-w5-f9m"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="ホーム" id="uGS-lL-cTZ">
-                                <connections>
-                                    <action selector="pushModeBtn" destination="4am-0x-jf5" id="PkG-gs-wD9"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="setting_icon" id="6rl-V7-teF">
+                            <connections>
+                                <segue destination="tsV-LL-8hz" kind="show" identifier="toSetting" id="hPE-w5-f9m"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="compose" id="Iv1-au-KxH">
                                 <connections>
@@ -875,7 +1003,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="modeBtn" destination="uGS-lL-cTZ" id="tKk-J5-YlC"/>
                         <outlet property="timelineTableView" destination="BNP-VV-Jor" id="t2B-fp-gFZ"/>
                         <segue destination="Nyu-L3-XkN" kind="presentation" identifier="toTweetView" id="X78-Y3-guK"/>
                         <segue destination="sk6-zJ-xoB" kind="show" identifier="toPreView" id="00H-L2-gAg"/>
@@ -888,7 +1015,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shp-g9-pc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1205" y="994"/>
+            <point key="canvasLocation" x="-4041" y="894"/>
         </scene>
         <!--Imagenius-->
         <scene sceneID="XGA-g8-8f5">
@@ -906,17 +1033,18 @@
                     <connections>
                         <segue destination="P85-Ym-KbL" kind="relationship" relationship="viewControllers" id="NTO-2f-Nj0"/>
                         <segue destination="pV9-qt-0Uh" kind="relationship" relationship="viewControllers" id="cey-dt-8lu"/>
+                        <segue destination="2KU-1G-rK7" kind="relationship" relationship="viewControllers" id="MH7-xh-Rsq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74K-ne-cwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2921.25" y="1342.6056338028168"/>
+            <point key="canvasLocation" x="-5673" y="894"/>
         </scene>
         <!--タイムライン-->
         <scene sceneID="RWs-iv-72y">
             <objects>
                 <navigationController id="P85-Ym-KbL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="タイムライン" image="timeline" id="UhW-zy-tmj"/>
+                    <tabBarItem key="tabBarItem" title="タイムライン" image="home" id="UhW-zy-tmj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ht9-K4-7SV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -927,7 +1055,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgP-ZE-Rwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2026.875" y="994.01408450704218"/>
+            <point key="canvasLocation" x="-4782" y="894"/>
         </scene>
         <!--Tiqav Image View Controller-->
         <scene sceneID="a8w-l9-bB4">
@@ -995,7 +1123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4f4-Uh-5HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2649" y="66"/>
+            <point key="canvasLocation" x="881" y="6"/>
         </scene>
         <!--選択画像-->
         <scene sceneID="0Io-2V-WT8">
@@ -1083,7 +1211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-Jc-LbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3355" y="66"/>
+            <point key="canvasLocation" x="2089" y="6"/>
         </scene>
         <!--リプライ-->
         <scene sceneID="ltq-B2-S5g">
@@ -1100,7 +1228,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYB-Ht-AGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2026.875" y="1868.6619718309857"/>
+            <point key="canvasLocation" x="-4783" y="1649"/>
         </scene>
         <!--Info Container View Controller-->
         <scene sceneID="iM3-iJ-RFP">
@@ -1148,7 +1276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hr5-l8-BZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3582" y="3709"/>
+            <point key="canvasLocation" x="-4042" y="30"/>
         </scene>
         <!--Info Page View Controller-->
         <scene sceneID="OPf-FP-E11">
@@ -1156,7 +1284,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="YED-98-ax8" customClass="InfoPageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DWJ-vK-KEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2896" y="3703"/>
+            <point key="canvasLocation" x="-3282" y="29"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="BzN-Xs-iKg">
@@ -1188,7 +1316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHq-Oa-4xC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2250" y="3703"/>
+            <point key="canvasLocation" x="-2505" y="29"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x1A-dO-wro">
@@ -1206,7 +1334,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDG-pd-Y5m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="1023"/>
+            <point key="canvasLocation" x="-1082" y="894"/>
         </scene>
         <!--お気に入り画像-->
         <scene sceneID="fdO-PJ-pgL">
@@ -1279,7 +1407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYL-nH-yUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2826" y="1023"/>
+            <point key="canvasLocation" x="-87" y="894"/>
         </scene>
         <!--選択画像-->
         <scene sceneID="As8-xB-bOv">
@@ -1329,13 +1457,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWH-v3-bUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3540" y="1023"/>
+            <point key="canvasLocation" x="881" y="894"/>
         </scene>
     </scenes>
     <resources>
         <image name="camera_button" width="40" height="40"/>
         <image name="cancel_button" width="50" height="50"/>
         <image name="gallery_button" width="40" height="40"/>
+        <image name="home" width="22" height="22"/>
         <image name="reply" width="22" height="22"/>
         <image name="search_button" width="50" height="50"/>
         <image name="setting_icon" width="24" height="24"/>
@@ -1347,14 +1476,14 @@
         <image name="use_white-1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Veg-Gf-dZD"/>
-        <segue reference="lne-Pd-CqX"/>
-        <segue reference="WQ3-wt-xNC"/>
         <segue reference="XOA-Ic-vLY"/>
-        <segue reference="guU-kt-TjK"/>
-        <segue reference="Bba-3S-2Fz"/>
+        <segue reference="fWd-11-xJG"/>
+        <segue reference="dhb-IP-X2z"/>
         <segue reference="21d-lg-iCt"/>
+        <segue reference="Bba-3S-2Fz"/>
         <segue reference="7c0-L8-Ix4"/>
+        <segue reference="Veg-Gf-dZD"/>
         <segue reference="2qG-yx-SFg"/>
+        <segue reference="guU-kt-TjK"/>
     </inferredMetricsTieBreakers>
 </document>

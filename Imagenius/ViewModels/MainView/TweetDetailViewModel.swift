@@ -103,11 +103,11 @@ extension TweetDetailViewModel: UITableViewDataSource {
         return tweetArray[section].count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tweetArray[(indexPath as NSIndexPath).section].count <= (indexPath as NSIndexPath).row || (indexPath as NSIndexPath).row < 0 {
+        if tweetArray[indexPath.section].count <= indexPath.row || indexPath.row < 0 {
             return UITableViewCell()
         }
 
-        let tweet = tweetArray[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+        let tweet = tweetArray[indexPath.section][indexPath.row]
 
         let cell: TweetVarViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TweetVarViewCell ?? TweetVarViewCell()
         cell.tweetLabel.delegate = viewController
@@ -115,7 +115,7 @@ extension TweetDetailViewModel: UITableViewDataSource {
 
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         cell.tweetImgView.addGestureRecognizer(tapGesture)
-        cell.tweetImgView.tag = (indexPath as NSIndexPath).row + 10000 * (indexPath as NSIndexPath).section
+        cell.tweetImgView.tag = indexPath.row + 10000 * indexPath.section
 
         cell.rightUtilityButtons = viewController.rightButtons(tweet) as [AnyObject]
         cell.leftUtilityButtons = viewController.leftButtons() as [AnyObject]

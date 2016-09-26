@@ -22,6 +22,8 @@
 		46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */; };
 		4634CB4B1CBA5FEB00E9E834 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */; };
 		4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */; };
+		4652B0CE1D98B96E00B6E9CB /* ListAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */; };
+		4652B0D01D98C51C00B6E9CB /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */; };
 		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
 		468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687225F1CB25F4B00DEF2DB /* Icon-40.png */; };
 		468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722601CB25F4B00DEF2DB /* Icon-40@2x.png */; };
@@ -159,10 +161,10 @@
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46312B201CB6505F009183D9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewController.swift; path = ViewControllers/MainView/UserViewController.swift; sourceTree = "<group>"; };
-		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ViewModels/MainView/UserViewModel.swift; sourceTree = "<group>"; };
+		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserViewModel.swift; path = ViewModels/MainView/UserViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		46312B251CB69C1E009183D9 /* SettingBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingBannerCell.swift; path = Views/SettingView/SettingBannerCell.swift; sourceTree = "<group>"; };
 		46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetDetailViewController.swift; path = ViewControllers/MainView/TweetDetailViewController.swift; sourceTree = "<group>"; };
-		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetDetailViewModel.swift; path = ViewModels/MainView/TweetDetailViewModel.swift; sourceTree = "<group>"; };
+		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TweetDetailViewModel.swift; path = ViewModels/MainView/TweetDetailViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4634CB4A1CBA5FEB00E9E834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TweetTableViewCell.xib; sourceTree = "<group>"; };
 		4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateExtension.swift; path = Utility/NSDateExtension.swift; sourceTree = "<group>"; };
 		463FE90D1D41AB4900F6245E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/RxCocoa/RxCocoa.framework"; sourceTree = "<group>"; };
@@ -173,6 +175,8 @@
 		464A80481C799BE6006100DB /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		464A80491C799BE6006100DB /* SWTableViewCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWTableViewCell.framework; path = "Pods/../build/Debug-iphoneos/SWTableViewCell.framework"; sourceTree = "<group>"; };
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
+		4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListAllViewController.swift; path = ViewControllers/MainView/ListAllViewController.swift; sourceTree = "<group>"; };
+		4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchListViewController.swift; path = ViewControllers/MainView/WatchListViewController.swift; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		467549E71C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -200,7 +204,7 @@
 		468722B31CB2606600DEF2DB /* InfoContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoContainerViewController.swift; path = ViewControllers/InfoView/InfoContainerViewController.swift; sourceTree = "<group>"; };
 		468722B41CB2606600DEF2DB /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPageViewController.swift; path = ViewControllers/InfoView/InfoPageViewController.swift; sourceTree = "<group>"; };
 		468722B51CB2606600DEF2DB /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = ViewControllers/InfoView/InfoViewController.swift; sourceTree = "<group>"; };
-		468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableViewController.swift; path = ViewControllers/SettingView/SettingTableViewController.swift; sourceTree = "<group>"; };
+		468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingTableViewController.swift; path = ViewControllers/SettingView/SettingTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		468722BB1CB2609100DEF2DB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = ViewControllers/WebView/WebViewController.swift; sourceTree = "<group>"; };
 		468722BD1CB260C400DEF2DB /* GIFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFViewController.swift; path = ViewControllers/MainView/GIFViewController.swift; sourceTree = "<group>"; };
 		468722BE1CB260C400DEF2DB /* ImagePreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePreViewController.swift; path = ViewControllers/MainView/ImagePreViewController.swift; sourceTree = "<group>"; };
@@ -208,12 +212,12 @@
 		468722C01CB260C400DEF2DB /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreViewController.swift; path = ViewControllers/MainView/PreViewController.swift; sourceTree = "<group>"; };
 		468722C11CB260C400DEF2DB /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReplyViewController.swift; path = ViewControllers/MainView/ReplyViewController.swift; sourceTree = "<group>"; };
 		468722C21CB260C400DEF2DB /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLineViewController.swift; path = ViewControllers/MainView/TimeLineViewController.swift; sourceTree = "<group>"; };
-		468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageViewController.swift; path = ViewControllers/TweetView/TiqavImageViewController.swift; sourceTree = "<group>"; };
+		468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TiqavImageViewController.swift; path = ViewControllers/TweetView/TiqavImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		468722CA1CB260F400DEF2DB /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultViewController.swift; path = ViewControllers/TweetView/ResultViewController.swift; sourceTree = "<group>"; };
-		468722CB1CB260F400DEF2DB /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetViewController.swift; path = ViewControllers/TweetView/TweetViewController.swift; sourceTree = "<group>"; };
+		468722CB1CB260F400DEF2DB /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TweetViewController.swift; path = ViewControllers/TweetView/TweetViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		468722CF1CB2611400DEF2DB /* AVPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerView.swift; path = Views/MainView/AVPlayerView.swift; sourceTree = "<group>"; };
 		468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetVarViewCell.swift; path = Views/MainView/TweetVarViewCell.swift; sourceTree = "<group>"; };
-		468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageViewModel.swift; path = ViewModels/TweetView/TiqavImageViewModel.swift; sourceTree = "<group>"; };
+		468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TiqavImageViewModel.swift; path = ViewModels/TweetView/TiqavImageViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageModel.swift; path = Models/TweetView/TiqavImageModel.swift; sourceTree = "<group>"; };
 		468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageViewCell.swift; path = Views/TweetView/TiqavImageViewCell.swift; sourceTree = "<group>"; };
 		468722EA1CB4E0EF00DEF2DB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Constant/Settings.swift; sourceTree = "<group>"; };
@@ -237,7 +241,7 @@
 		46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTSettingTableViewController.swift; path = ViewControllers/SettingView/RTSettingTableViewController.swift; sourceTree = "<group>"; };
 		46BAE8531D0EFC990020BD82 /* TweetStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetStruct.swift; path = Utility/TweetStruct.swift; sourceTree = "<group>"; };
 		46BF12011D4F518500FFF5DD /* FavoriteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImage.swift; path = Utility/FavoriteImage.swift; sourceTree = "<group>"; };
-		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImageViewController.swift; path = ViewControllers/TweetView/FavoriteImageViewController.swift; sourceTree = "<group>"; };
+		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FavoriteImageViewController.swift; path = ViewControllers/TweetView/FavoriteImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImageViewCell.swift; path = Views/TweetView/FavoriteImageViewCell.swift; sourceTree = "<group>"; };
 		46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteResultViewController.swift; path = ViewControllers/TweetView/FavoriteResultViewController.swift; sourceTree = "<group>"; };
 		93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -577,6 +581,8 @@
 				468722C21CB260C400DEF2DB /* TimeLineViewController.swift */,
 				46312B201CB6505F009183D9 /* UserViewController.swift */,
 				46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */,
+				4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */,
+				4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -981,10 +987,12 @@
 				468722C71CB260C400DEF2DB /* ReplyViewController.swift in Sources */,
 				46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */,
 				46BF120D1D4F7AE500FFF5DD /* FavoriteResultViewController.swift in Sources */,
+				4652B0CE1D98B96E00B6E9CB /* ListAllViewController.swift in Sources */,
 				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
 				46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */,
 				468722EE1CB4E10700DEF2DB /* TwitterUtil.swift in Sources */,
 				46BF120B1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift in Sources */,
+				4652B0D01D98C51C00B6E9CB /* WatchListViewController.swift in Sources */,
 				46BF12021D4F518600FFF5DD /* FavoriteImage.swift in Sources */,
 				468722B61CB2606600DEF2DB /* InfoContainerViewController.swift in Sources */,
 				468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */,

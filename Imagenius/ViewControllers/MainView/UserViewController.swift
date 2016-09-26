@@ -242,7 +242,8 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                 self.avatarImage.layer.borderWidth = 0.19
 
                 self.userNameLabel.text = userInfo["name"].string!
-                self.userDescription.text = userInfo["description"].string!
+                let descriptionText = userInfo["description"].string! + "\n" + "フォロー数 \(userInfo["friends_count"].integer!)   フォロワー数 \(userInfo["followers_count"].integer!)"
+                self.userDescription.text = descriptionText
                 if userInfo["following"].bool != nil {
                     if userInfo["following"].bool! {
                         self.followButton.isHidden = true

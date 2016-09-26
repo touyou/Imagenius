@@ -15,6 +15,7 @@ import SWTableViewCell
 import AVKit
 import AVFoundation
 import SDWebImage
+import RegExCategories
 
 class MainViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var timelineTableView: UITableView! {
@@ -188,6 +189,13 @@ class MainViewController: UIViewController, UITableViewDelegate {
         }
     }
     func loginDone() {}
+    
+    // MARK: 単語ミュート
+    func isMute(_ text: String) -> Bool {
+//        let nsText = text as NSString
+//        let regEx = NSRegularExpression.rx("")
+        return false
+    }
 }
 
 // MARK: - DZNEmptyDataSetの設定

@@ -353,15 +353,15 @@ extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TiqavImageViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tweetImageCell", for: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
         cell.imageView.contentMode = .scaleAspectFill
-        cell.imageView.image = tweetImage[(indexPath as NSIndexPath).row]
+        cell.imageView.image = tweetImage[indexPath.row]
         return cell
     }
     func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: {
             action in
-            self.tweetImage.remove(at: (indexPath as NSIndexPath).row)
-            self.mediaIds.remove(at: (indexPath as NSIndexPath).row)
+            self.tweetImage.remove(at: indexPath.row)
+            self.mediaIds.remove(at: indexPath.row)
             if self.mediaIds.count == 0 {
                 self.tweetImageHeight.constant = 0
                 self.gifFlag = true

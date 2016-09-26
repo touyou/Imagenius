@@ -40,7 +40,7 @@ extension TiqavImageViewModel: UICollectionViewDataSource {
     // MARK: 入れるもの
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TiqavImageViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? TiqavImageViewCell ?? TiqavImageViewCell()
-        let url = urls[(indexPath as NSIndexPath).row]
+        let url = urls[indexPath.row]
         cell.imageView.contentMode = .scaleAspectFill
         cell.imageView.sd_setImage(with: url, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
         return cell

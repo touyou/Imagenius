@@ -67,13 +67,13 @@ extension FavoriteImageViewController: UICollectionViewDelegate, UICollectionVie
         let cell: FavoriteImageViewCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "fImageCell", for: indexPath) as? FavoriteImageViewCell ?? FavoriteImageViewCell()
         
         cell.imageView.contentMode = .scaleAspectFill
-        cell.imageView.image = collectionData[(indexPath as NSIndexPath).row].image
+        cell.imageView.image = collectionData[indexPath.row].image
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem = collectionData[(indexPath as NSIndexPath).row]
+        selectedItem = collectionData[indexPath.row]
         performSegue(withIdentifier: "showPreview", sender: nil)
     }
 }

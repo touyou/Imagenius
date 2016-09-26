@@ -1,8 +1,8 @@
 //
-//  TimeLineViewController.swift
+//  WatchListViewController.swift
 //  Imagenius
 //
-//  Created by 藤井陽介 on 2016/02/24.
+//  Created by 藤井陽介 on 2016/09/26.
 //  Copyright © 2016年 touyou. All rights reserved.
 //
 
@@ -10,7 +10,15 @@ import UIKit
 import SwifteriOS
 import Accounts
 
-final class TimeLineViewController: MainViewController {
+final class WatchListViewController: MainViewController {
+    var selectedListTitle: String!
+    var selectedListID: String!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.title = selectedListTitle
+    }
     
     override func load(_ moreflag: Bool) {
         let failureHandler: ((Error) -> Void) = { error in
@@ -44,9 +52,10 @@ final class TimeLineViewController: MainViewController {
             self.timelineTableView.reloadData()
         }
         if !moreflag {
-            self.swifter.getHomeTimeline(count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.listTweets(for: .id(selectedListID), sinceID: nil, maxID: nil, count: 41, includeEntities: true, includeRTs: true, success: successHandler, failure: failureHandler)
         } else {
-            self.swifter.getHomeTimeline(count: 41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.listTweets(for: .id(selectedListID), sinceID: nil, maxID: self.maxId, count: 41, includeEntities: true, includeRTs: true, success: successHandler, failure: failureHandler)
         }
+
     }
 }

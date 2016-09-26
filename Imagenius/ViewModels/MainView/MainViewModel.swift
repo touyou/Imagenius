@@ -95,10 +95,10 @@ extension MainViewModel: UITableViewDataSource {
         return tweetArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tweetArray.count <= (indexPath as NSIndexPath).row || (indexPath as NSIndexPath).row < 0 {
+        if tweetArray.count <= indexPath.row || indexPath.row < 0 {
             return UITableViewCell()
         }
-        let tweet = tweetArray[(indexPath as NSIndexPath).row]
+        let tweet = tweetArray[indexPath.row]
 
         let cell: TweetVarViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TweetVarViewCell ?? TweetVarViewCell()
         cell.tweetLabel.delegate = viewController
@@ -106,9 +106,9 @@ extension MainViewModel: UITableViewDataSource {
 
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         cell.tweetImgView.addGestureRecognizer(tapGesture)
-        cell.tweetImgView.tag = (indexPath as NSIndexPath).row
+        cell.tweetImgView.tag = indexPath.row
 
-        if (self.tweetArray.count - 1) == (indexPath as NSIndexPath).row && viewController.maxId != "" {
+        if (self.tweetArray.count - 1) == indexPath.row && viewController.maxId != "" {
             viewController.loadMore()
         }
         cell.rightUtilityButtons = viewController.rightButtons(tweet) as [AnyObject]

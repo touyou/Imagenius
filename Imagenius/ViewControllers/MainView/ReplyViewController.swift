@@ -17,20 +17,26 @@ final class ReplyViewController: MainViewController {
         }
         let successHandler: ((JSON) -> Void) = { statuses in
             guard let tweets = statuses.array else { return }
-
+            
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
                 if self.tweetArray.count >= 1 && self.maxId == self.tweetArray[self.tweetArray.count - 1].idStr ?? "" {
                     return
                 }
-                self.tweetArray.append(Tweet(tweet: tweets[0], myself: self.myself))
-                self.maxId = tweets[0]["id_str"].string
+                if !self.isMute(tweets[0]["text"].string ?? "") {
+                    self.tweetArray.append(Tweet(tweet: tweets[0], myself: self.myself))
+                    self.maxId = tweets[0]["id_str"].string
+                } else {
+                    self.maxId = ""
+                }
             } else {
                 for i in 0 ..< tweets.count - 1 {
-                    self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
+                    if !self.isMute(tweets[i]["text"].string ?? "") {
+                        self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
+                    }
                 }
-                self.maxId = tweets[tweets.count - 1]["id_str"].string
+                self.maxId = self.tweetArray[self.tweetArray.count - 1].idStr
             }
             self.viewModel.tweetArray = self.tweetArray
             self.timelineTableView.reloadData()

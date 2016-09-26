@@ -113,7 +113,7 @@ final class TiqavImageViewController: UIViewController {
 extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: 画像を選択したら
     func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[(indexPath as NSIndexPath).row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: {
+        SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[indexPath.row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: {
             (a: Int, b: Int) -> Void in
             // 何回もクリックされるのを防ぐ
             self.imageCollectionView.allowsSelection = false

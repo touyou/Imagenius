@@ -69,13 +69,13 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingButton")! as UITableViewCell
-        cell.textLabel!.text = labelTexts[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row] as? String
+        cell.textLabel!.text = labelTexts[indexPath.section][indexPath.row] as? String
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
-            switch (indexPath as NSIndexPath).row {
+            switch indexPath.row {
             case 0:// login処理
                 TwitterUtil.loginTwitter(self, success: { [unowned self] (ac) -> () in
                     self.account = ac
@@ -92,7 +92,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 break
             }
         case 1:
-            switch (indexPath as NSIndexPath).row {
+            switch indexPath.row {
             case 0:
                 // 友達に教える
                 Utility.shareSome(URL(string: "https://itunes.apple.com/us/app/imagenius/id1089595726?l=ja&ls=1&mt=8")!, text: "Imagenius", presentView: self)
@@ -105,7 +105,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 break
             }
         case 2:
-            switch (indexPath as NSIndexPath).row {
+            switch indexPath.row {
             case 0:
                 // メール送信
                 if !MFMailComposeViewController.canSendMail() {
