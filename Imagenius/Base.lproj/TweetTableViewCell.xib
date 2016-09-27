@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,15 +12,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="371"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="370.5"/>
+                <frame key="frameInset" width="600" height="370.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgB-Do-t2I" customClass="TTTAttributedLabel">
-                        <rect key="frame" x="68" y="26" width="524" height="120.5"/>
                         <attributedString key="attributedText">
                             <fragment content="tweet label">
                                 <attributes>
-                                    <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <font key="NSFont" size="15" name="HiraginoSans-W0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
@@ -29,37 +28,31 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ya-0o-gQa">
-                        <rect key="frame" x="181" y="6" width="120" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" identifier="UserIDLabelWidth" id="0oC-hv-yej"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.3294117647" green="0.3294117647" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.3294117647" green="0.3294117647" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jQ-En-YDS">
-                        <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" identifier="UserImgViewWidth" id="8pt-Ew-L4e"/>
                             <constraint firstAttribute="height" constant="50" identifier="UserImgViewHeight" id="xhP-Oh-oPo"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jY-J2-yWU">
-                        <rect key="frame" x="68" y="154" width="524" height="200"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GUJ-ct-RUD">
-                                <rect key="frame" x="0.0" y="0.0" width="524" height="200"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GUJ-ct-RUD"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlC-wM-09F">
-                                <rect key="frame" x="0.0" y="100" width="524" height="0.0"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="shadowColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MlC-wM-09F" firstAttribute="width" secondItem="8jY-J2-yWU" secondAttribute="width" identifier="ImageCountLabelWidth" id="50K-9k-det"/>
                             <constraint firstAttribute="height" constant="200" identifier="TweetSubViewHeight" id="8fH-hn-SmD"/>
@@ -72,23 +65,28 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fn2-om-Ab9">
-                        <rect key="frame" x="66" y="6" width="115" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="115" identifier="UserLabelWidth" id="aFs-QQ-w7k"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX:XX:XX" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRZ-Ha-kFM">
-                        <rect key="frame" x="536" y="6" width="56" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rtbatch" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-dE-aBK">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="O5Z-q1-0h9"/>
+                            <constraint firstAttribute="height" constant="20" id="nea-4b-4JD"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="fn2-om-Ab9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" identifier="UserLabelTop" id="1M6-BY-PIa"/>
+                    <constraint firstItem="bZI-dE-aBK" firstAttribute="centerX" secondItem="2jQ-En-YDS" secondAttribute="centerX" constant="20" id="2i1-6U-0pl"/>
                     <constraint firstItem="8jY-J2-yWU" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-8" identifier="TweetSubViewBottom" id="6GF-1y-Hkw"/>
                     <constraint firstItem="fn2-om-Ab9" firstAttribute="leading" secondItem="2jQ-En-YDS" secondAttribute="trailing" constant="6" identifier="UserLabelLeading" id="B4h-Zz-qGq"/>
                     <constraint firstItem="2jQ-En-YDS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" identifier="UserImgViewTop" id="GmP-wL-NKI"/>
@@ -104,10 +102,12 @@
                     <constraint firstAttribute="trailingMargin" secondItem="zgB-Do-t2I" secondAttribute="trailing" identifier="TweetLabelTrailing" id="nhe-do-b5Z"/>
                     <constraint firstItem="8ya-0o-gQa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" identifier="UserIDLabelTop" id="pp0-wP-Pdf"/>
                     <constraint firstItem="8ya-0o-gQa" firstAttribute="leading" secondItem="fn2-om-Ab9" secondAttribute="trailing" identifier="UserIDLabelLeading" id="ypc-KL-lmF"/>
+                    <constraint firstItem="bZI-dE-aBK" firstAttribute="centerY" secondItem="2jQ-En-YDS" secondAttribute="centerY" constant="20" id="zQA-WO-TQq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageCountLabel" destination="MlC-wM-09F" id="d9y-39-gZr"/>
+                <outlet property="rtImageView" destination="bZI-dE-aBK" id="QPe-Jr-X8r"/>
                 <outlet property="subViewHeight" destination="8fH-hn-SmD" id="5Wa-AW-18z"/>
                 <outlet property="timeLabel" destination="hRZ-Ha-kFM" id="15c-Bx-3XH"/>
                 <outlet property="tweetImgView" destination="GUJ-ct-RUD" id="rXw-o9-Wf7"/>
@@ -117,7 +117,10 @@
                 <outlet property="userImgView" destination="2jQ-En-YDS" id="LBF-OW-jw3"/>
                 <outlet property="userLabel" destination="fn2-om-Ab9" id="Ebi-iD-fHV"/>
             </connections>
-            <point key="canvasLocation" x="309.5" y="262.5"/>
+            <point key="canvasLocation" x="309" y="262.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="rtbatch" width="20" height="20"/>
+    </resources>
 </document>

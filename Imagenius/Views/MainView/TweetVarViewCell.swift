@@ -22,20 +22,24 @@ final class TweetVarViewCell: SWTableViewCell {
     @IBOutlet weak var subViewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageCountLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var rtImageView: UIImageView!
 
     // MARK: - TableViewCellが生成された時
     override func awakeFromNib() {
         super.awakeFromNib()
         // URL検知するように設定
-        self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
-        self.tweetLabel.extendsLinkTouchArea = false
+        tweetLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+        tweetLabel.extendsLinkTouchArea = false
         // リンク
-        self.tweetLabel.linkAttributes = [
+        tweetLabel.linkAttributes = [
             kCTForegroundColorAttributeName as AnyHashable: Settings.Colors.twitterColor,
             NSUnderlineStyleAttributeName: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
         ]
         subViewHeight.constant = 0
-        self.tweetImgView.isUserInteractionEnabled = true
+        
+        rtImageView.isHidden = true
+        
+        tweetImgView.isUserInteractionEnabled = true
     }
 
     override func layoutSubviews() {
@@ -72,32 +76,35 @@ final class TweetVarViewCell: SWTableViewCell {
 
     // MARK: - 要素の設定
     func setOutlet(_ tweet: Tweet, tweetHeight: CGFloat) {
-        if tweet.isRetweet {
-            // なにかいい案があれば
-        }
 
-        self.tweetLabel.text = Utility.convertSpecialCharacters(tweet.text ?? "")
-        self.highrightHashtagsInLabel(tweetLabel)
-        self.highrightMentionsInLabel(tweetLabel)
+        tweetLabel.text = Utility.convertSpecialCharacters(tweet.text ?? "")
+        highrightHashtagsInLabel(tweetLabel)
+        highrightMentionsInLabel(tweetLabel)
 
-        self.userLabel.text = tweet.userName ?? ""
-        self.userIDLabel.text = tweet.screenName ?? "@"
+        userLabel.text = tweet.userName ?? ""
+        userIDLabel.text = tweet.screenName ?? "@"
         let userImgURL: URL = tweet.userImage! as URL
 
-        self.userImgView.sd_setImage(with: userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.retryFailed)
+        userImgView.sd_setImage(with: userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.retryFailed)
 
-        self.userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
-        self.userImgView.clipsToBounds = true
-        self.userImgView.layer.borderColor = Settings.Colors.selectedColor.cgColor
-        self.userImgView.layer.borderWidth = 0.19
+        userImgView.layer.cornerRadius = self.userImgView.frame.size.width * 0.5
+        userImgView.clipsToBounds = true
+        userImgView.layer.borderColor = Settings.Colors.selectedColor.cgColor
+        userImgView.layer.borderWidth = 0.19
 
-        self.timeLabel.text = tweet.createdAt!
+        timeLabel.text = tweet.createdAt!
+        
+        if tweet.isRetweet {
+            rtImageView.isHidden = false
+        } else {
+            rtImageView.isHidden = true
+        }
 
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
         guard let tweetMedia = tweet.extendedEntities else {
             subViewHeight.constant = 0
             tweetSubView.isHidden = true
-            self.updateConstraintsIfNeeded()
+            updateConstraintsIfNeeded()
             return
         }
 
@@ -116,9 +123,9 @@ final class TweetVarViewCell: SWTableViewCell {
         // とりあえず一枚目だけツイート画面でプレビューする
         let tweetImgURL: URL = tweet.tweetImages![0] as URL
         // 画像を表示するモード(Storyboardで設定するのと同じ)
-        self.tweetImgView.contentMode = .scaleAspectFill
+        tweetImgView.contentMode = .scaleAspectFill
         // 画像を設定(SDWebImageを使っているので、使わない場合はUIImageにダウンロードすればいい)
-        self.tweetImgView.sd_setImage(with: tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
+        tweetImgView.sd_setImage(with: tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
 
         switch tweet.entitiesType ?? "" {
         case "photo":
@@ -130,6 +137,6 @@ final class TweetVarViewCell: SWTableViewCell {
         default:
             imageCountLabel.text = ""
         }
-        self.updateConstraintsIfNeeded()
+        updateConstraintsIfNeeded()
     }
 }
