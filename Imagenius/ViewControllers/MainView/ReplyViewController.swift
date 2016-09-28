@@ -36,7 +36,7 @@ final class ReplyViewController: MainViewController {
                         self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
                     }
                 }
-                self.maxId = self.tweetArray[self.tweetArray.count - 1].idStr
+                self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
             self.viewModel.tweetArray = self.tweetArray
             self.timelineTableView.reloadData()

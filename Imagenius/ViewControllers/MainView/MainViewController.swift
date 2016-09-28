@@ -120,6 +120,10 @@ class MainViewController: UIViewController, UITableViewDelegate {
                         self.swifter = Swifter(account: self.account!)
                         self.myself = self.account?.username
                         if !self.reloadingFlag {
+                            if self.tweetArray.count != 0 {
+                                let indexPath = IndexPath(row: 0, section: 0)
+                                self.timelineTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+                            }
                             self.tweetArray = []
                             self.loadTweet()
                             self.reloadingFlag = true

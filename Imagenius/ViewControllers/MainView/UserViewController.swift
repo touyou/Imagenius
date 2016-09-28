@@ -153,6 +153,10 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                         self.swifter = Swifter(account: self.account!)
                         self.myself = self.account?.username
                         if !self.reloadingFlag {
+                            if self.tweetArray.count != 0 {
+                                let indexPath = IndexPath(row: 0, section: 0)
+                                self.userTimeLine.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+                            }
                             self.tweetArray = []
                             self.loadTweet()
                             self.reloadingFlag = true
@@ -261,7 +265,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                         self.tweetArray.append(Tweet(tweet: tweets[i], myself: self.myself))
                     }
                 }
-                self.maxId = self.tweetArray[self.tweetArray.count - 1].idStr
+                self.maxId = tweets[tweets.count - 1]["id_str"].string
             }
 
             // headerの設定
