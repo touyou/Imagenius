@@ -38,7 +38,7 @@ final class TweetVarViewCell: SWTableViewCell {
         subViewHeight.constant = 0
         
         rtImageView.isHidden = true
-        
+        userImgView.isHidden = false
         tweetImgView.isUserInteractionEnabled = true
     }
 
@@ -91,6 +91,7 @@ final class TweetVarViewCell: SWTableViewCell {
         userImgView.clipsToBounds = true
         userImgView.layer.borderColor = Settings.Colors.selectedColor.cgColor
         userImgView.layer.borderWidth = 0.19
+        userImgView.isHidden = false
 
         timeLabel.text = tweet.createdAt!
         

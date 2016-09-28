@@ -77,7 +77,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rtbatch" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-dE-aBK">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rtbatch" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-dE-aBK">
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="O5Z-q1-0h9"/>
                             <constraint firstAttribute="height" constant="20" id="nea-4b-4JD"/>

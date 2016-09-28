@@ -307,7 +307,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             self.userTimeLine.reloadData()
         }
         if !moreflag {
-            self.swifter.getTimeline(for: idStr, count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
+            self.swifter.getTimeline(for: idStr ?? "", count: 41, includeEntities: true, success: successHandler, failure: failureHandler)
         } else {
             self.swifter.getTimeline(for: idStr, count: 41, sinceID: nil, maxID: self.maxId, trimUser: nil, contributorDetails: nil, includeEntities: true, success: successHandler, failure: failureHandler)
         }
