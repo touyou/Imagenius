@@ -58,6 +58,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var selectedId: String!
     var myself: String!
     var reloadingFlag: Bool = false
+    var muteText = [String]()
+    var muteMode: Int!
     
     let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard

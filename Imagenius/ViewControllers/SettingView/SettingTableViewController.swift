@@ -88,6 +88,8 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 performSegue(withIdentifier: "openFavoriteImage", sender: nil)
             case 3:
                 performSegue(withIdentifier: "toChangeRTView", sender: nil)
+            case 4:
+                performSegue(withIdentifier: "muteSetting", sender: nil)
             default:
                 break
             }

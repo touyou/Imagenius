@@ -464,10 +464,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="s8Z-Ql-AW2">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s8Z-Ql-AW2" id="eTM-Rs-jYa">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -575,7 +575,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="xaW-1Z-K0Z" customClass="GADBannerView">
-                            <rect key="frame" x="0.0" y="181.5" width="375" height="90.5"/>
+                            <rect key="frame" x="0.0" y="182" width="375" height="90.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -584,14 +584,14 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingButton" textLabel="jvw-b5-LRd" style="IBUITableViewCellStyleDefault" id="wiN-jU-thl">
-                                <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wiN-jU-thl" id="T7O-GQ-d58">
-                                    <frame key="frameInset" width="342" height="43.5"/>
+                                    <frame key="frameInset" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jvw-b5-LRd">
-                                            <frame key="frameInset" minX="15" width="325" height="43.5"/>
+                                            <frame key="frameInset" minX="15" width="325" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -613,6 +613,7 @@
                         <segue destination="bKk-ff-2az" kind="presentation" identifier="showInfo" id="guU-kt-TjK"/>
                         <segue destination="wfK-nF-4vd" kind="presentation" identifier="openFavoriteImage" id="XOA-Ic-vLY"/>
                         <segue destination="VwP-23-2HU" kind="show" identifier="toChangeRTView" id="kqf-QC-NGx"/>
+                        <segue destination="rDR-Se-gch" kind="show" identifier="muteSetting" id="RJ8-in-RBV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-hu-nFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -632,7 +633,7 @@
                                 <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1to-vf-nHq" id="C13-vw-KtH">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -649,6 +650,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNQ-M4-cbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4783" y="3005"/>
+        </scene>
+        <!--Mute Setting View Controller-->
+        <scene sceneID="Qkr-T1-vo5">
+            <objects>
+                <viewController id="rDR-Se-gch" customClass="MuteSettingViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uJQ-ie-xEG"/>
+                        <viewControllerLayoutGuide type="bottom" id="yOr-m5-wUO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sQV-hW-UFi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nXd-OO-Pob">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="muteCell" id="PHc-M9-mn2">
+                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PHc-M9-mn2" id="8f0-4Z-VuQ">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nXd-OO-Pob" secondAttribute="trailing" id="1Ds-wR-73i"/>
+                            <constraint firstAttribute="bottom" secondItem="nXd-OO-Pob" secondAttribute="bottom" id="AVd-3i-1IJ"/>
+                            <constraint firstItem="nXd-OO-Pob" firstAttribute="top" secondItem="sQV-hW-UFi" secondAttribute="top" id="Rlf-Sn-L97"/>
+                            <constraint firstItem="nXd-OO-Pob" firstAttribute="leading" secondItem="sQV-hW-UFi" secondAttribute="leading" id="kzi-Xi-ZdU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="settingTableView" destination="nXd-OO-Pob" id="duG-s4-qDR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSA-Vt-QKQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4783.1999999999998" y="3657.1214392803599"/>
         </scene>
         <!--Empty Data Set Delegate-->
         <scene sceneID="qwF-iL-A2a">
@@ -1476,14 +1519,14 @@
         <image name="use_white-1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XOA-Ic-vLY"/>
+        <segue reference="gMF-E4-iH0"/>
         <segue reference="fWd-11-xJG"/>
-        <segue reference="dhb-IP-X2z"/>
+        <segue reference="c0J-JK-mvf"/>
+        <segue reference="AkY-Iw-KeN"/>
         <segue reference="21d-lg-iCt"/>
-        <segue reference="Bba-3S-2Fz"/>
-        <segue reference="7c0-L8-Ix4"/>
-        <segue reference="Veg-Gf-dZD"/>
         <segue reference="2qG-yx-SFg"/>
+        <segue reference="7c0-L8-Ix4"/>
         <segue reference="guU-kt-TjK"/>
+        <segue reference="XOA-Ic-vLY"/>
     </inferredMetricsTieBreakers>
 </document>
