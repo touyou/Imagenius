@@ -117,6 +117,7 @@ final class ListAllViewController: UIViewController {
         performSegue(withIdentifier: "toUserView", sender: nil)
     }
     
+    // MARK: - Utility
     func loadList() {
         if swifter != nil {
             let failureHandler: ((Error) -> Void) = { error in

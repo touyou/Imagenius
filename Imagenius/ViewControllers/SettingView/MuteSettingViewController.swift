@@ -29,41 +29,28 @@ final class MuteSettingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if saveData.object(forKey: "muteWords") != nil {
-            muteText = saveData.object(forKey: "muteWords") as! [String]
+            muteText = saveData.object(forKey: Settings.Saveword.muteWord) as! [String]
         } else {
-            saveData.set(muteText, forKey: "muteWords")
+            saveData.set(muteText, forKey: Settings.Saveword.muteWord)
         }
         
-        if saveData.object(forKey: "muteMode") != nil {
-            muteMode = saveData.object(forKey: "muteMode") as! Int
+        if saveData.object(forKey: Settings.Saveword.muteMode) != nil {
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
         } else {
             muteMode = 1
-            saveData.set(muteMode, forKey: "muteMode")
+            saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        navigationItem.title = "設定"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MuteSettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if muteMode == 0 { return 2 }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +93,7 @@ extension MuteSettingViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             muteMode = indexPath.row
-            saveData.set(muteMode, forKey: "muteMode")
+            saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
             tableView.reloadData()
         } else {
             if indexPath.row == muteText.count {
@@ -120,17 +107,17 @@ extension MuteSettingViewController: UITableViewDelegate, UITableViewDataSource 
                         return
                     }
                     self.muteText.append(text)
-                    self.saveData.set(self.muteText, forKey: "muteWords")
+                    self.saveData.set(self.muteText, forKey: Settings.Saveword.muteWord)
                     self.settingTableView.reloadData()
                 }))
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
                 present(alertView, animated: true, completion: nil)
             } else {
-                let alertView = UIAlertController(title: "削除", message: "削除しますか？", preferredStyle: .alert)
+                let alertView = UIAlertController(title: "削除", message: "\"\(muteText[indexPath.row])\"を削除しますか？", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     self.muteText.remove(at: indexPath.row)
-                    self.saveData.set(self.muteText, forKey: "muteWords")
+                    self.saveData.set(self.muteText, forKey: Settings.Saveword.muteWord)
                     self.settingTableView.reloadData()
                 }))
                 present(alertView, animated: true, completion: nil)

@@ -72,6 +72,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
         timelineTableView.addSubview(refreshControl)
         
         saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        saveData.addObserver(self, forKeyPath: Settings.Saveword.muteWord, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        saveData.addObserver(self, forKeyPath: Settings.Saveword.muteMode, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
         
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
@@ -90,28 +92,51 @@ class MainViewController: UIViewController, UITableViewDelegate {
             }
         }
         
+        if saveData.object(forKey: "muteWords") != nil {
+            muteText = saveData.object(forKey: Settings.Saveword.muteWord) as! [String]
+        } else {
+            saveData.set(muteText, forKey: Settings.Saveword.muteWord)
+        }
+        
+        if saveData.object(forKey: Settings.Saveword.muteMode) != nil {
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+        } else {
+            muteMode = 1
+            saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
+        }
+        
         viewModel.setViewController(self)
     }
     
     // MARK: アカウントが切り替わった時点でページをリロードしている
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
-            if granted {
-                self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                if self.accounts.count != 0 {
-                    self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                    self.swifter = Swifter(account: self.account!)
-                    self.myself = self.account?.username
-                    if !self.reloadingFlag {
-                        self.tweetArray = []
-                        self.loadTweet()
-                        self.reloadingFlag = true
-                    } else {
-                        self.reloadingFlag = false
+        if keyPath == Settings.Saveword.twitter {
+            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+                if granted {
+                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
+                    if self.accounts.count != 0 {
+                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
+                        self.swifter = Swifter(account: self.account!)
+                        self.myself = self.account?.username
+                        if !self.reloadingFlag {
+                            self.tweetArray = []
+                            self.loadTweet()
+                            self.reloadingFlag = true
+                        } else {
+                            self.reloadingFlag = false
+                        }
                     }
                 }
             }
+        } else if keyPath == Settings.Saveword.muteMode {
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            tweetArray = []
+            loadTweet()
+        } else if keyPath == Settings.Saveword.muteWord {
+            muteText = saveData.array(forKey: Settings.Saveword.muteWord) as! [String]
+            tweetArray = []
+            loadTweet()
         }
     }
     
@@ -194,8 +219,12 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     // MARK: 単語ミュート
     func isMute(_ text: String) -> Bool {
-//        let nsText = text as NSString
-//        let regEx = NSRegularExpression.rx("")
+        if muteMode == 1 { return false }
+        let nsText = text as NSString
+        for str in muteText {
+            let regEx = NSRegularExpression.rx(str)
+            if nsText.isMatch(regEx) { return true }
+        }
         return false
     }
 }

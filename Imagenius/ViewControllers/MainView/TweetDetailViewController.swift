@@ -49,6 +49,8 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     var selectedId: String!
     var myself: String!
     var reloadingFlag: Bool = false
+    var muteText = [String]()
+    var muteMode: Int!
 
     let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard
@@ -82,28 +84,53 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
         }
 
         saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        saveData.addObserver(self, forKeyPath: Settings.Saveword.muteWord, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        saveData.addObserver(self, forKeyPath: Settings.Saveword.muteMode, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        
+        if saveData.object(forKey: "muteWords") != nil {
+            muteText = saveData.object(forKey: Settings.Saveword.muteWord) as! [String]
+        } else {
+            saveData.set(muteText, forKey: Settings.Saveword.muteWord)
+        }
+        
+        if saveData.object(forKey: Settings.Saveword.muteMode) != nil {
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+        } else {
+            muteMode = 1
+            saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
+        }
 
         viewModel.setViewController(self)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
-            if granted {
-                self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                if self.accounts.count != 0 {
-                    self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                    self.swifter = Swifter(account: self.account!)
-                    self.myself = self.account?.username
-                    if !self.reloadingFlag {
-                        self.tweetArray = [[], [], []]
-                        self.loadTweet()
-                        self.reloadingFlag = true
-                    } else {
-                        self.reloadingFlag = false
+        if keyPath == Settings.Saveword.twitter {
+            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+                if granted {
+                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
+                    if self.accounts.count != 0 {
+                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
+                        self.swifter = Swifter(account: self.account!)
+                        self.myself = self.account?.username
+                        if !self.reloadingFlag {
+                            self.tweetArray = [[], [], []]
+                            self.loadTweet()
+                            self.reloadingFlag = true
+                        } else {
+                            self.reloadingFlag = false
+                        }
                     }
                 }
             }
+        } else if keyPath == Settings.Saveword.muteMode {
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            tweetArray = []
+            loadTweet()
+        } else if keyPath == Settings.Saveword.muteWord {
+            muteText = saveData.array(forKey: Settings.Saveword.muteWord) as! [String]
+            tweetArray = []
+            loadTweet()
         }
     }
 
@@ -176,8 +203,10 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
             var tw = Tweet()
             tw.setTweet(tweet)
             tw.judgeAccount(self.myself)
-            self.tweetArray[0].insert(tw, at: 0)
-
+            if !self.isMute(tw.text ?? "") {
+                self.tweetArray[0].insert(tw, at: 0)
+            }
+            
             if let next_id = tweet["in_reply_to_status_id_str"]!.string {
                 self.swifter.getTweet(forID: next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
             } else {
@@ -191,7 +220,9 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
             var tw = Tweet()
             tw.setTweet(tweet)
             tw.judgeAccount(self.myself)
-            self.tweetArray[1].append(tw)
+            if !self.isMute(tw.text ?? "") {
+                self.tweetArray[1].append(tw)
+            }
 
             if let next_id = tweet["in_reply_to_status_id_str"]!.string {
                 self.swifter.getTweet(forID: next_id, count: nil, trimUser: nil, includeMyRetweet: nil, includeEntities: true, success: successHandler, failure: failureHandler)
@@ -206,6 +237,17 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
         if swifter != nil {
             load(false)
         }
+    }
+    
+    // MARK: 単語ミュート
+    func isMute(_ text: String) -> Bool {
+        if muteMode == 1 { return false }
+        let nsText = text as NSString
+        for str in muteText {
+            let regEx = NSRegularExpression.rx(str)
+            if nsText.isMatch(regEx) { return true }
+        }
+        return false
     }
 }
 

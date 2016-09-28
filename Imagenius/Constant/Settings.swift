@@ -32,6 +32,8 @@ enum Settings {
         static let changed = "account_changed"
         static let changed2 = "tab_changed"
         static let url = "open_url"
+        static let muteWord = "muteWords"
+        static let muteMode = "muteMode"
     }
     // 引用リツイート用
     static let RTWord = ["", "RT ", "RT: ", "RT> "]
