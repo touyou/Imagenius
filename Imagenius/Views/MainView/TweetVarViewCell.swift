@@ -37,8 +37,8 @@ final class TweetVarViewCell: SWTableViewCell {
         ]
         subViewHeight.constant = 0
         
-        rtImageView.isHidden = true
-        userImgView.isHidden = false
+//        rtImageView.isHidden = true
+//        userImgView.isHidden = false
         tweetImgView.isUserInteractionEnabled = true
     }
 
