@@ -56,7 +56,6 @@ final class FavoriteImageViewController: UIViewController {
     }
 }
 
-
 extension FavoriteImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

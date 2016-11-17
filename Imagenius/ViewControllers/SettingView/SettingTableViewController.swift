@@ -12,7 +12,6 @@ import Accounts
 import MessageUI
 import GoogleMobileAds
 
-
 final class SettingTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     // Google Ads関連
     @IBOutlet weak var bannerView: GADBannerView!

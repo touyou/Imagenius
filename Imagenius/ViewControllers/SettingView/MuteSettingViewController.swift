@@ -23,7 +23,6 @@ final class MuteSettingViewController: UIViewController {
     var muteText = [String]()
     var muteMode: Int!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

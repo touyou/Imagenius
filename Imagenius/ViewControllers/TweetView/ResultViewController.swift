@@ -40,7 +40,6 @@ final class ResultViewController: UIViewController {
         return UIStatusBarStyle.lightContent
     }
 
-
     // MARK: - ボタン関連
     // MARK: OKボタンのとき
     @IBAction func pushOK() {

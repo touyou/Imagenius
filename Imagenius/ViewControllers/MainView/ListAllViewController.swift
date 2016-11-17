@@ -107,7 +107,6 @@ final class ListAllViewController: UIViewController {
         return UIStatusBarStyle.lightContent
     }
     
-    
     // MARK: - ボタン関連
     @IBAction func pushTweet() {
         performSegue(withIdentifier: "toTweetView", sender: nil)

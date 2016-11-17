@@ -164,7 +164,6 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
         return UIStatusBarStyle.lightContent
     }
 
-
     // MARK: - ボタン関連
     @IBAction func pushTweet() {
         self.replyID = self.viewId
@@ -180,7 +179,6 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
         }
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
-
 
     // MARK: - TableView関連
     // 無し

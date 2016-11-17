@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 // MARK: - 画像保存用のクラス for Realm
 // 参考：http://qiita.com/_ha1f/items/593ca4f9c97ae697fc75
 class FavoriteImage: Object {

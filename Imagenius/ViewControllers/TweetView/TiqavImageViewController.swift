@@ -101,7 +101,6 @@ final class TiqavImageViewController: UIViewController {
         return UIStatusBarStyle.lightContent
     }
 
-
     // MARK: - ボタン関連
     // MARK: キャンセルのボタン
     @IBAction func cancelButton() {
