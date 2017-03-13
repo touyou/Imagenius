@@ -14,7 +14,7 @@ final class FavoriteImageViewController: UIViewController {
     
     var collectionData = [FavoriteImage]()
     var selectedItem: FavoriteImage!
-    var delegate: TweetViewControllerDelegate?
+    weak var delegate: TweetViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

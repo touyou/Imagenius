@@ -93,14 +93,14 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         // ボタン周り
         followButton.isHidden = true
         unfollowButton.isHidden = true
-        followButton.rx.tap.subscribe({event in self.follow()}).addDisposableTo(disposeBag)
-        unfollowButton.rx.tap.subscribe({event in self.unfollow()}).addDisposableTo(disposeBag)
+        followButton.rx.tap.subscribe({_ in self.follow()}).addDisposableTo(disposeBag)
+        unfollowButton.rx.tap.subscribe({_ in self.unfollow()}).addDisposableTo(disposeBag)
 
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
             let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
                 if granted {
                     self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
@@ -145,7 +145,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == Settings.Saveword.twitter {
             let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
                 if granted {
                     self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
@@ -215,14 +215,14 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     func unfollow() {
-        self.swifter.unfollowUser(for: .id(self.idStr), success: { user in
+        self.swifter.unfollowUser(for: .id(self.idStr), success: { _ in
             self.unfollowButton.isHidden = true
             self.followButton.isHidden = false
             self.followBtnLength.constant = 100
         })
     }
     func follow() {
-        self.swifter.followUser(for: .id(self.idStr), success: { user in
+        self.swifter.followUser(for: .id(self.idStr), success: { _ in
             self.unfollowButton.isHidden = false
             self.followBtnLength.constant = 0
             self.followButton.isHidden = true
@@ -329,7 +329,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         }
     }
     // MARK: screen_nameからUserIDを取得する
-    func getUserIdWithScreenName(_ userName: String, comp: (()->())? = nil) {
+    func getUserIdWithScreenName(_ userName: String, comp: (() -> Void)? = nil) {
         let failureHandler: ((Error) -> Void) = { error in
             Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
         }
@@ -414,15 +414,13 @@ extension UserViewController: SWTableViewCellDelegate {
         case 0:
             // fav
             if tweet.favorited ?? false {
-                swifter.unfavouriteTweet(forID: tweet.idStr ?? "", success: {
-                    statuses in
+                swifter.unfavouriteTweet(forID: tweet.idStr ?? "", success: { _ in
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 1) - 1)", for: UIControlState())
                 })
                 break
             }
-            swifter.favouriteTweet(forID: tweet.idStr ?? "", success: {
-                statuses in
+            swifter.favouriteTweet(forID: tweet.idStr ?? "", success: { _ in
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.favColor
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 0) + 1)", for: UIControlState())
             })
@@ -441,14 +439,13 @@ extension UserViewController: SWTableViewCellDelegate {
         case 2:
             // retweet
             let alertController = UIAlertController(title: "リツイート", message: "リツイートの種類を選択してください。", preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "公式リツイート", style: .default, handler: {(action) -> Void in
-                self.swifter.retweetTweet(forID: tweet.idStr ?? "", success: {
-                    statuses in
+            alertController.addAction(UIAlertAction(title: "公式リツイート", style: .default, handler: {(_) -> Void in
+                self.swifter.retweetTweet(forID: tweet.idStr ?? "", success: { _ in
                     (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
                 })
             }))
-            alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(action) -> Void in
+            alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in
                 var rtMode: Int = 5
                 if self.saveData.object(forKey: "rtMode") != nil {
                     rtMode = self.saveData.object(forKey: "rtMode") as! Int
@@ -487,7 +484,7 @@ extension UserViewController: SWTableViewCellDelegate {
                     self.loadTweet()
                 }
                 let alertController = UIAlertController(title: "ツイートの削除", message: "このツイートを削除しますか？", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) -> Void in
                     self.swifter.destroyTweet(forID: tweet.idStr ?? "", success: successHandler, failure: failureHandler)
                 }))
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -506,17 +503,17 @@ extension UserViewController: SWTableViewCellDelegate {
             }
             let screen_name = tweet.screenNameNoat ?? ""
             let alertController = UIAlertController(title: "ブロック・通報", message: "@\(screen_name)を", preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "ブロックする", style: .default, handler: {(action) -> Void in
+            alertController.addAction(UIAlertAction(title: "ブロックする", style: .default, handler: {(_) -> Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .alert)
-                otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+                otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) -> Void in
                     self.swifter.blockUser(for: .screenName(screen_name), includeEntities: true, success: successHandler, failure: failureHandler)
                 }))
                 otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(otherAlert, animated: true, completion: nil)
             }))
-            alertController.addAction(UIAlertAction(title: "通報する", style: .default, handler: {(action) -> Void in
+            alertController.addAction(UIAlertAction(title: "通報する", style: .default, handler: {(_) -> Void in
                 let otherAlert = UIAlertController(title: "\(screen_name)を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
-                otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+                otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) -> Void in
                     self.swifter.reportSpam(for: .screenName(screen_name), success: successHandler, failure: failureHandler)
                 }))
                 otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

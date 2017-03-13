@@ -25,7 +25,7 @@ final class InfoPageViewController: UIPageViewController {
 
         let startViewController: InfoViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
         let viewControllers = [startViewController]
-        self.setViewControllers(viewControllers, direction: .forward, animated: false, completion: {done in })
+        self.setViewControllers(viewControllers, direction: .forward, animated: false, completion: {_ in })
 
         self.dataSource = self
         self.view.gestureRecognizers = self.gestureRecognizers
@@ -73,7 +73,7 @@ extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewContro
     func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
         let currentViewController = self.viewControllers![0]
         let viewControllers = [currentViewController]
-        self.setViewControllers(viewControllers, direction: .forward, animated: true, completion: {done in })
+        self.setViewControllers(viewControllers, direction: .forward, animated: true, completion: {_ in })
         self.isDoubleSided = false
         return .min
     }

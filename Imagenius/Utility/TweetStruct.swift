@@ -54,7 +54,7 @@ struct Tweet {
         judgeAccount(myself)
     }
 
-    internal mutating func setTweet(_ tweet: Dictionary<String, JSON>) {
+    internal mutating func setTweet(_ tweet: [String: JSON]) {
         let user = tweet["user"]!
 
         // ユーザー情報

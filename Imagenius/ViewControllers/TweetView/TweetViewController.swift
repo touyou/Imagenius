@@ -15,7 +15,7 @@ import RxCocoa
 import SDWebImage
 import KTCenterFlowLayout
 
-protocol TweetViewControllerDelegate {
+protocol TweetViewControllerDelegate: class {
     func changeImage(_ image: UIImage, data: Data, isGIF: Bool)
 }
 
@@ -56,14 +56,14 @@ final class TweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (ac) -> () in
+            TwitterUtil.loginTwitter(self, success: { (ac) -> Void in
                 self.account = ac
                 self.swifter = Swifter(account: self.account!)
                 self.changeAccountImage()
             })
         } else {
             let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
                 if granted {
                     self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
@@ -93,14 +93,14 @@ final class TweetViewController: UIViewController {
 
         // RxSwiftで文字数を監視
         tweetTextView.rx.textInput.text
-            .map { "\($0.characters.count)" }
+            .map { "\($0?.characters.count)" }
             .bindTo(countLabel.rx.text)
             .addDisposableTo(disposeBag)
         tweetTextView.rx.textInput.text
             .map {
-                if $0.characters.count == 0 {
+                if $0?.characters.count == 0 {
                     self.placeHolderLabel.text = "何をつぶやく？"
-                } else if $0.characters.count > self.MAXWORD {
+                } else if ($0?.characters.count)! > self.MAXWORD {
                     self.placeHolderLabel.text = nil
                     self.countLabel.textColor = Settings.Colors.mainColor
                 } else {
@@ -245,8 +245,7 @@ final class TweetViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         } else {
             let alertController = UIAlertController(title: "編集内容が破棄されます。", message: "よろしいですか？", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: {
-                action in
+            alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
             }))
             alertController.addAction(UIAlertAction(title: "いいえ", style: .cancel, handler: nil))
@@ -256,7 +255,7 @@ final class TweetViewController: UIViewController {
     // MARK: アカウントを切り替える
     @IBAction func accountButton() {
         // アカウントの切り替え
-        TwitterUtil.loginTwitter(self, success: { (ac) -> () in
+        TwitterUtil.loginTwitter(self, success: { (ac) -> Void in
             self.account = ac
             self.swifter = Swifter(account: self.account!)
             self.changeAccountImage()
@@ -358,8 +357,7 @@ extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let alertController = UIAlertController(title: "この画像を削除しますか？", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: {
-            action in
+        alertController.addAction(UIAlertAction(title: "はい", style: .default, handler: { _ in
             self.tweetImage.remove(at: indexPath.row)
             self.mediaIds.remove(at: indexPath.row)
             if self.mediaIds.count == 0 {
@@ -394,7 +392,6 @@ extension TweetViewController: TweetViewControllerDelegate {
     }
 }
 
-
 // MARK: - RxのImagePicker設定
 func dismissViewController(_ viewController: UIViewController, animated: Bool) {
     if viewController.isBeingDismissed || viewController.isBeingPresented {
@@ -411,7 +408,7 @@ func dismissViewController(_ viewController: UIViewController, animated: Bool) {
 }
 
 extension Reactive where Base: UIImagePickerController {
-    static func createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> () = { x in }) -> Observable<UIImagePickerController> {
+    static func createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> Void = { x in }) -> Observable<UIImagePickerController> {
         return Observable.create { [weak parent] observer in
             let imagePicker = UIImagePickerController()
             let dismissDisposable = imagePicker.rx
@@ -421,7 +418,7 @@ extension Reactive where Base: UIImagePickerController {
                         return
                     }
                     dismissViewController(imagePicker, animated: animated)
-                    })
+                })
             
             do {
                 try configureImagePicker(imagePicker)
@@ -460,9 +457,9 @@ extension Reactive where Base: UIImagePickerController {
      */
     public var didFinishPickingMediaWithInfo: Observable<[String : AnyObject]> {
         return delegate
-            .observe(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
+            .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
             .map({ (a) in
-                return try castOrThrow(Dictionary<String, AnyObject>.self, a[1])
+                return try castOrThrow(Dictionary<String, AnyObject>.self, a[1] as AnyObject)
             })
     }
     
@@ -471,7 +468,7 @@ extension Reactive where Base: UIImagePickerController {
      */
     public var didCancel: Observable<()> {
         return delegate
-            .observe(#selector(UIImagePickerControllerDelegate.imagePickerControllerDidCancel(_:)))
+            .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerControllerDidCancel(_:)))
             .map {_ in () }
     }
     

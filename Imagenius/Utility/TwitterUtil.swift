@@ -13,11 +13,11 @@ import SwifteriOS
 
 final class TwitterUtil {
     // MARK: login
-    class func loginTwitter(_ present: UIViewController, success: ((ACAccount?) -> ())? = nil) {
+    class func loginTwitter(_ present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
         let accountStore = ACAccountStore()
         var accounts = [ACAccount]()
         let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
             if granted {
                 accounts = accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                 if accounts.count == 0 {
@@ -32,14 +32,14 @@ final class TwitterUtil {
     }
 
     // MARK: Twitterアカウントの切り替え
-    class func showAndSelectTwitterAccountWithSelectionSheets(_ accounts: [ACAccount], present: UIViewController, success: ((ACAccount?)->())? = nil) {
+    class func showAndSelectTwitterAccountWithSelectionSheets(_ accounts: [ACAccount], present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
         // アクションシートの設定
         let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
         let saveData: UserDefaults = UserDefaults.standard
 
         for i in 0 ..< accounts.count {
             let account = accounts[i]
-            alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (action) -> Void in
+            alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (_) -> Void in
                 // 選択したアカウントを返す
                 for j in 0 ..< accounts.count {
                     if account == accounts[j] {

@@ -100,7 +100,7 @@ extension MuteSettingViewController: UITableViewDelegate, UITableViewDataSource 
                 alertView.addTextField(configurationHandler: { text in
                     text.placeholder = "単語を入力する"
                 })
-                alertView.addAction(UIAlertAction(title: "登録", style: .default, handler: { action in
+                alertView.addAction(UIAlertAction(title: "登録", style: .default, handler: { _ in
                     let fields = alertView.textFields
                     guard let text = fields?[0].text else {
                         return
@@ -114,7 +114,7 @@ extension MuteSettingViewController: UITableViewDelegate, UITableViewDataSource 
             } else {
                 let alertView = UIAlertController(title: "削除", message: "\"\(muteText[indexPath.row])\"を削除しますか？", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                     self.muteText.remove(at: indexPath.row)
                     self.saveData.set(self.muteText, forKey: Settings.Saveword.muteWord)
                     self.settingTableView.reloadData()

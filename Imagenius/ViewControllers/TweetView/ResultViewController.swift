@@ -14,7 +14,7 @@ final class ResultViewController: UIViewController {
 
     var image: UIImage?
     var data: Data?
-    var delegate: TweetViewControllerDelegate!
+    weak var delegate: TweetViewControllerDelegate!
 
     let saveData: UserDefaults = UserDefaults.standard
 
@@ -74,7 +74,7 @@ final class ResultViewController: UIViewController {
         
         let alertController = UIAlertController(title: "お気に入り登録", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             let favoriteImage = FavoriteImage.create()
             favoriteImage.image = self.image
             favoriteImage.save()
@@ -90,7 +90,7 @@ extension ResultViewController: UIScrollViewDelegate {
         return imageView
     }
     // MARK: ダブルタップ
-    func doubleTap(_ gesture: UITapGestureRecognizer) -> Void {
+    func doubleTap(_ gesture: UITapGestureRecognizer) {
         if self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale {
             let newScale: CGFloat = self.preScrollView.zoomScale * 3
             let zoomRect: CGRect = self.zoomRectForScale(newScale, center: gesture.location(in: gesture.view))

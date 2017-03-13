@@ -37,7 +37,7 @@ final class PreViewController: UIViewController, UIScrollViewDelegate {
     }
 
     // MARK: ダブルタップ
-    func doubleTap(_ gesture: UITapGestureRecognizer) -> Void {
+    func doubleTap(_ gesture: UITapGestureRecognizer) {
         if self.preScrollView.zoomScale < self.preScrollView.maximumZoomScale {
             let newScale: CGFloat = self.preScrollView.zoomScale * 3
             let zoomRect: CGRect = self.zoomRectForScale(newScale, center: gesture.location(in: gesture.view))
@@ -46,6 +46,7 @@ final class PreViewController: UIViewController, UIScrollViewDelegate {
             self.preScrollView.setZoomScale(1.0, animated: true)
         }
     }
+    
     // MARK: 領域
     func zoomRectForScale(_ scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect: CGRect = CGRect()

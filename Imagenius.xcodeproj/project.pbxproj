@@ -14,7 +14,7 @@
 		460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */; };
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
-		460F5E331C87F1D1007C41C1 /* ReferenceProxy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		462D462F1D9ACCE200A82A8B /* MuteSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462D462E1D9ACCE200A82A8B /* MuteSettingViewController.swift */; };
 		46312B211CB6505F009183D9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B201CB6505F009183D9 /* UserViewController.swift */; };
 		46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B221CB653B6009183D9 /* UserViewModel.swift */; };
@@ -25,6 +25,7 @@
 		4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */; };
 		4652B0CE1D98B96E00B6E9CB /* ListAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */; };
 		4652B0D01D98C51C00B6E9CB /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */; };
+		465D5AC11E762547003FD4A5 /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */; };
 		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
 		468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687225F1CB25F4B00DEF2DB /* Icon-40.png */; };
 		468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722601CB25F4B00DEF2DB /* Icon-40@2x.png */; };
@@ -140,7 +141,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				460F5E331C87F1D1007C41C1 /* ReferenceProxy in CopyFiles */,
+				460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +180,7 @@
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
 		4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListAllViewController.swift; path = ViewControllers/MainView/ListAllViewController.swift; sourceTree = "<group>"; };
 		4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchListViewController.swift; path = ViewControllers/MainView/WatchListViewController.swift; sourceTree = "<group>"; };
+		465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePickerDelegateProxy.swift; path = Utility/Extensions/RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		467549E71C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -434,6 +436,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		465D5ABF1E762514003FD4A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		467549C01C9574AA00FB3747 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +474,7 @@
 		468722DF1CB4C3DA00DEF2DB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				465D5ABF1E762514003FD4A5 /* Extensions */,
 				468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */,
 				468722ED1CB4E10700DEF2DB /* Utility.swift */,
 				4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */,
@@ -1001,6 +1012,7 @@
 				46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */,
 				468722D11CB2611400DEF2DB /* AVPlayerView.swift in Sources */,
 				462D462F1D9ACCE200A82A8B /* MuteSettingViewController.swift in Sources */,
+				465D5AC11E762547003FD4A5 /* RxImagePickerDelegateProxy.swift in Sources */,
 				468722BC1CB2609100DEF2DB /* WebViewController.swift in Sources */,
 				468722D21CB2611400DEF2DB /* TweetVarViewCell.swift in Sources */,
 				468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */,
@@ -1199,11 +1211,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1231,11 +1239,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Imagenius/Info.plist;
 				INSTALL_PATH = /Applications;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

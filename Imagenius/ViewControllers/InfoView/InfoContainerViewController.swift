@@ -20,7 +20,7 @@ final class InfoContainerViewController: UIViewController {
 
     @IBAction func loginButton() {
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (ac)->() in
+            TwitterUtil.loginTwitter(self, success: { (_) -> Void in
                 self.saveData.set(true, forKey: Settings.Saveword.changed)
                 // 元のViewに移行
                 self.dismiss(animated: true, completion: nil)

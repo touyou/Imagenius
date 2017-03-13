@@ -15,7 +15,7 @@ class FavoriteImage: Object {
     static let realm = try! Realm()
     
     dynamic fileprivate var id = 0
-    dynamic fileprivate var _image: UIImage? = nil
+    dynamic fileprivate var _image: UIImage?
     dynamic var image: UIImage? {
         set {
             self._image = newValue
@@ -34,7 +34,7 @@ class FavoriteImage: Object {
             return nil
         }
     }
-    dynamic var imageData: Data? = nil
+    dynamic var imageData: Data?
     
     // MARK: - Realm用の設定
     override static func primaryKey() -> String? {
@@ -54,7 +54,7 @@ class FavoriteImage: Object {
     
     static func loadAll() -> [FavoriteImage] {
         // let favImages = realm.allObjects(ofType: FavoriteImage.self).sorted(onProperty: "id", ascending: false)
-        let favImages = realm.objects(FavoriteImage.self).sorted(byProperty: "id")
+        let favImages = realm.objects(FavoriteImage.self).sorted(byKeyPath: "id")
         var ret = [FavoriteImage]()
         for favImage in favImages {
             ret.append(favImage)

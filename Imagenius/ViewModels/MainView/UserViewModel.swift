@@ -52,7 +52,7 @@ final class UserViewModel: NSObject {
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
                         if videoInfo["bitrate"].integer != nil {
-                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .default, handler: { (action) -> Void in
+                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .default, handler: { (_) -> Void in
                                 self.viewController.avPlayerViewController = AVPlayerViewController()
                                 self.viewController.avPlayerViewController.player = AVPlayer(url: URL(string: videoInfo["url"].string!)!)
                                 self.viewController.present(self.viewController.avPlayerViewController, animated: true, completion: {

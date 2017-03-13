@@ -27,7 +27,7 @@ final class TiqavImageViewController: UIViewController {
     var selectedImage: UIImage?
     var selectedData: Data?
     var imageSize: CGFloat!
-    var delegate: TweetViewControllerDelegate!
+    weak var delegate: TweetViewControllerDelegate!
 
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
@@ -112,13 +112,11 @@ final class TiqavImageViewController: UIViewController {
 extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: 画像を選択したら
     func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[indexPath.row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: {
-            (a: Int, b: Int) -> Void in
+        SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[indexPath.row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: { (a: Int, b: Int, _: URL?) -> Void in
             // 何回もクリックされるのを防ぐ
             self.imageCollectionView.allowsSelection = false
             self.title = "loading..."
-            }, completed: {
-                (a: UIImage?, b: Data?, c: Error?, d: Bool) -> Void in
+            }, completed: { (a: UIImage?, b: Data?, _: Error?, _: Bool) -> Void in
                 self.selectedImage = a
                 self.selectedData = b
                 self.imageCollectionView.allowsSelection = true

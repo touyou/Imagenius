@@ -28,13 +28,13 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         super.viewDidLoad()
         self.tableView.allowsMultipleSelection = false
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (ac) -> () in
+            TwitterUtil.loginTwitter(self, success: { (ac) -> Void in
                 self.account = ac
                 self.swifter = Swifter(account: self.account!)
             })
         } else {
             let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, error in
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
                 if granted {
                     self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
                     if self.accounts.count != 0 {
@@ -47,10 +47,13 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
 
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
-        // for test
-        // self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        // for sale
+        
+#if DEBUG
+        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+#else
         self.bannerView.adUnitID = "ca-app-pub-2853999389157478/5283774064"
+#endif
+        
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
     }
@@ -76,7 +79,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         case 0:
             switch indexPath.row {
             case 0:// login処理
-                TwitterUtil.loginTwitter(self, success: { [unowned self] (ac) -> () in
+                TwitterUtil.loginTwitter(self, success: { [unowned self] (ac) -> Void in
                     self.account = ac
                     self.swifter = Swifter(account: self.account!)
                     _ = self.navigationController?.popViewController(animated: true)

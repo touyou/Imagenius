@@ -13,7 +13,7 @@ final class FavoriteResultViewController: UIViewController {
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     
     var selectedItem: FavoriteImage!
-    var delegate: TweetViewControllerDelegate?
+    weak var delegate: TweetViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ final class FavoriteResultViewController: UIViewController {
     @IBAction func deleteBtn() {
         let actionCtrl = UIAlertController(title: "お気に入りからの削除", message: "削除しますか？", preferredStyle: .alert)
         actionCtrl.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        actionCtrl.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        actionCtrl.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.selectedItem.delete()
             _ = self.navigationController?.popViewController(animated: true)
         }))
