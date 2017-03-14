@@ -12,7 +12,7 @@
 		460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */; };
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
-		460F5E331C87F1D1007C41C1 /* ReferenceProxy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		462D462F1D9ACCE200A82A8B /* MuteSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462D462E1D9ACCE200A82A8B /* MuteSettingViewController.swift */; };
 		46312B211CB6505F009183D9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B201CB6505F009183D9 /* UserViewController.swift */; };
 		46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B221CB653B6009183D9 /* UserViewModel.swift */; };
@@ -162,7 +162,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				460F5E331C87F1D1007C41C1 /* ReferenceProxy in CopyFiles */,
+				460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,26 +189,26 @@
 		46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TweetDetailViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4634CB4A1CBA5FEB00E9E834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TweetTableViewCell.xib; sourceTree = "<group>"; };
-		4634CB501CBA71FF00E9E834 /* Date+CustomFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+CustomFormat.swift"; path = "Date+CustomFormat.swift"; sourceTree = "<group>"; };
+		4634CB501CBA71FF00E9E834 /* Date+CustomFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+CustomFormat.swift"; sourceTree = "<group>"; };
 		463547081E7799B00026EF63 /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
-		4635470A1E77DA180026EF63 /* FavoriteResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FavoriteResultViewController.storyboard; path = FavoriteResultViewController.storyboard; sourceTree = "<group>"; };
-		4635470C1E77DAE70026EF63 /* FavoriteImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FavoriteImageViewController.storyboard; path = FavoriteImageViewController.storyboard; sourceTree = "<group>"; };
-		4635470E1E77DB1B0026EF63 /* TweetViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TweetViewController.storyboard; path = TweetViewController.storyboard; sourceTree = "<group>"; };
+		4635470A1E77DA180026EF63 /* FavoriteResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FavoriteResultViewController.storyboard; sourceTree = "<group>"; };
+		4635470C1E77DAE70026EF63 /* FavoriteImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FavoriteImageViewController.storyboard; sourceTree = "<group>"; };
+		4635470E1E77DB1B0026EF63 /* TweetViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TweetViewController.storyboard; sourceTree = "<group>"; };
 		463547101E77DB3F0026EF63 /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pages.storyboard; sourceTree = "<group>"; };
-		463547121E77DB740026EF63 /* ImagePreViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ImagePreViewController.storyboard; path = ImagePreViewController.storyboard; sourceTree = "<group>"; };
-		463547141E77DB990026EF63 /* GIFViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GIFViewController.storyboard; path = GIFViewController.storyboard; sourceTree = "<group>"; };
-		463547161E77DC0C0026EF63 /* InfoPageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InfoPageViewController.storyboard; path = InfoPageViewController.storyboard; sourceTree = "<group>"; };
-		463547181E77DC270026EF63 /* InfoContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InfoContainerViewController.storyboard; path = InfoContainerViewController.storyboard; sourceTree = "<group>"; };
-		4635471A1E77DC560026EF63 /* WebViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = WebViewController.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
-		4635471C1E77DC700026EF63 /* WatchListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = WatchListViewController.storyboard; path = WatchListViewController.storyboard; sourceTree = "<group>"; };
-		4635471E1E77DCC10026EF63 /* TweetDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TweetDetailViewController.storyboard; path = TweetDetailViewController.storyboard; sourceTree = "<group>"; };
-		463547201E77DCF30026EF63 /* UserViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = UserViewController.storyboard; path = UserViewController.storyboard; sourceTree = "<group>"; };
-		463547221E77DD2A0026EF63 /* MuteSettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MuteSettingViewController.storyboard; path = MuteSettingViewController.storyboard; sourceTree = "<group>"; };
-		463547241E77DD520026EF63 /* RTSettingTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RTSettingTableViewController.storyboard; path = RTSettingTableViewController.storyboard; sourceTree = "<group>"; };
-		463547281E77DDA00026EF63 /* SettingTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SettingTableViewController.storyboard; path = SettingTableViewController.storyboard; sourceTree = "<group>"; };
-		4635472A1E77DE7D0026EF63 /* ReplyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ReplyViewController.storyboard; path = ReplyViewController.storyboard; sourceTree = "<group>"; };
-		4635472C1E77DE9B0026EF63 /* TimeLineViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TimeLineViewController.storyboard; path = TimeLineViewController.storyboard; sourceTree = "<group>"; };
-		4635472E1E77DEF90026EF63 /* ListAllViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ListAllViewController.storyboard; path = ListAllViewController.storyboard; sourceTree = "<group>"; };
+		463547121E77DB740026EF63 /* ImagePreViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImagePreViewController.storyboard; sourceTree = "<group>"; };
+		463547141E77DB990026EF63 /* GIFViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GIFViewController.storyboard; sourceTree = "<group>"; };
+		463547161E77DC0C0026EF63 /* InfoPageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InfoPageViewController.storyboard; sourceTree = "<group>"; };
+		463547181E77DC270026EF63 /* InfoContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InfoContainerViewController.storyboard; sourceTree = "<group>"; };
+		4635471A1E77DC560026EF63 /* WebViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
+		4635471C1E77DC700026EF63 /* WatchListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WatchListViewController.storyboard; sourceTree = "<group>"; };
+		4635471E1E77DCC10026EF63 /* TweetDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TweetDetailViewController.storyboard; sourceTree = "<group>"; };
+		463547201E77DCF30026EF63 /* UserViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserViewController.storyboard; sourceTree = "<group>"; };
+		463547221E77DD2A0026EF63 /* MuteSettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MuteSettingViewController.storyboard; sourceTree = "<group>"; };
+		463547241E77DD520026EF63 /* RTSettingTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RTSettingTableViewController.storyboard; sourceTree = "<group>"; };
+		463547281E77DDA00026EF63 /* SettingTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingTableViewController.storyboard; sourceTree = "<group>"; };
+		4635472A1E77DE7D0026EF63 /* ReplyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReplyViewController.storyboard; sourceTree = "<group>"; };
+		4635472C1E77DE9B0026EF63 /* TimeLineViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeLineViewController.storyboard; sourceTree = "<group>"; };
+		4635472E1E77DEF90026EF63 /* ListAllViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListAllViewController.storyboard; sourceTree = "<group>"; };
 		463547301E77DFAE0026EF63 /* RootTabController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RootTabController.storyboard; sourceTree = "<group>"; };
 		463547321E77EAC90026EF63 /* String+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Error.swift"; sourceTree = "<group>"; };
 		463FE90D1D41AB4900F6245E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/RxCocoa/RxCocoa.framework"; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
 		4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAllViewController.swift; sourceTree = "<group>"; };
 		4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
-		465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePickerDelegateProxy.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
+		465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4687225F1CB25F4B00DEF2DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
@@ -280,9 +280,9 @@
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
 		46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingTableViewController.swift; sourceTree = "<group>"; };
-		46BAE8531D0EFC990020BD82 /* TweetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetModel.swift; path = TweetModel.swift; sourceTree = "<group>"; };
-		46BD8DD31E7789FE003A5140 /* ResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ResultViewController.storyboard; path = ResultViewController.storyboard; sourceTree = "<group>"; };
-		46BD8DD51E778B6A003A5140 /* TiqavImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TiqavImageViewController.storyboard; path = TiqavImageViewController.storyboard; sourceTree = "<group>"; };
+		46BAE8531D0EFC990020BD82 /* TweetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetModel.swift; sourceTree = "<group>"; };
+		46BD8DD31E7789FE003A5140 /* ResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ResultViewController.storyboard; sourceTree = "<group>"; };
+		46BD8DD51E778B6A003A5140 /* TiqavImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TiqavImageViewController.storyboard; sourceTree = "<group>"; };
 		46BF12011D4F518500FFF5DD /* FavoriteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteImage.swift; sourceTree = "<group>"; };
 		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FavoriteImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteImageViewCell.swift; sourceTree = "<group>"; };
@@ -413,7 +413,6 @@
 				460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */,
 				463547101E77DB3F0026EF63 /* Pages.storyboard */,
 				463547301E77DFAE0026EF63 /* RootTabController.storyboard */,
-				4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -626,6 +625,7 @@
 			children = (
 				468722CF1CB2611400DEF2DB /* AVPlayerView.swift */,
 				468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */,
+				4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -1180,7 +1180,7 @@
 				4634CB4A1CBA5FEB00E9E834 /* Base */,
 			);
 			name = TweetTableViewCell.xib;
-			path = .;
+			path = ../../StoryBoard/.;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
