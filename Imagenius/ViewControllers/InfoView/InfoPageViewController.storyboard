@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YED-98-ax8">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+    </dependencies>
+    <scenes>
+        <!--Info Page View Controller-->
+        <scene sceneID="OPf-FP-E11">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="YED-98-ax8" customClass="InfoPageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <fixedSimulatedSizeMetrics key="simulatedDestinationMetrics">
+                        <size key="portraitSize" width="383" height="617"/>
+                        <size key="landscapeSize" width="617" height="383"/>
+                    </fixedSimulatedSizeMetrics>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DWJ-vK-KEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3282" y="29"/>
+        </scene>
+    </scenes>
+</document>

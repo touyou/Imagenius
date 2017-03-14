@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bKk-ff-2az">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Info Container View Controller-->
+        <scene sceneID="iM3-iJ-RFP">
+            <objects>
+                <viewController id="bKk-ff-2az" customClass="InfoContainerViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gtg-N4-sFm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jtd-6C-WbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="efO-hs-vS4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8k-MB-9Gt">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="617"/>
+                                <connections>
+                                    <segue destination="EM7-I0-ZN1" kind="embed" id="bxf-25-nK2"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAB-y1-zOq">
+                                <rect key="frame" x="-4" y="617" width="383" height="50"/>
+                                <color key="backgroundColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EgZ-te-D26"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="ログインして始める">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton" destination="bKk-ff-2az" eventType="touchUpInside" id="fJN-fg-6eg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="a8k-MB-9Gt" firstAttribute="top" secondItem="efO-hs-vS4" secondAttribute="topMargin" id="7lj-HW-Rx0"/>
+                            <constraint firstItem="Jtd-6C-WbB" firstAttribute="top" secondItem="SAB-y1-zOq" secondAttribute="bottom" id="ZnP-Fd-u2h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SAB-y1-zOq" secondAttribute="trailing" constant="-20" id="cka-ii-lTN"/>
+                            <constraint firstItem="a8k-MB-9Gt" firstAttribute="leading" secondItem="efO-hs-vS4" secondAttribute="leadingMargin" constant="-20" id="eiE-el-Axv"/>
+                            <constraint firstItem="SAB-y1-zOq" firstAttribute="leading" secondItem="efO-hs-vS4" secondAttribute="leadingMargin" constant="-20" id="sUi-cg-F0z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a8k-MB-9Gt" secondAttribute="trailing" constant="-20" id="tgV-Ct-Oep"/>
+                            <constraint firstItem="SAB-y1-zOq" firstAttribute="top" secondItem="a8k-MB-9Gt" secondAttribute="bottom" id="ynC-8P-uGo"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hr5-l8-BZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4042" y="30"/>
+        </scene>
+        <!--InfoPageViewController-->
+        <scene sceneID="yBZ-td-Zbf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InfoPageViewController" id="EM7-I0-ZN1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ugy-P0-WFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3282" y="29"/>
+        </scene>
+    </scenes>
+</document>

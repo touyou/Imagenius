@@ -93,6 +93,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="imageView" destination="d5Q-35-rh9" id="DDU-gw-Gg0"/>
                         <outlet property="preScrollView" destination="VSH-uO-Hes" id="0RK-FH-i6C"/>

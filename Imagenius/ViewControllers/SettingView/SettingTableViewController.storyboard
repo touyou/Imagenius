@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--設定-->
+        <scene sceneID="yob-g6-xlp">
+            <objects>
+                <tableViewController storyboardIdentifier="SettingTableViewController" hidesBottomBarWhenPushed="YES" id="tsV-LL-8hz" customClass="SettingTableViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="YIL-1h-jxT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="xaW-1Z-K0Z" customClass="GADBannerView">
+                            <rect key="frame" x="0.0" y="118" width="375" height="90.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="cDz-34-fJk"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingButton" textLabel="jvw-b5-LRd" style="IBUITableViewCellStyleDefault" id="wiN-jU-thl">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wiN-jU-thl" id="T7O-GQ-d58">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jvw-b5-LRd">
+                                            <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tsV-LL-8hz" id="DMO-2p-Zek"/>
+                            <outlet property="delegate" destination="tsV-LL-8hz" id="AQe-d6-LSu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="設定" id="WGa-wM-HuK"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bannerView" destination="xaW-1Z-K0Z" id="S7O-Bl-eVh"/>
+                        <segue destination="udX-dn-TCn" kind="show" identifier="openWebView" id="gMF-E4-iH0"/>
+                        <segue destination="jwW-D4-7VD" kind="presentation" identifier="showInfo" id="guU-kt-TjK"/>
+                        <segue destination="m6i-Xg-akz" kind="presentation" identifier="openFavoriteImage" id="XOA-Ic-vLY"/>
+                        <segue destination="XbW-bW-MSJ" kind="show" identifier="toChangeRTView" id="kqf-QC-NGx"/>
+                        <segue destination="nDz-XI-qr9" kind="show" identifier="muteSetting" id="RJ8-in-RBV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-hu-nFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5674" y="3005"/>
+        </scene>
+        <!--FavoriteImageViewController-->
+        <scene sceneID="iym-oh-MaY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FavoriteImageViewController" id="m6i-Xg-akz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GXf-X3-VF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4793" y="2848"/>
+        </scene>
+        <!--InfoContainerViewController-->
+        <scene sceneID="Yfk-mK-sRZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InfoContainerViewController" id="jwW-D4-7VD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Se9-nx-G3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4778" y="2718"/>
+        </scene>
+        <!--WebViewController-->
+        <scene sceneID="eFR-mu-ljN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WebViewController" id="udX-dn-TCn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5I-3W-kgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4745" y="3005"/>
+        </scene>
+        <!--MuteSettingViewController-->
+        <scene sceneID="k7c-6r-0Ee">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MuteSettingViewController" id="nDz-XI-qr9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h40-iG-TC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4784" y="3292"/>
+        </scene>
+        <!--RTSettingTableViewController-->
+        <scene sceneID="jJg-hC-Y6y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RTSettingTableViewController" id="XbW-bW-MSJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1r1-4i-JcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4738" y="3144"/>
+        </scene>
+    </scenes>
+</document>

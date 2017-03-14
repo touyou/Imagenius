@@ -23,7 +23,7 @@ final class InfoPageViewController: UIPageViewController {
 
         self.delegate = self
 
-        let startViewController: InfoViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+        let startViewController: InfoViewController = viewControllerAtIndex(0, storyboard: UIStoryboard(name: "Pages", bundle: nil))!
         let viewControllers = [startViewController]
         self.setViewControllers(viewControllers, direction: .forward, animated: false, completion: {_ in })
 
@@ -41,6 +41,7 @@ final class InfoPageViewController: UIPageViewController {
             return NSNotFound
         }
     }
+    
     func viewControllerAtIndex(_ index: Int, storyboard: UIStoryboard) -> InfoViewController? {
         if self.pageData.count == 0 || index >= self.pageData.count {
             return nil

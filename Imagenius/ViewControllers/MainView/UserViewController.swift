@@ -211,7 +211,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
 
     // MARK: - ボタン関連
     @IBAction func pushTweet() {
-        self.replyStr = "@\(user) "
+        self.replyStr = "@\(user!) "
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     func unfollow() {
