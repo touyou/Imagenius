@@ -118,4 +118,3 @@ final class Utility {
         return obj
     }
 }
-extension String: Error {}

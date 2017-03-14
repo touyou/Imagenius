@@ -93,7 +93,7 @@ final class TweetViewController: UIViewController {
 
         // RxSwiftで文字数を監視
         tweetTextView.rx.textInput.text
-            .map { "\($0?.characters.count)" }
+            .map { "\($0!.characters.count)" }
             .bindTo(countLabel.rx.text)
             .addDisposableTo(disposeBag)
         tweetTextView.rx.textInput.text
@@ -186,10 +186,11 @@ final class TweetViewController: UIViewController {
 
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
-        // for test
-        // self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        // for sale
+#if DEBUG
+        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+#else
         self.bannerView.adUnitID = "ca-app-pub-2853999389157478/5283774064"
+#endif
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
     }

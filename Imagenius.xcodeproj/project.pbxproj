@@ -9,20 +9,37 @@
 /* Begin PBXBuildFile section */
 		4603CC251C7DE062005DF397 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC241C7DE062005DF397 /* Settings.bundle */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
-		460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3C1C6B5CF60089CC7E /* Main.storyboard */; };
 		460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */; };
-		460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */; };
 		460B4A4E1C6B5CF60089CC7E /* ImageniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A4D1C6B5CF60089CC7E /* ImageniusTests.swift */; };
 		460B4A591C6B5CF60089CC7E /* ImageniusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */; };
-		460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		460F5E331C87F1D1007C41C1 /* ReferenceProxy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464A802E1C7997DE006100DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		462D462F1D9ACCE200A82A8B /* MuteSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462D462E1D9ACCE200A82A8B /* MuteSettingViewController.swift */; };
 		46312B211CB6505F009183D9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B201CB6505F009183D9 /* UserViewController.swift */; };
 		46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B221CB653B6009183D9 /* UserViewModel.swift */; };
 		46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B251CB69C1E009183D9 /* SettingBannerCell.swift */; };
 		46312B281CB74B8C009183D9 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */; };
 		46312B2A1CB74C6D009183D9 /* TweetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */; };
-		4634CB4B1CBA5FEB00E9E834 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */; };
-		4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */; };
+		4634CB511CBA71FF00E9E834 /* Date+CustomFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4634CB501CBA71FF00E9E834 /* Date+CustomFormat.swift */; };
+		4635470B1E77DA180026EF63 /* FavoriteResultViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635470A1E77DA180026EF63 /* FavoriteResultViewController.storyboard */; };
+		4635470D1E77DAE70026EF63 /* FavoriteImageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635470C1E77DAE70026EF63 /* FavoriteImageViewController.storyboard */; };
+		4635470F1E77DB1B0026EF63 /* TweetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635470E1E77DB1B0026EF63 /* TweetViewController.storyboard */; };
+		463547111E77DB3F0026EF63 /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547101E77DB3F0026EF63 /* Pages.storyboard */; };
+		463547131E77DB740026EF63 /* ImagePreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547121E77DB740026EF63 /* ImagePreViewController.storyboard */; };
+		463547151E77DB990026EF63 /* GIFViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547141E77DB990026EF63 /* GIFViewController.storyboard */; };
+		463547171E77DC0C0026EF63 /* InfoPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547161E77DC0C0026EF63 /* InfoPageViewController.storyboard */; };
+		463547191E77DC270026EF63 /* InfoContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547181E77DC270026EF63 /* InfoContainerViewController.storyboard */; };
+		4635471B1E77DC560026EF63 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635471A1E77DC560026EF63 /* WebViewController.storyboard */; };
+		4635471D1E77DC700026EF63 /* WatchListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635471C1E77DC700026EF63 /* WatchListViewController.storyboard */; };
+		4635471F1E77DCC10026EF63 /* TweetDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635471E1E77DCC10026EF63 /* TweetDetailViewController.storyboard */; };
+		463547211E77DCF30026EF63 /* UserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547201E77DCF30026EF63 /* UserViewController.storyboard */; };
+		463547231E77DD2A0026EF63 /* MuteSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547221E77DD2A0026EF63 /* MuteSettingViewController.storyboard */; };
+		463547251E77DD520026EF63 /* RTSettingTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547241E77DD520026EF63 /* RTSettingTableViewController.storyboard */; };
+		463547291E77DDA00026EF63 /* SettingTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547281E77DDA00026EF63 /* SettingTableViewController.storyboard */; };
+		4635472B1E77DE7D0026EF63 /* ReplyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635472A1E77DE7D0026EF63 /* ReplyViewController.storyboard */; };
+		4635472D1E77DE9B0026EF63 /* TimeLineViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635472C1E77DE9B0026EF63 /* TimeLineViewController.storyboard */; };
+		4635472F1E77DEF90026EF63 /* ListAllViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4635472E1E77DEF90026EF63 /* ListAllViewController.storyboard */; };
+		463547311E77DFAE0026EF63 /* RootTabController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463547301E77DFAE0026EF63 /* RootTabController.storyboard */; };
+		463547331E77EAC90026EF63 /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463547321E77EAC90026EF63 /* String+Error.swift */; };
 		4652B0CE1D98B96E00B6E9CB /* ListAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */; };
 		4652B0D01D98C51C00B6E9CB /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */; };
 		465D5AC11E762547003FD4A5 /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */; };
@@ -72,7 +89,11 @@
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
 		46B50EF11D855CB000F8F09D /* RTSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */; };
-		46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAE8531D0EFC990020BD82 /* TweetStruct.swift */; };
+		46BAE8541D0EFC990020BD82 /* TweetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAE8531D0EFC990020BD82 /* TweetModel.swift */; };
+		46BD8DD41E7789FE003A5140 /* ResultViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BD8DD31E7789FE003A5140 /* ResultViewController.storyboard */; };
+		46BD8DD61E778B6A003A5140 /* TiqavImageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BD8DD51E778B6A003A5140 /* TiqavImageViewController.storyboard */; };
+		46BD8DDD1E7793C5003A5140 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */; };
+		46BD8DDF1E7793C5003A5140 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */; };
 		46BF12021D4F518600FFF5DD /* FavoriteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12011D4F518500FFF5DD /* FavoriteImage.swift */; };
 		46BF12091D4F57A700FFF5DD /* FavoriteImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */; };
 		46BF120B1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */; };
@@ -141,7 +162,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				460F5E331C87F1D1007C41C1 /* SwifteriOS.framework in CopyFiles */,
+				460F5E331C87F1D1007C41C1 /* ReferenceProxy in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +173,6 @@
 		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		460B4A3D1C6B5CF60089CC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		460B4A421C6B5CF60089CC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		460B4A441C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,14 +182,35 @@
 		460B4A541C6B5CF60089CC7E /* ImageniusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageniusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A581C6B5CF60089CC7E /* ImageniusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageniusUITests.swift; sourceTree = "<group>"; };
 		460B4A5A1C6B5CF60089CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		462D462E1D9ACCE200A82A8B /* MuteSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MuteSettingViewController.swift; path = ViewControllers/SettingView/MuteSettingViewController.swift; sourceTree = "<group>"; };
-		46312B201CB6505F009183D9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewController.swift; path = ViewControllers/MainView/UserViewController.swift; sourceTree = "<group>"; };
-		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserViewModel.swift; path = ViewModels/MainView/UserViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		46312B251CB69C1E009183D9 /* SettingBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingBannerCell.swift; path = Views/SettingView/SettingBannerCell.swift; sourceTree = "<group>"; };
-		46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetDetailViewController.swift; path = ViewControllers/MainView/TweetDetailViewController.swift; sourceTree = "<group>"; };
-		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TweetDetailViewModel.swift; path = ViewModels/MainView/TweetDetailViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		462D462E1D9ACCE200A82A8B /* MuteSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MuteSettingViewController.swift; sourceTree = "<group>"; };
+		46312B201CB6505F009183D9 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		46312B221CB653B6009183D9 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		46312B251CB69C1E009183D9 /* SettingBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingBannerCell.swift; sourceTree = "<group>"; };
+		46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
+		46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TweetDetailViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4634CB4A1CBA5FEB00E9E834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TweetTableViewCell.xib; sourceTree = "<group>"; };
-		4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateExtension.swift; path = Utility/NSDateExtension.swift; sourceTree = "<group>"; };
+		4634CB501CBA71FF00E9E834 /* Date+CustomFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+CustomFormat.swift"; path = "Date+CustomFormat.swift"; sourceTree = "<group>"; };
+		463547081E7799B00026EF63 /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
+		4635470A1E77DA180026EF63 /* FavoriteResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FavoriteResultViewController.storyboard; path = FavoriteResultViewController.storyboard; sourceTree = "<group>"; };
+		4635470C1E77DAE70026EF63 /* FavoriteImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FavoriteImageViewController.storyboard; path = FavoriteImageViewController.storyboard; sourceTree = "<group>"; };
+		4635470E1E77DB1B0026EF63 /* TweetViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TweetViewController.storyboard; path = TweetViewController.storyboard; sourceTree = "<group>"; };
+		463547101E77DB3F0026EF63 /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pages.storyboard; sourceTree = "<group>"; };
+		463547121E77DB740026EF63 /* ImagePreViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ImagePreViewController.storyboard; path = ImagePreViewController.storyboard; sourceTree = "<group>"; };
+		463547141E77DB990026EF63 /* GIFViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GIFViewController.storyboard; path = GIFViewController.storyboard; sourceTree = "<group>"; };
+		463547161E77DC0C0026EF63 /* InfoPageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InfoPageViewController.storyboard; path = InfoPageViewController.storyboard; sourceTree = "<group>"; };
+		463547181E77DC270026EF63 /* InfoContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InfoContainerViewController.storyboard; path = InfoContainerViewController.storyboard; sourceTree = "<group>"; };
+		4635471A1E77DC560026EF63 /* WebViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = WebViewController.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
+		4635471C1E77DC700026EF63 /* WatchListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = WatchListViewController.storyboard; path = WatchListViewController.storyboard; sourceTree = "<group>"; };
+		4635471E1E77DCC10026EF63 /* TweetDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TweetDetailViewController.storyboard; path = TweetDetailViewController.storyboard; sourceTree = "<group>"; };
+		463547201E77DCF30026EF63 /* UserViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = UserViewController.storyboard; path = UserViewController.storyboard; sourceTree = "<group>"; };
+		463547221E77DD2A0026EF63 /* MuteSettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MuteSettingViewController.storyboard; path = MuteSettingViewController.storyboard; sourceTree = "<group>"; };
+		463547241E77DD520026EF63 /* RTSettingTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RTSettingTableViewController.storyboard; path = RTSettingTableViewController.storyboard; sourceTree = "<group>"; };
+		463547281E77DDA00026EF63 /* SettingTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SettingTableViewController.storyboard; path = SettingTableViewController.storyboard; sourceTree = "<group>"; };
+		4635472A1E77DE7D0026EF63 /* ReplyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ReplyViewController.storyboard; path = ReplyViewController.storyboard; sourceTree = "<group>"; };
+		4635472C1E77DE9B0026EF63 /* TimeLineViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TimeLineViewController.storyboard; path = TimeLineViewController.storyboard; sourceTree = "<group>"; };
+		4635472E1E77DEF90026EF63 /* ListAllViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ListAllViewController.storyboard; path = ListAllViewController.storyboard; sourceTree = "<group>"; };
+		463547301E77DFAE0026EF63 /* RootTabController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RootTabController.storyboard; sourceTree = "<group>"; };
+		463547321E77EAC90026EF63 /* String+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Error.swift"; sourceTree = "<group>"; };
 		463FE90D1D41AB4900F6245E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphoneos/RxCocoa/RxCocoa.framework"; sourceTree = "<group>"; };
 		464A80241C7997DE006100DB /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
 		464A80441C799AAC006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../Swifter/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
@@ -178,59 +219,55 @@
 		464A80481C799BE6006100DB /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		464A80491C799BE6006100DB /* SWTableViewCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWTableViewCell.framework; path = "Pods/../build/Debug-iphoneos/SWTableViewCell.framework"; sourceTree = "<group>"; };
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
-		4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListAllViewController.swift; path = ViewControllers/MainView/ListAllViewController.swift; sourceTree = "<group>"; };
-		4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchListViewController.swift; path = ViewControllers/MainView/WatchListViewController.swift; sourceTree = "<group>"; };
-		465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePickerDelegateProxy.swift; path = Utility/Extensions/RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
+		4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAllViewController.swift; sourceTree = "<group>"; };
+		4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
+		465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePickerDelegateProxy.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		467549E71C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		467549E81C96C45400FB3747 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		4687225F1CB25F4B00DEF2DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40.png"; path = "Resources/icon/Icon-40.png"; sourceTree = "<group>"; };
-		468722601CB25F4B00DEF2DB /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40@2x.png"; path = "Resources/icon/Icon-40@2x.png"; sourceTree = "<group>"; };
-		468722611CB25F4B00DEF2DB /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40@3x.png"; path = "Resources/icon/Icon-40@3x.png"; sourceTree = "<group>"; };
-		468722621CB25F4B00DEF2DB /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60.png"; path = "Resources/icon/Icon-60.png"; sourceTree = "<group>"; };
-		468722631CB25F4B00DEF2DB /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "Resources/icon/Icon-60@2x.png"; sourceTree = "<group>"; };
-		468722641CB25F4B00DEF2DB /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "Resources/icon/Icon-60@3x.png"; sourceTree = "<group>"; };
-		468722651CB25F4B00DEF2DB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/icon/Icon-72.png"; sourceTree = "<group>"; };
-		468722661CB25F4B00DEF2DB /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "Resources/icon/Icon-72@2x.png"; sourceTree = "<group>"; };
-		468722671CB25F4B00DEF2DB /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "Resources/icon/Icon-76.png"; sourceTree = "<group>"; };
-		468722681CB25F4B00DEF2DB /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x.png"; path = "Resources/icon/Icon-76@2x.png"; sourceTree = "<group>"; };
-		468722691CB25F4B00DEF2DB /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-83.5@2x.png"; path = "Resources/icon/Icon-83.5@2x.png"; sourceTree = "<group>"; };
-		4687226A1CB25F4B00DEF2DB /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/icon/Icon-Small-50.png"; sourceTree = "<group>"; };
-		4687226B1CB25F4B00DEF2DB /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x.png"; path = "Resources/icon/Icon-Small-50@2x.png"; sourceTree = "<group>"; };
-		4687226C1CB25F4B00DEF2DB /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/icon/Icon-Small.png"; sourceTree = "<group>"; };
-		4687226D1CB25F4B00DEF2DB /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Resources/icon/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		4687226E1CB25F4B00DEF2DB /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@3x.png"; path = "Resources/icon/Icon-Small@3x.png"; sourceTree = "<group>"; };
-		4687226F1CB25F4B00DEF2DB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/icon/Icon.png; sourceTree = "<group>"; };
-		468722701CB25F4B00DEF2DB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/icon/Icon@2x.png"; sourceTree = "<group>"; };
-		468722711CB25F4B00DEF2DB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/icon/iTunesArtwork.png; sourceTree = "<group>"; };
-		468722721CB25F4B00DEF2DB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/icon/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		468722B31CB2606600DEF2DB /* InfoContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoContainerViewController.swift; path = ViewControllers/InfoView/InfoContainerViewController.swift; sourceTree = "<group>"; };
-		468722B41CB2606600DEF2DB /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPageViewController.swift; path = ViewControllers/InfoView/InfoPageViewController.swift; sourceTree = "<group>"; };
-		468722B51CB2606600DEF2DB /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = ViewControllers/InfoView/InfoViewController.swift; sourceTree = "<group>"; };
-		468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingTableViewController.swift; path = ViewControllers/SettingView/SettingTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		468722BB1CB2609100DEF2DB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = ViewControllers/WebView/WebViewController.swift; sourceTree = "<group>"; };
-		468722BD1CB260C400DEF2DB /* GIFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFViewController.swift; path = ViewControllers/MainView/GIFViewController.swift; sourceTree = "<group>"; };
-		468722BE1CB260C400DEF2DB /* ImagePreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePreViewController.swift; path = ViewControllers/MainView/ImagePreViewController.swift; sourceTree = "<group>"; };
-		468722BF1CB260C400DEF2DB /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainView/MainViewController.swift; sourceTree = "<group>"; };
-		468722C01CB260C400DEF2DB /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreViewController.swift; path = ViewControllers/MainView/PreViewController.swift; sourceTree = "<group>"; };
-		468722C11CB260C400DEF2DB /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReplyViewController.swift; path = ViewControllers/MainView/ReplyViewController.swift; sourceTree = "<group>"; };
-		468722C21CB260C400DEF2DB /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLineViewController.swift; path = ViewControllers/MainView/TimeLineViewController.swift; sourceTree = "<group>"; };
-		468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TiqavImageViewController.swift; path = ViewControllers/TweetView/TiqavImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		468722CA1CB260F400DEF2DB /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultViewController.swift; path = ViewControllers/TweetView/ResultViewController.swift; sourceTree = "<group>"; };
-		468722CB1CB260F400DEF2DB /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TweetViewController.swift; path = ViewControllers/TweetView/TweetViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		468722CF1CB2611400DEF2DB /* AVPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerView.swift; path = Views/MainView/AVPlayerView.swift; sourceTree = "<group>"; };
-		468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetVarViewCell.swift; path = Views/MainView/TweetVarViewCell.swift; sourceTree = "<group>"; };
-		468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TiqavImageViewModel.swift; path = ViewModels/TweetView/TiqavImageViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageModel.swift; path = Models/TweetView/TiqavImageModel.swift; sourceTree = "<group>"; };
-		468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiqavImageViewCell.swift; path = Views/TweetView/TiqavImageViewCell.swift; sourceTree = "<group>"; };
-		468722EA1CB4E0EF00DEF2DB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Constant/Settings.swift; sourceTree = "<group>"; };
-		468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterUtil.swift; path = Utility/TwitterUtil.swift; sourceTree = "<group>"; };
-		468722ED1CB4E10700DEF2DB /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = Utility/Utility.swift; sourceTree = "<group>"; };
-		468722F21CB4E15300DEF2DB /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewModel.swift; path = ViewModels/MainView/MainViewModel.swift; sourceTree = "<group>"; };
-		468722F41CB4E18100DEF2DB /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainModel.swift; path = Models/MainView/MainModel.swift; sourceTree = "<group>"; };
-		4689DFEF1CA55DEE006B48FF /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
-		4689DFF21CA55E1F006B48FF /* Imagenius-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imagenius-Bridging-Header.h"; sourceTree = "<group>"; };
+		4687225F1CB25F4B00DEF2DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		468722601CB25F4B00DEF2DB /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		468722611CB25F4B00DEF2DB /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		468722621CB25F4B00DEF2DB /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
+		468722631CB25F4B00DEF2DB /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		468722641CB25F4B00DEF2DB /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		468722651CB25F4B00DEF2DB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		468722661CB25F4B00DEF2DB /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		468722671CB25F4B00DEF2DB /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		468722681CB25F4B00DEF2DB /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		468722691CB25F4B00DEF2DB /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-83.5@2x.png"; sourceTree = "<group>"; };
+		4687226A1CB25F4B00DEF2DB /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		4687226B1CB25F4B00DEF2DB /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		4687226C1CB25F4B00DEF2DB /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		4687226D1CB25F4B00DEF2DB /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		4687226E1CB25F4B00DEF2DB /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		4687226F1CB25F4B00DEF2DB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		468722701CB25F4B00DEF2DB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		468722711CB25F4B00DEF2DB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		468722721CB25F4B00DEF2DB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		468722B31CB2606600DEF2DB /* InfoContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContainerViewController.swift; sourceTree = "<group>"; };
+		468722B41CB2606600DEF2DB /* InfoPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
+		468722B51CB2606600DEF2DB /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		468722BB1CB2609100DEF2DB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		468722BD1CB260C400DEF2DB /* GIFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFViewController.swift; sourceTree = "<group>"; };
+		468722BE1CB260C400DEF2DB /* ImagePreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreViewController.swift; sourceTree = "<group>"; };
+		468722BF1CB260C400DEF2DB /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		468722C01CB260C400DEF2DB /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
+		468722C11CB260C400DEF2DB /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
+		468722C21CB260C400DEF2DB /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TiqavImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		468722CA1CB260F400DEF2DB /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		468722CB1CB260F400DEF2DB /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TweetViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		468722CF1CB2611400DEF2DB /* AVPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
+		468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetVarViewCell.swift; sourceTree = "<group>"; };
+		468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TiqavImageViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiqavImageModel.swift; sourceTree = "<group>"; };
+		468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiqavImageViewCell.swift; sourceTree = "<group>"; };
+		468722EA1CB4E0EF00DEF2DB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUtil.swift; sourceTree = "<group>"; };
+		468722ED1CB4E10700DEF2DB /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		468722F21CB4E15300DEF2DB /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		468722F41CB4E18100DEF2DB /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		4689DFF41CA5684C006B48FF /* AnimatedGIFImageSerialization.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnimatedGIFImageSerialization.framework; path = "Pods/../build/Debug-iphoneos/AnimatedGIFImageSerialization.framework"; sourceTree = "<group>"; };
 		469F18AC1CAA844D00C015EF /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		469F18AD1CAA844D00C015EF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
@@ -242,12 +279,14 @@
 		469F18C01CAAAB9600C015EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		469F18C21CAAACC800C015EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		469F18D51CAABA7A00C015EF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/Imagenius-csuunvtzezahocgywaydfzxawymt/Build/Products/Debug-iphonesimulator/SDWebImage.framework"; sourceTree = "<group>"; };
-		46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTSettingTableViewController.swift; path = ViewControllers/SettingView/RTSettingTableViewController.swift; sourceTree = "<group>"; };
-		46BAE8531D0EFC990020BD82 /* TweetStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetStruct.swift; path = Utility/TweetStruct.swift; sourceTree = "<group>"; };
-		46BF12011D4F518500FFF5DD /* FavoriteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImage.swift; path = Utility/FavoriteImage.swift; sourceTree = "<group>"; };
-		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FavoriteImageViewController.swift; path = ViewControllers/TweetView/FavoriteImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteImageViewCell.swift; path = Views/TweetView/FavoriteImageViewCell.swift; sourceTree = "<group>"; };
-		46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteResultViewController.swift; path = ViewControllers/TweetView/FavoriteResultViewController.swift; sourceTree = "<group>"; };
+		46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingTableViewController.swift; sourceTree = "<group>"; };
+		46BAE8531D0EFC990020BD82 /* TweetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetModel.swift; path = TweetModel.swift; sourceTree = "<group>"; };
+		46BD8DD31E7789FE003A5140 /* ResultViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ResultViewController.storyboard; path = ResultViewController.storyboard; sourceTree = "<group>"; };
+		46BD8DD51E778B6A003A5140 /* TiqavImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TiqavImageViewController.storyboard; path = TiqavImageViewController.storyboard; sourceTree = "<group>"; };
+		46BF12011D4F518500FFF5DD /* FavoriteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteImage.swift; sourceTree = "<group>"; };
+		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FavoriteImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteImageViewCell.swift; sourceTree = "<group>"; };
+		46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteResultViewController.swift; sourceTree = "<group>"; };
 		93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -303,23 +342,22 @@
 		4603CC231C7DE04D005DF397 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				463547081E7799B00026EF63 /* Imagenius-Bridging-Header.h */,
 				4603CC241C7DE062005DF397 /* Settings.bundle */,
-				4689DFF21CA55E1F006B48FF /* Imagenius-Bridging-Header.h */,
-				4689DFEF1CA55DEE006B48FF /* Imagenius-Bridging-Header.h */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		460B4A2C1C6B5CF60089CC7E = {
 			isa = PBXGroup;
 			children = (
-				4603CC231C7DE04D005DF397 /* Supporting Files */,
+				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
 				460B4A371C6B5CF60089CC7E /* Imagenius */,
 				460B4A4C1C6B5CF60089CC7E /* ImageniusTests */,
 				460B4A571C6B5CF60089CC7E /* ImageniusUITests */,
-				460B4A361C6B5CF60089CC7E /* Products */,
-				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
 				1E17EA4ADBF4CAB9B900269C /* Pods */,
+				460B4A361C6B5CF60089CC7E /* Products */,
+				4603CC231C7DE04D005DF397 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -337,14 +375,14 @@
 		460B4A371C6B5CF60089CC7E /* Imagenius */ = {
 			isa = PBXGroup;
 			children = (
+				46D681321C7B293200DDB4DE /* Constant */,
+				468722E11CB4C41600DEF2DB /* Models */,
+				4683829D1C7696CD001DC810 /* Resources */,
 				461B7F401C8926BD00419759 /* StoryBoard */,
 				468722DF1CB4C3DA00DEF2DB /* Utility */,
-				46D681321C7B293200DDB4DE /* Constant */,
-				468722E01CB4C40200DEF2DB /* ViewModels */,
-				468722E11CB4C41600DEF2DB /* Models */,
 				46D681301C7B28B700DDB4DE /* ViewControllers */,
+				468722E01CB4C40200DEF2DB /* ViewModels */,
 				46D681311C7B290200DDB4DE /* Views */,
-				4683829D1C7696CD001DC810 /* Resources */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
 				460B4A441C6B5CF60089CC7E /* Info.plist */,
 			);
@@ -372,21 +410,24 @@
 		461B7F401C8926BD00419759 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				460B4A3C1C6B5CF60089CC7E /* Main.storyboard */,
 				460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */,
+				463547101E77DB3F0026EF63 /* Pages.storyboard */,
+				463547301E77DFAE0026EF63 /* RootTabController.storyboard */,
 				4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */,
 			);
-			name = StoryBoard;
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 		462036D01CA917C800D4F01A /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
+				463547181E77DC270026EF63 /* InfoContainerViewController.storyboard */,
 				468722B31CB2606600DEF2DB /* InfoContainerViewController.swift */,
+				463547161E77DC0C0026EF63 /* InfoPageViewController.storyboard */,
 				468722B41CB2606600DEF2DB /* InfoPageViewController.swift */,
 				468722B51CB2606600DEF2DB /* InfoViewController.swift */,
 			);
-			name = InfoView;
+			path = InfoView;
 			sourceTree = "<group>";
 		};
 		46312B241CB69BF7009183D9 /* SettingView */ = {
@@ -394,7 +435,7 @@
 			children = (
 				46312B251CB69C1E009183D9 /* SettingBannerCell.swift */,
 			);
-			name = SettingView;
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 		464A7E811C78299F006100DB /* icon */ = {
@@ -421,7 +462,7 @@
 				468722711CB25F4B00DEF2DB /* iTunesArtwork.png */,
 				468722721CB25F4B00DEF2DB /* iTunesArtwork@2x.png */,
 			);
-			name = icon;
+			path = icon;
 			sourceTree = "<group>";
 		};
 		464A80251C7997DE006100DB /* Products */ = {
@@ -439,49 +480,53 @@
 		465D5ABF1E762514003FD4A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */,
+				4634CB501CBA71FF00E9E834 /* Date+CustomFormat.swift */,
+				463547321E77EAC90026EF63 /* String+Error.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		467549C01C9574AA00FB3747 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				4635471A1E77DC560026EF63 /* WebViewController.storyboard */,
 				468722BB1CB2609100DEF2DB /* WebViewController.swift */,
 			);
-			name = WebView;
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		467549DF1C96AEDA00FB3747 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */,
-				46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */,
+				463547221E77DD2A0026EF63 /* MuteSettingViewController.storyboard */,
 				462D462E1D9ACCE200A82A8B /* MuteSettingViewController.swift */,
+				463547241E77DD520026EF63 /* RTSettingTableViewController.storyboard */,
+				46B50EF01D855CB000F8F09D /* RTSettingTableViewController.swift */,
+				463547281E77DDA00026EF63 /* SettingTableViewController.storyboard */,
+				468722B91CB2607C00DEF2DB /* SettingTableViewController.swift */,
 			);
-			name = SettingView;
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 		4683829D1C7696CD001DC810 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
 				464A7E811C78299F006100DB /* icon */,
+				460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		468722DF1CB4C3DA00DEF2DB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				465D5ABF1E762514003FD4A5 /* Extensions */,
+				46BF12011D4F518500FFF5DD /* FavoriteImage.swift */,
+				465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */,
 				468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */,
 				468722ED1CB4E10700DEF2DB /* Utility.swift */,
-				4634CB501CBA71FF00E9E834 /* NSDateExtension.swift */,
-				46BAE8531D0EFC990020BD82 /* TweetStruct.swift */,
-				46BF12011D4F518500FFF5DD /* FavoriteImage.swift */,
 			);
-			name = Utility;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		468722E01CB4C40200DEF2DB /* ViewModels */ = {
@@ -490,7 +535,7 @@
 				468722F11CB4E13000DEF2DB /* MainView */,
 				468722E61CB4E01F00DEF2DB /* TweetView */,
 			);
-			name = ViewModels;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		468722E11CB4C41600DEF2DB /* Models */ = {
@@ -498,8 +543,9 @@
 			children = (
 				468722F01CB4E12500DEF2DB /* MainView */,
 				468722E71CB4E02D00DEF2DB /* TweetView */,
+				46BAE8531D0EFC990020BD82 /* TweetModel.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		468722E61CB4E01F00DEF2DB /* TweetView */ = {
@@ -507,7 +553,7 @@
 			children = (
 				468722E21CB4C5A500DEF2DB /* TiqavImageViewModel.swift */,
 			);
-			name = TweetView;
+			path = TweetView;
 			sourceTree = "<group>";
 		};
 		468722E71CB4E02D00DEF2DB /* TweetView */ = {
@@ -515,7 +561,7 @@
 			children = (
 				468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */,
 			);
-			name = TweetView;
+			path = TweetView;
 			sourceTree = "<group>";
 		};
 		468722F01CB4E12500DEF2DB /* MainView */ = {
@@ -523,39 +569,39 @@
 			children = (
 				468722F41CB4E18100DEF2DB /* MainModel.swift */,
 			);
-			name = MainView;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		468722F11CB4E13000DEF2DB /* MainView */ = {
 			isa = PBXGroup;
 			children = (
 				468722F21CB4E15300DEF2DB /* MainViewModel.swift */,
-				46312B221CB653B6009183D9 /* UserViewModel.swift */,
 				46312B291CB74C6D009183D9 /* TweetDetailViewModel.swift */,
+				46312B221CB653B6009183D9 /* UserViewModel.swift */,
 			);
-			name = MainView;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		46D681301C7B28B700DDB4DE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				462036D01CA917C800D4F01A /* InfoView */,
-				467549DF1C96AEDA00FB3747 /* SettingView */,
-				467549C01C9574AA00FB3747 /* WebView */,
 				46DF351B1C8C84AF00CB177F /* MainView */,
+				467549DF1C96AEDA00FB3747 /* SettingView */,
 				46DF351C1C8C84E000CB177F /* TweetView */,
+				467549C01C9574AA00FB3747 /* WebView */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		46D681311C7B290200DDB4DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				46312B241CB69BF7009183D9 /* SettingView */,
 				46D681341C7B2B1200DDB4DE /* MainView */,
+				46312B241CB69BF7009183D9 /* SettingView */,
 				46D681331C7B2B0000DDB4DE /* TweetView */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		46D681321C7B293200DDB4DE /* Constant */ = {
@@ -563,16 +609,16 @@
 			children = (
 				468722EA1CB4E0EF00DEF2DB /* Settings.swift */,
 			);
-			name = Constant;
+			path = Constant;
 			sourceTree = "<group>";
 		};
 		46D681331C7B2B0000DDB4DE /* TweetView */ = {
 			isa = PBXGroup;
 			children = (
-				468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */,
 				46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */,
+				468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */,
 			);
-			name = TweetView;
+			path = TweetView;
 			sourceTree = "<group>";
 		};
 		46D681341C7B2B1200DDB4DE /* MainView */ = {
@@ -581,36 +627,49 @@
 				468722CF1CB2611400DEF2DB /* AVPlayerView.swift */,
 				468722D01CB2611400DEF2DB /* TweetVarViewCell.swift */,
 			);
-			name = MainView;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		46DF351B1C8C84AF00CB177F /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				463547141E77DB990026EF63 /* GIFViewController.storyboard */,
 				468722BD1CB260C400DEF2DB /* GIFViewController.swift */,
+				463547121E77DB740026EF63 /* ImagePreViewController.storyboard */,
 				468722BE1CB260C400DEF2DB /* ImagePreViewController.swift */,
+				4635472E1E77DEF90026EF63 /* ListAllViewController.storyboard */,
+				4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */,
 				468722BF1CB260C400DEF2DB /* MainViewController.swift */,
 				468722C01CB260C400DEF2DB /* PreViewController.swift */,
+				4635472A1E77DE7D0026EF63 /* ReplyViewController.storyboard */,
 				468722C11CB260C400DEF2DB /* ReplyViewController.swift */,
+				4635472C1E77DE9B0026EF63 /* TimeLineViewController.storyboard */,
 				468722C21CB260C400DEF2DB /* TimeLineViewController.swift */,
-				46312B201CB6505F009183D9 /* UserViewController.swift */,
+				4635471E1E77DCC10026EF63 /* TweetDetailViewController.storyboard */,
 				46312B271CB74B8C009183D9 /* TweetDetailViewController.swift */,
-				4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */,
+				463547201E77DCF30026EF63 /* UserViewController.storyboard */,
+				46312B201CB6505F009183D9 /* UserViewController.swift */,
+				4635471C1E77DC700026EF63 /* WatchListViewController.storyboard */,
 				4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */,
 			);
-			name = MainView;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		46DF351C1C8C84E000CB177F /* TweetView */ = {
 			isa = PBXGroup;
 			children = (
-				468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */,
-				468722CA1CB260F400DEF2DB /* ResultViewController.swift */,
-				468722CB1CB260F400DEF2DB /* TweetViewController.swift */,
+				4635470C1E77DAE70026EF63 /* FavoriteImageViewController.storyboard */,
 				46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */,
+				4635470A1E77DA180026EF63 /* FavoriteResultViewController.storyboard */,
 				46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */,
+				46BD8DD31E7789FE003A5140 /* ResultViewController.storyboard */,
+				468722CA1CB260F400DEF2DB /* ResultViewController.swift */,
+				46BD8DD51E778B6A003A5140 /* TiqavImageViewController.storyboard */,
+				468722C91CB260F400DEF2DB /* TiqavImageViewController.swift */,
+				4635470E1E77DB1B0026EF63 /* TweetViewController.storyboard */,
+				468722CB1CB260F400DEF2DB /* TweetViewController.swift */,
 			);
-			name = TweetView;
+			path = TweetView;
 			sourceTree = "<group>";
 		};
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
@@ -809,30 +868,50 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4635471B1E77DC560026EF63 /* WebViewController.storyboard in Resources */,
+				46BD8DDD1E7793C5003A5140 /* LaunchScreen.storyboard in Resources */,
+				4635470F1E77DB1B0026EF63 /* TweetViewController.storyboard in Resources */,
+				463547131E77DB740026EF63 /* ImagePreViewController.storyboard in Resources */,
+				46BD8DDF1E7793C5003A5140 /* TweetTableViewCell.xib in Resources */,
 				4687227B1CB25F4B00DEF2DB /* Icon-76.png in Resources */,
 				468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */,
 				468722751CB25F4B00DEF2DB /* Icon-40@3x.png in Resources */,
-				460B4A431C6B5CF60089CC7E /* LaunchScreen.storyboard in Resources */,
+				463547171E77DC0C0026EF63 /* InfoPageViewController.storyboard in Resources */,
+				463547211E77DCF30026EF63 /* UserViewController.storyboard in Resources */,
+				463547111E77DB3F0026EF63 /* Pages.storyboard in Resources */,
+				4635472B1E77DE7D0026EF63 /* ReplyViewController.storyboard in Resources */,
+				4635470D1E77DAE70026EF63 /* FavoriteImageViewController.storyboard in Resources */,
 				4687227C1CB25F4B00DEF2DB /* Icon-76@2x.png in Resources */,
 				4687227D1CB25F4B00DEF2DB /* Icon-83.5@2x.png in Resources */,
-				4634CB4B1CBA5FEB00E9E834 /* TweetTableViewCell.xib in Resources */,
+				4635471F1E77DCC10026EF63 /* TweetDetailViewController.storyboard in Resources */,
+				46BD8DD61E778B6A003A5140 /* TiqavImageViewController.storyboard in Resources */,
 				468722791CB25F4B00DEF2DB /* Icon-72.png in Resources */,
+				4635471D1E77DC700026EF63 /* WatchListViewController.storyboard in Resources */,
+				463547231E77DD2A0026EF63 /* MuteSettingViewController.storyboard in Resources */,
 				468722821CB25F4B00DEF2DB /* Icon-Small@3x.png in Resources */,
 				468722861CB25F4B00DEF2DB /* iTunesArtwork@2x.png in Resources */,
 				468722831CB25F4B00DEF2DB /* Icon.png in Resources */,
 				468722771CB25F4B00DEF2DB /* Icon-60@2x.png in Resources */,
+				463547291E77DDA00026EF63 /* SettingTableViewController.storyboard in Resources */,
 				468722851CB25F4B00DEF2DB /* iTunesArtwork.png in Resources */,
 				468722801CB25F4B00DEF2DB /* Icon-Small.png in Resources */,
+				4635470B1E77DA180026EF63 /* FavoriteResultViewController.storyboard in Resources */,
 				4687227F1CB25F4B00DEF2DB /* Icon-Small-50@2x.png in Resources */,
+				4635472D1E77DE9B0026EF63 /* TimeLineViewController.storyboard in Resources */,
+				463547151E77DB990026EF63 /* GIFViewController.storyboard in Resources */,
 				4687227E1CB25F4B00DEF2DB /* Icon-Small-50.png in Resources */,
 				468722781CB25F4B00DEF2DB /* Icon-60@3x.png in Resources */,
 				468722841CB25F4B00DEF2DB /* Icon@2x.png in Resources */,
 				468722811CB25F4B00DEF2DB /* Icon-Small@2x.png in Resources */,
+				463547191E77DC270026EF63 /* InfoContainerViewController.storyboard in Resources */,
+				463547251E77DD520026EF63 /* RTSettingTableViewController.storyboard in Resources */,
 				468722761CB25F4B00DEF2DB /* Icon-60.png in Resources */,
+				46BD8DD41E7789FE003A5140 /* ResultViewController.storyboard in Resources */,
 				460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */,
 				4687227A1CB25F4B00DEF2DB /* Icon-72@2x.png in Resources */,
-				460B4A3E1C6B5CF60089CC7E /* Main.storyboard in Resources */,
+				463547311E77DFAE0026EF63 /* RootTabController.storyboard in Resources */,
 				4603CC251C7DE062005DF397 /* Settings.bundle in Resources */,
+				4635472F1E77DEF90026EF63 /* ListAllViewController.storyboard in Resources */,
 				468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1009,7 +1088,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46BAE8541D0EFC990020BD82 /* TweetStruct.swift in Sources */,
+				46BAE8541D0EFC990020BD82 /* TweetModel.swift in Sources */,
+				463547331E77EAC90026EF63 /* String+Error.swift in Sources */,
 				468722D11CB2611400DEF2DB /* AVPlayerView.swift in Sources */,
 				462D462F1D9ACCE200A82A8B /* MuteSettingViewController.swift in Sources */,
 				465D5AC11E762547003FD4A5 /* RxImagePickerDelegateProxy.swift in Sources */,
@@ -1029,7 +1109,7 @@
 				468722B61CB2606600DEF2DB /* InfoContainerViewController.swift in Sources */,
 				468722B71CB2606600DEF2DB /* InfoPageViewController.swift in Sources */,
 				46312B281CB74B8C009183D9 /* TweetDetailViewController.swift in Sources */,
-				4634CB511CBA71FF00E9E834 /* NSDateExtension.swift in Sources */,
+				4634CB511CBA71FF00E9E834 /* Date+CustomFormat.swift in Sources */,
 				46B50EF11D855CB000F8F09D /* RTSettingTableViewController.swift in Sources */,
 				468722C81CB260C400DEF2DB /* TimeLineViewController.swift in Sources */,
 				468722CD1CB260F400DEF2DB /* ResultViewController.swift in Sources */,
@@ -1085,22 +1165,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		460B4A3C1C6B5CF60089CC7E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				460B4A3D1C6B5CF60089CC7E /* Base */,
-				467549E71C96C45400FB3747 /* ja */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		460B4A411C6B5CF60089CC7E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				460B4A421C6B5CF60089CC7E /* Base */,
-				467549E81C96C45400FB3747 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		4634CB491CBA5FEB00E9E834 /* TweetTableViewCell.xib */ = {
@@ -1109,6 +1180,7 @@
 				4634CB4A1CBA5FEB00E9E834 /* Base */,
 			);
 			name = TweetTableViewCell.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1221,7 +1293,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1249,7 +1321,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imagenius-Bridging-Header.h";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Imagenius-Bridging-Header.h";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

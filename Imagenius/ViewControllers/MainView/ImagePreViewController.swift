@@ -17,7 +17,7 @@ final class ImagePreViewController: UIPageViewController {
         super.viewDidLoad()
         self.delegate = self
 
-        let startViewController: PreViewController = self.viewControllerAtIndex(0, storyboard: self.storyboard!)!
+        let startViewController: PreViewController = viewControllerAtIndex(0, storyboard: UIStoryboard(name: "Pages", bundle: nil))!
         let viewControllers = [startViewController]
         self.setViewControllers(viewControllers, direction: .forward, animated: false, completion: {_ in })
 

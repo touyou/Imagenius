@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cur-A6-H6A">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--選択画像-->
+        <scene sceneID="TPD-zD-SIq">
+            <objects>
+                <viewController storyboardIdentifier="ResultViewController" id="cur-A6-H6A" customClass="ResultViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iid-Z3-Utx"/>
+                        <viewControllerLayoutGuide type="bottom" id="hJs-vo-oDP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3Nh-BL-pyV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSH-uO-Hes">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="617"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d5Q-35-rh9">
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="617"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="d5Q-35-rh9" firstAttribute="top" secondItem="VSH-uO-Hes" secondAttribute="top" id="0Kb-Xh-E1W"/>
+                                    <constraint firstItem="d5Q-35-rh9" firstAttribute="leading" secondItem="VSH-uO-Hes" secondAttribute="leading" id="AD2-rm-xwQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="d5Q-35-rh9" secondAttribute="bottom" id="MYg-bz-Sum"/>
+                                    <constraint firstItem="d5Q-35-rh9" firstAttribute="centerY" secondItem="VSH-uO-Hes" secondAttribute="centerY" id="Zxj-JK-ixn"/>
+                                    <constraint firstItem="d5Q-35-rh9" firstAttribute="centerX" secondItem="VSH-uO-Hes" secondAttribute="centerX" id="i6b-Au-8Me"/>
+                                    <constraint firstAttribute="trailing" secondItem="d5Q-35-rh9" secondAttribute="trailing" id="win-dy-rva"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKf-oa-2qn">
+                                <rect key="frame" x="-4" y="617" width="191.5" height="50"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Fef-BG-61j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="保存/シェア">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareImage" destination="cur-A6-H6A" eventType="touchUpInside" id="XLh-bE-KdM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxE-YJ-GKa">
+                                <rect key="frame" x="187.5" y="617" width="191.5" height="50"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.37254901959999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9V5-l9-rcv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="お気に入りに登録">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="favoriteImageBtn" destination="cur-A6-H6A" eventType="touchUpInside" id="xtn-b4-cZK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="VSH-uO-Hes" firstAttribute="leading" secondItem="3Nh-BL-pyV" secondAttribute="leadingMargin" constant="-20" id="9RP-J2-F66"/>
+                            <constraint firstItem="dKf-oa-2qn" firstAttribute="top" secondItem="VSH-uO-Hes" secondAttribute="bottom" id="Iza-kh-iWa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZxE-YJ-GKa" secondAttribute="trailing" constant="-20" id="JMe-AG-Luy"/>
+                            <constraint firstItem="hJs-vo-oDP" firstAttribute="top" secondItem="dKf-oa-2qn" secondAttribute="bottom" id="MnZ-xQ-7J3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VSH-uO-Hes" secondAttribute="trailing" constant="-20" id="QG6-ie-XU4"/>
+                            <constraint firstItem="ZxE-YJ-GKa" firstAttribute="leading" secondItem="dKf-oa-2qn" secondAttribute="trailing" id="Uxc-bh-u5T"/>
+                            <constraint firstItem="dKf-oa-2qn" firstAttribute="leading" secondItem="3Nh-BL-pyV" secondAttribute="leadingMargin" constant="-20" id="Y9A-fd-n8V"/>
+                            <constraint firstItem="hJs-vo-oDP" firstAttribute="top" secondItem="ZxE-YJ-GKa" secondAttribute="bottom" id="Z8S-Xi-kzR"/>
+                            <constraint firstItem="VSH-uO-Hes" firstAttribute="top" secondItem="3Nh-BL-pyV" secondAttribute="topMargin" id="fuN-jd-wgd"/>
+                            <constraint firstItem="VSH-uO-Hes" firstAttribute="centerX" secondItem="3Nh-BL-pyV" secondAttribute="centerX" id="geu-1l-4fk"/>
+                            <constraint firstItem="ZxE-YJ-GKa" firstAttribute="width" secondItem="dKf-oa-2qn" secondAttribute="width" id="hGW-MF-emA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="選択画像" id="vhu-e7-f7E">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0X7-f8-brn">
+                            <connections>
+                                <action selector="pushCancel" destination="cur-A6-H6A" id="Kx0-eD-JzL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="mcU-cZ-lWZ">
+                            <connections>
+                                <action selector="pushOK" destination="cur-A6-H6A" id="CbC-c9-PAY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageView" destination="d5Q-35-rh9" id="DDU-gw-Gg0"/>
+                        <outlet property="preScrollView" destination="VSH-uO-Hes" id="0RK-FH-i6C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zzs-uq-HsA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2089" y="6"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pre View Controller-->
+        <scene sceneID="Z8W-jf-eio">
+            <objects>
+                <viewController storyboardIdentifier="PreViewController" id="BCe-nZ-YFR" customClass="PreViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rv1-zx-xvN"/>
+                        <viewControllerLayoutGuide type="bottom" id="ewp-0J-lat"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="04f-Mz-tjR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54T-zC-uLs">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ra4-ML-ySh">
+                                        <rect key="frame" x="10" y="0.0" width="363" height="667"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="centerY" secondItem="54T-zC-uLs" secondAttribute="centerY" id="63t-T2-AEr"/>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="centerX" secondItem="54T-zC-uLs" secondAttribute="centerX" id="HmH-hN-DrX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ra4-ML-ySh" secondAttribute="trailing" constant="10" id="SIz-D9-Wmg"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ra4-ML-ySh" secondAttribute="bottom" id="Ugt-lU-Pai"/>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="leading" secondItem="54T-zC-uLs" secondAttribute="leading" constant="10" id="YQw-Fv-0CP"/>
+                                    <constraint firstItem="Ra4-ML-ySh" firstAttribute="top" secondItem="54T-zC-uLs" secondAttribute="top" id="opN-dM-aAb"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ewp-0J-lat" firstAttribute="top" secondItem="54T-zC-uLs" secondAttribute="bottom" id="6gG-Ba-N6u"/>
+                            <constraint firstItem="54T-zC-uLs" firstAttribute="leading" secondItem="04f-Mz-tjR" secondAttribute="leadingMargin" constant="-20" id="RcT-EX-Uju"/>
+                            <constraint firstItem="54T-zC-uLs" firstAttribute="top" secondItem="04f-Mz-tjR" secondAttribute="topMargin" id="kjn-Bm-JUx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="54T-zC-uLs" secondAttribute="trailing" constant="-20" id="tyo-GZ-OGK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="preImageView" destination="Ra4-ML-ySh" id="pol-Z0-3OD"/>
+                        <outlet property="preScrollView" destination="54T-zC-uLs" id="ISm-PY-c1S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aPA-lx-I1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="2410"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="Kte-2h-rnm">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" id="DwM-37-TAc" customClass="InfoViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Gt-IP-ekD"/>
+                        <viewControllerLayoutGuide type="bottom" id="vaP-EY-Jwr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zwR-cn-HuA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NPg-L3-yXm">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.37254901959999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="NPg-L3-yXm" secondAttribute="trailing" constant="-20" id="2Qw-3X-Aqr"/>
+                            <constraint firstItem="NPg-L3-yXm" firstAttribute="leading" secondItem="zwR-cn-HuA" secondAttribute="leadingMargin" constant="-20" id="8k4-uR-7Z3"/>
+                            <constraint firstItem="vaP-EY-Jwr" firstAttribute="top" secondItem="NPg-L3-yXm" secondAttribute="bottom" id="KVi-9Q-WrG"/>
+                            <constraint firstItem="NPg-L3-yXm" firstAttribute="top" secondItem="zwR-cn-HuA" secondAttribute="topMargin" id="QnC-Gn-205"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="NPg-L3-yXm" id="4Hw-Fz-1Ig"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eTk-MV-wjD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-708" y="2409"/>
+        </scene>
+    </scenes>
+</document>

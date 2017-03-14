@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pV9-qt-0Uh">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Empty Data Set Delegate-->
+        <scene sceneID="PdO-ML-Ggr">
+            <objects>
+                <viewController id="RyR-MI-pon" customClass="ReplyViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ghS-Hp-UgB"/>
+                        <viewControllerLayoutGuide type="bottom" id="xL4-Wc-G0o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jeo-a7-HQO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pcq-xR-Hr1">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="RyR-MI-pon" id="an7-PF-3gf"/>
+                                    <outlet property="emptyDataSetDelegate" destination="RyR-MI-pon" id="rfX-gZ-nCH"/>
+                                    <outlet property="emptyDataSetSource" destination="RyR-MI-pon" id="I6Q-0Z-jhf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pcq-xR-Hr1" firstAttribute="centerX" secondItem="jeo-a7-HQO" secondAttribute="centerX" id="Dfe-O6-Kkj"/>
+                            <constraint firstItem="Pcq-xR-Hr1" firstAttribute="centerY" secondItem="jeo-a7-HQO" secondAttribute="centerY" id="GZh-fV-mov"/>
+                            <constraint firstItem="Pcq-xR-Hr1" firstAttribute="leading" secondItem="jeo-a7-HQO" secondAttribute="leadingMargin" constant="-20" id="Tuk-hN-Qlm"/>
+                            <constraint firstItem="Pcq-xR-Hr1" firstAttribute="top" secondItem="jeo-a7-HQO" secondAttribute="topMargin" id="ntf-Xf-xjI"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="リプライ" image="reply" id="FUw-np-xDv"/>
+                    <navigationItem key="navigationItem" title="Imagenius" id="IRq-XO-nuI">
+                        <barButtonItem key="leftBarButtonItem" image="setting_icon" id="eKU-gd-JHx">
+                            <connections>
+                                <segue destination="l3S-rg-UKC" kind="show" identifier="toSetting" id="WQ3-wt-xNC"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="J2G-1B-T8Q">
+                                <connections>
+                                    <action selector="pushTweet" destination="RyR-MI-pon" id="uH8-yW-7Ha"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="use_white-1" id="3t2-HX-qcY">
+                                <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <action selector="pushUser" destination="RyR-MI-pon" id="aEP-fq-5vt"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="timelineTableView" destination="Pcq-xR-Hr1" id="54F-ss-hgf"/>
+                        <segue destination="fai-3V-zEt" kind="presentation" identifier="toTweetView" id="xcG-Qk-skd"/>
+                        <segue destination="OgU-9d-EY1" kind="show" identifier="toPreView" id="ykC-G6-UoE"/>
+                        <segue destination="udX-dn-TCn" kind="show" identifier="openWebView" id="pVq-SY-5Du"/>
+                        <segue destination="i3U-tc-km8" kind="show" identifier="toGifView" id="qxN-ce-oBJ"/>
+                        <segue destination="COm-86-Lye" kind="show" identifier="toUserView" id="lne-Pd-CqX"/>
+                        <segue destination="xvw-7G-qvk" kind="show" identifier="toTweetDetailView" id="dUr-6B-bO2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oHE-g6-443" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4138" y="1728"/>
+        </scene>
+        <!--リプライ-->
+        <scene sceneID="ltq-B2-S5g">
+            <objects>
+                <navigationController id="pV9-qt-0Uh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="リプライ" image="reply" id="UO0-yD-2MC"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SF2-WV-ldd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="RyR-MI-pon" kind="relationship" relationship="rootViewController" id="Fqx-Df-cXf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NYB-Ht-AGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4879" y="1728"/>
+        </scene>
+        <!--TweetViewController-->
+        <scene sceneID="LWb-KX-Eh3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TweetViewController" id="fai-3V-zEt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vzh-xQ-PgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4880" y="2410"/>
+        </scene>
+        <!--ImagePreViewController-->
+        <scene sceneID="xOQ-Pn-e7S">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ImagePreViewController" id="OgU-9d-EY1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S0c-Vu-qlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2148" y="2410"/>
+        </scene>
+        <!--GIFViewController-->
+        <scene sceneID="AR1-eB-qkP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GIFViewController" id="i3U-tc-km8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbF-Fy-jUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2534" y="2410"/>
+        </scene>
+        <!--WebViewController-->
+        <scene sceneID="eFR-mu-ljN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WebViewController" id="udX-dn-TCn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5I-3W-kgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2877" y="2410"/>
+        </scene>
+        <!--TweetDetailViewController-->
+        <scene sceneID="hkS-4N-FMm">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UIViewController-8MN-uY-k0b" storyboardName="TweetDetailViewController" referencedIdentifier="TweetDetailViewController" id="xvw-7G-qvk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmS-J4-cuH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3643" y="2410"/>
+        </scene>
+        <!--UserViewController-->
+        <scene sceneID="yRu-kg-JqR">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UIViewController-M1o-Zj-fGm" storyboardName="UserViewController" referencedIdentifier="UserViewController" id="COm-86-Lye" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z49-C5-Ca1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3265" y="2410"/>
+        </scene>
+        <!--SettingTableViewController-->
+        <scene sceneID="PEH-SC-U5Q">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UITableViewController-tsV-LL-8hz" storyboardName="SettingTableViewController" referencedIdentifier="SettingTableViewController" id="l3S-rg-UKC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XWk-xp-asx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4246" y="2410"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="reply" width="22" height="22"/>
+        <image name="setting_icon" width="24" height="24"/>
+        <image name="use_white-1" width="25" height="25"/>
+    </resources>
+</document>
