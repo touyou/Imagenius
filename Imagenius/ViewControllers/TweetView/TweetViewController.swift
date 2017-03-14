@@ -32,7 +32,13 @@ final class TweetViewController: UIViewController {
     @IBOutlet weak var galleryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var twBtn: UIButton!
-    @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var imageCollectionView: UICollectionView! {
+        didSet {
+            imageCollectionView.delegate = self
+            imageCollectionView.dataSource = self
+            imageCollectionView.backgroundColor = UIColor.white
+        }
+    }
     // Google Ads関連
     @IBOutlet weak var bannerView: GADBannerView!
 
@@ -80,16 +86,6 @@ final class TweetViewController: UIViewController {
         }
         searchField.placeholder = "画像を検索する"
         tweetImageHeight.constant = 0
-
-//        let flowLayout = KTCenterFlowLayout()
-//        flowLayout.scrollDirection = .Horizontal
-//        flowLayout.minimumInteritemSpacing = 10
-//        flowLayout.minimumLineSpacing = 10
-//        flowLayout.itemSize = CGSizeMake(110, 110)
-//        imageCollectionView.collectionViewLayout = flowLayout
-        imageCollectionView.delegate = self
-        imageCollectionView.dataSource = self
-        imageCollectionView.backgroundColor = UIColor.white
 
         // RxSwiftで文字数を監視
         tweetTextView.rx.textInput.text
