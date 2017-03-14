@@ -13,12 +13,31 @@ import SWTableViewCell
 import SDWebImage
 
 final class TweetVarViewCell: SWTableViewCell {
-    @IBOutlet weak var tweetLabel: TTTAttributedLabel!
+    @IBOutlet weak var tweetLabel: TTTAttributedLabel! {
+        didSet {
+            // URL検知するように設定
+            tweetLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+            tweetLabel.extendsLinkTouchArea = false
+            // リンク
+            tweetLabel.linkAttributes = [
+                kCTForegroundColorAttributeName as AnyHashable: Settings.Colors.twitterColor,
+                NSUnderlineStyleAttributeName: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
+            ]
+        }
+    }
     @IBOutlet weak var userIDLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userImgView: UIImageView!
-    @IBOutlet weak var tweetImgView: UIImageView!
-    @IBOutlet weak var tweetSubView: UIView!
+    @IBOutlet weak var tweetImgView: UIImageView! {
+        didSet {
+            tweetImgView.isUserInteractionEnabled = true
+        }
+    }
+    @IBOutlet weak var tweetSubView: UIView! {
+        didSet {
+            tweetSubView.isHidden = true
+        }
+    }
     @IBOutlet weak var subViewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageCountLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -27,19 +46,6 @@ final class TweetVarViewCell: SWTableViewCell {
     // MARK: - TableViewCellが生成された時
     override func awakeFromNib() {
         super.awakeFromNib()
-        // URL検知するように設定
-        tweetLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
-        tweetLabel.extendsLinkTouchArea = false
-        // リンク
-        tweetLabel.linkAttributes = [
-            kCTForegroundColorAttributeName as AnyHashable: Settings.Colors.twitterColor,
-            NSUnderlineStyleAttributeName: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
-        ]
-        subViewHeight.constant = 0
-        
-//        rtImageView.isHidden = true
-//        userImgView.isHidden = false
-        tweetImgView.isUserInteractionEnabled = true
     }
 
     override func layoutSubviews() {
@@ -113,6 +119,7 @@ final class TweetVarViewCell: SWTableViewCell {
         let imageCount = tweetMedia.count
         // 画像の高さを設定する
         subViewHeight.constant = tweetHeight
+    
         // 角丸にする
         tweetSubView.isHidden = false
         tweetSubView.layer.cornerRadius = tweetSubView.frame.width * 0.017
