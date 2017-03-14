@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d8q-Up-PmA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="azs-1F-Q2u">
+            <objects>
+                <navigationController storyboardIdentifier="TiqavImageViewController" id="d8q-Up-PmA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1lN-nM-Cte">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kKt-X2-khJ" kind="relationship" relationship="rootViewController" id="1Me-bx-L5n"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2U6-dJ-5j9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-87" y="6"/>
+        </scene>
+        <!--Tiqav Image View Controller-->
+        <scene sceneID="jgO-eq-Ngl">
+            <objects>
+                <viewController id="kKt-X2-khJ" customClass="TiqavImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EPg-Ey-9Q9"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZKp-jd-U3F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ifO-ws-VHY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-bU-DV9">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="4Ku-29-Yvo">
+                                    <size key="itemSize" width="106" height="106"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="6e4-bh-72h" customClass="TiqavImageViewCell" customModule="Imagenius" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OWr-mU-atU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="OWr-mU-atU" secondAttribute="bottom" constant="-8" id="7t6-Xf-L34"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="OWr-mU-atU" secondAttribute="trailing" constant="-8" id="QH6-PP-SbR"/>
+                                            <constraint firstItem="OWr-mU-atU" firstAttribute="leading" secondItem="6e4-bh-72h" secondAttribute="leadingMargin" constant="-8" id="W1I-46-IpA"/>
+                                            <constraint firstItem="OWr-mU-atU" firstAttribute="top" secondItem="6e4-bh-72h" secondAttribute="topMargin" constant="-8" id="ir9-Uk-XIb"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="OWr-mU-atU" id="MkM-rC-Itu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kFZ-bU-DV9" firstAttribute="leading" secondItem="ifO-ws-VHY" secondAttribute="leadingMargin" constant="-20" id="F6O-w9-OPV"/>
+                            <constraint firstItem="kFZ-bU-DV9" firstAttribute="top" secondItem="ifO-ws-VHY" secondAttribute="topMargin" id="bl1-vx-rIg"/>
+                            <constraint firstItem="kFZ-bU-DV9" firstAttribute="centerY" secondItem="ifO-ws-VHY" secondAttribute="centerY" id="c7a-sY-3YY"/>
+                            <constraint firstItem="kFZ-bU-DV9" firstAttribute="centerX" secondItem="ifO-ws-VHY" secondAttribute="centerX" id="cWN-dx-YEY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kFZ-bU-DV9" secondAttribute="trailing" constant="-20" id="oCM-dh-BsN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vMu-yv-j2l">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="P1T-N3-3dW">
+                            <connections>
+                                <action selector="cancelButton" destination="kKt-X2-khJ" id="Rpo-OX-xKA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageCollectionView" destination="kFZ-bU-DV9" id="jq4-Ol-1Sg"/>
+                        <segue destination="sJo-Ze-XZJ" kind="show" identifier="toResultView" id="1vx-I6-LCl">
+                            <nil key="action"/>
+                        </segue>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2mo-Gv-uug" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="6"/>
+        </scene>
+        <!--ResultViewController-->
+        <scene sceneID="AHn-Xf-foX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ResultViewController" referencedIdentifier="ResultViewController" id="sJo-Ze-XZJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p0x-zr-fJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="5"/>
+        </scene>
+    </scenes>
+</document>
