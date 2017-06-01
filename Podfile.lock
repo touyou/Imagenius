@@ -1,13 +1,13 @@
 PODS:
   - Alamofire (4.4.0)
   - DZNEmptyDataSet (1.8.1)
-  - Google-Mobile-Ads-SDK (7.18.0)
+  - Google-Mobile-Ads-SDK (7.20.0)
   - KTCenterFlowLayout (1.3.1)
-  - Realm (2.4.4):
-    - Realm/Headers (= 2.4.4)
-  - Realm/Headers (2.4.4)
-  - RealmSwift (2.4.4):
-    - Realm (= 2.4.4)
+  - Realm (2.7.0):
+    - Realm/Headers (= 2.7.0)
+  - Realm/Headers (2.7.0)
+  - RealmSwift (2.7.0):
+    - Realm (= 2.7.0)
   - RegExCategories (1.0)
   - RxBlocking (3.0.1):
     - RxSwift (~> 3.0)
@@ -46,16 +46,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: 5ca3f000588b49a3184271c21d36ade1205d81b2
+    :commit: d5f2741e9293775d3b245a4c07fd3d2435b630d9
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Google-Mobile-Ads-SDK: 658065b4cb5a299bea254c4d24bf7786b6d3e75d
+  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
   KTCenterFlowLayout: 6e02b50ab2bd865025ae82fe266ed13b6d9eaf97
-  Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
-  RealmSwift: 0c02b9f2d4be4301c497ed10e53a0580584eb1dd
+  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   RxBlocking: 5de082d09d1ab45b49173f309f1a97d6b50f34c4
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
@@ -68,4 +68,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2a9b895f668f2982468e810c1dc71b37b90f06b4
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
