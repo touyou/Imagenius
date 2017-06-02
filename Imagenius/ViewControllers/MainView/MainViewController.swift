@@ -310,10 +310,8 @@ extension MainViewController: SWTableViewCellDelegate {
             replyID = tweet.idStr ?? ""
             replyStr = "\(tweet.screenName ?? "@") "
             if (tweet.userMentions ?? []).count != 0 {
-                for u in tweet.userMentions! {
-                    if u["screen_name"].string! != self.account?.username {
-                        replyStr?.append("@\(u["screen_name"].string!) ")
-                    }
+                for u in tweet.userMentions! where u["screen_name"].string! != self.account?.username {
+                    replyStr?.append("@\(u["screen_name"].string!) ")
                 }
             }
             performSegue(withIdentifier: "toTweetView", sender: nil)

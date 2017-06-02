@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nyu-L3-XkN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nyu-L3-XkN">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -201,38 +201,6 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NW-fT-Jsm">
-                                                <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                                <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-fi-7eg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="Nyu-L3-XkN" id="u7H-XP-Q5D"/>
-                                                        </connections>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9Z-Mp-iOM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="k9Z-Mp-iOM" secondAttribute="height" multiplier="1:1" id="uVx-x0-zAy"/>
-                                                        </constraints>
-                                                        <state key="normal" image="search_button"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="5ag-fi-7eg" secondAttribute="bottom" constant="10" id="6eb-Hr-A7e"/>
-                                                    <constraint firstItem="k9Z-Mp-iOM" firstAttribute="leading" secondItem="5ag-fi-7eg" secondAttribute="trailing" constant="10" id="Ftj-6u-h47"/>
-                                                    <constraint firstAttribute="height" constant="50" id="JKt-Z0-Ocr"/>
-                                                    <constraint firstAttribute="trailing" secondItem="k9Z-Mp-iOM" secondAttribute="trailing" constant="16" id="KPb-7E-xgw"/>
-                                                    <constraint firstItem="5ag-fi-7eg" firstAttribute="leading" secondItem="6NW-fT-Jsm" secondAttribute="leading" constant="10" id="Q6l-a9-IDM"/>
-                                                    <constraint firstAttribute="bottom" secondItem="k9Z-Mp-iOM" secondAttribute="bottom" constant="10" id="VUg-2H-veI"/>
-                                                    <constraint firstItem="5ag-fi-7eg" firstAttribute="top" secondItem="6NW-fT-Jsm" secondAttribute="top" constant="10" id="fQh-3G-dbX"/>
-                                                    <constraint firstItem="k9Z-Mp-iOM" firstAttribute="top" secondItem="6NW-fT-Jsm" secondAttribute="top" constant="10" id="tWj-OG-NiL"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -254,13 +222,7 @@
                                             <constraint firstItem="H6k-Gf-Zhm" firstAttribute="top" secondItem="pgb-XM-hzs" secondAttribute="bottom" id="itu-da-zzZ"/>
                                             <constraint firstItem="MQP-S9-zls" firstAttribute="leading" secondItem="vq4-Pw-gER" secondAttribute="leading" constant="5" id="kaj-IJ-LBM"/>
                                             <constraint firstAttribute="trailing" secondItem="vv2-yf-y5d" secondAttribute="trailing" constant="-6" id="lMd-M7-Um4"/>
-                                            <constraint firstItem="H6k-Gf-Zhm" firstAttribute="top" secondItem="6NW-fT-Jsm" secondAttribute="bottom" id="x01-Bj-3UB"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="subviews">
-                                                <exclude reference="6NW-fT-Jsm"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>

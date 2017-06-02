@@ -41,12 +41,10 @@ final class TwitterUtil {
             let account = accounts[i]
             alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (_) -> Void in
                 // 選択したアカウントを返す
-                for j in 0 ..< accounts.count {
-                    if account == accounts[j] {
-                        print(j)
-                        saveData.set(j, forKey: Settings.Saveword.twitter)
-                        break
-                    }
+                for j in 0 ..< accounts.count where account == accounts[j] {
+                    print(j)
+                    saveData.set(j, forKey: Settings.Saveword.twitter)
+                    break
                 }
                 success?(account)
             }))

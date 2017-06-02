@@ -168,12 +168,10 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     @IBAction func pushTweet() {
         self.replyID = self.viewId
         if tweetArray[1].count != 0 {
-            self.replyStr = "@\(tweetArray[1][0].screenNameNoat) "
+            self.replyStr = "@\(tweetArray[1][0].screenNameNoat ?? "") "
             if (tweetArray[1][0].userMentions ?? []).count != 0 {
-                for u in tweetArray[1][0].userMentions! {
-                    if u["screen_name"].string! != self.account?.username {
-                        replyStr?.append("@\(u["screen_name"].string!) ")
-                    }
+                for u in tweetArray[1][0].userMentions! where u["screen_name"].string! != self.account?.username {
+                    replyStr?.append("@\(u["screen_name"].string!) ")
                 }
             }
         }
@@ -326,10 +324,8 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
             replyID = tweet.idStr ?? ""
             replyStr = "@\(tweet.screenNameNoat ?? "") "
             if (tweet.userMentions ?? []).count != 0 {
-                for u in tweet.userMentions! {
-                    if u["screen_name"].string! != self.account?.username {
-                        replyStr?.append("@\(u["screen_name"].string!) ")
-                    }
+                for u in tweet.userMentions! where u["screen_name"].string! != self.account?.username {
+                    replyStr?.append("@\(u["screen_name"].string!) ")
                 }
             }
             performSegue(withIdentifier: "toTweetView", sender: nil)
