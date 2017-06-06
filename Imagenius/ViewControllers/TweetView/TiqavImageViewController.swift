@@ -34,13 +34,7 @@ final class TiqavImageViewController: UIViewController {
         super.viewDidLoad()
 
         // AutoLayout対応のためセル調整
-        imageSize = (self.view.frame.width) / 4
-//        let flowLayout = KTCenterFlowLayout()
-//        flowLayout.scrollDirection = .Vertical
-//        flowLayout.minimumInteritemSpacing = 0
-//        flowLayout.minimumLineSpacing = 0
-//        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
-//        imageCollectionView.collectionViewLayout = flowLayout
+        changeLayout(4)
 
         self.title = "\(searchWord)の検索結果"
 
@@ -67,13 +61,7 @@ final class TiqavImageViewController: UIViewController {
 
     func changeOrient(_ notification: Notification) {
         // AutoLayout対応のためセル調整
-        imageSize = (self.view.frame.width) / 4
-//        let flowLayout = KTCenterFlowLayout()
-//        flowLayout.scrollDirection = .Vertical
-//        flowLayout.minimumInteritemSpacing = 0
-//        flowLayout.minimumLineSpacing = 0
-//        flowLayout.itemSize = CGSizeMake(imageSize, imageSize)
-//        imageCollectionView.collectionViewLayout = flowLayout
+        changeLayout(4)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -100,16 +88,29 @@ final class TiqavImageViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-
+    
+    func changeLayout(_ num: Int) {
+        let layout = UICollectionViewFlowLayout()
+        let margin: CGFloat = 2.0
+        
+        let itemSize: CGFloat = (self.view.bounds.width - CGFloat(num) * margin) / CGFloat(num)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.sectionInset = UIEdgeInsetsMake(0.0, 0.0, margin, 0.0)
+        layout.minimumInteritemSpacing = margin
+        
+        imageCollectionView.collectionViewLayout = layout
+    }
+    
     // MARK: - ボタン関連
     // MARK: キャンセルのボタン
     @IBAction func cancelButton() {
         dismiss(animated: true, completion: nil)
     }
+    
 }
 
 // MARK: - CollectionViewまわりの設定
-extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension TiqavImageViewController: UICollectionViewDelegate {
     // MARK: 画像を選択したら
     func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[indexPath.row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: { (a: Int, b: Int, _: URL?) -> Void in
@@ -123,9 +124,6 @@ extension TiqavImageViewController: UICollectionViewDelegate, UICollectionViewDe
                 self.title = "\(self.searchWord)の検索結果"
                 self.performSegue(withIdentifier: "toResultView", sender: nil)
         })
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: imageSize, height: imageSize)
     }
 }
 

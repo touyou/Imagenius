@@ -24,6 +24,8 @@ final class FavoriteImageViewController: UIViewController {
         imageCollectionView.emptyDataSetSource = self
         imageCollectionView.emptyDataSetDelegate = self
         imageCollectionView.backgroundColor = UIColor.white
+        
+        changeLayout(4)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +41,18 @@ final class FavoriteImageViewController: UIViewController {
             viewCtrl.delegate = self.delegate
             viewCtrl.selectedItem = self.selectedItem
         }
+    }
+    
+    func changeLayout(_ num: Int) {
+        let layout = UICollectionViewFlowLayout()
+        let margin: CGFloat = 2.0
+        
+        let itemSize: CGFloat = (self.view.bounds.width - CGFloat(num) * margin) / CGFloat(num)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.sectionInset = UIEdgeInsetsMake(0.0, 0.0, margin, 0.0)
+        layout.minimumInteritemSpacing = margin
+        
+        imageCollectionView.collectionViewLayout = layout
     }
     
     @IBAction func cancelButton() {
