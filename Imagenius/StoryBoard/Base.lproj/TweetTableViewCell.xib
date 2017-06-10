@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,12 +38,21 @@
                                             <constraint firstAttribute="height" constant="20" id="nea-4b-4JD"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxm-pq-vXz">
+                                        <rect key="frame" x="-5" y="35" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="D0P-a2-hZV"/>
+                                            <constraint firstAttribute="width" constant="20" id="aI8-TD-u3j"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="bZI-dE-aBK" secondAttribute="bottom" constant="5" id="0Zp-e1-MJi"/>
+                                    <constraint firstItem="cxm-pq-vXz" firstAttribute="leading" secondItem="lvj-Ip-fUo" secondAttribute="leading" constant="-5" id="4Bi-gr-Bl6"/>
                                     <constraint firstItem="2jQ-En-YDS" firstAttribute="leading" secondItem="lvj-Ip-fUo" secondAttribute="leading" id="Box-XJ-1OY"/>
                                     <constraint firstAttribute="trailing" secondItem="2jQ-En-YDS" secondAttribute="trailing" constant="10" id="Cv1-mj-b6K"/>
                                     <constraint firstItem="2jQ-En-YDS" firstAttribute="top" secondItem="lvj-Ip-fUo" secondAttribute="top" id="eqa-4u-cas"/>
+                                    <constraint firstAttribute="bottom" secondItem="cxm-pq-vXz" secondAttribute="bottom" constant="5" id="lph-nh-Ch8"/>
                                     <constraint firstAttribute="bottom" secondItem="2jQ-En-YDS" secondAttribute="bottom" constant="10" id="oQs-nx-gOZ"/>
                                     <constraint firstAttribute="trailing" secondItem="bZI-dE-aBK" secondAttribute="trailing" constant="5" id="yle-id-rgA"/>
                                 </constraints>
@@ -136,6 +145,7 @@
             <connections>
                 <outlet property="imageCountLabel" destination="MlC-wM-09F" id="d9y-39-gZr"/>
                 <outlet property="rtImageView" destination="bZI-dE-aBK" id="QPe-Jr-X8r"/>
+                <outlet property="rtUserImageView" destination="cxm-pq-vXz" id="bYK-Oj-Sxr"/>
                 <outlet property="subViewHeight" destination="sFx-VP-Zna" id="yIz-KD-75T"/>
                 <outlet property="timeLabel" destination="hRZ-Ha-kFM" id="15c-Bx-3XH"/>
                 <outlet property="tweetImgView" destination="GUJ-ct-RUD" id="rXw-o9-Wf7"/>

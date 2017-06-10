@@ -29,6 +29,7 @@ struct Tweet {
     var retweeted: Bool?
     var favoriteCount: Int?
     var retweetCount: Int?
+    var retweetUserImage: URL?
 
     var idStr: String?
     var userMentions: [JSON]?
@@ -47,6 +48,9 @@ struct Tweet {
     init(tweet: JSON, myself: String) {
         if let retweet = tweet["retweeted_status"].object {
             isRetweet = true
+            let tw = tweet.object
+            let user = tw?["user"]
+            retweetUserImage = URL(string: (user?["profile_image_url_https"].string)!)
             setTweet(retweet)
         } else {
             setTweet(tweet.object!)
@@ -75,7 +79,7 @@ struct Tweet {
         idStr = tweet["id_str"]?.string
         userMentions = tweet["entities"]!["user_mentions"].array
         urlStr = "https://twitter.com/\(screenNameNoat!)/status/\(idStr!)"
-
+        
         // 添付ファイル情報
         guard let tweetMedia = tweet["extended_entities"] else {
             return

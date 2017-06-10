@@ -42,6 +42,7 @@ final class TweetVarViewCell: SWTableViewCell {
     @IBOutlet weak var imageCountLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var rtImageView: UIImageView!
+    @IBOutlet weak var rtUserImageView: UIImageView!
 
     // MARK: - TableViewCellが生成された時
     override func awakeFromNib() {
@@ -102,9 +103,14 @@ final class TweetVarViewCell: SWTableViewCell {
         timeLabel.text = tweet.createdAt!
         
         if tweet.isRetweet {
-            rtImageView.isHidden = false
+            rtImageView.isHidden = true
+            let rtUserImgURL = tweet.retweetUserImage!
+            rtUserImageView.sd_setImage(with: rtUserImgURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
+            rtUserImageView.layer.cornerRadius = self.rtUserImageView.frame.size.width * 0.5
+            rtUserImageView.clipsToBounds = true
         } else {
             rtImageView.isHidden = true
+            rtUserImageView.image = nil
         }
 
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
