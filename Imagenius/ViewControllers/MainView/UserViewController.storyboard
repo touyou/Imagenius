@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,14 +32,14 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tY-A5-SdE">
-                                        <rect key="frame" x="81.5" y="28" width="67.5" height="16"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <rect key="frame" x="8" y="28" width="141" height="21"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@user" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjR-Jg-rVe">
-                                        <rect key="frame" x="110.5" y="47" width="38.5" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="8" y="52" width="141" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -59,7 +59,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="gq0-Bk-UGe"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -100,9 +100,11 @@
                                     <constraint firstItem="a31-tJ-E27" firstAttribute="top" secondItem="Eoj-S3-5c4" secondAttribute="top" constant="8" id="IkW-dE-GXI"/>
                                     <constraint firstAttribute="trailing" secondItem="DHA-ah-07z" secondAttribute="trailing" id="MqR-RZ-0Nc"/>
                                     <constraint firstItem="a31-tJ-E27" firstAttribute="leading" secondItem="4tY-A5-SdE" secondAttribute="trailing" constant="8" id="QkA-Za-LDZ"/>
+                                    <constraint firstItem="zjR-Jg-rVe" firstAttribute="leading" secondItem="Eoj-S3-5c4" secondAttribute="leading" constant="8" id="Tlo-fx-pUy"/>
                                     <constraint firstItem="jBB-Xa-Xqp" firstAttribute="top" secondItem="Eoj-S3-5c4" secondAttribute="top" constant="28" id="TzY-mg-ijQ"/>
                                     <constraint firstItem="jBB-Xa-Xqp" firstAttribute="leading" secondItem="mPD-Lj-JsZ" secondAttribute="trailing" id="bE4-C9-yrU"/>
                                     <constraint firstItem="DHA-ah-07z" firstAttribute="leading" secondItem="Eoj-S3-5c4" secondAttribute="leading" id="eRJ-u0-Mzc"/>
+                                    <constraint firstItem="4tY-A5-SdE" firstAttribute="leading" secondItem="Eoj-S3-5c4" secondAttribute="leading" constant="8" id="egc-IV-gfJ"/>
                                     <constraint firstItem="4tY-A5-SdE" firstAttribute="top" secondItem="Eoj-S3-5c4" secondAttribute="top" constant="28" id="gBs-Bv-mZo"/>
                                     <constraint firstItem="a31-tJ-E27" firstAttribute="centerX" secondItem="Eoj-S3-5c4" secondAttribute="centerX" id="jF2-uz-YDs"/>
                                     <constraint firstItem="DHA-ah-07z" firstAttribute="top" secondItem="ckF-l0-gIN" secondAttribute="bottom" constant="8" id="kec-iQ-pqs"/>
@@ -147,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvV-pX-OmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2506" y="894"/>
+            <point key="canvasLocation" x="-2506.4000000000001" y="893.70314842578716"/>
         </scene>
         <!--TweetViewController-->
         <scene sceneID="LWb-KX-Eh3">
