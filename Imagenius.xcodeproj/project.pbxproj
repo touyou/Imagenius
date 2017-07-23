@@ -41,28 +41,6 @@
 		463547331E77EAC90026EF63 /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463547321E77EAC90026EF63 /* String+Error.swift */; };
 		4652B0CE1D98B96E00B6E9CB /* ListAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */; };
 		4652B0D01D98C51C00B6E9CB /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */; };
-		46592EAF1F24801C009D261E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA41F24801C009D261E /* Alamofire.framework */; };
-		46592EB01F24801C009D261E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA41F24801C009D261E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EB11F24801C009D261E /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA51F24801C009D261E /* DZNEmptyDataSet.framework */; };
-		46592EB21F24801C009D261E /* DZNEmptyDataSet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA51F24801C009D261E /* DZNEmptyDataSet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EB31F24801C009D261E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA61F24801C009D261E /* Realm.framework */; };
-		46592EB41F24801C009D261E /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA61F24801C009D261E /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EB51F24801C009D261E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA71F24801C009D261E /* RealmSwift.framework */; };
-		46592EB61F24801C009D261E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA71F24801C009D261E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EB71F24801C009D261E /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA81F24801C009D261E /* RxBlocking.framework */; };
-		46592EB81F24801C009D261E /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA81F24801C009D261E /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EB91F24801C009D261E /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA91F24801C009D261E /* RxCocoa.framework */; };
-		46592EBA1F24801C009D261E /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EA91F24801C009D261E /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EBB1F24801C009D261E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAA1F24801C009D261E /* RxSwift.framework */; };
-		46592EBC1F24801C009D261E /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAA1F24801C009D261E /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EBD1F24801C009D261E /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAB1F24801C009D261E /* RxTest.framework */; };
-		46592EBE1F24801C009D261E /* RxTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAB1F24801C009D261E /* RxTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EBF1F24801C009D261E /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAC1F24801C009D261E /* SDWebImage.framework */; };
-		46592EC01F24801C009D261E /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAC1F24801C009D261E /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EC11F24801C009D261E /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAD1F24801C009D261E /* SwifteriOS.framework */; };
-		46592EC21F24801C009D261E /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAD1F24801C009D261E /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46592EC31F24801C009D261E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAE1F24801C009D261E /* SwiftyJSON.framework */; };
-		46592EC41F24801C009D261E /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46592EAE1F24801C009D261E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		465D5AC11E762547003FD4A5 /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */; };
 		467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467549E51C96BB1B00FB3747 /* MessageUI.framework */; };
 		468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687225F1CB25F4B00DEF2DB /* Icon-40.png */; };
@@ -119,6 +97,15 @@
 		46BF12091D4F57A700FFF5DD /* FavoriteImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */; };
 		46BF120B1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */; };
 		46BF120D1D4F7AE500FFF5DD /* FavoriteResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */; };
+		46F758211F248CA80014331A /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F18AD1CAA844D00C015EF /* RxCocoa.framework */; };
+		46F758221F248CA80014331A /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F18AE1CAA844D00C015EF /* RxSwift.framework */; };
+		46F7582A1F248CA80014331A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758231F248CA80014331A /* Alamofire.framework */; };
+		46F7582B1F248CA80014331A /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758241F248CA80014331A /* DZNEmptyDataSet.framework */; };
+		46F7582C1F248CA80014331A /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758251F248CA80014331A /* Realm.framework */; };
+		46F7582D1F248CA80014331A /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758261F248CA80014331A /* RealmSwift.framework */; };
+		46F7582E1F248CA80014331A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758271F248CA80014331A /* SDWebImage.framework */; };
+		46F7582F1F248CA80014331A /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758281F248CA80014331A /* SwifteriOS.framework */; };
+		46F758301F248CA80014331A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758291F248CA80014331A /* SwiftyJSON.framework */; };
 		6D150516CB520FB8A08CEC7B /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */; };
 		C4C9A71404794056E53823BC /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */; };
 		EB43257460028B86CFB1D29F /* Pods_ImageniusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC28F86431E22963699D968C /* Pods_ImageniusTests.framework */; };
@@ -176,30 +163,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		46592EC51F24801D009D261E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				46592EBA1F24801C009D261E /* RxCocoa.framework in Embed Frameworks */,
-				46592EB41F24801C009D261E /* Realm.framework in Embed Frameworks */,
-				46592EBC1F24801C009D261E /* RxSwift.framework in Embed Frameworks */,
-				46592EC21F24801C009D261E /* SwifteriOS.framework in Embed Frameworks */,
-				46592EB81F24801C009D261E /* RxBlocking.framework in Embed Frameworks */,
-				46592EB21F24801C009D261E /* DZNEmptyDataSet.framework in Embed Frameworks */,
-				46592EC41F24801C009D261E /* SwiftyJSON.framework in Embed Frameworks */,
-				46592EB61F24801C009D261E /* RealmSwift.framework in Embed Frameworks */,
-				46592EBE1F24801C009D261E /* RxTest.framework in Embed Frameworks */,
-				46592EC01F24801C009D261E /* SDWebImage.framework in Embed Frameworks */,
-				46592EB01F24801C009D261E /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -253,17 +216,6 @@
 		464A80601C79EFCD006100DB /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../Downloads/Swifter-master/build/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
 		4652B0CD1D98B96E00B6E9CB /* ListAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAllViewController.swift; sourceTree = "<group>"; };
 		4652B0CF1D98C51C00B6E9CB /* WatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
-		46592EA41F24801C009D261E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		46592EA51F24801C009D261E /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
-		46592EA61F24801C009D261E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		46592EA71F24801C009D261E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		46592EA81F24801C009D261E /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		46592EA91F24801C009D261E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		46592EAA1F24801C009D261E /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		46592EAB1F24801C009D261E /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
-		46592EAC1F24801C009D261E /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
-		46592EAD1F24801C009D261E /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = Carthage/Build/iOS/SwifteriOS.framework; sourceTree = "<group>"; };
-		46592EAE1F24801C009D261E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
 		467549D11C969C2C00FB3747 /* RegExCategories.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegExCategories.framework; path = "Pods/../build/Debug-iphoneos/RegExCategories.framework"; sourceTree = "<group>"; };
 		467549E51C96BB1B00FB3747 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -330,6 +282,13 @@
 		46BF12081D4F57A700FFF5DD /* FavoriteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FavoriteImageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		46BF120A1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteImageViewCell.swift; sourceTree = "<group>"; };
 		46BF120C1D4F7AE500FFF5DD /* FavoriteResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteResultViewController.swift; sourceTree = "<group>"; };
+		46F758231F248CA80014331A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		46F758241F248CA80014331A /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
+		46F758251F248CA80014331A /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		46F758261F248CA80014331A /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		46F758271F248CA80014331A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		46F758281F248CA80014331A /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = Carthage/Build/iOS/SwifteriOS.framework; sourceTree = "<group>"; };
+		46F758291F248CA80014331A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		93071570BBD876A547E974D1 /* Pods-ImageniusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageniusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40FBC421A9B2E834E3E32B8 /* Pods-ImageniusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageniusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -345,19 +304,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46592EC31F24801C009D261E /* SwiftyJSON.framework in Frameworks */,
-				46592EB71F24801C009D261E /* RxBlocking.framework in Frameworks */,
+				46F7582A1F248CA80014331A /* Alamofire.framework in Frameworks */,
+				46F7582B1F248CA80014331A /* DZNEmptyDataSet.framework in Frameworks */,
+				46F7582C1F248CA80014331A /* Realm.framework in Frameworks */,
+				46F7582D1F248CA80014331A /* RealmSwift.framework in Frameworks */,
+				46F7582E1F248CA80014331A /* SDWebImage.framework in Frameworks */,
+				46F7582F1F248CA80014331A /* SwifteriOS.framework in Frameworks */,
+				46F758301F248CA80014331A /* SwiftyJSON.framework in Frameworks */,
+				46F758211F248CA80014331A /* RxCocoa.framework in Frameworks */,
+				46F758221F248CA80014331A /* RxSwift.framework in Frameworks */,
 				467549E61C96BB1B00FB3747 /* MessageUI.framework in Frameworks */,
-				46592EBB1F24801C009D261E /* RxSwift.framework in Frameworks */,
-				46592EAF1F24801C009D261E /* Alamofire.framework in Frameworks */,
-				46592EB51F24801C009D261E /* RealmSwift.framework in Frameworks */,
-				46592EB91F24801C009D261E /* RxCocoa.framework in Frameworks */,
-				46592EB11F24801C009D261E /* DZNEmptyDataSet.framework in Frameworks */,
 				C4C9A71404794056E53823BC /* Pods_Imagenius.framework in Frameworks */,
-				46592EBF1F24801C009D261E /* SDWebImage.framework in Frameworks */,
-				46592EBD1F24801C009D261E /* RxTest.framework in Frameworks */,
-				46592EB31F24801C009D261E /* Realm.framework in Frameworks */,
-				46592EC11F24801C009D261E /* SwifteriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,17 +362,6 @@
 		460B4A2C1C6B5CF60089CC7E = {
 			isa = PBXGroup;
 			children = (
-				46592EA41F24801C009D261E /* Alamofire.framework */,
-				46592EA51F24801C009D261E /* DZNEmptyDataSet.framework */,
-				46592EA61F24801C009D261E /* Realm.framework */,
-				46592EA71F24801C009D261E /* RealmSwift.framework */,
-				46592EA81F24801C009D261E /* RxBlocking.framework */,
-				46592EA91F24801C009D261E /* RxCocoa.framework */,
-				46592EAA1F24801C009D261E /* RxSwift.framework */,
-				46592EAB1F24801C009D261E /* RxTest.framework */,
-				46592EAC1F24801C009D261E /* SDWebImage.framework */,
-				46592EAD1F24801C009D261E /* SwifteriOS.framework */,
-				46592EAE1F24801C009D261E /* SwiftyJSON.framework */,
 				CAEB5BB1533CB81ADE1E8524 /* Frameworks */,
 				460B4A371C6B5CF60089CC7E /* Imagenius */,
 				460B4A4C1C6B5CF60089CC7E /* ImageniusTests */,
@@ -740,6 +686,13 @@
 		CAEB5BB1533CB81ADE1E8524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46F758231F248CA80014331A /* Alamofire.framework */,
+				46F758241F248CA80014331A /* DZNEmptyDataSet.framework */,
+				46F758251F248CA80014331A /* Realm.framework */,
+				46F758261F248CA80014331A /* RealmSwift.framework */,
+				46F758271F248CA80014331A /* SDWebImage.framework */,
+				46F758281F248CA80014331A /* SwifteriOS.framework */,
+				46F758291F248CA80014331A /* SwiftyJSON.framework */,
 				463FE90D1D41AB4900F6245E /* RxCocoa.framework */,
 				469F18D51CAABA7A00C015EF /* SDWebImage.framework */,
 				469F18C21CAAACC800C015EF /* XCTest.framework */,
@@ -783,7 +736,6 @@
 				FFABCCE0854F0DCB8FBFE4B8 /* [CP] Embed Pods Frameworks */,
 				6EFD19B44B9670C0E4B28CAE /* [CP] Copy Pods Resources */,
 				46592EA21F247D36009D261E /* ShellScript */,
-				46592EC51F24801D009D261E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1364,7 +1316,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C5437ACF577CA5C938C1B281 /* Pods-Imagenius.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1395,7 +1346,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4647FCCCD981A5F574E76B3 /* Pods-Imagenius.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
