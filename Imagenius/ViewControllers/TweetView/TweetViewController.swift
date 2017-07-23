@@ -13,7 +13,6 @@ import GoogleMobileAds
 import RxSwift
 import RxCocoa
 import SDWebImage
-import KTCenterFlowLayout
 
 protocol TweetViewControllerDelegate: class {
     func changeImage(_ image: UIImage, data: Data, isGIF: Bool)
@@ -90,7 +89,7 @@ final class TweetViewController: UIViewController {
         // RxSwiftで文字数を監視
         tweetTextView.rx.textInput.text
             .map { "\($0!.characters.count)" }
-            .bindTo(countLabel.rx.text)
+            .bind(to: countLabel.rx.text)
             .addDisposableTo(disposeBag)
         tweetTextView.rx.textInput.text
             .map {
@@ -405,7 +404,7 @@ func dismissViewController(_ viewController: UIViewController, animated: Bool) {
 }
 
 extension Reactive where Base: UIImagePickerController {
-    static func createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> Void = { x in }) -> Observable<UIImagePickerController> {
+    static func createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> () = { x in }) -> Observable<UIImagePickerController> {
         return Observable.create { [weak parent] observer in
             let imagePicker = UIImagePickerController()
             let dismissDisposable = imagePicker.rx
@@ -419,7 +418,8 @@ extension Reactive where Base: UIImagePickerController {
             
             do {
                 try configureImagePicker(imagePicker)
-            } catch let error {
+            }
+            catch let error {
                 observer.on(.error(error))
                 return Disposables.create()
             }
@@ -440,14 +440,6 @@ extension Reactive where Base: UIImagePickerController {
 }
 
 extension Reactive where Base: UIImagePickerController {
-    
-    /**
-     Reactive wrapper for `delegate`.
-     For more information take a look at `DelegateProxyType` protocol documentation.
-     */
-    public var delegate: DelegateProxy {
-        return RxImagePickerDelegateProxy.proxyForObject(base)
-    }
     
     /**
      Reactive wrapper for `delegate` message.

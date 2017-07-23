@@ -1,0 +1,7 @@
+github "Alamofire/Alamofire" "4.5.0"
+github "ReactiveX/RxSwift" "3.6.1"
+github "SwiftyJSON/SwiftyJSON" "3.1.4"
+github "dzenbot/DZNEmptyDataSet" "v1.8.1"
+github "mattdonnelly/Swifter" "2.0.2"
+github "realm/realm-cocoa" "v2.8.3"
+github "rs/SDWebImage" "4.0.0"

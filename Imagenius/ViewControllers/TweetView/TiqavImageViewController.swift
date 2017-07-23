@@ -8,7 +8,6 @@
 
 import UIKit
 import DZNEmptyDataSet
-import KTCenterFlowLayout
 import RxSwift
 import RxCocoa
 import SDWebImage
