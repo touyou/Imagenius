@@ -3,19 +3,25 @@ PODS:
   - RegExCategories (1.0)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (2.0.0)
+  - TwitterCore (3.0.1)
+  - TwitterKit (3.1.1):
+    - TwitterCore (>= 3.0.1)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 7.0)
   - RegExCategories (~> 1.0)
   - SWTableViewCell (~> 0.3.7)
   - TTTAttributedLabel
+  - TwitterKit
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: a43dc8efdb566c74d00ac6934c781de969348d80
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  TwitterCore: 6856288a1c25e5281363250681f33b42fce1da42
+  TwitterKit: 313bf02baee8427f7649b3640169178e5a8b5a99
 
-PODFILE CHECKSUM: a510c6ef2c9316617f3edb1b35c9a0a64e8f210c
+PODFILE CHECKSUM: c0517d2d86765f983abd4af50a81755c2401e3a6
 
 COCOAPODS: 1.3.1

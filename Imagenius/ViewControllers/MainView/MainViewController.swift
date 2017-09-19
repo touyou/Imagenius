@@ -62,6 +62,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var muteMode: Int!
     
     let accountStore = ACAccountStore()
+    let twitterManager = TwitterManager.shared
     let saveData: UserDefaults = UserDefaults.standard
     
     // MARK: - UIViewControllerの設定
@@ -76,20 +77,23 @@ class MainViewController: UIViewController, UITableViewDelegate {
         saveData.addObserver(self, forKeyPath: Settings.Saveword.muteMode, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
         
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
+            
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.myself = self.account?.username
-                        self.loadTweet()
-                    }
-                }
-            }
+            
+            twitterManager.loginTwitter(self)
+//            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+//            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
+//                if granted {
+//                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
+//                    if self.accounts.count != 0 {
+//                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
+//                        self.swifter = Swifter(account: self.account!)
+//                        self.myself = self.account?.username
+//                        self.loadTweet()
+//                    }
+//                }
+//            }
         }
         
         if saveData.object(forKey: "muteWords") != nil {

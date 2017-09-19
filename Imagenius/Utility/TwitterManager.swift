@@ -10,6 +10,63 @@ import Foundation
 import UIKit
 import Accounts
 import SwifteriOS
+import TwitterKit
+
+final class TwitterManager {
+    
+    static let shared = TwitterManager()
+    
+    private let twitter = Twitter.sharedInstance()
+    
+    var currentSession: TWTRSession?
+    
+    init() {
+        
+        currentSession = twitter.sessionStore.session() as? TWTRSession
+    }
+    
+    deinit {
+    }
+    
+    func loginTwitter(_ present: UIViewController, success: (()->())? = nil) {
+        
+        twitter.logIn { session, error in
+            
+            if let newUser = session {
+                
+                Twitter.sharedInstance().sessionStore.save(newUser, completion: { session, error in success?()})
+                self.currentSession = newUser
+                print(newUser)
+            } else {
+                
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    func switchAccount(_ present: UIViewController, success: (()->())?) {
+        
+        let accounts = twitter.sessionStore.existingUserSessions() as! [TWTRSession]
+        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
+        
+        for account in accounts {
+            
+            alertController.addAction(title: account.userName, style: .default, handler: { _ in
+            
+                currentSession = Twitter.sharedInstance().sessionStore.session(forUserID: account.userID) as? TWTRSession
+            })
+        }
+        
+        // 新しいユーザーでログインオプションを追加する
+        alertController.addAction(title: "cancel", style: .cancel)
+        
+        // iPad用
+        alertController.popoverPresentationController?.sourceView = present.view
+        alertController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: 20, height: 20)
+        
+        present.present(alertController, animated: true, completion: nil)
+    }
+}
 
 final class TwitterUtil {
     // MARK: login

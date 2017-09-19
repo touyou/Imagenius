@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4601B9001F70C3B1007EE348 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4601B8FF1F70C3B1007EE348 /* UIAlertController+Extensions.swift */; };
 		4603CC251C7DE062005DF397 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4603CC241C7DE062005DF397 /* Settings.bundle */; };
 		460B4A391C6B5CF60089CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B4A381C6B5CF60089CC7E /* AppDelegate.swift */; };
 		460B4A401C6B5CF60089CC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460B4A3F1C6B5CF60089CC7E /* Assets.xcassets */; };
@@ -83,7 +84,7 @@
 		468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */; };
 		468722E91CB4E0C100DEF2DB /* TiqavImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */; };
 		468722EB1CB4E0EF00DEF2DB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722EA1CB4E0EF00DEF2DB /* Settings.swift */; };
-		468722EE1CB4E10700DEF2DB /* TwitterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */; };
+		468722EE1CB4E10700DEF2DB /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722EC1CB4E10700DEF2DB /* TwitterManager.swift */; };
 		468722EF1CB4E10700DEF2DB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722ED1CB4E10700DEF2DB /* Utility.swift */; };
 		468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F21CB4E15300DEF2DB /* MainViewModel.swift */; };
 		468722F51CB4E18100DEF2DB /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468722F41CB4E18100DEF2DB /* MainModel.swift */; };
@@ -165,6 +166,7 @@
 
 /* Begin PBXFileReference section */
 		2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagenius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4601B8FF1F70C3B1007EE348 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		4603CC241C7DE062005DF397 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		460B4A351C6B5CF60089CC7E /* Imagenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460B4A381C6B5CF60089CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -259,7 +261,7 @@
 		468722E41CB4CE0100DEF2DB /* TiqavImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiqavImageModel.swift; sourceTree = "<group>"; };
 		468722E81CB4E0C100DEF2DB /* TiqavImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiqavImageViewCell.swift; sourceTree = "<group>"; };
 		468722EA1CB4E0EF00DEF2DB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUtil.swift; sourceTree = "<group>"; };
+		468722EC1CB4E10700DEF2DB /* TwitterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
 		468722ED1CB4E10700DEF2DB /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		468722F21CB4E15300DEF2DB /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		468722F41CB4E18100DEF2DB /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			children = (
 				4634CB501CBA71FF00E9E834 /* Date+CustomFormat.swift */,
 				463547321E77EAC90026EF63 /* String+Error.swift */,
+				4601B8FF1F70C3B1007EE348 /* UIAlertController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -533,7 +536,7 @@
 				465D5ABF1E762514003FD4A5 /* Extensions */,
 				46BF12011D4F518500FFF5DD /* FavoriteImage.swift */,
 				465D5AC01E762547003FD4A5 /* RxImagePickerDelegateProxy.swift */,
-				468722EC1CB4E10700DEF2DB /* TwitterUtil.swift */,
+				468722EC1CB4E10700DEF2DB /* TwitterManager.swift */,
 				468722ED1CB4E10700DEF2DB /* Utility.swift */,
 			);
 			path = Utility;
@@ -1058,9 +1061,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1158,7 +1165,7 @@
 				4652B0CE1D98B96E00B6E9CB /* ListAllViewController.swift in Sources */,
 				468722E51CB4CE0100DEF2DB /* TiqavImageModel.swift in Sources */,
 				46312B261CB69C1E009183D9 /* SettingBannerCell.swift in Sources */,
-				468722EE1CB4E10700DEF2DB /* TwitterUtil.swift in Sources */,
+				468722EE1CB4E10700DEF2DB /* TwitterManager.swift in Sources */,
 				46BF120B1D4F5A5D00FFF5DD /* FavoriteImageViewCell.swift in Sources */,
 				4652B0D01D98C51C00B6E9CB /* WatchListViewController.swift in Sources */,
 				46BF12021D4F518600FFF5DD /* FavoriteImage.swift in Sources */,
@@ -1185,6 +1192,7 @@
 				468722E91CB4E0C100DEF2DB /* TiqavImageViewCell.swift in Sources */,
 				468722C41CB260C400DEF2DB /* ImagePreViewController.swift in Sources */,
 				46312B231CB653B6009183D9 /* UserViewModel.swift in Sources */,
+				4601B9001F70C3B1007EE348 /* UIAlertController+Extensions.swift in Sources */,
 				468722F31CB4E15300DEF2DB /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
