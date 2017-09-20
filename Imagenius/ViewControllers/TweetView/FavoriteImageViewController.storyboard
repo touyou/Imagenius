@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wfK-nF-4vd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wfK-nF-4vd">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,9 +16,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wfK-nF-4vd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WBv-ue-owL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -29,16 +33,12 @@
         <scene sceneID="fdO-PJ-pgL">
             <objects>
                 <viewController id="hG7-gB-EiQ" customClass="FavoriteImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hsv-kc-8Lk"/>
-                        <viewControllerLayoutGuide type="bottom" id="mk7-J9-3Bv"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kSU-D5-yQW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jAp-j4-SGE">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <rect key="frame" x="-4" y="64" width="383" height="539"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fNE-2T-yDY">
                                     <size key="itemSize" width="87" height="84"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -54,7 +54,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QCM-Pl-zjY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="84"/>
+                                                    <rect key="frame" x="-8" y="-8" width="103" height="100"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -74,11 +74,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jAp-j4-SGE" firstAttribute="top" secondItem="kSU-D5-yQW" secondAttribute="topMargin" id="2v1-mc-lxg"/>
-                            <constraint firstItem="jAp-j4-SGE" firstAttribute="centerX" secondItem="kSU-D5-yQW" secondAttribute="centerX" id="Css-TK-mHu"/>
+                            <constraint firstItem="jAp-j4-SGE" firstAttribute="centerX" secondItem="aCz-Rb-fgm" secondAttribute="centerX" id="Css-TK-mHu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jAp-j4-SGE" secondAttribute="trailing" constant="-20" id="LcH-tg-jiG"/>
                             <constraint firstItem="jAp-j4-SGE" firstAttribute="centerY" secondItem="kSU-D5-yQW" secondAttribute="centerY" id="k11-cg-xxk"/>
                             <constraint firstItem="jAp-j4-SGE" firstAttribute="leading" secondItem="kSU-D5-yQW" secondAttribute="leadingMargin" constant="-20" id="q9T-lQ-c0C"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="aCz-Rb-fgm"/>
                     </view>
                     <navigationItem key="navigationItem" title="お気に入り画像" id="VFA-6G-svH">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="fWZ-ny-DBj">

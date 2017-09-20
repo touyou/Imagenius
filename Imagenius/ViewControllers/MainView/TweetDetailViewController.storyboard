@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,10 +14,6 @@
         <scene sceneID="qwF-iL-A2a">
             <objects>
                 <viewController storyboardIdentifier="TweetDetailViewController" id="8MN-uY-k0b" customClass="TweetDetailViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LcJ-iD-fYG"/>
-                        <viewControllerLayoutGuide type="bottom" id="FeB-H4-nRi"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3qD-y2-c1x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,11 +30,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="D0E-LE-geZ" firstAttribute="centerX" secondItem="3qD-y2-c1x" secondAttribute="centerX" id="0Rn-8V-1pQ"/>
+                            <constraint firstItem="D0E-LE-geZ" firstAttribute="centerX" secondItem="wq7-xf-vyF" secondAttribute="centerX" id="0Rn-8V-1pQ"/>
                             <constraint firstItem="D0E-LE-geZ" firstAttribute="width" secondItem="3qD-y2-c1x" secondAttribute="width" id="igl-vq-ySH"/>
                             <constraint firstItem="D0E-LE-geZ" firstAttribute="height" secondItem="3qD-y2-c1x" secondAttribute="height" id="tQO-Cp-mor"/>
                             <constraint firstItem="D0E-LE-geZ" firstAttribute="centerY" secondItem="3qD-y2-c1x" secondAttribute="centerY" id="uPK-WJ-A0m"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="wq7-xf-vyF"/>
                     </view>
                     <navigationItem key="navigationItem" id="JT3-ap-llu">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3ia-N2-q1N">

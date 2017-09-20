@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2KU-1G-rK7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2KU-1G-rK7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +18,7 @@
                     <tabBarItem key="tabBarItem" title="リスト" image="timeline" id="Yfw-M4-9hh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uuk-ag-Fcd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -31,10 +33,6 @@
         <scene sceneID="kb0-av-ULX">
             <objects>
                 <viewController id="Td8-BZ-Rnj" customClass="ListAllViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IHp-0Y-7i6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Z5D-Tm-nJ6"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tEY-ln-uEZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +45,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cha-dr-pmR" id="99f-jE-UiR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -57,10 +55,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WPh-Np-aWB" firstAttribute="top" secondItem="tEY-ln-uEZ" secondAttribute="top" id="1Kz-aM-AGL"/>
-                            <constraint firstAttribute="trailing" secondItem="WPh-Np-aWB" secondAttribute="trailing" id="F1X-bF-68t"/>
-                            <constraint firstItem="WPh-Np-aWB" firstAttribute="leading" secondItem="tEY-ln-uEZ" secondAttribute="leading" id="IH3-jN-Tjm"/>
+                            <constraint firstItem="SMn-df-Eqc" firstAttribute="trailing" secondItem="WPh-Np-aWB" secondAttribute="trailing" id="F1X-bF-68t"/>
+                            <constraint firstItem="WPh-Np-aWB" firstAttribute="leading" secondItem="SMn-df-Eqc" secondAttribute="leading" id="IH3-jN-Tjm"/>
                             <constraint firstAttribute="bottom" secondItem="WPh-Np-aWB" secondAttribute="bottom" id="eQO-iW-rfe"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="SMn-df-Eqc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="リスト" image="timeline" id="pCd-oz-cyo"/>
                     <navigationItem key="navigationItem" title="Imagenius" id="nY2-jx-UDu">

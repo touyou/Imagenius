@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d8q-Up-PmA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d8q-Up-PmA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +16,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TiqavImageViewController" id="d8q-Up-PmA" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1lN-nM-Cte">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -29,16 +31,12 @@
         <scene sceneID="jgO-eq-Ngl">
             <objects>
                 <viewController id="kKt-X2-khJ" customClass="TiqavImageViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EPg-Ey-9Q9"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZKp-jd-U3F"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ifO-ws-VHY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-bU-DV9">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <rect key="frame" x="-4" y="64" width="383" height="539"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="4Ku-29-Yvo">
                                     <size key="itemSize" width="106" height="106"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -54,7 +52,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OWr-mU-atU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                    <rect key="frame" x="-8" y="-8" width="122" height="122"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -76,9 +74,10 @@
                             <constraint firstItem="kFZ-bU-DV9" firstAttribute="leading" secondItem="ifO-ws-VHY" secondAttribute="leadingMargin" constant="-20" id="F6O-w9-OPV"/>
                             <constraint firstItem="kFZ-bU-DV9" firstAttribute="top" secondItem="ifO-ws-VHY" secondAttribute="topMargin" id="bl1-vx-rIg"/>
                             <constraint firstItem="kFZ-bU-DV9" firstAttribute="centerY" secondItem="ifO-ws-VHY" secondAttribute="centerY" id="c7a-sY-3YY"/>
-                            <constraint firstItem="kFZ-bU-DV9" firstAttribute="centerX" secondItem="ifO-ws-VHY" secondAttribute="centerX" id="cWN-dx-YEY"/>
+                            <constraint firstItem="kFZ-bU-DV9" firstAttribute="centerX" secondItem="WGo-LR-p6N" secondAttribute="centerX" id="cWN-dx-YEY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kFZ-bU-DV9" secondAttribute="trailing" constant="-20" id="oCM-dh-BsN"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="WGo-LR-p6N"/>
                     </view>
                     <navigationItem key="navigationItem" id="vMu-yv-j2l">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="P1T-N3-3dW">

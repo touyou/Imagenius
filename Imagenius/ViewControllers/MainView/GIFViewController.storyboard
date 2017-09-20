@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mo0-hY-THK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mo0-hY-THK">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,12 +15,8 @@
         <scene sceneID="Uj1-Pv-o0Q">
             <objects>
                 <viewController id="Mo0-hY-THK" customClass="GIFViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ev3-cC-7cL"/>
-                        <viewControllerLayoutGuide type="bottom" id="alL-Vk-xkO"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xo9-JC-pab">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rf3-jV-h5m">
@@ -26,14 +27,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Rf3-jV-h5m" firstAttribute="leading" secondItem="xo9-JC-pab" secondAttribute="leadingMargin" constant="-20" id="7ph-tD-V5T"/>
-                            <constraint firstItem="alL-Vk-xkO" firstAttribute="top" secondItem="Rf3-jV-h5m" secondAttribute="bottom" id="CcN-F4-bnf"/>
-                            <constraint firstItem="Rf3-jV-h5m" firstAttribute="top" secondItem="ev3-cC-7cL" secondAttribute="bottom" id="D3J-72-MKN"/>
+                            <constraint firstItem="LUA-Rb-0vJ" firstAttribute="bottom" secondItem="Rf3-jV-h5m" secondAttribute="bottom" id="CcN-F4-bnf"/>
+                            <constraint firstItem="Rf3-jV-h5m" firstAttribute="top" secondItem="LUA-Rb-0vJ" secondAttribute="top" id="D3J-72-MKN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rf3-jV-h5m" secondAttribute="trailing" constant="-20" id="w2L-sM-G5E"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="LUA-Rb-0vJ"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
                     <connections>
                         <outlet property="contentView" destination="Rf3-jV-h5m" id="iti-wf-BxE"/>
                     </connections>

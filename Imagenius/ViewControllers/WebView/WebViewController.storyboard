@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ah1-gb-JqM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ah1-gb-JqM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,12 +15,8 @@
         <scene sceneID="Vwu-JM-YlT">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="Ah1-gb-JqM" customClass="WebViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wZp-If-aGn"/>
-                        <viewControllerLayoutGuide type="bottom" id="RJK-eH-9H8"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xrb-Zt-kfS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKn-fz-RER">
@@ -47,12 +48,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="NKn-fz-RER" secondAttribute="trailing" constant="-20" id="WHG-hT-6Nw"/>
                             <constraint firstItem="NKn-fz-RER" firstAttribute="bottom" secondItem="xrb-Zt-kfS" secondAttribute="bottomMargin" id="w5g-0r-fGH"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="mQW-hv-kPT"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hOW-Fu-uEE"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
                     <connections>
                         <outlet property="backButton" destination="ihm-7z-CBl" id="Hts-SO-VpD"/>
                         <outlet property="forwardButton" destination="mtm-Zj-6ya" id="11Z-99-bi6"/>
