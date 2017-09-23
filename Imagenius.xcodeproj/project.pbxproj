@@ -57,6 +57,7 @@
 		4684A83F1F75EDE20018C563 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4684A83D1F75EC510018C563 /* NibLoadable.swift */; };
 		4684A8401F75EDE20018C563 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4684A83C1F75EC500018C563 /* Reusable.swift */; };
 		4684A8411F75EDE20018C563 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4684A83A1F75EC500018C563 /* StoryboardInstantiable.swift */; };
+		4684A8441F7613FF0018C563 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 4684A8431F7613FF0018C563 /* sample.json */; };
 		468722731CB25F4B00DEF2DB /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687225F1CB25F4B00DEF2DB /* Icon-40.png */; };
 		468722741CB25F4B00DEF2DB /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722601CB25F4B00DEF2DB /* Icon-40@2x.png */; };
 		468722751CB25F4B00DEF2DB /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468722611CB25F4B00DEF2DB /* Icon-40@3x.png */; };
@@ -247,6 +248,7 @@
 		4684A83B1F75EC500018C563 /* NibInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibInstantiable.swift; sourceTree = "<group>"; };
 		4684A83C1F75EC500018C563 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		4684A83D1F75EC510018C563 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		4684A8431F7613FF0018C563 /* sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		4687225F1CB25F4B00DEF2DB /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
 		468722601CB25F4B00DEF2DB /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
 		468722611CB25F4B00DEF2DB /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				46D681311C7B290200DDB4DE /* Views */,
 				460B4A381C6B5CF60089CC7E /* AppDelegate.swift */,
 				460B4A441C6B5CF60089CC7E /* Info.plist */,
+				4684A8431F7613FF0018C563 /* sample.json */,
 			);
 			path = Imagenius;
 			sourceTree = "<group>";
@@ -937,6 +940,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4635471B1E77DC560026EF63 /* WebViewController.storyboard in Resources */,
+				4684A8441F7613FF0018C563 /* sample.json in Resources */,
 				46BD8DDD1E7793C5003A5140 /* LaunchScreen.storyboard in Resources */,
 				4635470F1E77DB1B0026EF63 /* TweetViewController.storyboard in Resources */,
 				463547131E77DB740026EF63 /* ImagePreViewController.storyboard in Resources */,

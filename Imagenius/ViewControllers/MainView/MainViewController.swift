@@ -83,7 +83,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
             
             if let _ = twitterManager.currentSession {
                 
-                twitterManager.loadHomeTimelineTweet(count: 20, success: { tweets in
+                twitterManager.loadHomeTimelineTweet(count: 1, success: { tweets in
                     
                     print(tweets)
                 })

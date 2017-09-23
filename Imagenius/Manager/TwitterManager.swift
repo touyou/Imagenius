@@ -20,6 +20,7 @@ final class TwitterManager {
     private let consumerKey = "Rh3x5hYBZtJGzfGGeeBoAXI98"
     private let consumerSecret = "AVObRmfovlMT5eymWQAoKTh8EnyweShSp5dQuHJwf2dAVcDyJy"
     private let saveData = UserDefaults.standard
+    private let decoder = JSONDecoder()
     
     var currentSession: TWTRSession?
     
@@ -31,6 +32,13 @@ final class TwitterManager {
             
             currentSession = twitter.sessionStore.session(forUserID: userID) as? TWTRSession
         }
+        
+        // Date Formatter for Twitter
+        let dateFormatter = DateFormatter()
+        let locale = Locale(identifier: "en_US")
+        dateFormatter.locale = locale
+        dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
     }
     
     func loginTwitter(_ success: (()->())? = nil) {
@@ -81,10 +89,11 @@ final class TwitterManager {
         let client = TWTRAPIClient(userID: userID)
         let endpoint = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         var params = [AnyHashable: Any]()
-        params["count"] = count
+        params["count"] = String(count)
         _ = maxID.flatMap { params["max_id"] = $0 }
         var error: NSError?
         let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
 
         client.sendTwitterRequest(request) { response, data, connectError in
             
@@ -95,11 +104,11 @@ final class TwitterManager {
             
             do {
                 
-                let tweets = try JSONDecoder().decode(Array<TweetModel>.self, from: data!)
+                let tweets = try self.decoder.decode([TweetModel].self, from: data!)
                 success(tweets)
             } catch let error {
                 
-                print(error.localizedDescription ?? "")
+                print(error)
             }
         }
     }
@@ -131,7 +140,6 @@ struct Entities: Decodable {
     
     struct Mention: Decodable {
         
-        let user: String
         let idStr: String
         let id: UInt64
         let indices: [Int]
@@ -139,7 +147,6 @@ struct Entities: Decodable {
         
         private enum CodingKeys: String, CodingKey {
             
-            case user
             case idStr = "id_str"
             case id
             case indices
@@ -163,79 +170,78 @@ struct UserEntities: Decodable {}
 
 struct User: Decodable {
     
-    let name: String
-    let profileSidebarFillColor: String
-    let profileBackgroundTile: Bool
-    let profileSidebarBorderColor: String
+    let contributorsEnabled: Bool
     let createdAt: Date
-    let location: String
+    let defaultProfile: Bool
+    let defaultProfileImage: Bool
+    let description: String
+    let entities: UserEntities
+    let favouritesCount: Int
     let followRequestSent: Bool
+    let followersCount: Int
+    let following: Bool
+    let friendsCount: Int
+    let geoEnabled: Bool
+    let id: UInt64
     let idStr: String
     let isTranslator: Bool
-    let profileLinkColor: String
-    let entities: UserEntities
-    let defaultProfile: Bool
-    let url: URL
-    let contributorsEnabled: Bool
-    let favouritesCount: Int
-    let profileImageUrl: URL
-    let id: UInt64
-    let listedCount: Int
-    let profileUseBackgroundImage: Bool
-    let profileTextColor: String
-    let followersCount: Int
     let lang: String
-    let protected: Bool
-    let geoEnabled: Bool
+    let listedCount: Int
+    let location: String
+    let name: String
     let notifications: Bool
-    let description: String
     let profileBackgroundColor: String
-    let verified: Bool
     let profileBackgroundImageUrl: URL
-    let statusesCount: Int
-    let defaultProfileImage: Bool
-    let friendsCount: Int
-    let following: Bool
-    let showAllInlineMedia: Bool
+    let profileBackgroundTile: Bool
+    let profileImageUrl: URL
+    let profileLinkColor: String
+    let profileSidebarBorderColor: String
+    let profileSidebarFillColor: String
+    let profileTextColor: String
+    let profileUseBackgroundImage: Bool
+    let protected: Bool
     let screenName: String
+    let statusesCount: Int
+    let url: URL?
+    let verified: Bool
     
+
     private enum CodingKeys: String, CodingKey {
         
-        case name
-        case profileSidebarFillColor = "profile_sidebar_fill_color"
-        case profileBackgroundTile = "profile_background_tile"
-        case profileSidebarBorderColor = "profile_sidebar_border_color"
+        case contributorsEnabled = "contributors_enabled"
         case createdAt = "created_at"
-        case location
+        case defaultProfile = "default_profile"
+        case defaultProfileImage = "default_profile_image"
+        case description
+        case entities
+        case favouritesCount = "favourites_count"
+        case friendsCount = "friends_count"
+        case followersCount = "followers_count"
+        case following
         case followRequestSent = "follow_request_sent"
+        case geoEnabled = "geo_enabled"
+        case id
         case idStr = "id_str"
         case isTranslator = "is_translator"
-        case profileLinkColor = "profile_link_color"
-        case entities
-        case defaultProfile = "default_profile"
-        case url
-        case contributorsEnabled = "contributors_enabled"
-        case favouritesCount = "favourites_count"
-        case profileImageUrl = "profile_image_url_https"
-        case id
-        case listedCount = "listed_count"
-        case profileUseBackgroundImage = "profile_use_background_image"
-        case profileTextColor = "profile_text_color"
-        case followersCount = "followers_count"
         case lang
-        case protected
-        case geoEnabled = "geo_enabled"
+        case listedCount = "listed_count"
+        case location
+        case name
         case notifications
-        case description
         case profileBackgroundColor = "profile_background_color"
-        case verified
         case profileBackgroundImageUrl = "profile_background_image_url_https"
-        case statusesCount = "statuses_count"
-        case defaultProfileImage = "default_profile_image"
-        case friendsCount = "friends_count"
-        case following
-        case showAllInlineMedia = "show_all_inline_media"
+        case profileBackgroundTile = "profile_background_tile"
+        case profileImageUrl = "profile_image_url_https"
+        case profileLinkColor = "profile_link_color"
+        case profileSidebarFillColor = "profile_sidebar_fill_color"
+        case profileSidebarBorderColor = "profile_sidebar_border_color"
+        case profileTextColor = "profile_text_color"
+        case profileUseBackgroundImage = "profile_use_background_image"
+        case protected
         case screenName = "screen_name"
+        case statusesCount = "statuses_count"
+        case url
+        case verified
     }
 }
 
@@ -248,7 +254,7 @@ struct ExtendedEntities: Decodable {
         
         private enum CodingKeys: String, CodingKey {
             
-            case mediaUrl = "media_url"
+            case mediaUrl = "media_url_https"
             case type
         }
     }
@@ -259,7 +265,7 @@ struct ExtendedEntities: Decodable {
 struct TweetModel: Decodable {
     
     let createdAt: Date
-    let favoritedCount: Int
+    let favoriteCount: Int
     let favorited: Bool
     let idStr: String
     let entities: Entities
@@ -274,7 +280,7 @@ struct TweetModel: Decodable {
     private enum CodingKeys: String, CodingKey {
         
         case createdAt = "created_at"
-        case favoritedCount = "favorited_count"
+        case favoriteCount = "favorite_count"
         case favorited
         case idStr = "id_str"
         case entities

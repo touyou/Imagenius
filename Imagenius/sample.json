@@ -1,0 +1,474 @@
+ ({
+   contributors = "<null>";
+   coordinates = "<null>";
+   "created_at" = "Sat Sep 23 03:33:46 +0000 2017";
+   entities = {
+     hashtags = ();
+     media = ({
+       "display_url" = "pic.twitter.com/xsys3zAfZI";
+       "expanded_url" = "https://twitter.com/otokoyabai/status/895914027154513920/video/1";
+       id = 895913975837097984;
+       "id_str" = 895913975837097984;
+       indices = (
+         55,
+         78
+       );
+       "media_url" = "http://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+       "media_url_https" = "https://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+       sizes = {
+         large = {
+           h = 360;
+           resize = fit;
+           w = 640;
+         };
+         medium = {
+           h = 338;
+           resize = fit;
+           w = 600;
+         };
+         small = {
+           h = 191;
+           resize = fit;
+           w = 340;
+         };
+         thumb = {
+           h = 150;
+           resize = crop;
+           w = 150;
+         };
+       };
+       "source_status_id" = 895914027154513920;
+       "source_status_id_str" = 895914027154513920;
+       "source_user_id" = 859809909830897665;
+       "source_user_id_str" = 859809909830897665;
+       type = photo;
+       url = "https://t.co/xsys3zAfZI";
+     });
+     symbols = ();
+     urls = ();
+     "user_mentions" = ({
+       id = 862326702898200576;
+       "id_str" = 862326702898200576;
+       indices = (
+         3,
+         19
+       );
+       name = "\U307f\U3093\U306a\U306e\U52d5\U753b";
+       "screen_name" = "minnano_dougaww";
+     });
+   };
+   "extended_entities" = {
+     media = ({
+       "additional_media_info" = {
+         monetizable = 0;
+         "source_user" = {
+           "contributors_enabled" = 0;
+           "created_at" = "Wed May 03 16:40:31 +0000 2017";
+           "default_profile" = 1;
+           "default_profile_image" = 0;
+           description = "\U30a2\U30db\U306a\U7537\U306e\U672c\U6c17\U3092\U3054\U7d39\U4ecb\Uff57\Uff57";
+           entities = {
+             description = {
+               urls = ();
+             };
+           };
+           "favourites_count" = 0;
+           "follow_request_sent" = 0;
+           "followers_count" = 1651;
+           following = 0;
+           "friends_count" = 77;
+           "geo_enabled" = 0;
+           "has_extended_profile" = 0;
+           id = 859809909830897665;
+           "id_str" = 859809909830897665;
+           "is_translation_enabled" = 0;
+           "is_translator" = 0;
+           lang = ja;
+           "listed_count" = 5;
+           location = "";
+           name = "\U7537\U3063\U3066\U99ac\U9e7f\U3084\U306d\U3093";
+           notifications = 0;
+           "profile_background_color" = F5F8FA;
+           "profile_background_image_url" = "<null>";
+           "profile_background_image_url_https" = "<null>";
+           "profile_background_tile" = 0;
+           "profile_banner_url" = "https://pbs.twimg.com/profile_banners/859809909830897665/1493996762";
+           "profile_image_url" = "http://pbs.twimg.com/profile_images/860510399128412160/UsV1_-Dw_normal.jpg";
+           "profile_image_url_https" = "https://pbs.twimg.com/profile_images/860510399128412160/UsV1_-Dw_normal.jpg";
+           "profile_link_color" = 1 DA1F2;
+           "profile_sidebar_border_color" = C0DEED;
+           "profile_sidebar_fill_color" = DDEEF6;
+           "profile_text_color" = 333333;
+           "profile_use_background_image" = 1;
+           protected = 0;
+           "screen_name" = otokoyabai;
+           "statuses_count" = 2012;
+           "time_zone" = "<null>";
+           "translator_type" = none;
+           url = "<null>";
+           "utc_offset" = "<null>";
+           verified = 0;
+         };
+       };
+       "display_url" = "pic.twitter.com/xsys3zAfZI";
+       "expanded_url" = "https://twitter.com/otokoyabai/status/895914027154513920/video/1";
+       id = 895913975837097984;
+       "id_str" = 895913975837097984;
+       indices = (
+         55,
+         78
+       );
+       "media_url" = "http://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+       "media_url_https" = "https://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+       sizes = {
+         large = {
+           h = 360;
+           resize = fit;
+           w = 640;
+         };
+         medium = {
+           h = 338;
+           resize = fit;
+           w = 600;
+         };
+         small = {
+           h = 191;
+           resize = fit;
+           w = 340;
+         };
+         thumb = {
+           h = 150;
+           resize = crop;
+           w = 150;
+         };
+       };
+       "source_status_id" = 895914027154513920;
+       "source_status_id_str" = 895914027154513920;
+       "source_user_id" = 859809909830897665;
+       "source_user_id_str" = 859809909830897665;
+       type = video;
+       url = "https://t.co/xsys3zAfZI";
+       "video_info" = {
+         "aspect_ratio" = (
+           16,
+           9
+         );
+         "duration_millis" = 140027;
+         variants = ({
+           bitrate = 320000;
+           "content_type" = "video/mp4";
+           url = "https://video.twimg.com/ext_tw_video/895913975837097984/pu/vid/320x180/Klz-DMS1evc2CQC-.mp4";
+         }, {
+           "content_type" = "application/x-mpegURL";
+           url = "https://video.twimg.com/ext_tw_video/895913975837097984/pu/pl/ey5usI7vxAGJSDf2.m3u8";
+         }, {
+           bitrate = 832000;
+           "content_type" = "video/mp4";
+           url = "https://video.twimg.com/ext_tw_video/895913975837097984/pu/vid/640x360/RgNRHhcZ7s2RIBfa.mp4";
+         });
+       };
+     });
+   };
+   "favorite_count" = 0;
+   favorited = 0;
+   geo = "<null>";
+   id = 911433381040107521;
+   "id_str" = 911433381040107521;
+   "in_reply_to_screen_name" = "<null>";
+   "in_reply_to_status_id" = "<null>";
+   "in_reply_to_status_id_str" = "<null>";
+   "in_reply_to_user_id" = "<null>";
+   "in_reply_to_user_id_str" = "<null>";
+   "is_quote_status" = 0;
+   lang = ja;
+   place = "<null>";
+   "possibly_sensitive" = 0;
+   "possibly_sensitive_appealable" = 0;
+   "retweet_count" = 15533;
+   retweeted = 0;
+  
+   "retweeted_status" = {
+     contributors = "<null>";
+     coordinates = "<null>";
+     "created_at" = "Thu Aug 31 11:04:05 +0000 2017";
+     entities = {
+       hashtags = ();
+       media = ({
+         "display_url" = "pic.twitter.com/xsys3zAfZI";
+         "expanded_url" = "https://twitter.com/otokoyabai/status/895914027154513920/video/1";
+         id = 895913975837097984;
+         "id_str" = 895913975837097984;
+         indices = (
+           34,
+           57
+         );
+         "media_url" = "http://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+         "media_url_https" = "https://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+         sizes = {
+           large = {
+             h = 360;
+             resize = fit;
+             w = 640;
+           };
+           medium = {
+             h = 338;
+             resize = fit;
+             w = 600;
+           };
+           small = {
+             h = 191;
+             resize = fit;
+             w = 340;
+           };
+           thumb = {
+             h = 150;
+             resize = crop;
+             w = 150;
+           };
+         };
+         "source_status_id" = 895914027154513920;
+         "source_status_id_str" = 895914027154513920;
+         "source_user_id" = 859809909830897665;
+         "source_user_id_str" = 859809909830897665;
+         type = photo;
+         url = "https://t.co/xsys3zAfZI";
+       });
+       symbols = ();
+       urls = ();
+       "user_mentions" = ();
+     };
+     "extended_entities" = {
+       media = ({
+         "additional_media_info" = {
+           monetizable = 0;
+           "source_user" = {
+             "contributors_enabled" = 0;
+             "created_at" = "Wed May 03 16:40:31 +0000 2017";
+             "default_profile" = 1;
+             "default_profile_image" = 0;
+             description = "\U30a2\U30db\U306a\U7537\U306e\U672c\U6c17\U3092\U3054\U7d39\U4ecb\Uff57\Uff57";
+             entities = {
+               description = {
+                 urls = ();
+               };
+             };
+             "favourites_count" = 0;
+             "follow_request_sent" = 0;
+             "followers_count" = 1651;
+             following = 0;
+             "friends_count" = 77;
+             "geo_enabled" = 0;
+             "has_extended_profile" = 0;
+             id = 859809909830897665;
+             "id_str" = 859809909830897665;
+             "is_translation_enabled" = 0;
+             "is_translator" = 0;
+             lang = ja;
+             "listed_count" = 5;
+             location = "";
+             name = "\U7537\U3063\U3066\U99ac\U9e7f\U3084\U306d\U3093";
+             notifications = 0;
+             "profile_background_color" = F5F8FA;
+             "profile_background_image_url" = "<null>";
+             "profile_background_image_url_https" = "<null>";
+             "profile_background_tile" = 0;
+             "profile_banner_url" = "https://pbs.twimg.com/profile_banners/859809909830897665/1493996762";
+             "profile_image_url" = "http://pbs.twimg.com/profile_images/860510399128412160/UsV1_-Dw_normal.jpg";
+             "profile_image_url_https" = "https://pbs.twimg.com/profile_images/860510399128412160/UsV1_-Dw_normal.jpg";
+             "profile_link_color" = 1 DA1F2;
+             "profile_sidebar_border_color" = C0DEED;
+             "profile_sidebar_fill_color" = DDEEF6;
+             "profile_text_color" = 333333;
+             "profile_use_background_image" = 1;
+             protected = 0;
+             "screen_name" = otokoyabai;
+             "statuses_count" = 2012;
+             "time_zone" = "<null>";
+             "translator_type" = none;
+             url = "<null>";
+             "utc_offset" = "<null>";
+             verified = 0;
+           };
+         };
+         "display_url" = "pic.twitter.com/xsys3zAfZI";
+         "expanded_url" = "https://twitter.com/otokoyabai/status/895914027154513920/video/1";
+         id = 895913975837097984;
+         "id_str" = 895913975837097984;
+         indices = (
+           34,
+           57
+         );
+         "media_url" = "http://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+         "media_url_https" = "https://pbs.twimg.com/ext_tw_video_thumb/895913975837097984/pu/img/epm99wrQ_eVfbY4C.jpg";
+         sizes = {
+           large = {
+             h = 360;
+             resize = fit;
+             w = 640;
+           };
+           medium = {
+             h = 338;
+             resize = fit;
+             w = 600;
+           };
+           small = {
+             h = 191;
+             resize = fit;
+             w = 340;
+           };
+           thumb = {
+             h = 150;
+             resize = crop;
+             w = 150;
+           };
+         };
+         "source_status_id" = 895914027154513920;
+         "source_status_id_str" = 895914027154513920;
+         "source_user_id" = 859809909830897665;
+         "source_user_id_str" = 859809909830897665;
+         type = video;
+         url = "https://t.co/xsys3zAfZI";
+         "video_info" = {
+           "aspect_ratio" = (
+             16,
+             9
+           );
+           "duration_millis" = 140027;
+           variants = ({
+             bitrate = 320000;
+             "content_type" = "video/mp4";
+             url = "https://video.twimg.com/ext_tw_video/895913975837097984/pu/vid/320x180/Klz-DMS1evc2CQC-.mp4";
+           }, {
+             "content_type" = "application/x-mpegURL";
+             url = "https://video.twimg.com/ext_tw_video/895913975837097984/pu/pl/ey5usI7vxAGJSDf2.m3u8";
+           }, {
+             bitrate = 832000;
+             "content_type" = "video/mp4";
+             url = "https://video.twimg.com/ext_tw_video/895913975837097984/pu/vid/640x360/RgNRHhcZ7s2RIBfa.mp4";
+           });
+         };
+       });
+     };
+     "favorite_count" = 22098;
+     favorited = 0;
+     geo = "<null>";
+     id = 903211787520139264;
+     "id_str" = 903211787520139264;
+     "in_reply_to_screen_name" = "<null>";
+     "in_reply_to_status_id" = "<null>";
+     "in_reply_to_status_id_str" = "<null>";
+     "in_reply_to_user_id" = "<null>";
+     "in_reply_to_user_id_str" = "<null>";
+     "is_quote_status" = 0;
+     lang = ja;
+     place = "<null>";
+     "possibly_sensitive" = 0;
+     "possibly_sensitive_appealable" = 0;
+     "retweet_count" = 15533;
+     retweeted = 0;
+     source = "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>";
+     text = "\U304a\U3082\U3061\U3083\U306e\U9283\U3084\U306e\U306b\U306a\U3093\U3067\U3053\U3093\U306a\U30ab\U30c3\U30b3\U3048\U3048\U306d\U3093wwwwwwwww\n\n https://t.co/xsys3zAfZI";
+     truncated = 0;
+     user = {
+       "contributors_enabled" = 0;
+       "created_at" = "Wed May 10 15:21:22 +0000 2017";
+       "default_profile" = 1;
+       "default_profile_image" = 0;
+       description = "\U3075\U3068\U3057\U305f\U6642\U306e\U6687\U3064\U3076\U3057\U304c\U6b32\U3057\U3044\Uff1f\U305d\U3093\U306a\U307f\U3093\U306a\U306e\U305f\U3081\U306b\U8a95\U751f\U3057\U305f\U30a2\U30ab\U30a6\U30f3\U30c8\U3067\U3059\Uff01\U66f4\U65b0\U7387\U306f\U9ad8\U3044\U304b\U3089\U3044\U3064\U3067\U3082\U6687\U3092\U3064\U3076\U305b\U308b\Uff01\U61d0\U304b\U3057\U7cfb\U304b\U3089\U30c8\U30ec\U30f3\U30c9\U7cfb\U307e\U3067\U8a71\U984c\U306b\U306a\U3063\U305f\U8272\U3093\U306a\U52d5\U753b\U3092\U7d39\U4ecb\U3057\U3066\U3044\U304d\U307e\U3059\Uff01\U305f\U304f\U3055\U3093\U306e\U30ea\U30d7\U3001DM\U3082\U3042\U308a\U304c\U3068\U3046\U3054\U3056\U3044\U307e\U3059\Uff01\U30d5\U30a9\U30ed\U30fc\Uff06RT\U5f85\U3063\U3066\U307e\U3059\U266aTwitter\U306e\U5229\U7528\U898f\U5247\U306b\U5f93\U3044\U30b9\U30d1\U30e0\U30c4\U30a4\U30fc\U30c8\U306f\U4e00\U5207\U3057\U307e\U305b\U3093\U3002";
+       entities = {
+         description = {
+           urls = ();
+         };
+       };
+       "favourites_count" = 57;
+       "follow_request_sent" = 0;
+       "followers_count" = 34850;
+       following = 0;
+       "friends_count" = 8474;
+       "geo_enabled" = 0;
+       "has_extended_profile" = 0;
+       id = 862326702898200576;
+       "id_str" = 862326702898200576;
+       "is_translation_enabled" = 0;
+       "is_translator" = 0;
+       lang = ja;
+       "listed_count" = 84;
+       location = "\U3042\U306a\U305f\U306e\U30b9\U30de\U30db";
+       name = "\U307f\U3093\U306a\U306e\U52d5\U753b";
+       notifications = 0;
+       "profile_background_color" = F5F8FA;
+       "profile_background_image_url" = "<null>";
+       "profile_background_image_url_https" = "<null>";
+       "profile_background_tile" = 0;
+       "profile_banner_url" = "https://pbs.twimg.com/profile_banners/862326702898200576/1497161703";
+       "profile_image_url" = "http://pbs.twimg.com/profile_images/876670823074906113/f8g0PM5C_normal.jpg";
+       "profile_image_url_https" = "https://pbs.twimg.com/profile_images/876670823074906113/f8g0PM5C_normal.jpg";
+       "profile_link_color" = 1 DA1F2;
+       "profile_sidebar_border_color" = C0DEED;
+       "profile_sidebar_fill_color" = DDEEF6;
+       "profile_text_color" = 333333;
+       "profile_use_background_image" = 1;
+       protected = 0;
+       "screen_name" = "minnano_dougaww";
+       "statuses_count" = 344;
+       "time_zone" = "<null>";
+       "translator_type" = none;
+       url = "<null>";
+       "utc_offset" = "<null>";
+       verified = 0;
+     };
+   };
+  
+   source = "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>";
+   text = "RT @minnano_dougaww: \U304a\U3082\U3061\U3083\U306e\U9283\U3084\U306e\U306b\U306a\U3093\U3067\U3053\U3093\U306a\U30ab\U30c3\U30b3\U3048\U3048\U306d\U3093wwwwwwwww\n\n https://t.co/xsys3zAfZI";
+   truncated = 0;
+  
+   user = {
+     "contributors_enabled" = 0;
+     "created_at" = "Wed Jul 20 11:40:13 +0000 2016";
+     "default_profile" = 0;
+     "default_profile_image" = 0;
+     description = "";
+     entities = {
+       description = {
+         urls = ();
+       };
+     };
+     "favourites_count" = 6263;
+     "follow_request_sent" = 0;
+     "followers_count" = 175;
+     following = 1;
+     "friends_count" = 312;
+     "geo_enabled" = 1;
+     "has_extended_profile" = 0;
+     id = 755729016603017216;
+     "id_str" = 755729016603017216;
+     "is_translation_enabled" = 0;
+     "is_translator" = 0;
+     lang = ja;
+     "listed_count" = 2;
+     location = "";
+     name = "\U308a\U3093@LiT";
+     notifications = 0;
+     "profile_background_color" = 000000;
+     "profile_background_image_url" = "http://abs.twimg.com/images/themes/theme1/bg.png";
+     "profile_background_image_url_https" = "https://abs.twimg.com/images/themes/theme1/bg.png";
+     "profile_background_tile" = 0;
+     "profile_banner_url" = "https://pbs.twimg.com/profile_banners/755729016603017216/1505910783";
+     "profile_image_url" = "http://pbs.twimg.com/profile_images/910070006930579456/3XX6qFBN_normal.jpg";
+     "profile_image_url_https" = "https://pbs.twimg.com/profile_images/910070006930579456/3XX6qFBN_normal.jpg";
+     "profile_link_color" = 221155;
+     "profile_sidebar_border_color" = 000000;
+     "profile_sidebar_fill_color" = 000000;
+     "profile_text_color" = 000000;
+     "profile_use_background_image" = 0;
+     protected = 0;
+     "screen_name" = "naporun_Lit";
+     "statuses_count" = 5624;
+     "time_zone" = "<null>";
+     "translator_type" = none;
+     url = "<null>";
+     "utc_offset" = "<null>";
+     verified = 0;
+   };
+ })
