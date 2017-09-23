@@ -234,7 +234,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
 
     // MARK: - Utility
     // MARK: refresh処理
-    func refresh() {
+    @objc func refresh() {
         self.tweetArray = []
         loadTweet()
         self.refreshControl.endRefreshing()
@@ -358,7 +358,7 @@ extension UserViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
     }
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")

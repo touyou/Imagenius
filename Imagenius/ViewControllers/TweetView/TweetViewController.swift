@@ -209,7 +209,7 @@ final class TweetViewController: UIViewController {
         self.scvBackGround.flashScrollIndicators()
     }
 
-    func changeOrient(_ notification: Notification) {
+    @objc func changeOrient(_ notification: Notification) {
         self.scvBackGround.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 200.0)
         self.scvBackGround.flashScrollIndicators()
     }

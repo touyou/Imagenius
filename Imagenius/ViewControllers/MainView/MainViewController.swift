@@ -81,19 +81,16 @@ class MainViewController: UIViewController, UITableViewDelegate {
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
             
-            twitterManager.loginTwitter(self)
-//            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-//            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-//                if granted {
-//                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-//                    if self.accounts.count != 0 {
-//                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-//                        self.swifter = Swifter(account: self.account!)
-//                        self.myself = self.account?.username
-//                        self.loadTweet()
-//                    }
-//                }
-//            }
+            if let _ = twitterManager.currentSession {
+                
+                twitterManager.loadHomeTimelineTweet(count: 20, success: { tweets in
+                    
+                    print(tweets)
+                })
+            } else {
+                
+                twitterManager.loginTwitter()
+            }
         }
         
         if saveData.object(forKey: "muteWords") != nil {
@@ -202,7 +199,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     // MARK: - Utility
     // MARK: refresh処理
-    func refresh() {
+    @objc func refresh() {
         self.tweetArray = []
         loadTweet()
         self.refreshControl.endRefreshing()
@@ -241,7 +238,7 @@ extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
     }
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")

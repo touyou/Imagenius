@@ -34,6 +34,9 @@ enum Settings {
         static let url = "open_url"
         static let muteWord = "muteWords"
         static let muteMode = "muteMode"
+        
+        // MARK: New
+        static let account = "account"
     }
     // 引用リツイート用
     static let RTWord = ["", "RT ", "RT: ", "RT> "]

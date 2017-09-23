@@ -16,17 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var rtMode: Int = 5
     
-    private let consumerKey = "Rh3x5hYBZtJGzfGGeeBoAXI98"
-    private let consumerSecret = "AVObRmfovlMT5eymWQAoKTh8EnyweShSp5dQuHJwf2dAVcDyJy"
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Twitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
-        
+    
         // アプリを通しての色を指定
         UINavigationBar.appearance().barTintColor = Settings.Colors.mainColor
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backgroundColor = UIColor.white
         UITabBar.appearance().tintColor = Settings.Colors.mainColor
         

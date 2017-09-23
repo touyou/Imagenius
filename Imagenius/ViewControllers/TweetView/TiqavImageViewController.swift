@@ -58,7 +58,7 @@ final class TiqavImageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
-    func changeOrient(_ notification: Notification) {
+    @objc func changeOrient(_ notification: Notification) {
         // AutoLayout対応のためセル調整
         changeLayout(4)
     }
@@ -131,6 +131,6 @@ extension TiqavImageViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSour
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "該当する画像が見つかりませんでした。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
     }
 }

@@ -21,7 +21,7 @@ final class TweetVarViewCell: SWTableViewCell {
             // リンク
             tweetLabel.linkAttributes = [
                 kCTForegroundColorAttributeName as AnyHashable: Settings.Colors.twitterColor,
-                NSUnderlineStyleAttributeName: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
+                NSAttributedStringKey.underlineStyle: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
             ]
         }
     }
@@ -60,7 +60,7 @@ final class TweetVarViewCell: SWTableViewCell {
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
         let matches = mentionExpression!.matches(in: label.text!, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
-            let matchRange = match.rangeAt(1)
+            let matchRange = match.range(at: 1)
             let mentionString = text.substring(with: matchRange)
             let user = mentionString.substring(from: mentionString.characters.index(mentionString.startIndex, offsetBy: 1))
             let linkURLString = NSString(format: "account:%@", user)
@@ -73,7 +73,7 @@ final class TweetVarViewCell: SWTableViewCell {
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
         let matches = mentionExpression!.matches(in: label.text!, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
-            let matchRange = match.rangeAt(0)
+            let matchRange = match.range(at: 0)
             let hashtagString = text.substring(with: matchRange)
             let word = hashtagString.substring(from: hashtagString.characters.index(hashtagString.startIndex, offsetBy: 1))
             let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)

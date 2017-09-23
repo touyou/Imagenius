@@ -32,7 +32,7 @@ final class UserViewModel: NSObject {
     }
 
     // MARK: imageViewがタップされたら画像のURLを開く
-    func tapped(_ sender: UITapGestureRecognizer) {
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
             guard let type = tweetArray[rowNum].entitiesType else {

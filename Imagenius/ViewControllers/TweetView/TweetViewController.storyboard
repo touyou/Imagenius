@@ -272,12 +272,12 @@
                             <constraint firstItem="CvR-fS-nZz" firstAttribute="top" secondItem="pav-nR-tfY" secondAttribute="topMargin" id="3gD-gv-WuX"/>
                             <constraint firstItem="CNf-qe-5MY" firstAttribute="leading" secondItem="pav-nR-tfY" secondAttribute="leadingMargin" constant="-20" id="JAe-bA-zOE"/>
                             <constraint firstItem="CvR-fS-nZz" firstAttribute="leading" secondItem="pav-nR-tfY" secondAttribute="leadingMargin" constant="-20" id="KPt-5F-KXP"/>
-                            <constraint firstItem="CNf-qe-5MY" firstAttribute="top" secondItem="7vS-gF-cQS" secondAttribute="top" constant="-20" id="V46-sx-TFS"/>
+                            <constraint firstItem="CNf-qe-5MY" firstAttribute="top" secondItem="TlU-YS-M70" secondAttribute="top" constant="-20" id="V46-sx-TFS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CvR-fS-nZz" secondAttribute="trailing" constant="-20" id="XbP-kh-UcU"/>
                             <constraint firstAttribute="bottom" secondItem="CvR-fS-nZz" secondAttribute="bottom" id="gPz-yy-lp1"/>
                             <constraint firstItem="vq4-Pw-gER" firstAttribute="width" secondItem="pav-nR-tfY" secondAttribute="width" id="qqm-V5-W6H"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="7vS-gF-cQS"/>
+                        <viewLayoutGuide key="safeArea" id="TlU-YS-M70"/>
                     </view>
                     <connections>
                         <outlet property="accountImage" destination="gVG-nf-Atd" id="ukI-YQ-0Zu"/>

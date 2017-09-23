@@ -117,7 +117,7 @@ final class ListAllViewController: UIViewController {
     }
     
     // MARK: - Utility
-    func loadList() {
+    @objc func loadList() {
         if swifter != nil {
             let failureHandler: ((Error) -> Void) = { error in
                 Utility.simpleAlert("Error: リストのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
@@ -174,7 +174,7 @@ extension ListAllViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "リストがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
     }
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")

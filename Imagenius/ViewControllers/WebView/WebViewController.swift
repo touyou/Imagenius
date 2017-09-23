@@ -89,10 +89,10 @@ final class WebViewController: UIViewController {
         let url = self.webView.url
         Utility.shareSome(url!, text: self.webView.title, presentView: self)
     }
-    internal func didTapReloadButton(_ sender: AnyObject) {
+    @objc internal func didTapReloadButton(_ sender: AnyObject) {
         self.webView.reload()
     }
-    internal func didTapStopButton(_ sender: AnyObject) {
+    @objc internal func didTapStopButton(_ sender: AnyObject) {
         self.webView.stopLoading()
     }
 }

@@ -43,7 +43,7 @@ final class GIFViewController: UIViewController {
 
         let videoPlayerView = AVPlayerView(frame: self.contentView.bounds)
         layer = videoPlayerView.layer as? AVPlayerLayer ?? AVPlayerLayer()
-        layer.videoGravity = AVLayerVideoGravityResizeAspect
+        layer.videoGravity = AVLayerVideoGravity.resizeAspect
         layer.player = videoPlayer
         self.contentView.layer.addSublayer(layer)
 
@@ -60,21 +60,21 @@ final class GIFViewController: UIViewController {
         return UIStatusBarStyle.lightContent
     }
 
-    func playerItemDidReachEnd(_ notification: Notification) {
+    @objc func playerItemDidReachEnd(_ notification: Notification) {
         self.videoPlayer.seek(to: kCMTimeZero)
         self.videoPlayer.play()
     }
 
-    func onOrientationChange(_ notification: Notification) {
+    @objc func onOrientationChange(_ notification: Notification) {
         layer.removeFromSuperlayer()
         let videoPlayerView = AVPlayerView(frame: self.contentView.bounds)
         layer = videoPlayerView.layer as? AVPlayerLayer ?? AVPlayerLayer()
-        layer.videoGravity = AVLayerVideoGravityResizeAspect
+        layer.videoGravity = AVLayerVideoGravity.resizeAspect
         layer.player = videoPlayer
         self.contentView.layer.addSublayer(layer)
     }
 
-    func tapped(_ sender: UITapGestureRecognizer) {
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
         if self.videoPlayer.rate != 0.0 {
             self.videoPlayer.pause()
         } else {
