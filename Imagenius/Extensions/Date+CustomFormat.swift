@@ -8,35 +8,37 @@
 
 import UIKit
 extension Date {
-    func yearsFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: date, to: self, options: []).year!
-    }
-    func monthsFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.month, from: date, to: self, options: []).month!
-    }
-    func weeksFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.weekOfYear, from: date, to: self, options: []).weekOfYear!
-    }
-    func daysFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.day, from: date, to: self, options: []).day!
-    }
-    func hoursFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: date, to: self, options: []).hour!
-    }
-    func minutesFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.minute, from: date, to: self, options: []).minute!
-    }
-    func secondsFrom(_ date: Date) -> Int {
-        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.second, from: date, to: self, options: []).second!
-    }
-    func offsetFrom(_ date: Date) -> String {
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))年前"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))ヶ月前"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))週間前"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))日前"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))時間前"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))分前" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))秒前" }
+
+    func offsetFrom() -> String {
+        
+        if Calendar.current.component(.year, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.year, from: self))年前"
+        }
+        if Calendar.current.component(.month, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.month, from: self))ヶ月前"
+        }
+        if Calendar.current.component(.weekday, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.weekday, from: self))週間前"
+        }
+        if Calendar.current.component(.day, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.day, from: self))日前"
+        }
+        if Calendar.current.component(.hour, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.hour, from: self))時間前"
+        }
+        if Calendar.current.component(.minute, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.minute, from: self))分前"
+        }
+        if Calendar.current.component(.second, from: self) > 0 {
+            
+            return "\(Calendar.current.component(.second, from: self))秒前"
+        }
         return ""
     }
 }

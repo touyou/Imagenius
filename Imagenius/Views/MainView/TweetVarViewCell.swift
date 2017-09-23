@@ -88,9 +88,9 @@ final class TweetVarViewCell: SWTableViewCell {
         highrightHashtagsInLabel(tweetLabel)
         highrightMentionsInLabel(tweetLabel)
 
-        userLabel.text = tweet.userName ?? ""
-        userIDLabel.text = tweet.screenName ?? "@"
-        let userImgURL: URL = tweet.userImage! as URL
+        userLabel.text = tweet.user.name
+        userIDLabel.text = "@\(tweet.user.screenName)"
+        let userImgURL: URL = tweet.user.profileImageUrl
 
         userImgView.sd_setImage(with: userImgURL, placeholderImage: UIImage(named: "user_empty"), options: SDWebImageOptions.retryFailed)
 
@@ -100,11 +100,11 @@ final class TweetVarViewCell: SWTableViewCell {
         userImgView.layer.borderWidth = 0.19
         userImgView.isHidden = false
 
-        timeLabel.text = tweet.createdAt!
+        timeLabel.text = tweet.createdAt.offsetFrom()
         
-        if tweet.isRetweet {
+        if tweet.retweeted {
             rtImageView.isHidden = true
-            let rtUserImgURL = tweet.retweetUserImage!
+            let rtUserImgURL = tweet.retweetedStatus?.user.profileImageUrl
             rtUserImageView.sd_setImage(with: rtUserImgURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
             rtUserImageView.layer.cornerRadius = self.rtUserImageView.frame.size.width * 0.5
             rtUserImageView.clipsToBounds = true
@@ -114,7 +114,7 @@ final class TweetVarViewCell: SWTableViewCell {
         }
 
         // こっから下で画像の枚数とそれに応じたレイアウトを行う
-        guard let tweetMedia = tweet.extendedEntities else {
+        guard let tweetMedia = tweet.extendedEntities?.media else {
             subViewHeight.constant = 0
             tweetSubView.isHidden = true
             updateConstraintsIfNeeded()
@@ -135,13 +135,13 @@ final class TweetVarViewCell: SWTableViewCell {
         tweetSubView.layer.borderWidth = 0.19
         // 一枚目のURLからNSURLをつくる
         // とりあえず一枚目だけツイート画面でプレビューする
-        let tweetImgURL: URL = tweet.tweetImages![0] as URL
+        let tweetImgURL: URL = tweetMedia[0].mediaUrl
         // 画像を表示するモード(Storyboardで設定するのと同じ)
         tweetImgView.contentMode = .scaleAspectFill
         // 画像を設定(SDWebImageを使っているので、使わない場合はUIImageにダウンロードすればいい)
         tweetImgView.sd_setImage(with: tweetImgURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
 
-        switch tweet.entitiesType ?? "" {
+        switch tweet.extendedEntities?.type ?? "" {
         case "photo":
             imageCountLabel.text = "\(imageCount)枚の写真"
         case "video":

@@ -35,52 +35,45 @@ final class UserViewModel: NSObject {
     @objc func tapped(_ sender: UITapGestureRecognizer) {
         if let theView = sender.view {
             let rowNum = theView.tag
-            guard let type = tweetArray[rowNum].entitiesType else {
+            guard let type = tweetArray[rowNum].extendedEntities?.media.first?.type else {
                 return
             }
             switch type {
             case "photo":
                 let tempData = NSMutableArray()
-                for data in tweetArray[rowNum].tweetImages ?? [] {
+                for data in (tweetArray[rowNum].extendedEntities?.tweetImages ?? []) {
                     tempData.add(try! Data(contentsOf: data as URL))
                 }
                 viewController.imageData = tempData
                 viewController.performSegue(withIdentifier: "toPreView", sender: nil)
             case "video":
-                if let videoArray = tweetArray[rowNum].extendedEntities![0]["video_info"]["variants"].array {
-                    let alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .actionSheet)
+                if let videoArray = tweetArray[rowNum].extendedEntities?.media.first?.videoInfo.variants {
+                    var alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .actionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
-                        if videoInfo["bitrate"].integer != nil {
-                            alertController.addAction(UIAlertAction(title: "\(videoInfo["bitrate"].integer! / 1000)kbps", style: .default, handler: { (_) -> Void in
+                        if videoInfo.bitrate != nil {
+                            alertController = alertController.addAction(title: "\(videoInfo.bitrate! / 1000)kbps", style: .default, handler: { (_) -> Void in
                                 self.viewController.avPlayerViewController = AVPlayerViewController()
-                                self.viewController.avPlayerViewController.player = AVPlayer(url: URL(string: videoInfo["url"].string!)!)
+                                self.viewController.avPlayerViewController.player = AVPlayer(url: videoInfo.url)
                                 self.viewController.present(self.viewController.avPlayerViewController, animated: true, completion: {
                                     try! self.audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
                                     self.viewController.avPlayerViewController.player?.play()
                                 })
-                            }))
+                            })
                         }
                     }
 
-                    // キャンセルボタンは何もせずにアクションシートを閉じる
-                    let CanceledAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    alertController.addAction(CanceledAction)
-                    // iPad用
-                    alertController.popoverPresentationController?.sourceView = viewController.view
-                    alertController.popoverPresentationController?.sourceRect = theView.frame
-                    // アクションシート表示
-                    viewController.present(alertController, animated: true, completion: nil)
+                    alertController.addAction(title: "Cancel", style: .cancel).show()
                 }
             case "animated_gif":
                 // print(tweetArray[rowNum]["extended_entities"])
-                if let videoURL = tweetArray[rowNum].extendedEntities![0]["video_info"]["variants"][0]["url"].string {
-                    viewController.gifURL = URL(string: videoURL)
+                if let videoURL = tweetArray[rowNum].extendedEntities?.media.first?.videoInfo.variants.first?.url {
+                    viewController.gifURL = videoURL
                     viewController.performSegue(withIdentifier: "toGifView", sender: nil)
                 }
             default:
-                if let tweetURL = tweetArray[rowNum].extendedEntities![0]["url"].string {
-                    Utility.openWebView(URL(string: tweetURL)!)
+                if let tweetURL = tweetArray[rowNum].extendedEntities?.media.first?.url {
+                    Utility.openWebView(tweetURL)
                     viewController.performSegue(withIdentifier: "openWebView", sender: nil)
                 }
             }

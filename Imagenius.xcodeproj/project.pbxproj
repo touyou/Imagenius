@@ -119,7 +119,6 @@
 		46F7582C1F248CA80014331A /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758251F248CA80014331A /* Realm.framework */; };
 		46F7582D1F248CA80014331A /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758261F248CA80014331A /* RealmSwift.framework */; };
 		46F7582E1F248CA80014331A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758271F248CA80014331A /* SDWebImage.framework */; };
-		46F7582F1F248CA80014331A /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758281F248CA80014331A /* SwifteriOS.framework */; };
 		46F758301F248CA80014331A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F758291F248CA80014331A /* SwiftyJSON.framework */; };
 		6D150516CB520FB8A08CEC7B /* Pods_ImageniusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C45A794A01BF4A1D6E3D7E /* Pods_ImageniusUITests.framework */; };
 		C4C9A71404794056E53823BC /* Pods_Imagenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE4E37EBA5DDB52FCA3F3AD /* Pods_Imagenius.framework */; };
@@ -339,7 +338,6 @@
 				46F7582C1F248CA80014331A /* Realm.framework in Frameworks */,
 				46F7582D1F248CA80014331A /* RealmSwift.framework in Frameworks */,
 				46F7582E1F248CA80014331A /* SDWebImage.framework in Frameworks */,
-				46F7582F1F248CA80014331A /* SwifteriOS.framework in Frameworks */,
 				46F758301F248CA80014331A /* SwiftyJSON.framework in Frameworks */,
 				46F758211F248CA80014331A /* RxCocoa.framework in Frameworks */,
 				46F758221F248CA80014331A /* RxSwift.framework in Frameworks */,

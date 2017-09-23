@@ -168,10 +168,10 @@ final class TweetDetailViewController: UIViewController, UITableViewDelegate {
     @IBAction func pushTweet() {
         self.replyID = self.viewId
         if tweetArray[1].count != 0 {
-            self.replyStr = "@\(tweetArray[1][0].screenNameNoat ?? "") "
-            if (tweetArray[1][0].userMentions ?? []).count != 0 {
-                for u in tweetArray[1][0].userMentions! where u["screen_name"].string! != self.account?.username {
-                    replyStr?.append("@\(u["screen_name"].string!) ")
+            self.replyStr = "@\(tweetArray[1][0].user.screenName) "
+            if (tweetArray[1][0].entities.mentions).count != 0 {
+                for u in tweetArray[1][0].entities.mentions where u.screenName != self.account?.username {
+                    replyStr?.append("@\(u.screenName) ")
                 }
             }
         }
@@ -266,18 +266,18 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
     // MARK: 右のボタン
     func rightButtons(_ tweet: Tweet) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
-        if tweet.favorited ?? false {
+        if tweet.favorited {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount ?? 0)))
         } else {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount ?? 0)))
         }
         rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "reply-action_0")!))
-        if tweet.retweeted ?? false {
+        if tweet.retweeted {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
         } else {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
         }
-        if tweet.isMyself {
+        if tweet.user.screenName == TwitterManager.shared.currentSession?.userName ?? "" {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "trash")!))
         } else {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
@@ -307,7 +307,7 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
         switch index {
         case 0:
             // fav
-            if tweet.favorited ?? false {
+            if tweet.favorited {
                 swifter.unfavouriteTweet(forID: tweet.idStr ?? "", success: { _ in
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 1) - 1)", for: UIControlState())
@@ -321,10 +321,10 @@ extension TweetDetailViewController: SWTableViewCellDelegate {
             break
         case 1:
             // reply
-            replyID = tweet.idStr ?? ""
-            replyStr = "@\(tweet.screenNameNoat ?? "") "
-            if (tweet.userMentions ?? []).count != 0 {
-                for u in tweet.userMentions! where u["screen_name"].string! != self.account?.username {
+            replyID = tweet.idStr
+            replyStr = "@\(tweet.user.screenName) "
+            if tweet.entities.mentions.count != 0 {
+                for u in tweet.entities.mentions where u.screenName != self.account?.username {
                     replyStr?.append("@\(u["screen_name"].string!) ")
                 }
             }

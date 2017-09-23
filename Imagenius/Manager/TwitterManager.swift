@@ -78,7 +78,7 @@ final class TwitterManager {
         }).addAction(title: "cancel", style: .cancel).show()
     }
     
-    func loadHomeTimelineTweet(count: Int, maxID: String? = nil, success: @escaping (([TweetModel])->Void), failure: ((Error?)->Void)? = nil) {
+    func loadHomeTimelineTweet(count: Int, maxID: String? = nil, success: @escaping (([Tweet])->Void), failure: ((Error?)->Void)? = nil) {
         
         guard let userID = currentSession?.userID else {
             
@@ -104,7 +104,7 @@ final class TwitterManager {
             
             do {
                 
-                let tweets = try self.decoder.decode([TweetModel].self, from: data!)
+                let tweets = try self.decoder.decode([Tweet].self, from: data!)
                 success(tweets)
             } catch let error {
                 
@@ -249,108 +249,172 @@ struct ExtendedEntities: Decodable {
     
     struct Media: Decodable {
         
+        struct VideoInfo: Decodable {
+            
+            struct Video: Decodable {
+                
+                let bitrate: Int?
+                let url: URL
+            }
+            
+            let variants: [Video]
+        }
+        
+        let url: URL?
         let mediaUrl: URL
         let type: String
+        let videoInfo: VideoInfo
         
         private enum CodingKeys: String, CodingKey {
             
+            case url = "url"
             case mediaUrl = "media_url_https"
             case type
+            case videoInfo = "video_info"
         }
     }
     
     let media: [Media]
+    var type: String? {
+        
+        get {
+            
+            return media.first?.type
+        }
+    }
+    var tweetImages: [URL]? {
+        
+        get {
+            
+            return media.map { $0.mediaUrl }
+        }
+    }
 }
 
-struct TweetModel: Decodable {
+struct Retweet: Decodable {
     
     let createdAt: Date
+    let entities: Entities
+    let extendedEntities: ExtendedEntities?
     let favoriteCount: Int
     let favorited: Bool
-    let idStr: String
-    let entities: Entities
-    let text: String
     let id: UInt64
+    let idStr: String
     let retweetCount: Int
     let retweeted: Bool
     let source: String
+    let text: String
     let user: User
-    let extendedEntities: ExtendedEntities?
     
     private enum CodingKeys: String, CodingKey {
         
         case createdAt = "created_at"
+        case entities
+        case extendedEntities = "extended_entities"
         case favoriteCount = "favorite_count"
         case favorited
-        case idStr = "id_str"
-        case entities
-        case text
         case id
+        case idStr = "id_str"
         case retweetCount = "retweet_count"
         case retweeted
         case source
         case user
+        case text
+    }
+}
+
+struct Tweet: Decodable {
+    
+    let createdAt: Date
+    let entities: Entities
+    let extendedEntities: ExtendedEntities?
+    let favoriteCount: Int
+    let favorited: Bool
+    let id: UInt64
+    let idStr: String
+    let retweetCount: Int
+    let retweeted: Bool
+    let retweetedStatus: Retweet?
+    let source: String
+    let text: String
+    let user: User
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case createdAt = "created_at"
+        case entities
         case extendedEntities = "extended_entities"
+        case favoriteCount = "favorite_count"
+        case favorited
+        case id
+        case idStr = "id_str"
+        case retweetCount = "retweet_count"
+        case retweeted
+        case retweetedStatus = "retweeted_status"
+        case source
+        case user
+        case text
     }
 }
 
-final class TwitterUtil {
-    // MARK: login
-    class func loginTwitter(_ present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
-        let accountStore = ACAccountStore()
-        var accounts = [ACAccount]()
-        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-            if granted {
-                accounts = accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                if accounts.count == 0 {
-                    Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: present)
-                } else {
-                    self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present, success: success)
-                }
-            } else {
-                Utility.simpleAlert("Error: Twitterアカウントへのアクセスを許可してください。", presentView: present)
-            }
-        }
-    }
+//final class TwitterUtil {
+//    // MARK: login
+//    class func loginTwitter(_ present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
+//        let accountStore = ACAccountStore()
+//        var accounts = [ACAccount]()
+//        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+//        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
+//            if granted {
+//                accounts = accountStore.accounts(with: accountType) as? [ACAccount] ?? []
+//                if accounts.count == 0 {
+//                    Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: present)
+//                } else {
+//                    self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present, success: success)
+//                }
+//            } else {
+//                Utility.simpleAlert("Error: Twitterアカウントへのアクセスを許可してください。", presentView: present)
+//            }
+//        }
+//    }
+//
+//    // MARK: Twitterアカウントの切り替え
+//    class func showAndSelectTwitterAccountWithSelectionSheets(_ accounts: [ACAccount], present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
+//        // アクションシートの設定
+//        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
+//        let saveData: UserDefaults = UserDefaults.standard
+//
+//        for i in 0 ..< accounts.count {
+//            let account = accounts[i]
+//            alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (_) -> Void in
+//                // 選択したアカウントを返す
+//                for j in 0 ..< accounts.count where account == accounts[j] {
+//                    print(j)
+//                    saveData.set(j, forKey: Settings.Saveword.twitter)
+//                    break
+//                }
+//                success?(account)
+//            }))
+//
+//        }
+//
+//        // キャンセルボタンは何もせずにアクションシートを閉じる
+//        let CanceledAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        alertController.addAction(CanceledAction)
+//
+//        // iPad用
+//        alertController.popoverPresentationController?.sourceView = present.view
+//        alertController.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
+//
+//        // アクションシート表示
+//        present.present(alertController, animated: true, completion: nil)
+//    }
+//
+//    // MARK: 画像がツイートに含まれているか？
+//    class func isContainMedia(_ tweet: JSON) -> Bool {
+//        if tweet["extended_entities"].object != nil {
+//            return true
+//        }
+//        return false
+//    }
+//}
 
-    // MARK: Twitterアカウントの切り替え
-    class func showAndSelectTwitterAccountWithSelectionSheets(_ accounts: [ACAccount], present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
-        // アクションシートの設定
-        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
-        let saveData: UserDefaults = UserDefaults.standard
-
-        for i in 0 ..< accounts.count {
-            let account = accounts[i]
-            alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (_) -> Void in
-                // 選択したアカウントを返す
-                for j in 0 ..< accounts.count where account == accounts[j] {
-                    print(j)
-                    saveData.set(j, forKey: Settings.Saveword.twitter)
-                    break
-                }
-                success?(account)
-            }))
-
-        }
-
-        // キャンセルボタンは何もせずにアクションシートを閉じる
-        let CanceledAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(CanceledAction)
-
-        // iPad用
-        alertController.popoverPresentationController?.sourceView = present.view
-        alertController.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
-
-        // アクションシート表示
-        present.present(alertController, animated: true, completion: nil)
-    }
-
-    // MARK: 画像がツイートに含まれているか？
-    class func isContainMedia(_ tweet: JSON) -> Bool {
-        if tweet["extended_entities"].object != nil {
-            return true
-        }
-        return false
-    }
-}
