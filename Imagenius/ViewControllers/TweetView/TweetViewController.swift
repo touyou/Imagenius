@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwifteriOS
-import Accounts
 import GoogleMobileAds
 import RxSwift
 import RxCocoa
@@ -47,37 +45,24 @@ final class TweetViewController: UIViewController {
     var replyID: String?
     var tweetImage = [UIImage]()
     var accountImg: UIImage?
-    var swifter: Swifter!
-    var account: ACAccount?
-    var accounts = [ACAccount]()
     var mediaIds = [String]()
     var gifFlag = true
 
-    let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard
+    let twitterManager = TwitterManager.shared
     let disposeBag = DisposeBag()
 
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (ac) -> Void in
-                self.account = ac
-                self.swifter = Swifter(account: self.account!)
+            twitterManager.loginTwitter({
+
                 self.changeAccountImage()
             })
         } else {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.changeAccountImage()
-                    }
-                }
-            }
+            
+            changeAccountImage()
         }
         // レイアウト
         if replyStr != nil {
@@ -251,9 +236,8 @@ final class TweetViewController: UIViewController {
     // MARK: アカウントを切り替える
     @IBAction func accountButton() {
         // アカウントの切り替え
-        TwitterUtil.loginTwitter(self, success: { (ac) -> Void in
-            self.account = ac
-            self.swifter = Swifter(account: self.account!)
+        twitterManager.switchAccount({
+            
             self.changeAccountImage()
         })
     }

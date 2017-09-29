@@ -113,6 +113,337 @@ final class TwitterManager {
         }
     }
     
+    func loadMentionsTimelineTweet(count: Int, maxID: String? = nil, success: @escaping (([Tweet])->Void), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
+        var params = [AnyHashable: Any]()
+        params["count"] = String(count)
+        _ = maxID.flatMap { params["max_id"] = $0 }
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            do {
+                
+                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                success(tweets)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func loadListTweet(for id: String, count: Int, maxID: String? = nil, success: @escaping (([Tweet])->Void), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/lists/statuses.json"
+        var params = [AnyHashable: Any]()
+        params["count"] = String(count)
+        params["list_id"] = id
+        params["include_rts"] = "1"
+        _ = maxID.flatMap { params["max_id"] = $0 }
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            do {
+                
+                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                success(tweets)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func getTweet(for id: String, success: @escaping ((Tweet)->Void), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/show.json"
+        var params = [AnyHashable: Any]()
+        params["id"] = id
+
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            do {
+                
+                let tweet = try self.decoder.decode(Tweet.self, from: data!)
+                success(tweet)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func getTimeline(for id: String, count: Int, maxID: String? = nil, success: @escaping (([Tweet])->Void), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+        var params = [AnyHashable: Any]()
+        params["count"] = String(count)
+        params["user_id"] = id
+        _ = maxID.flatMap { params["max_id"] = $0 }
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            do {
+                
+                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                success(tweets)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func favoriteTweet(for id: String, success: @escaping (()->())) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/favorites/create.json"
+        var params = [AnyHashable: Any]()
+        params["id"] = id
+
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func unfavoriteTweet(for id: String, success: @escaping (()->())) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/favorites/destroy.json"
+        var params = [AnyHashable: Any]()
+        params["id"] = id
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func retweetTweet(for id: String, success: @escaping (()->())) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/retweet/\(id).json"
+        let params = [AnyHashable: Any]()
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func unretweetTweet(for id: String, success: @escaping (()->())) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/unretweet/\(id).json"
+        let params = [AnyHashable: Any]()
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func destroyTweet(for id: String, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/destroy/\(id).json"
+        let params = [AnyHashable: Any]()
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func blockUser(for name: String, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/blocks/create.json"
+        var params = [AnyHashable: Any]()
+        params["screen_name"] = name
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func reportUser(for name: String, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/users/report_spam.json"
+        var params = [AnyHashable: Any]()
+        params["screen_name"] = name
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
     // TODO: DecodableなTweetのクラスができたらそれを読み込む関数をいっぱい量産する
 }
 
@@ -300,11 +631,31 @@ struct Retweet: Decodable {
     let favorited: Bool
     let id: UInt64
     let idStr: String
+    let inReplyToStatusIdStr: String?
     let retweetCount: Int
     let retweeted: Bool
     let source: String
     let text: String
     let user: User
+    var isMe: Bool? {
+        
+        get {
+            
+            guard let me = TwitterManager.shared.currentSession?.userName else {
+                
+                return nil
+            }
+            
+            return me == user.name
+        }
+    }
+    var urlStr: String {
+        
+        get {
+            
+            return "https://twitter.com/\(user.screenName)/status/\(idStr)"
+        }
+    }
     
     private enum CodingKeys: String, CodingKey {
         
@@ -316,6 +667,7 @@ struct Retweet: Decodable {
         case id
         case idStr = "id_str"
         case retweetCount = "retweet_count"
+        case inReplyToStatusIdStr = "in_reply_to_status_id_str"
         case retweeted
         case source
         case user
@@ -332,12 +684,32 @@ struct Tweet: Decodable {
     let favorited: Bool
     let id: UInt64
     let idStr: String
+    let inReplyToStatusIdStr: String?
     let retweetCount: Int
     let retweeted: Bool
     let retweetedStatus: Retweet?
     let source: String
     let text: String
     let user: User
+    var isMe: Bool? {
+        
+        get {
+            
+            guard let me = TwitterManager.shared.currentSession?.userName else {
+                
+                return nil
+            }
+            
+            return me == user.name
+        }
+    }
+    var urlStr: String {
+        
+        get {
+            
+            return "https://twitter.com/\(user.screenName)/status/\(idStr)"
+        }
+    }
     
     private enum CodingKeys: String, CodingKey {
         
@@ -348,6 +720,7 @@ struct Tweet: Decodable {
         case favorited
         case id
         case idStr = "id_str"
+        case inReplyToStatusIdStr = "in_reply_to_status_id_str"
         case retweetCount = "retweet_count"
         case retweeted
         case retweetedStatus = "retweeted_status"

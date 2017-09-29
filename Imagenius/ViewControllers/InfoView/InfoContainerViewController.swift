@@ -19,7 +19,7 @@ final class InfoContainerViewController: UIViewController {
     let twitterManager = TwitterManager.shared
 
     @IBAction func loginButton() {
-        if saveData.object(forKey: Settings.Saveword.twitter) == nil {
+        if saveData.object(forKey: Settings.Saveword.account) == nil {
             twitterManager.loginTwitter {
                 self.saveData.set(true, forKey: Settings.Saveword.changed)
                 // 元のViewに移行
