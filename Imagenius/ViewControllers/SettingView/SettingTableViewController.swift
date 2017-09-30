@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwifteriOS
-import Accounts
 import MessageUI
 import GoogleMobileAds
 
@@ -16,11 +14,6 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
     // Google Ads関連
     @IBOutlet weak var bannerView: GADBannerView!
 
-    var swifter: Swifter!
-    var account: ACAccount?
-    var accounts = [ACAccount]()
-
-    let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard
     let twitterManager = TwitterManager.shared
     let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方", "お気に入り画像を確認する", "引用リツイートの形式を変更する", "単語ミュート"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]

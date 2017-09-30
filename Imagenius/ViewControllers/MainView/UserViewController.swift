@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Accounts
-import SwifteriOS
 import TTTAttributedLabel
 import DZNEmptyDataSet
 import SWTableViewCell
@@ -51,14 +49,13 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         }
     }
     @IBOutlet weak var followBtnLength: NSLayoutConstraint!
-
+    
     var user: String!   // screen_name
     var idStr: String!
-
+    
     var viewModel = UserViewModel()
     var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [Tweet] = []
-    var swifter: Swifter!
     var maxId: String!
     var replyID: String?
     var replyStr: String?
@@ -67,8 +64,6 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         refreshControl.addTarget(self, action: #selector(UserViewController.refresh), for: UIControlEvents.valueChanged)
         return refreshControl
     }()
-    var account: ACAccount?
-    var accounts = [ACAccount]()
     var imageData: NSMutableArray?
     var gifURL: URL!
     var selectedId: String!
@@ -76,53 +71,41 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     var reloadingFlag: Bool = false
     var muteText = [String]()
     var muteMode: Int!
-
-    let accountStore = ACAccountStore()
+    
     let saveData: UserDefaults = UserDefaults.standard
     let twitterManager = TwitterManager.shared
     // MARK: Rx
     final fileprivate let disposeBag = DisposeBag()
-
+    
     // MARK: - UIViewControllerの設定
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 引っ張ってロードするやつ
         userTimeLine.addSubview(refreshControl)
-
+        
         userIDLabel.text = "@\(self.user!)"
         // ボタン周り
         followButton.isHidden = true
         unfollowButton.isHidden = true
         followButton.rx.tap.subscribe({_ in self.follow()}).addDisposableTo(disposeBag)
         unfollowButton.rx.tap.subscribe({_ in self.unfollow()}).addDisposableTo(disposeBag)
-
+        
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.title = "@\(self.user!)のツイート一覧"
-                        
-                        self.myself = self.account?.username
-                        
-                        if self.idStr == nil {
-                            self.getUserIdWithScreenName(self.user, comp: {
-                                self.loadTweet()
-                            })
-                        } else {
-                            self.loadTweet()
-                        }
-                    }
-                }
+            title = "@\(self.user!)のツイート一覧"
+            myself = twitterManager.currentSession?.userName
+            
+            if self.idStr == nil {
+                self.getUserIdWithScreenName(self.user, comp: {
+                    self.loadTweet()
+                })
+            } else {
+                self.loadTweet()
             }
         }
-
+        
         saveData.addObserver(self, forKeyPath: Settings.Saveword.twitter, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
         saveData.addObserver(self, forKeyPath: Settings.Saveword.muteWord, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
         saveData.addObserver(self, forKeyPath: Settings.Saveword.muteMode, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
@@ -139,33 +122,24 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             muteMode = 1
             saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
         }
-
+        
         viewModel.setViewController(self)
     }
-
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == Settings.Saveword.twitter {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.myself = self.account?.username
-                        if !self.reloadingFlag {
-                            if self.tweetArray.count != 0 {
-                                let indexPath = IndexPath(row: 0, section: 0)
-                                self.userTimeLine.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
-                            }
-                            self.tweetArray = []
-                            self.loadTweet()
-                            self.reloadingFlag = true
-                        } else {
-                            self.reloadingFlag = false
-                        }
-                    }
+            
+            self.myself = twitterManager.currentSession?.userName
+            if !self.reloadingFlag {
+                if self.tweetArray.count != 0 {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.userTimeLine.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
                 }
+                self.tweetArray = []
+                self.loadTweet()
+                self.reloadingFlag = true
+            } else {
+                self.reloadingFlag = false
             }
         } else if keyPath == Settings.Saveword.muteMode {
             muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
@@ -177,13 +151,13 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             loadTweet()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         let imageCache: SDImageCache = SDImageCache()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTweetView" {
             let tweetView = segue.destination as? TweetViewController ?? TweetViewController()
@@ -205,34 +179,38 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             self.selectedId = nil
         }
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
-
+    
     // MARK: - ボタン関連
     @IBAction func pushTweet() {
         self.replyStr = "@\(user!) "
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     func unfollow() {
-        self.swifter.unfollowUser(for: .id(self.idStr), success: { _ in
+        
+        twitterManager.unfollowUser(for: idStr, success: {
+            
             self.unfollowButton.isHidden = true
             self.followButton.isHidden = false
             self.followBtnLength.constant = 100
         })
     }
     func follow() {
-        self.swifter.followUser(for: .id(self.idStr), success: { _ in
+        
+        twitterManager.followUser(for: idStr, success: {
+            
             self.unfollowButton.isHidden = false
             self.followBtnLength.constant = 0
             self.followButton.isHidden = true
         })
     }
-
+    
     // MARK: - TableView関連
     // 無し
-
+    
     // MARK: - Utility
     // MARK: refresh処理
     @objc func refresh() {
@@ -246,7 +224,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             Utility.simpleAlert("Error: ユーザーのツイート一覧のロードに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
         let successHandler: (([Tweet]) -> Void) = { tweets in
-
+            
             if tweets.count < 1 {
                 self.maxId = ""
             } else if tweets.count == 1 {
@@ -267,17 +245,17 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                 }
                 self.maxId = tweets[tweets.count - 1].idStr
             }
-
+            
             // headerの設定
             if tweets.count >= 1 {
                 let userInfo = tweets[0].user
-
+                
                 self.avatarImage.sd_setImage(with: userInfo.profileImageUrl, placeholderImage: nil, options: SDWebImageOptions.retryFailed)
                 self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.width * 0.5
                 self.avatarImage.clipsToBounds = true
                 self.avatarImage.layer.borderColor = Settings.Colors.selectedColor.cgColor
                 self.avatarImage.layer.borderWidth = 0.19
-
+                
                 self.userNameLabel.text = userInfo.name
                 let descriptionText = userInfo.description + "\n" + "フォロー数 \(userInfo.friendsCount)   フォロワー数 \(userInfo.followersCount)"
                 self.userDescription.text = descriptionText
@@ -307,7 +285,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                     self.unfollowButton.isHidden = true
                 }
             }
-
+            
             self.viewModel.tweetArray = self.tweetArray
             self.userTimeLine.reloadData()
         }
@@ -321,26 +299,27 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     }
     // MARK: Tweetをロードする
     func loadTweet() {
-        if swifter != nil {
+        if twitterManager.currentSession != nil {
             load(false)
         }
     }
     // MARK: さらに下を読み込む
     func loadMore() {
-        if swifter != nil {
+        if twitterManager.currentSession != nil {
             load(true)
         }
     }
     // MARK: screen_nameからUserIDを取得する
     func getUserIdWithScreenName(_ userName: String, comp: (() -> Void)? = nil) {
-        let failureHandler: ((Error) -> Void) = { error in
+        let failureHandler: ((Error?) -> Void) = { error in
             Utility.simpleAlert("Error: ユーザーIDの取得に失敗しました。インターネット環境を確認してください。", presentView: self)
         }
-
-        self.swifter.showUser(for: .screenName(userName), includeEntities: false, success: { statuses in
-                self.idStr = statuses["id_str"].string!
-                comp!()
-            }, failure: failureHandler)
+        
+        twitterManager.showUser(for: userName, success: { user in
+            
+            self.idStr = user.idStr
+            comp!()
+        }, failure: failureHandler)
     }
     
     // MARK: 単語ミュート
@@ -353,7 +332,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         }
         return false
     }
-
+    
 }
 
 // MARK: - DZNEmptyDataSetの設定
@@ -439,8 +418,8 @@ extension UserViewController: SWTableViewCellDelegate {
                 
                 for u in tweet.entities.mentions
                     where u.screenName != twitterManager.currentSession?.userName {
-                    
-                    replyStr?.append("@\(u.screenName) ")
+                        
+                        replyStr?.append("@\(u.screenName) ")
                 }
             }
             performSegue(withIdentifier: "toTweetView", sender: nil)
@@ -466,30 +445,30 @@ extension UserViewController: SWTableViewCellDelegate {
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) + 1)", for: UIControlState())
                 })
             })
-            .addAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in
-                var rtMode: Int = 5
-                if self.saveData.object(forKey: "rtMode") != nil {
-                    
-                    rtMode = self.saveData.object(forKey: "rtMode") as! Int
-                } else {
-                    
-                    self.saveData.set(rtMode, forKey: "rtMode")
-                }
-                if rtMode >= Settings.RTWord.count {
-                    switch (rtMode) {
-                    case 4:
-                        self.replyStr = "\"" + tweet.text + "\""
-                    case 5:
-                        self.replyStr = tweet.urlStr
-                    default: break
+                .addAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in
+                    var rtMode: Int = 5
+                    if self.saveData.object(forKey: "rtMode") != nil {
+                        
+                        rtMode = self.saveData.object(forKey: "rtMode") as! Int
+                    } else {
+                        
+                        self.saveData.set(rtMode, forKey: "rtMode")
                     }
-                } else {
-                    self.replyStr = Settings.RTWord[rtMode] + tweet.text
-                }
-                self.performSegue(withIdentifier: "toTweetView", sender: nil)
-            })
-            .addAction(title: "Cancel", style: .cancel, handler: nil)
-            .show()
+                    if rtMode >= Settings.RTWord.count {
+                        switch (rtMode) {
+                        case 4:
+                            self.replyStr = "\"" + tweet.text + "\""
+                        case 5:
+                            self.replyStr = tweet.urlStr
+                        default: break
+                        }
+                    } else {
+                        self.replyStr = Settings.RTWord[rtMode] + tweet.text
+                    }
+                    self.performSegue(withIdentifier: "toTweetView", sender: nil)
+                })
+                .addAction(title: "Cancel", style: .cancel, handler: nil)
+                .show()
             break
         case 3:
             
@@ -508,14 +487,14 @@ extension UserViewController: SWTableViewCellDelegate {
                     
                     TwitterManager.shared.destroyTweet(for: tweet.idStr, success: successHandler, failure: failureHandler)
                 })
-                .addAction(title: "Cancel", style: .cancel, handler: nil)
-                .show()
+                    .addAction(title: "Cancel", style: .cancel, handler: nil)
+                    .show()
                 
                 break
             }
             
             // block or spam
-            let failureHandler: ((Error) -> Void) = { error in
+            let failureHandler: ((Error?) -> Void) = { error in
                 Utility.simpleAlert("Error: ブロック・通報を完了できませんでした。インターネット環境を確認してください。", presentView: self)
             }
             let successHandler: (() -> Void) = {
@@ -525,28 +504,28 @@ extension UserViewController: SWTableViewCellDelegate {
             }
             let screenName: String = tweet.user.screenName
             let alertController = UIAlertController(title: "ブロック・通報", message: "@\(screenName)を", preferredStyle: .actionSheet)
-            alertController.addAction(title: "ブロックする", style: .default, handler: {(_) -> Void in
+            alertController.addAction(title: "ブロックする", style: .default, handler: { _ in
                 
-                let otherAlert = UIAlertController(title: "\(screenName)をブロックする", message: "本当にブロックしますか？", preferredStyle: .alert)
-                otherAlert.addAction(title: "OK", style: .default, handler: { _ in
-                    
-                    TwitterManager.shared.blockUser(for: screenName, success: successHandler, failure: failureHandler)
-                })
-                .addAction(title: "Cancel", style: .cancel)
-                .show()
+                let message: String? = "本当にブロックしますか？"
+                var alert = UIAlertController(title: "@" + screenName + "をブロックする", message: message, preferredStyle: .alert)
+                alert = alert.addAction(title: "OK", handler: { _ in
+                        
+                        TwitterManager.shared.blockUser(for: screenName, success: successHandler, failure: failureHandler)
+                    })
+                    .addAction(title: "Cancel", style: .cancel, handler: nil)
+                alert.show()
+            }).addAction(title: "通報する", style: .default, handler: { _ in
+                
+                var alert = UIAlertController(title: "@" + screenName + "を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
+                alert = alert.addAction(title: "OK", handler: { _ in
+                        
+                        TwitterManager.shared.reportUser(for: screenName, success: successHandler, failure: failureHandler)
+                    })
+                    .addAction(title: "Cancel", style: .cancel, handler: nil)
+                alert.show()
             })
-            .addAction(title: "通報する", style: .default, handler: { _ in
-                
-                let otherAlert = UIAlertController(title: "\(screenName)を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
-                otherAlert.addAction(title: "OK", handler: { _ in
-                    
-                    TwitterManager.shared.reportSpam(for: screenName, success: successHandler, failure: failureHandler)
-                })
                 .addAction(title: "Cancel", style: .cancel, handler: nil)
                 .show()
-            })
-            .addAction(title: "Cancel", style: .cancel, handler: nil)
-            .show()
         default:
             break
         }
@@ -570,7 +549,8 @@ extension UserViewController: SWTableViewCellDelegate {
 extension UserViewController: TTTAttributedLabelDelegate {
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
         if let userRange = url.absoluteString.range(of: "account:") {
-            user = url.absoluteString.substring(from: userRange.upperBound)
+            
+            user = String(url.absoluteString.suffix(from: userRange.upperBound))
             getUserIdWithScreenName(user, comp: {
                 self.tweetArray = []
                 self.title = "@\(self.user)のツイート一覧"

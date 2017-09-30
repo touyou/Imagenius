@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import Accounts
-import SwifteriOS
 import TwitterKit
 
 final class TwitterManager {
@@ -28,7 +26,7 @@ final class TwitterManager {
         
         Twitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
-        if let userID = saveData.object(forKey: Settings.Saveword.account) as? String {
+        if let userID = saveData.object(forKey: Settings.Saveword.twitter) as? String {
             
             currentSession = twitter.sessionStore.session(forUserID: userID) as? TWTRSession
         }
@@ -49,7 +47,7 @@ final class TwitterManager {
                 
                 Twitter.sharedInstance().sessionStore.save(newUser, completion: { session, error in success?()})
                 self.currentSession = newUser
-                UserDefaults.standard.set(newUser.userID, forKey: Settings.Saveword.account)
+                UserDefaults.standard.set(newUser.userID, forKey: Settings.Saveword.twitter)
             } else {
                 
                 print(error?.localizedDescription ?? "")
@@ -67,7 +65,7 @@ final class TwitterManager {
             alertController = alertController.addAction(title: account.userName, style: .default, handler: { _ in
             
                 self.currentSession = Twitter.sharedInstance().sessionStore.session(forUserID: account.userID) as? TWTRSession
-                UserDefaults.standard.set(account.userID, forKey: Settings.Saveword.account)
+                UserDefaults.standard.set(account.userID, forKey: Settings.Saveword.twitter)
                 success?()
             })
         }
@@ -90,7 +88,8 @@ final class TwitterManager {
         let endpoint = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         var params = [AnyHashable: Any]()
         params["count"] = String(count)
-        _ = maxID.flatMap { params["max_id"] = $0 }
+        params["max_id"] ??= maxID
+        
         var error: NSError?
         let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
@@ -102,9 +101,15 @@ final class TwitterManager {
                 print(connectError)
             }
             
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
             do {
                 
-                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                let tweets = try self.decoder.decode([Tweet].self, from: data)
                 success(tweets)
             } catch let error {
                 
@@ -125,7 +130,8 @@ final class TwitterManager {
         let endpoint = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
         var params = [AnyHashable: Any]()
         params["count"] = String(count)
-        _ = maxID.flatMap { params["max_id"] = $0 }
+        params["max_id"] ??= maxID
+        
         var error: NSError?
         let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
@@ -137,9 +143,15 @@ final class TwitterManager {
                 print(connectError)
             }
             
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
             do {
                 
-                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                let tweets = try self.decoder.decode([Tweet].self, from: data)
                 success(tweets)
             } catch let error {
                 
@@ -162,7 +174,8 @@ final class TwitterManager {
         params["count"] = String(count)
         params["list_id"] = id
         params["include_rts"] = "1"
-        _ = maxID.flatMap { params["max_id"] = $0 }
+        params["max_id"] ??= maxID
+        
         var error: NSError?
         let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
@@ -174,9 +187,16 @@ final class TwitterManager {
                 print(connectError)
             }
             
+            
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
             do {
                 
-                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                let tweets = try self.decoder.decode([Tweet].self, from: data)
                 success(tweets)
             } catch let error {
                 
@@ -209,9 +229,15 @@ final class TwitterManager {
                 print(connectError)
             }
             
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
             do {
                 
-                let tweet = try self.decoder.decode(Tweet.self, from: data!)
+                let tweet = try self.decoder.decode(Tweet.self, from: data)
                 success(tweet)
             } catch let error {
                 
@@ -233,7 +259,8 @@ final class TwitterManager {
         var params = [AnyHashable: Any]()
         params["count"] = String(count)
         params["user_id"] = id
-        _ = maxID.flatMap { params["max_id"] = $0 }
+        params["max_id"] ??= maxID
+        
         var error: NSError?
         let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
@@ -245,10 +272,98 @@ final class TwitterManager {
                 print(connectError)
             }
             
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
             do {
                 
-                let tweets = try self.decoder.decode([Tweet].self, from: data!)
+                let tweets = try self.decoder.decode([Tweet].self, from: data)
                 success(tweets)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func getSubscribedLists(for name: String, success: @escaping (([List])->Void), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/lists/list.json"
+        var params = [AnyHashable: Any]()
+        params["screen_name"] = name
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
+            do {
+                
+                let lists = try self.decoder.decode([List].self, from: data)
+                success(lists)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func showUser(for name: String, success: @escaping ((User)->Void), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/users/show.json?"
+        var params = [AnyHashable: Any]()
+        params["screen_name"] = name
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
+            do {
+                
+                let user = try self.decoder.decode(User.self, from: data)
+                success(user)
             } catch let error {
                 
                 print(error)
@@ -389,6 +504,62 @@ final class TwitterManager {
         }
     }
     
+    func unfollowUser(for id: String, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/friendships/destroy.json"
+        var params = [AnyHashable: Any]()
+        params["user_id"] = id
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
+    func followUser(for id: String, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/friendships/create.json"
+        var params = [AnyHashable: Any]()
+        params["user_id"] = id
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
+    
     func blockUser(for name: String, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
         
         guard let userID = currentSession?.userID else {
@@ -444,10 +615,123 @@ final class TwitterManager {
             success()
         }
     }
+    
+    func postMedia(_ data: Data, success: @escaping ((MediaResponse)->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://upload.twitter.com/1.1/media/upload.json"
+        var params = [AnyHashable: Any]()
+        params["media"] = data.base64EncodedString()
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            guard let data = data else {
+                
+                failure?(nil)
+                return
+            }
+            
+            do {
+                
+                let media = try self.decoder.decode(MediaResponse.self, from: data)
+                success(media)
+            } catch let error {
+                
+                print(error)
+            }
+        }
+    }
+    
+    func postTweet(status: String, mediaIDs: [String]? = nil, inReplyID: String? = nil, success: @escaping (()->()), failure: ((Error?)->Void)? = nil) {
+        
+        guard let userID = currentSession?.userID else {
+            
+            failure?(nil)
+            return
+        }
+        
+        let client = TWTRAPIClient(userID: userID)
+        let endpoint = "https://api.twitter.com/1.1/statuses/update.json"
+        var params = [AnyHashable: Any]()
+        params["status"] = status
+        params["in_reply_to_status_id"] ??= inReplyID
+        params["media_ids"] ??= mediaIDs?.joined(separator: ",")
+        
+        var error: NSError?
+        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        print(error?.localizedDescription ?? "")
+        
+        client.sendTwitterRequest(request) { response, data, connectError in
+            
+            if let connectError = connectError {
+                
+                print(connectError)
+            }
+            
+            success()
+        }
+    }
     // TODO: DecodableなTweetのクラスができたらそれを読み込む関数をいっぱい量産する
 }
 
 // TODO: DecodableなTweetのクラスかなにかをつくる
+struct List: Decodable {
+    
+    let idStr: String
+    let name: String
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case idStr = "id_str"
+        case name
+    }
+}
+
+struct MediaResponse: Decodable {
+    
+    struct ImageInfo: Decodable {
+        
+        let imageType: String
+        let w: Int
+        let h: Int
+        
+        private enum CodingKeys: String, CodingKey {
+            
+            case imageType = "image_type"
+            case w
+            case h
+        }
+    }
+    
+    let mediaId: UInt64
+    let mediaIdStr: String
+    let size: Int
+    let imageInfo: ImageInfo?
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case mediaId = "media_id"
+        case mediaIdStr = "media_id_string"
+        case size
+        case imageInfo = "image"
+    }
+}
+
 struct Entities: Decodable {
     
     struct TweetUrl: Decodable {
@@ -522,7 +806,7 @@ struct User: Decodable {
     let name: String
     let notifications: Bool
     let profileBackgroundColor: String
-    let profileBackgroundImageUrl: URL
+    let profileBackgroundImageUrl: URL?
     let profileBackgroundTile: Bool
     let profileImageUrl: URL
     let profileLinkColor: String
@@ -594,7 +878,7 @@ struct ExtendedEntities: Decodable {
         let url: URL?
         let mediaUrl: URL
         let type: String
-        let videoInfo: VideoInfo
+        let videoInfo: VideoInfo?
         
         private enum CodingKeys: String, CodingKey {
             
@@ -700,7 +984,7 @@ struct Tweet: Decodable {
                 return nil
             }
             
-            return me == user.name
+            return me == user.screenName
         }
     }
     var urlStr: String {
@@ -730,64 +1014,10 @@ struct Tweet: Decodable {
     }
 }
 
-//final class TwitterUtil {
-//    // MARK: login
-//    class func loginTwitter(_ present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
-//        let accountStore = ACAccountStore()
-//        var accounts = [ACAccount]()
-//        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-//        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-//            if granted {
-//                accounts = accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-//                if accounts.count == 0 {
-//                    Utility.simpleAlert("Error: Twitterアカウントを設定してください。", presentView: present)
-//                } else {
-//                    self.showAndSelectTwitterAccountWithSelectionSheets(accounts, present: present, success: success)
-//                }
-//            } else {
-//                Utility.simpleAlert("Error: Twitterアカウントへのアクセスを許可してください。", presentView: present)
-//            }
-//        }
-//    }
-//
-//    // MARK: Twitterアカウントの切り替え
-//    class func showAndSelectTwitterAccountWithSelectionSheets(_ accounts: [ACAccount], present: UIViewController, success: ((ACAccount?) -> Void)? = nil) {
-//        // アクションシートの設定
-//        let alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
-//        let saveData: UserDefaults = UserDefaults.standard
-//
-//        for i in 0 ..< accounts.count {
-//            let account = accounts[i]
-//            alertController.addAction(UIAlertAction(title: account.username, style: .default, handler: { (_) -> Void in
-//                // 選択したアカウントを返す
-//                for j in 0 ..< accounts.count where account == accounts[j] {
-//                    print(j)
-//                    saveData.set(j, forKey: Settings.Saveword.twitter)
-//                    break
-//                }
-//                success?(account)
-//            }))
-//
-//        }
-//
-//        // キャンセルボタンは何もせずにアクションシートを閉じる
-//        let CanceledAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        alertController.addAction(CanceledAction)
-//
-//        // iPad用
-//        alertController.popoverPresentationController?.sourceView = present.view
-//        alertController.popoverPresentationController?.sourceRect = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
-//
-//        // アクションシート表示
-//        present.present(alertController, animated: true, completion: nil)
-//    }
-//
-//    // MARK: 画像がツイートに含まれているか？
-//    class func isContainMedia(_ tweet: JSON) -> Bool {
-//        if tweet["extended_entities"].object != nil {
-//            return true
-//        }
-//        return false
-//    }
-//}
-
+/// If `rhs` is not `nil`, assign it to `lhs`.
+infix operator ??= : AssignmentPrecedence // { associativity right precedence 90 assignment } // matches other assignment operators
+/// If `rhs` is not `nil`, assign it to `lhs`.
+func ??=<T>(lhs: inout T?, rhs: T?) {
+    guard let rhs = rhs else { return }
+    lhs = rhs
+}

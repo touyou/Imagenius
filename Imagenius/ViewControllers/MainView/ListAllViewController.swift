@@ -8,8 +8,6 @@
 
 import UIKit
 import DZNEmptyDataSet
-import Accounts
-import SwifteriOS
 
 final class ListAllViewController: UIViewController {
     @IBOutlet weak var listTableView: UITableView! {
@@ -37,13 +35,10 @@ final class ListAllViewController: UIViewController {
     var selectedListID: String!
     var selectedListTitle: String!
     var selectedUser: String!
-    var swifter: Swifter!
-    var account: ACAccount?
-    var accounts = [ACAccount]()
     var reloadingFlag: Bool = false
     
-    let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard
+    let twitterManager = TwitterManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,37 +51,19 @@ final class ListAllViewController: UIViewController {
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.loadList()
-                    }
-                }
-            }
+            
+            self.loadList()
         }
     }
 
     // MARK: アカウントが切り替わった時点でページをリロードしている
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-            if granted {
-                self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                if self.accounts.count != 0 {
-                    self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                    self.swifter = Swifter(account: self.account!)
-                    if !self.reloadingFlag {
-                        self.loadList()
-                        self.reloadingFlag = true
-                    } else {
-                        self.reloadingFlag = false
-                    }
-                }
-            }
+        
+        if !self.reloadingFlag {
+            self.loadList()
+            self.reloadingFlag = true
+        } else {
+            self.reloadingFlag = false
         }
     }
     
@@ -112,29 +89,31 @@ final class ListAllViewController: UIViewController {
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     @IBAction func pushUser() {
-        selectedUser = self.account?.username!
+        
+        selectedUser = twitterManager.currentSession!.userName
         performSegue(withIdentifier: "toUserView", sender: nil)
     }
     
     // MARK: - Utility
     @objc func loadList() {
-        if swifter != nil {
-            let failureHandler: ((Error) -> Void) = { error in
+        
+        if let current = twitterManager.currentSession {
+            let failureHandler: ((Error?) -> Void) = { error in
                 Utility.simpleAlert("Error: リストのロードに失敗しました。インターネット環境を確認してください。", presentView: self)
                 self.listList = []
                 self.listIDs = []
             }
-            let successHandler: ((JSON) -> Void) = { statuses in
-                guard let modes = statuses.array else { return }
+            let successHandler: (([List]) -> Void) = { modes in
+
                 self.listList = []
                 self.listIDs = []
                 for mode in modes {
-                    self.listList.append(mode["name"].string!)
-                    self.listIDs.append(mode["id_str"].string!)
+                    self.listList.append(mode.name)
+                    self.listIDs.append(mode.idStr)
                 }
                 self.listTableView.reloadData()
             }
-            self.swifter.getSubscribedLists(for: .screenName(self.account?.username ?? ""), reverse: true, success: successHandler, failure: failureHandler)
+            twitterManager.getSubscribedLists(for: current.userName, success: successHandler, failure: failureHandler)
         }
         
     }

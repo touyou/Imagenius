@@ -27,7 +27,7 @@ enum Settings {
     // NSUserDefaults用のキーを管理
     enum Saveword {
         static let image = "tweet_image"
-        static let twitter = "twitter_account"
+//        static let twitter = "twitter_account"
         static let search = "search_word"
         static let changed = "account_changed"
         static let changed2 = "tab_changed"
@@ -36,7 +36,7 @@ enum Settings {
         static let muteMode = "muteMode"
         
         // MARK: New
-        static let account = "account"
+        static let twitter = "account"
     }
     // 引用リツイート用
     static let RTWord = ["", "RT ", "RT: ", "RT> "]

@@ -107,17 +107,17 @@ final class TweetViewController: UIViewController {
                 return info[UIImagePickerControllerOriginalImage] as? UIImage
             }
             .subscribe({ image in
-                let failureHandler: ((Error) -> Void) = { error in
+                let failureHandler: ((Error?) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
                 let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
                 let data = UIImagePNGRepresentation(im)!
-                self.swifter.postMedia(data, success: { status in
-                    guard let media = status.object else { return }
+                TwitterManager.shared.postMedia(data, success: { media in
+                    
                     if self.gifFlag && self.mediaIds.count < 4 {
                         self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im)
-                        self.mediaIds.append(media["media_id_string"]!.string!)
+                        self.mediaIds.append(media.mediaIdStr)
                         self.imageCollectionView.reloadData()
                     } else {
                         let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .alert)
@@ -143,17 +143,17 @@ final class TweetViewController: UIViewController {
                 return info[UIImagePickerControllerEditedImage] as? UIImage
             }
             .subscribe({ image in
-                let failureHandler: ((Error) -> Void) = { error in
+                let failureHandler: ((Error?) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
                 let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
                 let data = UIImagePNGRepresentation(im)!
-                self.swifter.postMedia(data, success: { status in
-                    guard let media = status.object else { return }
+                TwitterManager.shared.postMedia(data, success: { media in
+                    
                     if self.gifFlag && self.mediaIds.count < 4 {
                         self.tweetImageHeight.constant = 110
                         self.tweetImage.append(im)
-                        self.mediaIds.append(media["media_id_string"]!.string!)
+                        self.mediaIds.append(media.mediaIdStr)
                         self.imageCollectionView.reloadData()
                     } else {
                         let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .alert)
@@ -251,11 +251,11 @@ final class TweetViewController: UIViewController {
     }
     // MARK: ツイート処理
     @IBAction func tweetButton() {
-        let failureHandler: ((Error) -> Void) = { error in
+        let failureHandler: ((Error?) -> Void) = { error in
             self.twBtn.isEnabled = true
             Utility.simpleAlert("Error: ツイートに失敗しました。インターネット環境を確認してください。", presentView: self)
         }
-        let successHandler: ((JSON) -> Void) = { status in
+        let successHandler: (() -> Void) = {
             self.dismiss(animated: true, completion: nil)
         }
 
@@ -273,14 +273,16 @@ final class TweetViewController: UIViewController {
         twBtn.isEnabled = false
 
         if (tweetText == nil || tweetText == "") && mediaIds.count != 0 {
-            swifter.postTweet(status: "", media_ids: mediaIds, success: successHandler, failure: failureHandler)
+            
+            twitterManager.postTweet(status: "", mediaIDs: mediaIds, success: successHandler, failure: failureHandler)
             return
         }
         if mediaIds.count == 0 {
-            swifter.postTweet(status: tweetText!, inReplyToStatusID: replyID, success: successHandler, failure: failureHandler)
+            
+            twitterManager.postTweet(status: tweetText!, inReplyID: replyID, success: successHandler, failure: failureHandler)
             return
         }
-        swifter.postTweet(status: tweetText!, inReplyToStatusID: replyID, media_ids: mediaIds, success: successHandler, failure: failureHandler)
+        twitterManager.postTweet(status: tweetText!, mediaIDs: mediaIds, inReplyID: replyID, success: successHandler, failure: failureHandler)
     }
     
     @IBAction func favoriteButton() {
@@ -297,30 +299,30 @@ final class TweetViewController: UIViewController {
     // MARK: - Utility
     // MARK: ツイートに添付する画像
     func changeImage(_ image: UIImage, data: Data, isGIF: Bool) {
-        let failureHandler: ((Error) -> Void) = { error in
+        let failureHandler: ((Error?) -> Void) = { error in
             Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
         }
-        swifter.postMedia(data, success: { status in
-            guard let media = status.object else { return }
+        TwitterManager.shared.postMedia(data, success: { media in
+            
             if isGIF && self.gifFlag && self.mediaIds.count == 0 {
                 // GIFが貼り付けられる場合
                 self.tweetImageHeight.constant = 110
                 self.tweetImage.append(image)
-                self.mediaIds.append(media["media_id_string"]!.string!)
+                self.mediaIds.append(media.mediaIdStr)
                 self.gifFlag = false
                 self.imageCollectionView.reloadData()
             } else if !isGIF && self.gifFlag && self.mediaIds.count < 4 {
                 // 画像が貼り付けられる場合
                 self.tweetImageHeight.constant = 110
                 self.tweetImage.append(image)
-                self.mediaIds.append(media["media_id_string"]!.string!)
+                self.mediaIds.append(media.mediaIdStr)
                 self.imageCollectionView.reloadData()
             } else {
                 let alertController = UIAlertController(title: "これ以上貼り付けられません", message: "同時にアップロードできるのは画像四枚までかGIF一枚までです。", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
             }
-            }, failure: failureHandler)
+        }, failure: failureHandler)
     }
 }
 
@@ -356,19 +358,17 @@ extension TweetViewController: UICollectionViewDelegate, UICollectionViewDataSou
 extension TweetViewController: TweetViewControllerDelegate {
     // MARK: アカウントの画像を切替える
     func changeAccountImage() {
-        let failureHandler: ((Error) -> Void) = { error in
+        let failureHandler: ((Error?) -> Void) = { error in
             Utility.simpleAlert("Error: プロフィール画像を取得できませんでした。インターネット環境を確認してください。", presentView: self)
         }
-        swifter.showUser(for: .screenName(account!.username), success: {(user) -> Void in
-            if let userDict = user.object {
-                if let userImage = userDict["profile_image_url_https"] {
-                    self.accountImg = Utility.resizeImage(UIImage(data: try! Data(contentsOf: URL(string: userImage.string!)!))!, size: CGSize(width: 50, height: 50))
-                    self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
-                    self.accountImage.clipsToBounds = true
-                    self.accountImage.setImage(self.accountImg, for: UIControlState())
-                }
-            }
-            }, failure: failureHandler)
+        
+        twitterManager.showUser(for: twitterManager.currentSession!.userName, success: {(user) -> Void in
+
+            self.accountImg = Utility.resizeImage(UIImage(data: try! Data(contentsOf: user.profileImageUrl))!, size: CGSize(width: 50, height: 50))
+            self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
+            self.accountImage.clipsToBounds = true
+            self.accountImage.setImage(self.accountImg, for: UIControlState())
+        }, failure: failureHandler)
     }
 }
 

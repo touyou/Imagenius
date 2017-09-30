@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwifteriOS
-import Accounts
 
 final class WatchListViewController: MainViewController {
     var selectedListTitle: String!

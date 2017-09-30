@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import SwifteriOS
 import AVKit
 import AVFoundation
 
@@ -48,7 +47,7 @@ final class MainViewModel: NSObject {
                 viewController.imageData = tempData
                 viewController.performSegue(withIdentifier: "toPreView", sender: nil)
             case "video":
-                if let videoArray = tweetArray[rowNum].extendedEntities?.media.first?.videoInfo.variants {
+                if let videoArray = tweetArray[rowNum].extendedEntities?.media.first?.videoInfo?.variants {
                     var alertController = UIAlertController(title: "ビットレートを選択", message: "再生したい動画のビットレートを選択してください。", preferredStyle: .actionSheet)
                     for i in 0 ..< videoArray.count {
                         let videoInfo = videoArray[i]
@@ -68,7 +67,7 @@ final class MainViewModel: NSObject {
                 }
             case "animated_gif":
                 // print(tweetArray[rowNum]["extended_entities"])
-                if let videoURL = tweetArray[rowNum].extendedEntities?.media.first?.videoInfo.variants.first?.url {
+                if let videoURL = tweetArray[rowNum].extendedEntities?.media.first?.videoInfo?.variants.first?.url {
                     viewController.gifURL = videoURL
                     viewController.performSegue(withIdentifier: "toGifView", sender: nil)
                 }
