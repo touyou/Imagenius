@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwifteriOS
-import Accounts
 import MessageUI
 import GoogleMobileAds
 
@@ -16,33 +14,16 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
     // Google Ads関連
     @IBOutlet weak var bannerView: GADBannerView!
 
-    var swifter: Swifter!
-    var account: ACAccount?
-    var accounts = [ACAccount]()
-
-    let accountStore = ACAccountStore()
     let saveData: UserDefaults = UserDefaults.standard
+    let twitterManager = TwitterManager.shared
     let labelTexts: [NSArray] = [["アカウントを切り替える", "アプリの使い方", "お気に入り画像を確認する", "引用リツイートの形式を変更する", "単語ミュート"], ["友達に教える", "App Storeで評価"], ["フィードバックを送信", "Twitterの利用規約を確認"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelection = false
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (ac) -> Void in
-                self.account = ac
-                self.swifter = Swifter(account: self.account!)
-            })
-        } else {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                    }
-                }
-            }
+            
+            twitterManager.loginTwitter()
         }
 
         // Google Ads関連
@@ -79,11 +60,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
         case 0:
             switch indexPath.row {
             case 0:// login処理
-                TwitterUtil.loginTwitter(self, success: { [unowned self] (ac) -> Void in
-                    self.account = ac
-                    self.swifter = Swifter(account: self.account!)
-                    _ = self.navigationController?.popViewController(animated: true)
-                })
+                twitterManager.switchAccount()
             case 1:
                 performSegue(withIdentifier: "showInfo", sender: nil)
             case 2:

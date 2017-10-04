@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Accounts
-import SwifteriOS
 import TTTAttributedLabel
 import DZNEmptyDataSet
 import SWTableViewCell
@@ -42,16 +40,9 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var viewModel = MainViewModel()
     var avPlayerViewController: AVPlayerViewController!
     var tweetArray: [Tweet] = []
-    var swifter: Swifter! {
-        didSet {
-            loginDone()
-        }
-    }
     var maxId: String!
     var replyID: String?
     var replyStr: String?
-    var account: ACAccount?
-    var accounts = [ACAccount]()
     var imageData: NSMutableArray?
     var gifURL: URL!
     var selectedUser: String!
@@ -61,7 +52,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var muteText = [String]()
     var muteMode: Int!
     
-    let accountStore = ACAccountStore()
+    let twitterManager = TwitterManager.shared
     let saveData: UserDefaults = UserDefaults.standard
     
     // MARK: - UIViewControllerの設定
@@ -76,19 +67,17 @@ class MainViewController: UIViewController, UITableViewDelegate {
         saveData.addObserver(self, forKeyPath: Settings.Saveword.muteMode, options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
         
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
+            
             performSegue(withIdentifier: "showInfo", sender: nil)
         } else {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.myself = self.account?.username
-                        self.loadTweet()
-                    }
-                }
+            
+            if let _ = twitterManager.currentSession {
+                
+                self.tweetArray = []
+                self.loadTweet()
+            } else {
+                
+                twitterManager.loginTwitter()
             }
         }
         
@@ -111,33 +100,27 @@ class MainViewController: UIViewController, UITableViewDelegate {
     // MARK: アカウントが切り替わった時点でページをリロードしている
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == Settings.Saveword.twitter {
-            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-            accountStore.requestAccessToAccounts(with: accountType, options: nil) { granted, _ in
-                if granted {
-                    self.accounts = self.accountStore.accounts(with: accountType) as? [ACAccount] ?? []
-                    if self.accounts.count != 0 {
-                        self.account = self.accounts[self.saveData.object(forKey: Settings.Saveword.twitter) as? Int ?? 0]
-                        self.swifter = Swifter(account: self.account!)
-                        self.myself = self.account?.username
-                        if !self.reloadingFlag {
-                            if self.tweetArray.count != 0 {
-                                let indexPath = IndexPath(row: 0, section: 0)
-                                self.timelineTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
-                            }
-                            self.tweetArray = []
-                            self.loadTweet()
-                            self.reloadingFlag = true
-                        } else {
-                            self.reloadingFlag = false
-                        }
-                    }
+            
+            if !self.reloadingFlag {
+                
+                if self.tweetArray.count != 0 {
+                    
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.timelineTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
                 }
+                self.tweetArray = []
+                self.loadTweet()
+                self.reloadingFlag = true
+            } else {
+                self.reloadingFlag = false
             }
         } else if keyPath == Settings.Saveword.muteMode {
+            
             muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
             tweetArray = []
             loadTweet()
         } else if keyPath == Settings.Saveword.muteWord {
+            
             muteText = saveData.array(forKey: Settings.Saveword.muteWord) as! [String]
             tweetArray = []
             loadTweet()
@@ -192,13 +175,14 @@ class MainViewController: UIViewController, UITableViewDelegate {
         performSegue(withIdentifier: "toTweetView", sender: nil)
     }
     @IBAction func pushUser() {
-        selectedUser = self.account?.username!
+        
+        selectedUser = twitterManager.currentSession!.userName
         performSegue(withIdentifier: "toUserView", sender: nil)
     }
     
     // MARK: - Utility
     // MARK: refresh処理
-    func refresh() {
+    @objc func refresh() {
         self.tweetArray = []
         loadTweet()
         self.refreshControl.endRefreshing()
@@ -208,13 +192,17 @@ class MainViewController: UIViewController, UITableViewDelegate {
     }
     // MARK: Tweetをロードする
     func loadTweet() {
-        if swifter != nil {
+        
+        if twitterManager.currentSession != nil {
+            
             load(false)
         }
     }
     // MARK: さらに下を読み込む
     func loadMore() {
-        if swifter != nil {
+        
+        if twitterManager.currentSession != nil {
+            
             load(true)
         }
     }
@@ -237,7 +225,7 @@ extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
     }
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")
@@ -252,18 +240,18 @@ extension MainViewController: SWTableViewCellDelegate {
     // MARK: 右のボタン
     func rightButtons(_ tweet: Tweet) -> NSArray {
         let rightUtilityButtons: NSMutableArray = NSMutableArray()
-        if tweet.favorited ?? false {
-            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount ?? 0)))
+        if tweet.favorited {
+            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.favColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount)))
         } else {
-            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount ?? 0)))
+            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "like-action")!, text: String(tweet.favoriteCount)))
         }
         rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.twitterColor, icon: UIImage(named: "reply-action_0")!))
-        if tweet.retweeted ?? false {
-            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
+        if tweet.retweeted {
+            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.retweetColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount)))
         } else {
-            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount ?? 0)))
+            rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.selectedColor, icon: UIImage(named: "retweet-action")!, text: String(tweet.retweetCount)))
         }
-        if tweet.isMyself {
+        if tweet.isMe ?? false {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "trash")!))
         } else {
             rightUtilityButtons.add(addUtilityButtonWithColor(Settings.Colors.deleteColor, icon: UIImage(named: "caution")!))
@@ -289,123 +277,141 @@ extension MainViewController: SWTableViewCellDelegate {
     // MARK: 右スライドした時のボタンの挙動
     func swipeableTableViewCell(_ cell: SWTableViewCell!, didTriggerRightUtilityButtonWith index: Int) {
         let cellIndexPath: IndexPath = self.timelineTableView.indexPath(for: cell)!
-        let tweet = tweetArray[(cellIndexPath as NSIndexPath).row]
+        let tweet = tweetArray[cellIndexPath.row]
         switch index {
         case 0:
             // fav
-            if tweet.favorited ?? false {
-                swifter.unfavouriteTweet(forID: tweet.idStr ?? "", success: { _ in
+            if tweet.favorited {
+                
+                twitterManager.unfavoriteTweet(for: tweet.idStr, success: {
+                    
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 1) - 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount - 1)", for: UIControlState())
                 })
                 break
             }
-            swifter.favouriteTweet(forID: tweet.idStr ?? "", success: { _ in
+            twitterManager.favoriteTweet(for: tweet.idStr , success: {
+                
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.favColor
-                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.favoriteCount ?? 0) + 1)", for: UIControlState())
+                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount + 1)", for: UIControlState())
             })
             break
         case 1:
             // reply
-            replyID = tweet.idStr ?? ""
-            replyStr = "\(tweet.screenName ?? "@") "
-            if (tweet.userMentions ?? []).count != 0 {
-                for u in tweet.userMentions! where u["screen_name"].string! != self.account?.username {
-                    replyStr?.append("@\(u["screen_name"].string!) ")
+            replyID = tweet.idStr
+            replyStr = "@\(tweet.user.screenName) "
+            if tweet.entities.mentions.count != 0 {
+                
+                for u in tweet.entities.mentions
+                    where u.screenName != twitterManager.currentSession?.userName {
+                        
+                        replyStr?.append("@\(u.screenName) ")
                 }
             }
             performSegue(withIdentifier: "toTweetView", sender: nil)
             break
         case 2:
+            
             // retweet
-            let alertController = UIAlertController(title: "リツイート", message: "リツイートの種類を選択してください。", preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "公式リツイート", style: .default, handler: {(_) -> Void in
-                self.swifter.retweetTweet(forID: tweet.idStr ?? "", success: { _ in
-                    (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount ?? 0) + 1)", for: UIControlState())
+            if tweet.retweeted {
+                
+                twitterManager.unretweetTweet(for: tweet.idStr, success: {
+                    
+                    (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) - 1)", for: UIControlState())
                 })
-            }))
-            alertController.addAction(UIAlertAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in
-                var rtMode: Int = 5
-                if self.saveData.object(forKey: "rtMode") != nil {
-                    rtMode = self.saveData.object(forKey: "rtMode") as! Int
-                } else {
-                    self.saveData.set(rtMode, forKey: "rtMode")
-                }
-                if rtMode >= Settings.RTWord.count {
-                    switch (rtMode) {
-                    case 4:
-                        self.replyStr = "\"" + tweet.text! + "\""
-                    case 5:
-                        self.replyStr = tweet.urlStr
-                    default: break
+                break
+            }
+            let alertController = UIAlertController(title: "リツイート", message: "リツイートの種類を選択してください。", preferredStyle: .actionSheet)
+            alertController.addAction(title: "公式リツイート", style: .default, handler: {(_) -> Void in
+                
+                TwitterManager.shared.retweetTweet(for: tweet.idStr, success: {
+                    
+                    (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) + 1)", for: UIControlState())
+                })
+            })
+                .addAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in
+                    var rtMode: Int = 5
+                    if self.saveData.object(forKey: "rtMode") != nil {
+                        
+                        rtMode = self.saveData.object(forKey: "rtMode") as! Int
+                    } else {
+                        
+                        self.saveData.set(rtMode, forKey: "rtMode")
                     }
-                } else {
-                    self.replyStr = Settings.RTWord[rtMode] + tweet.text!
-                }
-                self.performSegue(withIdentifier: "toTweetView", sender: nil)
-            }))
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            // iPad用
-            alertController.popoverPresentationController?.sourceView = self.view
-            alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
-            
-            present(alertController, animated: true, completion: nil)
+                    if rtMode >= Settings.RTWord.count {
+                        switch (rtMode) {
+                        case 4:
+                            self.replyStr = "\"" + tweet.text + "\""
+                        case 5:
+                            self.replyStr = tweet.urlStr
+                        default: break
+                        }
+                    } else {
+                        self.replyStr = Settings.RTWord[rtMode] + tweet.text
+                    }
+                    self.performSegue(withIdentifier: "toTweetView", sender: nil)
+                })
+                .addAction(title: "Cancel", style: .cancel, handler: nil)
+                .show()
             break
         case 3:
+            
             // ツイートの削除
-            if tweet.isMyself {
-                let failureHandler: ((Error) -> Void) = { error in
+            if tweet.isMe ?? false {
+                let failureHandler: ((Error?) -> Void) = { error in
                     Utility.simpleAlert("Error: ツイートの削除に失敗しました。インターネット環境を確認してください。", presentView: self)
                 }
-                let successHandler: ((JSON) -> Void) = { statuses in
+                let successHandler: (() -> Void) = {
+                    
                     self.tweetArray = []
                     self.loadTweet()
                 }
                 let alertController = UIAlertController(title: "ツイートの削除", message: "このツイートを削除しますか？", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) -> Void in
-                    self.swifter.destroyTweet(forID: tweet.idStr ?? "", success: successHandler, failure: failureHandler)
-                }))
-                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                present(alertController, animated: true, completion: nil)
+                alertController.addAction(title: "OK", style: .default, handler: { (_) -> Void in
+                    
+                    TwitterManager.shared.destroyTweet(for: tweet.idStr, success: successHandler, failure: failureHandler)
+                })
+                    .addAction(title: "Cancel", style: .cancel, handler: nil)
+                    .show()
                 
                 break
             }
             
             // block or spam
-            let failureHandler: ((Error) -> Void) = { error in
+            let failureHandler: ((Error?) -> Void) = { error in
                 Utility.simpleAlert("Error: ブロック・通報を完了できませんでした。インターネット環境を確認してください。", presentView: self)
             }
-            let successHandler: ((JSON) -> Void) = { statuses in
+            let successHandler: (() -> Void) = {
+                
                 self.tweetArray = []
                 self.loadTweet()
             }
-            let screen_name: String = tweet.screenNameNoat ?? ""
-            let alertController = UIAlertController(title: "ブロック・通報", message: "@\(screen_name)を", preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "ブロックする", style: .default, handler: {(_) -> Void in
-                let otherAlert = UIAlertController(title: "\(screen_name)をブロックする", message: "本当にブロックしますか？", preferredStyle: .alert)
-                otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) -> Void in
-                    self.swifter.blockUser(for: .screenName(screen_name), includeEntities: true, success: successHandler, failure: failureHandler)
-                }))
-                otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(otherAlert, animated: true, completion: nil)
-            }))
-            alertController.addAction(UIAlertAction(title: "通報する", style: .default, handler: {(_) -> Void in
-                let otherAlert = UIAlertController(title: "\(screen_name)を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
-                otherAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) -> Void in
-                    self.swifter.reportSpam(for: .screenName(screen_name), success: successHandler, failure: failureHandler)
-                }))
-                otherAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(otherAlert, animated: true, completion: nil)
-            }))
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            // iPad用
-            alertController.popoverPresentationController?.sourceView = self.view
-            alertController.popoverPresentationController?.sourceRect = cell.contentView.frame
-            
-            present(alertController, animated: true, completion: nil)
+            let screenName: String = tweet.user.screenName
+            var alertController = UIAlertController(title: "ブロック・通報", message: "@" + screenName + "を", preferredStyle: .actionSheet)
+            alertController = alertController.addAction(title: "ブロックする", style: .default, handler: { _ in
+                    
+                    let message: String? = "本当にブロックしますか？"
+                    var alert = UIAlertController(title: "@" + screenName + "をブロックする", message: message, preferredStyle: .alert)
+                    alert = alert.addAction(title: "OK", handler: { _ in
+                            
+                            TwitterManager.shared.blockUser(for: screenName, success: successHandler, failure: failureHandler)
+                        })
+                        .addAction(title: "Cancel", style: .cancel)
+                    alert.show()
+                }).addAction(title: "通報する", style: .default, handler: { _ in
+                    
+                    var alert = UIAlertController(title: "@" + screenName + "を通報する", message: "本当に通報しますか？", preferredStyle: .alert)
+                    alert = alert.addAction(title: "OK", style: .default, handler: { _ in
+                            
+                            TwitterManager.shared.reportUser(for: screenName, success: successHandler, failure: failureHandler)
+                        })
+                        .addAction(title: "Cancel", style: .cancel)
+                    alert.show()
+                })
+                .addAction(title: "Cancel", style: .cancel)
+            alertController.show()
         default:
             break
         }
@@ -416,12 +422,14 @@ extension MainViewController: SWTableViewCellDelegate {
         let tweet = tweetArray[(cellIndexPath as NSIndexPath).row]
         switch index {
         case 0:
-            selectedId = tweet.idStr ?? ""
+            
+            selectedId = tweet.idStr
             performSegue(withIdentifier: "toTweetDetailView", sender: nil)
             break
         case 1:
-            selectedUser = tweet.screenNameNoat ?? ""
-            selectedId = tweet.userId ?? ""
+            
+            selectedUser = tweet.user.screenName
+            selectedId = tweet.user.idStr
             performSegue(withIdentifier: "toUserView", sender: nil)
         default:
             break
@@ -433,7 +441,8 @@ extension MainViewController: SWTableViewCellDelegate {
 extension MainViewController: TTTAttributedLabelDelegate {
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
         if let userRange = url.absoluteString.range(of: "account:") {
-            selectedUser = url.absoluteString.substring(from: userRange.upperBound)
+            
+            selectedUser = String(url.absoluteString.suffix(from: userRange.upperBound))
             performSegue(withIdentifier: "toUserView", sender: nil)
         } else {
             Utility.openWebView(url)

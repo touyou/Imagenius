@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="P85-Ym-KbL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P85-Ym-KbL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,10 +15,6 @@
         <scene sceneID="f1t-Rp-0f9">
             <objects>
                 <viewController id="4am-0x-jf5" customClass="TimeLineViewController" customModule="Imagenius" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="60I-qN-GVh"/>
-                        <viewControllerLayoutGuide type="bottom" id="Aqf-1y-Scd"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="502-dl-gfV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,8 +34,9 @@
                             <constraint firstItem="BNP-VV-Jor" firstAttribute="width" secondItem="502-dl-gfV" secondAttribute="width" id="8Jc-dQ-mnj"/>
                             <constraint firstItem="BNP-VV-Jor" firstAttribute="centerY" secondItem="502-dl-gfV" secondAttribute="centerY" id="ATa-dJ-jXX"/>
                             <constraint firstItem="BNP-VV-Jor" firstAttribute="height" secondItem="502-dl-gfV" secondAttribute="height" id="Nf5-hI-bco"/>
-                            <constraint firstItem="BNP-VV-Jor" firstAttribute="centerX" secondItem="502-dl-gfV" secondAttribute="centerX" id="cJu-TX-DqN"/>
+                            <constraint firstItem="BNP-VV-Jor" firstAttribute="centerX" secondItem="5OU-fm-UOT" secondAttribute="centerX" id="cJu-TX-DqN"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="5OU-fm-UOT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="タイムライン" image="home" id="50E-ll-6yH"/>
                     <navigationItem key="navigationItem" title="Imagenius" id="oHD-cH-Ohk">
@@ -82,7 +81,7 @@
                     <tabBarItem key="tabBarItem" title="タイムライン" image="home" id="UhW-zy-tmj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ht9-K4-7SV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

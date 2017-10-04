@@ -8,7 +8,6 @@
 
 import UIKit
 import Accounts
-import SwifteriOS
 
 final class InfoContainerViewController: UIViewController {
 
@@ -17,14 +16,15 @@ final class InfoContainerViewController: UIViewController {
     }
 
     let saveData: UserDefaults = UserDefaults.standard
+    let twitterManager = TwitterManager.shared
 
     @IBAction func loginButton() {
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
-            TwitterUtil.loginTwitter(self, success: { (_) -> Void in
+            twitterManager.loginTwitter {
                 self.saveData.set(true, forKey: Settings.Saveword.changed)
                 // 元のViewに移行
                 self.dismiss(animated: true, completion: nil)
-            })
+            }
         } else {
             self.dismiss(animated: true, completion: nil)
         }

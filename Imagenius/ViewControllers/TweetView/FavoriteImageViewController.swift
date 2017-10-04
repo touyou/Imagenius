@@ -95,7 +95,7 @@ extension FavoriteImageViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDel
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "お気に入りの画像を保存してください。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
     }
 }
 
