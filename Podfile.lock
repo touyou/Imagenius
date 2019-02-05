@@ -1,11 +1,11 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.24.1)
+  - Google-Mobile-Ads-SDK (7.38.0)
   - RegExCategories (1.0)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (2.0.0)
-  - TwitterCore (3.0.1)
-  - TwitterKit (3.1.1):
-    - TwitterCore (>= 3.0.1)
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 7.0)
@@ -14,14 +14,23 @@ DEPENDENCIES:
   - TTTAttributedLabel
   - TwitterKit
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Google-Mobile-Ads-SDK
+    - RegExCategories
+    - SWTableViewCell
+    - TTTAttributedLabel
+    - TwitterCore
+    - TwitterKit
+
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: ed8004a7265b424568dc84f3d2bbe3ea3fff958f
+  Google-Mobile-Ads-SDK: fec4a72b71a81302d3fd75454df3417c03c50ed5
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  TwitterCore: 6856288a1c25e5281363250681f33b42fce1da42
-  TwitterKit: 313bf02baee8427f7649b3640169178e5a8b5a99
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 43c815ef2544e6c2de39212ce5ddcaafeacf8755
+PODFILE CHECKSUM: c0517d2d86765f983abd4af50a81755c2401e3a6
 
-COCOAPODS: 1.4.0.beta.1
+COCOAPODS: 1.5.3

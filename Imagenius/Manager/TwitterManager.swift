@@ -14,7 +14,7 @@ final class TwitterManager {
     
     static let shared = TwitterManager()
     
-    private let twitter = Twitter.sharedInstance()
+    private let twitter = TWTRTwitter.sharedInstance()
     private let consumerKey = "Rh3x5hYBZtJGzfGGeeBoAXI98"
     private let consumerSecret = "AVObRmfovlMT5eymWQAoKTh8EnyweShSp5dQuHJwf2dAVcDyJy"
     private let saveData = UserDefaults.standard
@@ -24,7 +24,7 @@ final class TwitterManager {
     
     init() {
         
-        Twitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
+        TWTRTwitter.sharedInstance().start(withConsumerKey: consumerKey, consumerSecret: consumerSecret)
         
         if let userID = saveData.object(forKey: Settings.Saveword.twitter) as? String {
             
@@ -45,7 +45,7 @@ final class TwitterManager {
             
             if let newUser = session {
                 
-                Twitter.sharedInstance().sessionStore.save(newUser, completion: { session, error in success?()})
+                TWTRTwitter.sharedInstance().sessionStore.save(newUser, completion: { session, error in success?()})
                 self.currentSession = newUser
                 UserDefaults.standard.set(newUser.userID, forKey: Settings.Saveword.twitter)
             } else {
@@ -56,7 +56,8 @@ final class TwitterManager {
     }
     
     func switchAccount(_ success: (()->())? = nil) {
-        
+
+        print(twitter.sessionStore.existingUserSessions())
         let accounts = twitter.sessionStore.existingUserSessions() as! [TWTRSession]
         var alertController = UIAlertController(title: "アカウント選択", message: "使用するTwitterアカウントを選択してください", preferredStyle: .actionSheet)
         
@@ -64,7 +65,7 @@ final class TwitterManager {
             
             alertController = alertController.addAction(title: account.userName, style: .default, handler: { _ in
             
-                self.currentSession = Twitter.sharedInstance().sessionStore.session(forUserID: account.userID) as? TWTRSession
+                self.currentSession = TWTRTwitter.sharedInstance().sessionStore.session(forUserID: account.userID) as? TWTRSession
                 UserDefaults.standard.set(account.userID, forKey: Settings.Saveword.twitter)
                 success?()
             })
@@ -91,7 +92,7 @@ final class TwitterManager {
         params["max_id"] ??= maxID
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
 
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -133,7 +134,7 @@ final class TwitterManager {
         params["max_id"] ??= maxID
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -177,7 +178,7 @@ final class TwitterManager {
         params["max_id"] ??= maxID
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -219,7 +220,7 @@ final class TwitterManager {
         params["id"] = id
 
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -262,7 +263,7 @@ final class TwitterManager {
         params["max_id"] ??= maxID
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -303,7 +304,7 @@ final class TwitterManager {
         params["screen_name"] = name
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -344,7 +345,7 @@ final class TwitterManager {
         params["screen_name"] = name
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "GET", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "GET", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -384,7 +385,7 @@ final class TwitterManager {
         params["id"] = id
 
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -411,7 +412,7 @@ final class TwitterManager {
         params["id"] = id
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -437,7 +438,7 @@ final class TwitterManager {
         let params = [AnyHashable: Any]()
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -463,7 +464,7 @@ final class TwitterManager {
         let params = [AnyHashable: Any]()
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -490,7 +491,7 @@ final class TwitterManager {
         let params = [AnyHashable: Any]()
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -518,7 +519,7 @@ final class TwitterManager {
         params["user_id"] = id
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -546,7 +547,7 @@ final class TwitterManager {
         params["user_id"] = id
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -574,7 +575,7 @@ final class TwitterManager {
         params["screen_name"] = name
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -602,7 +603,7 @@ final class TwitterManager {
         params["screen_name"] = name
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -630,7 +631,7 @@ final class TwitterManager {
         params["media"] = data.base64EncodedString()
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in
@@ -673,7 +674,7 @@ final class TwitterManager {
         params["media_ids"] ??= mediaIDs?.joined(separator: ",")
         
         var error: NSError?
-        let request = client.urlRequest(withMethod: "POST", url: endpoint, parameters: params, error: &error)
+        let request = client.urlRequest(withMethod: "POST", urlString: endpoint, parameters: params, error: &error)
         print(error?.localizedDescription ?? "")
         
         client.sendTwitterRequest(request) { response, data, connectError in

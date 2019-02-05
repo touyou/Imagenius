@@ -55,26 +55,26 @@ final class TweetVarViewCell: SWTableViewCell {
     // MARK: - TTTAttributedLabel関連
     // MARK: mention link
     func highrightMentionsInLabel(_ label: TTTAttributedLabel) {
-        let text: NSString = label.text! as NSString
+        let text: NSString = label.text as! NSString
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(@\\w+)", options: [])
-        let matches = mentionExpression!.matches(in: label.text!, options: [], range: NSMakeRange(0, text.length))
+        let matches = mentionExpression!.matches(in: label.text as! String, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
             let matchRange = match.range(at: 1)
             let mentionString = text.substring(with: matchRange)
-            let user = String(mentionString.suffix(from: mentionString.characters.index(mentionString.startIndex, offsetBy: 1)))
+            let user = String(mentionString.suffix(from: mentionString.index(mentionString.startIndex, offsetBy: 1)))
             let linkURLString = NSString(format: "account:%@", user)
             label.addLink(to: URL(string: linkURLString as String), with: matchRange)
         }
     }
     // MARK: hashtag link
     func highrightHashtagsInLabel(_ label: TTTAttributedLabel) {
-        let text: NSString = label.text! as NSString
+        let text: NSString = label.text as! NSString
         let mentionExpression = try? NSRegularExpression(pattern: "(?<=^|\\s)(#\\w+)", options: [])
-        let matches = mentionExpression!.matches(in: label.text!, options: [], range: NSMakeRange(0, text.length))
+        let matches = mentionExpression!.matches(in: label.text as! String, options: [], range: NSMakeRange(0, text.length))
         for match in matches {
             let matchRange = match.range(at: 0)
             let hashtagString = text.substring(with: matchRange)
-            let word = hashtagString.suffix(from: hashtagString.characters.index(hashtagString.startIndex, offsetBy: 1))
+            let word = hashtagString.suffix(from: hashtagString.index(hashtagString.startIndex, offsetBy: 1))
             let linkURLString = NSString(format: "https://twitter.com/hashtag/%@", word.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
             label.addLink(to: URL(string: linkURLString as String), with: matchRange)
         }

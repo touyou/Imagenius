@@ -44,6 +44,7 @@ extension Date {
 }
 
 func dateTimeFromTwitterDate(_ date: String) -> Date {
+    print(date)
     let inputDateFormatter = DateFormatter()
     let locale = Locale(identifier: "en_US")
     inputDateFormatter.locale = locale

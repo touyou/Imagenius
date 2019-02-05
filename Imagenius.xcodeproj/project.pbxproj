@@ -754,7 +754,6 @@
 				460B4A311C6B5CF60089CC7E /* Sources */,
 				460B4A321C6B5CF60089CC7E /* Frameworks */,
 				460B4A331C6B5CF60089CC7E /* Resources */,
-				468382931C7581B0001DC810 /* ShellScript */,
 				FFABCCE0854F0DCB8FBFE4B8 /* [CP] Embed Pods Frameworks */,
 				6EFD19B44B9670C0E4B28CAE /* [CP] Copy Pods Resources */,
 				46592EA21F247D36009D261E /* ShellScript */,
@@ -776,8 +775,6 @@
 				460B4A451C6B5CF60089CC7E /* Sources */,
 				460B4A461C6B5CF60089CC7E /* Frameworks */,
 				460B4A471C6B5CF60089CC7E /* Resources */,
-				7D428ED71CBA882622A4A7F8 /* [CP] Embed Pods Frameworks */,
-				64D5818721142A7FAFF8DE3C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -797,8 +794,6 @@
 				460B4A501C6B5CF60089CC7E /* Sources */,
 				460B4A511C6B5CF60089CC7E /* Frameworks */,
 				460B4A521C6B5CF60089CC7E /* Resources */,
-				D1CC401216FA26084C3E35C7 /* [CP] Copy Pods Resources */,
-				6DE77FD2E62AD96E930B28C2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -991,20 +986,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		468382931C7581B0001DC810 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		530C08B0CB464618D9F6FA57 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1024,36 +1006,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		64D5818721142A7FAFF8DE3C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6DE77FD2E62AD96E930B28C2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6EFD19B44B9670C0E4B28CAE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1062,45 +1014,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imagenius/Pods-Imagenius-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D428ED71CBA882622A4A7F8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusTests/Pods-ImageniusTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1CC401216FA26084C3E35C7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageniusUITests/Pods-ImageniusUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3CABA5D4A38F45AAB8A87B9 /* [CP] Check Pods Manifest.lock */ = {
@@ -1131,12 +1052,16 @@
 				"${BUILT_PRODUCTS_DIR}/RegExCategories/RegExCategories.framework",
 				"${BUILT_PRODUCTS_DIR}/SWTableViewCell/SWTableViewCell.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RegExCategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWTableViewCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
