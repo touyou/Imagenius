@@ -21,7 +21,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
             timelineTableView.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
             
             timelineTableView.estimatedRowHeight = 200
-            timelineTableView.rowHeight = UITableViewAutomaticDimension
+            timelineTableView.rowHeight = UITableView.automaticDimension
             timelineTableView.emptyDataSetDelegate = self
             timelineTableView.emptyDataSetSource = self
             timelineTableView.dataSource = viewModel
@@ -33,7 +33,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(MainViewController.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(MainViewController.refresh), for: UIControl.Event.valueChanged)
         return refreshControl
     }()
     
@@ -88,7 +88,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         }
         
         if saveData.object(forKey: Settings.Saveword.muteMode) != nil {
-            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as? Int
         } else {
             muteMode = 1
             saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
@@ -106,7 +106,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
                 if self.tweetArray.count != 0 {
                     
                     let indexPath = IndexPath(row: 0, section: 0)
-                    self.timelineTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+                    self.timelineTableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: false)
                 }
                 self.tweetArray = []
                 self.loadTweet()
@@ -116,7 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
             }
         } else if keyPath == Settings.Saveword.muteMode {
             
-            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as? Int
             tweetArray = []
             loadTweet()
         } else if keyPath == Settings.Saveword.muteWord {
@@ -225,9 +225,9 @@ extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
     }
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")
     }
     func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
@@ -267,11 +267,11 @@ extension MainViewController: SWTableViewCellDelegate {
     }
     // MARK: ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
     func addUtilityButtonWithColor(_ color: UIColor, icon: UIImage, text: String? = nil) -> UIButton {
-        let button: UIButton = UIButton(type: UIButtonType.custom)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
         button.backgroundColor = color
         button.tintColor = UIColor.white
-        button.setTitle(text, for: UIControlState())
-        button.setImage(icon, for: UIControlState())
+        button.setTitle(text, for: UIControl.State())
+        button.setImage(icon, for: UIControl.State())
         return button
     }
     // MARK: 右スライドした時のボタンの挙動
@@ -286,14 +286,14 @@ extension MainViewController: SWTableViewCellDelegate {
                 twitterManager.unfavoriteTweet(for: tweet.idStr, success: {
                     
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount - 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount - 1)", for: UIControl.State())
                 })
                 break
             }
             twitterManager.favoriteTweet(for: tweet.idStr , success: {
                 
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.favColor
-                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount + 1)", for: UIControlState())
+                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount + 1)", for: UIControl.State())
             })
             break
         case 1:
@@ -318,7 +318,7 @@ extension MainViewController: SWTableViewCellDelegate {
                 twitterManager.unretweetTweet(for: tweet.idStr, success: {
                     
                     (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) - 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) - 1)", for: UIControl.State())
                 })
                 break
             }
@@ -328,7 +328,7 @@ extension MainViewController: SWTableViewCellDelegate {
                 TwitterManager.shared.retweetTweet(for: tweet.idStr, success: {
                     
                     (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) + 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) + 1)", for: UIControl.State())
                 })
             })
                 .addAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in

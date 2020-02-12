@@ -53,9 +53,9 @@ final class TiqavImageViewController: UIViewController {
                 self.viewModel.urls = $0
                 self.imageCollectionView.reloadData()
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TiqavImageViewController.changeOrient(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     @objc func changeOrient(_ notification: Notification) {
@@ -94,7 +94,7 @@ final class TiqavImageViewController: UIViewController {
         
         let itemSize: CGFloat = (self.view.bounds.width - CGFloat(num) * margin) / CGFloat(num)
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        layout.sectionInset = UIEdgeInsetsMake(0.0, 0.0, margin, 0.0)
+        layout.sectionInset = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: margin, right: 0.0)
         layout.minimumInteritemSpacing = margin
         
         imageCollectionView.collectionViewLayout = layout
@@ -112,7 +112,7 @@ final class TiqavImageViewController: UIViewController {
 extension TiqavImageViewController: UICollectionViewDelegate {
     // MARK: 画像を選択したら
     func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        SDWebImageDownloader.shared().downloadImage(with: viewModel.urls[indexPath.row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: { (a: Int, b: Int, _: URL?) -> Void in
+        SDWebImageDownloader.shared.downloadImage(with: viewModel.urls[indexPath.row] as URL, options: SDWebImageDownloaderOptions.useNSURLCache, progress: { (a: Int, b: Int, _: URL?) -> Void in
             // 何回もクリックされるのを防ぐ
             self.imageCollectionView.allowsSelection = false
             self.title = "loading..."
@@ -131,6 +131,6 @@ extension TiqavImageViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSour
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "該当する画像が見つかりませんでした。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
     }
 }

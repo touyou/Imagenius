@@ -16,20 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var rtMode: Int = 5
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
     
         // アプリを通しての色を指定
         UINavigationBar.appearance().barTintColor = Settings.Colors.mainColor
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backgroundColor = UIColor.white
         UITabBar.appearance().tintColor = Settings.Colors.mainColor
         
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
             

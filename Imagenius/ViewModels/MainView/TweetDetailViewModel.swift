@@ -62,7 +62,7 @@ final class TweetDetailViewModel: NSObject {
                                 self.viewController.avPlayerViewController = AVPlayerViewController()
                                 self.viewController.avPlayerViewController.player = AVPlayer(url: videoInfo.url)
                                 self.viewController.present(self.viewController.avPlayerViewController, animated: true, completion: {
-                                    try! self.audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
+                                    try! self.audioSession.setCategory(.soloAmbient)
                                     self.viewController.avPlayerViewController.player?.play()
                                 })
                             }))

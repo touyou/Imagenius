@@ -1,6 +1,6 @@
 github "dzenbot/DZNEmptyDataSet"
 github "rs/SDWebImage"
-github "Alamofire/Alamofire" ~> 4.4
+github "Alamofire/Alamofire"
 github "SwiftyJSON/SwiftyJSON"
-github "ReactiveX/RxSwift" ~> 3.0
+github "ReactiveX/RxSwift"
 github "realm/realm-cocoa"

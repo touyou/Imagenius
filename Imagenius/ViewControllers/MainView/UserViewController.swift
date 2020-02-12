@@ -21,7 +21,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         didSet {
             userTimeLine.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
             userTimeLine.estimatedRowHeight = 200
-            userTimeLine.rowHeight = UITableViewAutomaticDimension
+            userTimeLine.rowHeight = UITableView.automaticDimension
             userTimeLine.emptyDataSetDelegate = self
             userTimeLine.emptyDataSetSource = self
             userTimeLine.dataSource = viewModel
@@ -61,7 +61,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
     var replyStr: String?
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(UserViewController.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(UserViewController.refresh), for: UIControl.Event.valueChanged)
         return refreshControl
     }()
     var imageData: NSMutableArray?
@@ -88,8 +88,8 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         // ボタン周り
         followButton.isHidden = true
         unfollowButton.isHidden = true
-        followButton.rx.tap.subscribe({_ in self.follow()}).addDisposableTo(disposeBag)
-        unfollowButton.rx.tap.subscribe({_ in self.unfollow()}).addDisposableTo(disposeBag)
+        followButton.rx.tap.subscribe({_ in self.follow()}).disposed(by: disposeBag)
+        unfollowButton.rx.tap.subscribe({_ in self.unfollow()}).disposed(by: disposeBag)
         
         if saveData.object(forKey: Settings.Saveword.twitter) == nil {
             performSegue(withIdentifier: "showInfo", sender: nil)
@@ -117,7 +117,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
         }
         
         if saveData.object(forKey: Settings.Saveword.muteMode) != nil {
-            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as? Int
         } else {
             muteMode = 1
             saveData.set(muteMode, forKey: Settings.Saveword.muteMode)
@@ -133,7 +133,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
             if !self.reloadingFlag {
                 if self.tweetArray.count != 0 {
                     let indexPath = IndexPath(row: 0, section: 0)
-                    self.userTimeLine.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+                    self.userTimeLine.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: false)
                 }
                 self.tweetArray = []
                 self.loadTweet()
@@ -142,7 +142,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                 self.reloadingFlag = false
             }
         } else if keyPath == Settings.Saveword.muteMode {
-            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as? Int
             tweetArray = []
             loadTweet()
         } else if keyPath == Settings.Saveword.muteWord {
@@ -267,7 +267,7 @@ final class UserViewController: UIViewController, UITableViewDelegate {
                     self.unfollowButton.isHidden = false
                 } else if userInfo.followRequestSent {
                     
-                    self.followButton.setTitle("フォロー許可待ち", for: UIControlState())
+                    self.followButton.setTitle("フォロー許可待ち", for: UIControl.State())
                     self.followButton.isEnabled = false
                     self.followBtnLength.constant = 100
                     self.unfollowButton.isHidden = true
@@ -340,9 +340,9 @@ extension UserViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "表示できるツイートがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
     }
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")
     }
     func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
@@ -381,11 +381,11 @@ extension UserViewController: SWTableViewCellDelegate {
     }
     // MARK: ボタンの追加(なんかObj-CのNSMutableArray拡張ヘッダーが上手く反映できてないので)
     func addUtilityButtonWithColor(_ color: UIColor, icon: UIImage, text: String? = nil) -> UIButton {
-        let button: UIButton = UIButton(type: UIButtonType.custom)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
         button.backgroundColor = color
         button.tintColor = UIColor.white
-        button.setTitle(text, for: UIControlState())
-        button.setImage(icon, for: UIControlState())
+        button.setTitle(text, for: UIControl.State())
+        button.setImage(icon, for: UIControl.State())
         return button
     }
     // MARK: 右スライドした時のボタンの挙動
@@ -400,14 +400,14 @@ extension UserViewController: SWTableViewCellDelegate {
                 twitterManager.unfavoriteTweet(for: tweet.idStr, success: {
                     
                     (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount - 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount - 1)", for: UIControl.State())
                 })
                 break
             }
             twitterManager.favoriteTweet(for: tweet.idStr , success: {
                 
                 (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.favColor
-                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount + 1)", for: UIControlState())
+                (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\(tweet.favoriteCount + 1)", for: UIControl.State())
             })
             break
         case 1:
@@ -432,7 +432,7 @@ extension UserViewController: SWTableViewCellDelegate {
                 twitterManager.unretweetTweet(for: tweet.idStr, success: {
                     
                     (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.selectedColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) - 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) - 1)", for: UIControl.State())
                 })
                 break
             }
@@ -442,7 +442,7 @@ extension UserViewController: SWTableViewCellDelegate {
                 TwitterManager.shared.retweetTweet(for: tweet.idStr, success: {
                     
                     (cell.rightUtilityButtons[2] as? UIButton ?? UIButton()).backgroundColor = Settings.Colors.retweetColor
-                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) + 1)", for: UIControlState())
+                    (cell.rightUtilityButtons[0] as? UIButton ?? UIButton()).setTitle("\((tweet.retweetCount) + 1)", for: UIControl.State())
                 })
             })
                 .addAction(title: "引用リツイート", style: .default, handler: {(_) -> Void in
@@ -553,8 +553,8 @@ extension UserViewController: TTTAttributedLabelDelegate {
             user = String(url.absoluteString.suffix(from: userRange.upperBound))
             getUserIdWithScreenName(user, comp: {
                 self.tweetArray = []
-                self.title = "@\(self.user)のツイート一覧"
-                self.userIDLabel.text = "@\(self.user)"
+                self.title = "@\(self.user!)のツイート一覧"
+                self.userIDLabel.text = "@\(self.user!)"
                 self.loadTweet()
             })
         } else {

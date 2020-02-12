@@ -17,9 +17,9 @@ final class InfoPageViewController: UIPageViewController {
         super.viewDidLoad()
         pageData = NSMutableArray()
         currentIndex = 0
-        pageData.add(UIImagePNGRepresentation(UIImage(named: "info_1")!)!)
-        pageData.add(UIImagePNGRepresentation(UIImage(named: "info_2")!)!)
-        pageData.add(UIImagePNGRepresentation(UIImage(named: "info_3")!)!)
+        pageData.add(UIImage(named: "info_1")!.pngData()!)
+        pageData.add(UIImage(named: "info_2")!.pngData()!)
+        pageData.add(UIImage(named: "info_3")!.pngData()!)
 
         self.delegate = self
 
@@ -71,7 +71,7 @@ extension InfoPageViewController: UIPageViewControllerDelegate, UIPageViewContro
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     // MARK: 向きはPortrait限定なので常に表示されるページは一個
-    func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
+    func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
         let currentViewController = self.viewControllers![0]
         let viewControllers = [currentViewController]
         self.setViewControllers(viewControllers, direction: .forward, animated: true, completion: {_ in })

@@ -43,8 +43,8 @@ final class WebViewController: UIViewController {
         super.loadView()
         self.webView = WKWebView()
         self.webView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addConstraints([NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 1.0, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: self.webView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1.0, constant: 0),
+                                  NSLayoutConstraint(item: self.webView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.0, constant: 0)])
         self.webView.navigationDelegate = self
         self.webView.uiDelegate = self
         self.webView.allowsBackForwardNavigationGestures = true

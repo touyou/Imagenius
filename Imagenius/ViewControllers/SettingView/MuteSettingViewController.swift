@@ -34,7 +34,7 @@ final class MuteSettingViewController: UIViewController {
         }
         
         if saveData.object(forKey: Settings.Saveword.muteMode) != nil {
-            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as! Int
+            muteMode = saveData.object(forKey: Settings.Saveword.muteMode) as? Int
         } else {
             muteMode = 1
             saveData.set(muteMode, forKey: Settings.Saveword.muteMode)

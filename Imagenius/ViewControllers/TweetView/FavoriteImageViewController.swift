@@ -49,7 +49,7 @@ final class FavoriteImageViewController: UIViewController {
         
         let itemSize: CGFloat = (self.view.bounds.width - CGFloat(num) * margin) / CGFloat(num)
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        layout.sectionInset = UIEdgeInsetsMake(0.0, 0.0, margin, 0.0)
+        layout.sectionInset = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: margin, right: 0.0)
         layout.minimumInteritemSpacing = margin
         
         imageCollectionView.collectionViewLayout = layout
@@ -60,9 +60,9 @@ final class FavoriteImageViewController: UIViewController {
     }
     
     @IBAction func galleryBtn() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
-            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
             imagePicker.delegate = self
             imagePicker.allowsEditing = true
             present(imagePicker, animated: true, completion: nil)
@@ -95,13 +95,14 @@ extension FavoriteImageViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDel
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "お気に入りの画像を保存してください。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
     }
 }
 
 extension FavoriteImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        if let pickedImage = info[.originalImage] as? UIImage {
             let favoriteImage = FavoriteImage.create()
             favoriteImage.image = pickedImage
             favoriteImage.save()

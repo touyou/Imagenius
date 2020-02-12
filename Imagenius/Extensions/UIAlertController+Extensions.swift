@@ -10,14 +10,14 @@ import UIKit
 
 extension UIAlertController {
     
-    func addAction(title: String, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
+    func addAction(title: String, style: UIAlertAction.Style = .default, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
         
         let action = UIAlertAction(title: title, style: style, handler: handler)
         addAction(action)
         return self
     }
     
-    func addActionWithTextFields(title: String, style: UIAlertActionStyle = .default, handler: ((UIAlertAction, [UITextField]) -> Void)? = nil) -> Self {
+    func addActionWithTextFields(title: String, style: UIAlertAction.Style = .default, handler: ((UIAlertAction, [UITextField]) -> Void)? = nil) -> Self {
         
         let action = UIAlertAction(title: title, style: style) { [weak self] action in
             

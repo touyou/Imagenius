@@ -20,7 +20,7 @@ class FavoriteImage: Object {
         set {
             self._image = newValue
             if let value = newValue {
-                self.imageData = UIImagePNGRepresentation(value)
+                self.imageData = value.pngData()
             }
         }
         get {

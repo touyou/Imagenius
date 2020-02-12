@@ -33,7 +33,7 @@ final class Utility {
             activityItems = [url as AnyObject]
         }
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        let excludedActivityTypes = [UIActivityType.postToWeibo, UIActivityType.postToTencentWeibo]
+        let excludedActivityTypes = [UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.postToTencentWeibo]
         activityVC.excludedActivityTypes = excludedActivityTypes
         // iPad用
         activityVC.popoverPresentationController?.sourceView = presentView.view

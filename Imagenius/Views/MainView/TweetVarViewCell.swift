@@ -20,7 +20,7 @@ final class TweetVarViewCell: SWTableViewCell {
             // リンク
             tweetLabel.linkAttributes = [
                 kCTForegroundColorAttributeName as AnyHashable: Settings.Colors.twitterColor,
-                NSAttributedStringKey.underlineStyle: NSNumber(value: NSUnderlineStyle.styleNone.rawValue as Int)
+                NSAttributedString.Key.underlineStyle: []
             ]
         }
     }

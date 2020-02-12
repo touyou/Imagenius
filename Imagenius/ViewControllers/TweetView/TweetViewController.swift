@@ -73,14 +73,14 @@ final class TweetViewController: UIViewController {
 
         // RxSwiftで文字数を監視
         tweetTextView.rx.textInput.text
-            .map { "\($0!.characters.count)" }
+            .map { "\($0!.count)" }
             .bind(to: countLabel.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         tweetTextView.rx.textInput.text
             .map {
-                if $0?.characters.count == 0 {
+                if $0?.count == 0 {
                     self.placeHolderLabel.text = "何をつぶやく？"
-                } else if ($0?.characters.count)! > self.MAXWORD {
+                } else if ($0?.count)! > self.MAXWORD {
                     self.placeHolderLabel.text = nil
                     self.countLabel.textColor = Settings.Colors.mainColor
                 } else {
@@ -89,7 +89,7 @@ final class TweetViewController: UIViewController {
                 }
             }
             .subscribe {}
-            .addDisposableTo(disposeBag)
+        .disposed(by: disposeBag)
 
         // カメラのとか
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -104,14 +104,14 @@ final class TweetViewController: UIViewController {
                     .take(1)
             }
             .map { info in
-                return info[UIImagePickerControllerOriginalImage] as? UIImage
+                return info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
             }
             .subscribe({ image in
                 let failureHandler: ((Error?) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
                 let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
-                let data = UIImagePNGRepresentation(im)!
+                let data = im.pngData()!
                 TwitterManager.shared.postMedia(data, success: { media in
                     
                     if self.gifFlag && self.mediaIds.count < 4 {
@@ -126,7 +126,7 @@ final class TweetViewController: UIViewController {
                     }
                 }, failure: failureHandler)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         galleryButton.rx.tap
             .flatMapLatest { [weak self] _ in
@@ -140,14 +140,14 @@ final class TweetViewController: UIViewController {
                     .take(1)
             }
             .map { info in
-                return info[UIImagePickerControllerEditedImage] as? UIImage
+                return info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage
             }
             .subscribe({ image in
                 let failureHandler: ((Error?) -> Void) = { error in
                     Utility.simpleAlert("Error: 画像ファイルが大きすぎるためアップロードに失敗しました。(インターネット環境を確認してください。)", presentView: self)
                 }
                 let im = Utility.resizeImage(image.element!!, size: CGSize(width: 1024, height: 1024))
-                let data = UIImagePNGRepresentation(im)!
+                let data = im.pngData()!
                 TwitterManager.shared.postMedia(data, success: { media in
                     
                     if self.gifFlag && self.mediaIds.count < 4 {
@@ -162,7 +162,7 @@ final class TweetViewController: UIViewController {
                     }
                 }, failure: failureHandler)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         // Google Ads関連
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
@@ -179,12 +179,12 @@ final class TweetViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if accountImg == nil {
-            self.accountImage.setTitle("login", for: UIControlState())
+            self.accountImage.setTitle("login", for: UIControl.State())
         }
 
         searchField.text = ""
 
-        NotificationCenter.default.addObserver(self, selector: #selector(TweetViewController.changeOrient(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TweetViewController.changeOrient(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
 
         self.view.layoutIfNeeded()
     }
@@ -261,7 +261,7 @@ final class TweetViewController: UIViewController {
 
         // ここに140字以上の処理を書く
         tweetText = tweetTextView.text
-        if tweetText!.characters.count > MAXWORD {
+        if tweetText!.count > MAXWORD {
             Utility.simpleAlert("140字を超えています。", presentView: self)
             return
         }
@@ -367,7 +367,7 @@ extension TweetViewController: TweetViewControllerDelegate {
             self.accountImg = Utility.resizeImage(UIImage(data: try! Data(contentsOf: user.profileImageUrl))!, size: CGSize(width: 50, height: 50))
             self.accountImage.layer.cornerRadius = self.accountImage.frame.size.width * 0.5
             self.accountImage.clipsToBounds = true
-            self.accountImage.setImage(self.accountImg, for: UIControlState())
+            self.accountImage.setImage(self.accountImg, for: UIControl.State())
         }, failure: failureHandler)
     }
 }
@@ -453,4 +453,9 @@ fileprivate func castOrThrow<T>(_ resultType: T.Type, _ object: AnyObject) throw
     }
     
     return returnValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

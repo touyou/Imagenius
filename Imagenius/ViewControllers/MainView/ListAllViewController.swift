@@ -13,7 +13,7 @@ final class ListAllViewController: UIViewController {
     @IBOutlet weak var listTableView: UITableView! {
         didSet {
             listTableView.estimatedRowHeight = 200
-            listTableView.rowHeight = UITableViewAutomaticDimension
+            listTableView.rowHeight = UITableView.automaticDimension
             listTableView.emptyDataSetDelegate = self
             listTableView.emptyDataSetSource = self
             listTableView.delegate = self
@@ -26,7 +26,7 @@ final class ListAllViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(ListAllViewController.loadList), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(ListAllViewController.loadList), for: UIControl.Event.valueChanged)
         return refreshControl
     }()
     
@@ -153,9 +153,9 @@ extension ListAllViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "リストがありません。"
         let font = UIFont.systemFont(ofSize: 20)
-        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: font])
+        return NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
     }
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
         return NSAttributedString(string: "リロードする")
     }
     func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {

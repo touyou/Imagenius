@@ -1,5 +1,33 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.38.0)
+  - Google-Mobile-Ads-SDK (7.55.0):
+    - GoogleAppMeasurement (~> 6.0)
+  - GoogleAppMeasurement (6.2.2):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - GoogleUtilities/AppDelegateSwizzler (6.5.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.5.1)
+  - GoogleUtilities/Logger (6.5.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.5.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.5.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.5.1)"
+  - GoogleUtilities/Reachability (6.5.1):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
   - RegExCategories (1.0)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (2.0.0)
@@ -15,8 +43,11 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Google-Mobile-Ads-SDK
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
     - RegExCategories
     - SWTableViewCell
     - TTTAttributedLabel
@@ -24,7 +55,10 @@ SPEC REPOS:
     - TwitterKit
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: fec4a72b71a81302d3fd75454df3417c03c50ed5
+  Google-Mobile-Ads-SDK: 09d1c182f144b456fce626f9234ab4d35397ea10
+  GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
+  GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
@@ -33,4 +67,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c0517d2d86765f983abd4af50a81755c2401e3a6
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

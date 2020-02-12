@@ -57,7 +57,7 @@ final class ResultViewController: UIViewController {
         let activityItems: [AnyObject]!
         activityItems = [image!]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        let excludedActivityTypes = [UIActivityType.postToTwitter, UIActivityType.postToWeibo, UIActivityType.postToTencentWeibo]
+        let excludedActivityTypes = [UIActivity.ActivityType.postToTwitter, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.postToTencentWeibo]
         activityVC.excludedActivityTypes = excludedActivityTypes
         // iPad用
         activityVC.popoverPresentationController?.sourceView = self.view

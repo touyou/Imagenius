@@ -56,7 +56,7 @@ final class MainViewModel: NSObject {
                                 self.viewController.avPlayerViewController = AVPlayerViewController()
                                 self.viewController.avPlayerViewController.player = AVPlayer(url: videoInfo.url)
                                 self.viewController.present(self.viewController.avPlayerViewController, animated: true, completion: {
-                                    try! self.audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
+                                    try! self.audioSession.setCategory(.soloAmbient)
                                     self.viewController.avPlayerViewController.player?.play()
                                 })
                             })
@@ -109,4 +109,9 @@ extension MainViewModel: UITableViewDataSource {
         cell.layoutIfNeeded()
         return cell
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

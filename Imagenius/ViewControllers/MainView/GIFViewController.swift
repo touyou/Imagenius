@@ -27,7 +27,7 @@ final class GIFViewController: UIViewController {
         playerItem = AVPlayerItem(asset: avAsset)
         videoPlayer = AVPlayer(playerItem: playerItem)
         audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setCategory(AVAudioSessionCategoryAmbient)
+        try! audioSession.setCategory(.ambient)
         // ループにする
         NotificationCenter.default.addObserver(self, selector: #selector(GIFViewController.playerItemDidReachEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.videoPlayer.currentItem)
 
@@ -48,7 +48,7 @@ final class GIFViewController: UIViewController {
         self.contentView.layer.addSublayer(layer)
 
         // 端末の向きがかわったらNotificationを呼ばす設定.
-        NotificationCenter.default.addObserver(self, selector: #selector(GIFViewController.onOrientationChange(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GIFViewController.onOrientationChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,7 +61,7 @@ final class GIFViewController: UIViewController {
     }
 
     @objc func playerItemDidReachEnd(_ notification: Notification) {
-        self.videoPlayer.seek(to: kCMTimeZero)
+        self.videoPlayer.seek(to: CMTime.zero)
         self.videoPlayer.play()
     }
 

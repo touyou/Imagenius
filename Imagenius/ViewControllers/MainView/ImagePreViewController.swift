@@ -38,7 +38,7 @@ final class ImagePreViewController: UIPageViewController {
         let activityItems: [AnyObject]!
         activityItems = [image!]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        let excludedActivityTypes = [UIActivityType.postToWeibo, UIActivityType.postToTencentWeibo]
+        let excludedActivityTypes = [UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.postToTencentWeibo]
         activityVC.excludedActivityTypes = excludedActivityTypes
         // iPad用
         activityVC.popoverPresentationController?.sourceView = self.view
@@ -83,7 +83,7 @@ extension ImagePreViewController: UIPageViewControllerDataSource, UIPageViewCont
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
     // MARK: 向きはPortrait限定なので常に表示されるページは一個
-    func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
+    func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
         let currentViewController = self.viewControllers![0]
         let viewControllers = [currentViewController]
         self.setViewControllers(viewControllers, direction: .forward, animated: true, completion: {_ in })

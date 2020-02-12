@@ -33,7 +33,7 @@ extension UIColor {
         
         if hex.hasPrefix("#") {
             
-            let index = hex.characters.index(hex.startIndex, offsetBy: 1)
+            let index = hex.index(hex.startIndex, offsetBy: 1)
             hex = String(hex.suffix(from: index))
         }
         
@@ -41,7 +41,7 @@ extension UIColor {
         var hexValue: UInt64 = 0
         if scanner.scanHexInt64(&hexValue) {
             
-            switch hex.characters.count {
+            switch hex.count {
             case 3:
                 red = CGFloat((hexValue & 0xF00) >> 8) / 15
                 green = CGFloat((hexValue & 0x0F0) >> 4) / 15
