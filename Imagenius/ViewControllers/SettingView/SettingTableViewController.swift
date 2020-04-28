@@ -81,7 +81,7 @@ final class SettingTableViewController: UITableViewController, MFMailComposeView
                 // App Store画面へ
                 let itunesURL: String = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1089595726"
                 let url = URL(string: itunesURL)
-                UIApplication.shared.openURL(url!)
+                UIApplication.shared.open(url!)
             default:
                 break
             }

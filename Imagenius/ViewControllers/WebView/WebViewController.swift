@@ -109,11 +109,11 @@ extension WebViewController:  WKNavigationDelegate, WKUIDelegate {
         let currentUrl = navigationAction.request.url
         let urlString = currentUrl?.absoluteString
         if NSRegularExpression.rx("\\/\\/itunes\\.apple\\.com\\/").isMatch(urlString) {
-            UIApplication.shared.openURL(currentUrl!)
+            UIApplication.shared.open(currentUrl!)
             decisionHandler(WKNavigationActionPolicy.cancel)
             return
         } else if !NSRegularExpression.rx("^https?:\\/\\/.", ignoreCase: true).isMatch(urlString) {
-            UIApplication.shared.openURL(currentUrl!)
+            UIApplication.shared.open(currentUrl!)
             decisionHandler(WKNavigationActionPolicy.cancel)
             return
         }

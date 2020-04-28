@@ -21,21 +21,17 @@ class TiqavImageModel: NSObject {
     final func request(_ searchWord: String) {
         let text = "http://api.tiqav.com/search.json?q="+searchWord
 //        let text = "https://www.googleapis.com/customsearch/v1?key=\(apiKey)&cx=\(csId)&searchType=image&q=\(searchWord)"
-        Alamofire.request(Utility.encodeURL(text)).responseJSON(completionHandler: { response in
-            guard let object = response.result.value else {
-                return
+        AF.request(Utility.encodeURL(text)).responseJSON(completionHandler: { response in
+            switch response.result {
+            case .success(let value):
+                let json = SwiftyJSON.JSON(value)
+                json.forEach({(_, json) in
+                    let url = URL(string: "http://img.tiqav.com/" + json["id"].rawString()! + "." + json["ext"].rawString()!)
+                    self.urls.value.append(url!)
+                })
+            case .failure(let error):
+                print("error: \(error)")
             }
-            let json = SwiftyJSON.JSON(object)
-            json.forEach({(_, json) in
-                let url = URL(string: "http://img.tiqav.com/" + json["id"].rawString()! + "." + json["ext"].rawString()!)
-                self.urls.value.append(url!)
-            })
-//            if json["items"].array != nil {
-//                json["items"].array?.forEach { json in
-//                    let url = NSURL(string: json["link"].string!)
-//                    self.urls.value.append(url!)
-//                }
-//            }
         })
     }
 }

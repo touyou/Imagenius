@@ -8,6 +8,7 @@
 
 import UIKit
 import TwitterKit
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backgroundColor = UIColor.white
         UITabBar.appearance().tintColor = Settings.Colors.mainColor
+
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }
@@ -32,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
-            
+
             return true
         }
-        
+
         return false
     }
 

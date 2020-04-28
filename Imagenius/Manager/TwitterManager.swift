@@ -801,7 +801,7 @@ struct User: Decodable {
     let id: UInt64
     let idStr: String
     let isTranslator: Bool
-    let lang: String
+    let lang: String?
     let listedCount: Int
     let location: String
     let name: String
